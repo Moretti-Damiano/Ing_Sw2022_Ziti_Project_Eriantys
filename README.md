@@ -30,7 +30,7 @@ then, you can safely remove the 'template' remote by typing `git remote rm templ
 
 ### Commit and push your changes:
   ```
-  git add pom.xml src/test/java/it/polimi/ingsw/*TEAM_CODE*/AppTest.java src/main/java/it/polimi/ingsw/*TEAM_CODE*/App.java`
-  git commit -m "customize project"
+  git add pom.xml src/*
+  git commit -am "customize project"
   git push origin master
   ```
