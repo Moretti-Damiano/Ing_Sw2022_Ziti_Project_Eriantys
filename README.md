@@ -27,7 +27,7 @@ then, you can safely remove the 'template' remote by typing `git remote rm templ
   * click `Browse...` and select the directory where you cloned the project
   * make sure the project is listed and selected under `Projects`
   * select `Finish`
-  * you hsould now see the project **team_code** in your workspace
+  * you should now see the project **team_code** listed in the Package Explorer view of Eclipse
 - from the Package Explorer view, rename packages under `src/main/java` and `src/test/java` substituting **pcXX** with your assigned **team_code**
 - customize the `README.md`
 - in order to check that everything worked fine, try to build with Maven:
