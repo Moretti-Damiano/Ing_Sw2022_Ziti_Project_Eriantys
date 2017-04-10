@@ -20,17 +20,29 @@ Using the git command line client for your OS, type the following commands:
 ```
 then, you can safely remove the 'template' remote by typing `git remote rm template`.
 
-### Personalize your poject files and Import them in Eclipse
-- Open the `pom.xml` file in a text editor and substitute the two occurrences of **pcXX** with your assigned **team code**.
-- Import it in eclipse as Maven Project ... 
-- rename packages under `src/main/java` and `src/test/java` substituting **pcXX** with your assigned **team code**
-- try mvn clean package
-- modify the `README.md`
-
+### Customize your project files and Import them in Eclipse
+- Open the `pom.xml` file in a text editor and substitute the two occurrences of **pcXX** with your assigned **team_code**.
+- Import it in Eclipse as Maven Project:
+  * from Eclipse, select `File > Import... > Existing Maven Project`
+  * click `Browse...` and select the directory where you cloned the project
+  * make sure the project is listed and selected under `Projects`
+  * select `Finish`
+  * you hsould now see the project **team_code** in your workspace
+- from the Package Explorer view, rename packages under `src/main/java` and `src/test/java` substituting **pcXX** with your assigned **team_code**
+- customize the `README.md`
+- in order to check that everything worked fine, try to build with Maven:
+  + from Eclipse (Package Explorer view):
+    * right-click on the project
+    * select `Run as > Maven build...`
+    * type `clean package` into the `Goal` field
+    * click `Run`
+  + from command line:
+    * move to your project directory (you should be in the same folder as `pom.xml` file)
+    * type `mvn clean package`
+  + wait for the build to complete and make sure you have a build success
 
 ### Commit and push your changes:
   ```
-  git add pom.xml src/*
   git commit -am "customize project"
   git push origin master
   ```
