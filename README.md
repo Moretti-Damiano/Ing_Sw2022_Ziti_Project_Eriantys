@@ -10,7 +10,7 @@ Using the git command line client for your OS, type the following commands:
 
 ```bash
  # clone the repo on your current folder, naming the remote as 'template'
- git clone https://github.com/deib-polimi/prova-finale-template --origin template
+ git clone https://github.com/deib-polimi/prova-finale-template-cremona --origin template
  # move to the cloned repo
  cd prova-finale-template/
  # add your repository as 'origin' (default) remote
