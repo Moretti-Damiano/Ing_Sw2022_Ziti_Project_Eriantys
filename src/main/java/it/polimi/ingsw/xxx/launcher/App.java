@@ -1,10 +1,10 @@
-package it.polimi.ingsw.pcXX;
+package it.polimi.ingsw.xxx.launcher;
 
 /**
  * Hello world!
  *
  */
-public class App 
+public class App
 {
     public static void main( String[] args )
     {
