@@ -1,4 +1,4 @@
-package it.polimi.ingsw.xxx.launcher;
+package it.polimi.ingsw.Ziti.launcher;
 
 
 import org.junit.jupiter.api.Test;
