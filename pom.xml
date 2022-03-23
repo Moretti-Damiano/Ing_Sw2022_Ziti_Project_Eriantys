@@ -2,9 +2,9 @@
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 	<groupId>it.polimi.ingsw</groupId>
-	<artifactId>proj-ingsw-xxx</artifactId>
+	<artifactId>proj-ingsw-Ziti</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>proj-ingsw-xxx</name>
+	<name>proj-ingsw-Ziti</name>
 	<description>Prova Finale Ingegneria del software</description>
 	<dependencyManagement>
 		<dependencies>
