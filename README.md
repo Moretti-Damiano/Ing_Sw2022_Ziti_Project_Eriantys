@@ -6,6 +6,10 @@ In order to set up your project, follow these steps
 
 ### Clone and push the template to your repo
 
+On GitHub user settings, scroll down to `Developer settings`, then `Personal access token`.
+
+Create one token to be used in place of password when prompted after git command line operations (remember to store it safely).
+
 Using the git command line client for your OS, type the following commands:
 
 ```bash
