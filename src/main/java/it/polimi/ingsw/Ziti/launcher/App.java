@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher;
 
 /**
- * Hello world!
+ * Hello world!!!!!
  *
  */
 public class App
