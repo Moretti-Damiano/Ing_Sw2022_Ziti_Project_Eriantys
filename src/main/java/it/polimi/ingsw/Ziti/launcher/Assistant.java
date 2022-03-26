@@ -10,14 +10,27 @@ public class Assistant {
         this.movesMother=builder.movesMother;
         this.value=builder.value;
     }
+
+    /**
+     *
+     * @return Number of MotherNature possible moves
+     */
     public int getMovesMother() {
         return movesMother;
     }
 
+    /**
+     *
+     * @return Value used to choose next round player order
+     */
     public int getValue() {
         return value;
     }
 
+    /**
+     *
+     * @return Assistant id, used to identify AssistantCard
+     */
     public int getId() {
         return id;
     }

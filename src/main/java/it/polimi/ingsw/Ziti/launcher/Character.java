@@ -14,22 +14,41 @@ public class Character {
 
     }
 
+    /**
+     *
+     * @return Character id, used to identify CharcterCard
+     */
     public int getId() {
         return id;
     }
 
+    /**
+     *
+     * @return CharacterCard Effect
+     */
     public Effect getEffect() {
         return effect;
     }
 
+    /**
+     *
+     * @return The cost of the Card, in order to use this card, the player have to use this amout of coins
+     */
     public int getCost() {
         return cost;
     }
 
+    /**
+     *
+     * @return The description of the Effect provided by this Character
+     */
     public String getDescription() {
         return description;
     }
 
+    /**
+     * Simple function that allow to increase the cost of the card, infact (and only) after the first use the cost is icreased by one
+     */
     void increaseCost(){
         this.cost++;
     }
