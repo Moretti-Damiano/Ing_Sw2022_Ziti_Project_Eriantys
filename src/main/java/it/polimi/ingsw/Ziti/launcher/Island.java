@@ -5,7 +5,6 @@ import java.util.ArrayList;
 public class Island {
 
     private int ID;
-    private ArrayList<Integer> A;
     private ArrayList<Student> students;
     private ArrayList<Tower> towers;
     private Player TowerPlayer;
@@ -18,11 +17,14 @@ public class Island {
         this.isMother = false;
     }
 
+    public int getID() {
+        return ID;
+    }
 
     /**
      * return number of colour_students
      */
-    public int getColor(Colour c){
+    public int getColour(Colour c){
         int i = 0;
         for(Student s: students){
             if(s.getColour().equals(c))
@@ -39,6 +41,10 @@ public class Island {
         return towers;
     }
 
+    public Player getTowerPlayer(){
+        return TowerPlayer;
+    }
+
     public boolean getMother(){
         return isMother;
     }
@@ -49,6 +55,14 @@ public class Island {
      */
     public void setMother(){
         isMother = !isMother;
+    }
+
+    /**
+     * add a student to the island
+     * @param s student to add
+     */
+    public void addStudent(Student s){
+        students.add(s);
     }
 
     /**
@@ -74,7 +88,7 @@ public class Island {
 
     /**
      * merge all the param island attributes with this island
-     * @param island referes to the near island to merge with.
+     * @param island refers to the near island to merge with.
      *               will be removed from the game by Game Controller
      */
     public void merge(Island island){
