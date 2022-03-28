@@ -16,7 +16,7 @@ public class Character {
 
     /**
      *
-     * @return Character id, used to identify CharcterCard
+     * @return Character id, used to identify CharacterCard
      */
     public int getId() {
         return id;
@@ -32,7 +32,7 @@ public class Character {
 
     /**
      *
-     * @return The cost of the Card, in order to use this card, the player have to use this amout of coins
+     * @return The cost of the Card, in order to use this card, the player have to use this amount of coins
      */
     public int getCost() {
         return cost;
@@ -47,7 +47,7 @@ public class Character {
     }
 
     /**
-     * Simple function that allow to increase the cost of the card, infact (and only) after the first use the cost is icreased by one
+     * Simple function that allow to increase the cost of the card, in fact (and only) after the first use, the cost is increased by one
      */
     void increaseCost(){
         this.cost++;
