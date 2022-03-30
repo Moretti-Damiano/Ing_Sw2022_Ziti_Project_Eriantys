@@ -5,7 +5,7 @@ import java.util.ArrayList;
 public class Board {
         private static final int colorrow = 5;
         private ArrayList<Tower> towers;
-        private Tower_Colour tower_colour;
+        private TowerColour tower_colour;
         private ArrayList<Student> students_waiting;
         private ArrayList<Professor> professors;
         private ArrayList<Student>[] students;
@@ -25,7 +25,7 @@ public class Board {
         }
 
 
-    public void setTowerColour(Tower_Colour tower_colour) {
+    public void setTowerColour(TowerColour tower_colour) {
         this.tower_colour = tower_colour;
     }
 
@@ -61,7 +61,7 @@ public class Board {
     public Student leave(Colour student_colour){
         ArrayList<Student> s_leave=new ArrayList<Student>();
         for(Student s : students_waiting){
-            if(s.getcolour()==student_colour){
+            if(s.getColour()==student_colour){
                 s_leave.add(s);
             }
         }
