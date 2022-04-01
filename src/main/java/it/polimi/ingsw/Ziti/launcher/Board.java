@@ -12,7 +12,6 @@ public class Board {
         private ArrayList<Coin> wallet;
         private WalletController walletController;
 
-
         public Board() {
             towers = new ArrayList<Tower>();
             professors = new ArrayList<Professor>();
