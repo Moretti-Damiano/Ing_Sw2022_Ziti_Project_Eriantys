@@ -58,6 +58,15 @@ public enum Colour {
         return colour;
     }
 
+    /**
+     * Converts the abbreviation of a colour into a ìn int
+     * @return colour's int
+     * */
+    public int getIntAbbreviation(){
+        int abbrev = Integer.parseInt(this.getAbbreviation());
+        return abbrev;
+    }
+
 
 
 }
