@@ -51,7 +51,7 @@ public class Board {
 
     //getintabbreviation dovrebbe restituire l'intero associato al colore
     public void goLunch(Colour student_colour) {
-        students[student_colour.getintabbreviation()] .add(this.leave(student_colour));
+        students[student_colour.getIntAbbreviation()] .add(this.leave(student_colour));
         if(this.checkCoin(student_colour)){
             wallet.add(walletController.getCoin());
         }
@@ -73,7 +73,7 @@ public class Board {
 
 
     private boolean checkCoin(Colour student_colour){
-        if(students[student_colour.getintabbreviation].size() % 3==0){
+        if(students[student_colour.getIntAbbreviation()].size() % 3==0){
             return true;
         }
         return false;

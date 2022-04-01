@@ -20,6 +20,6 @@ public class Mother {
      * Moves Mother from an island to an other
      */
     public void move(Island i){
-        mother.island = mother.i;
+        this.island = i;
     }
 }
