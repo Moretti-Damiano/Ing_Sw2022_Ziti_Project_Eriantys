@@ -1,4 +1,7 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
+
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 
 import java.util.ArrayList;
 

@@ -1,5 +1,8 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
 
+import it.polimi.ingsw.Ziti.launcher.AssistantParser;
+import it.polimi.ingsw.Ziti.launcher.model.Assistant;
+import it.polimi.ingsw.Ziti.launcher.model.Board;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -15,7 +18,7 @@ public class Player {
         public Player(String name) throws ParserConfigurationException, IOException, SAXException {
             this.name=name;
             board=new Board();
-            assistants=AssistantParser.parseAssistants("Assistants.xml");
+            assistants= AssistantParser.parseAssistants("Assistants.xml");
         }
 
         /**

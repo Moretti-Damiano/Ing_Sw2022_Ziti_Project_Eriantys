@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
 
 /**
  * This classe is a Singleton and represents the Mother Of Nature in the game

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.enumeration;
 
 /**
  * This class contains the encoding referring to XML files.

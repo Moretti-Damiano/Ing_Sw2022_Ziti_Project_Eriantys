@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
 
 import java.util.ArrayList;
 

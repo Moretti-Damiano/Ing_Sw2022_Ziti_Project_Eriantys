@@ -1,6 +1,11 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
 
-import java.sql.Array;
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.model.Island;
+import it.polimi.ingsw.Ziti.launcher.model.Mother;
+import it.polimi.ingsw.Ziti.launcher.model.Player;
+import it.polimi.ingsw.Ziti.launcher.model.Professor;
+
 import java.util.ArrayList;
 
 public class GameController {
