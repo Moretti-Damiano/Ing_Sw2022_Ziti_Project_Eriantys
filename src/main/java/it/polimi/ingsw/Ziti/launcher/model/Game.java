@@ -1,14 +1,10 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
-import it.polimi.ingsw.Ziti.launcher.model.Island;
-import it.polimi.ingsw.Ziti.launcher.model.Mother;
-import it.polimi.ingsw.Ziti.launcher.model.Player;
-import it.polimi.ingsw.Ziti.launcher.model.Professor;
 
 import java.util.ArrayList;
 
-public class GameController {
+public class Game {
     ArrayList<Island> islands;
     ArrayList<Player> players;
     Mother mother;
@@ -17,7 +13,7 @@ public class GameController {
      * Creates 12 islands,Mother and memorizes the players
      * @param p arraylist containing all the players
      */
-    public GameController(ArrayList<Player> p){
+    public Game(ArrayList<Player> p){
         islands = new ArrayList<Island>();
         for(int i=0;i<12;i++){
             islands.add(new Island(i));
