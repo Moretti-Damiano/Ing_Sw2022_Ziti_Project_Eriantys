@@ -52,12 +52,12 @@ public class Island {
     }
 
 
-    /**
-     * Changes isMother value to his opposite
-     */
-    public void setMother(){
-        isMother = !isMother;
+
+    public void addMother(){
+        isMother = true;
     }
+
+    public void removeMother() {isMother = false;}
 
     /**
      * add a student to the island
