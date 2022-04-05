@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.enumeration;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -56,6 +56,15 @@ public enum Colour {
     public static Colour valueOfAbbreviation(final String abbr) {
         final Colour colour = COLOURS_BY_ABBR.get(abbr);
         return colour;
+    }
+
+    /**
+     * Converts the abbreviation of a colour into a ìn int
+     * @return colour's int
+     * */
+    public int getIntAbbreviation(){
+        int abbrev = Integer.parseInt(this.getAbbreviation());
+        return abbrev;
     }
 
 

@@ -10,11 +10,10 @@ public class Board {
         private ArrayList<Professor> professors;
         private ArrayList<Student>[] students;
         private ArrayList<Coin> wallet;
+        private WalletController walletController;
 
 
-
-        public Board(TowerColour tower_colour) {
-            this.tower_colour=tower_colour;
+        public Board() {
             towers = new ArrayList<Tower>();
             professors = new ArrayList<Professor>();
             wallet = new ArrayList<Coin>();
@@ -25,38 +24,24 @@ public class Board {
             }
         }
 
-        public ArrayList<Professor> getProfessors(){
-            return this.professors;
-        }
 
-
-    /**
-     *
-     * @param p professor to add
-     */
-    public void addProfessor(Professor p){
-            professors.add(p);
-        }
-
-    /**
-     * @param s student to add
-     */
-    public void addStudent(Student s){
-            students_waiting.add(s);
-     }
-
-    /**
-     * Remove a tower from towers
-     * @return the removed tower
-     */
-    public Tower removeTower() {
-        return  towers.remove(0);
-
+    public void setTowerColour(TowerColour tower_colour) {
+        this.tower_colour = tower_colour;
     }
 
 
     /**
-     * add a tower to towers
+     * Removes a tower from towers and returns it
+     */
+    public Tower removeTower() {
+        int index = (int) (Math.random() * towers.size());
+        return towers.get(index);
+        towers.remove(index);
+    }
+
+
+    /**
+     * adds a tower to towers
      */
     public void addTower(Tower T) {
         towers.add(T);
@@ -64,7 +49,7 @@ public class Board {
 
 
 
-
+    //getintabbreviation dovrebbe restituire l'intero associato al colore
     public void goLunch(Colour student_colour) {
         students[student_colour.getintabbreviation()] .add(this.leave(student_colour));
         if(this.checkCoin(student_colour)){
@@ -74,22 +59,21 @@ public class Board {
 
 
     public Student leave(Colour student_colour){
+        ArrayList<Student> s_leave=new ArrayList<Student>();
         for(Student s : students_waiting){
             if(s.getColour()==student_colour){
-                students_waiting.remove(s);
-                return s;
+                s_leave.add(s);
             }
         }
-       return null;
+        int index = (int) (Math.random() * s_leave.size());
+        return s_leave.get(index);
+        students_waiting.remove(s_leave.get(index));
     }
 
-    /**
-     *
-     * @param student_colour colour of checked row
-     * @return true if the size of the specified row is a multiple of 3
-     */
+
+
     private boolean checkCoin(Colour student_colour){
-        if(students[student_colour.getintabbreviation()].size() % 3==0){
+        if(students[student_colour.getintabbreviation].size() % 3==0){
             return true;
         }
         return false;

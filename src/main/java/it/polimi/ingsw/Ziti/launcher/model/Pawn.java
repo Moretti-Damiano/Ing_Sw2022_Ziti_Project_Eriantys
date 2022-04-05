@@ -1,6 +1,8 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
 
-    /**
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+
+/**
      * This class represents all Pawns usable in the game
      */
     public class Pawn {

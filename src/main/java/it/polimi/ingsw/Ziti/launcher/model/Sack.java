@@ -1,4 +1,6 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
+
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
 import java.util.Random;
 
@@ -25,7 +27,7 @@ public class Sack {
      * This method creates a Student with its colour if there's the possibility to create that kind of Student
      * Else returns another kind of Student or show a message that the Sack is empty
      */
-    public Student exctract() {
+    public Student extract() {
 
         //create a random number
         Random rand = new Random();

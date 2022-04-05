@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher;
 
+import it.polimi.ingsw.Ziti.launcher.model.Character;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -10,7 +11,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.*;
 
-import static it.polimi.ingsw.Ziti.launcher.XMLName.*;
+import static it.polimi.ingsw.Ziti.launcher.enumeration.XMLName.*;
 
 public class CharacterParser {
 

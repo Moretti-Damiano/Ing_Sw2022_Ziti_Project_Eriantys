@@ -1,4 +1,6 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
+
+import it.polimi.ingsw.Ziti.launcher.model.Coin;
 
 public class WalletController {
     private static int MaxNumCoin=20;

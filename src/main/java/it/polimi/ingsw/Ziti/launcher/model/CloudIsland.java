@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model;
 
 import java.util.ArrayList;
 
@@ -7,15 +7,17 @@ public class CloudIsland {
     private int size;       //number of students, always 3, 4 with 3 players
     private ArrayList<Student> students;
     private Sack sack;
+    private boolean available;
 
     public CloudIsland(int Id, int PlayerNum, Sack sack){
         this.ID = Id;
         this.sack = sack;
-        Students = new ArrayList<Student>();
+        students = new ArrayList<Student>();
         if(PlayerNum == 3)
             size = 4;
         else
             size = 3;
+        this.available = false;
     }
 
     /**
@@ -25,6 +27,7 @@ public class CloudIsland {
         for(int i=0;i<size;i++){
             students.add(sack.extract());
         }
+        available = true;
     }
 
     /**
@@ -33,11 +36,12 @@ public class CloudIsland {
     public ArrayList<Student> toEmpty(){
         ArrayList<Student> Copy = new ArrayList<Student>(students);
         students.clear();
+        available = false;
         return Copy;
     }
 
     /**
-     * shows what the island contains
+     * shows what the island contains ->èPROBABLY USELESS, IMPLEMENTED IN VIEW
      */
     public void Show(){
         System.out.println("Cloud Island: "+ID);

@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.enumeration;
 
 import java.util.HashMap;
 import java.util.Map;
