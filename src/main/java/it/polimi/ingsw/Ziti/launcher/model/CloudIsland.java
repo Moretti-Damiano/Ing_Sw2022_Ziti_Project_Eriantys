@@ -11,7 +11,7 @@ public class CloudIsland {
     public CloudIsland(int Id, int PlayerNum, Sack sack){
         this.ID = Id;
         this.sack = sack;
-        Students = new ArrayList<Student>();
+        students = new ArrayList<Student>();
         if(PlayerNum == 3)
             size = 4;
         else

@@ -1,13 +1,21 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
+import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
 import java.util.ArrayList;
 
 public class Game {
-    ArrayList<Island> islands;
-    ArrayList<Player> players;
-    Mother mother;
+    private ArrayList<Island> islands;
+    private ArrayList<Player> players;
+    private ArrayList<CloudIsland> cloudIslands;
+    private Mother mother;
+    private Sack sack;
+    private int maxPlayer;
+    private int playerNumber;
+    private ArrayList<Professor> professors;
+    private ArrayList<Character> characters;
+    private Action action;
 
     /**
      * Creates 12 islands,Mother and memorizes the players
@@ -18,8 +26,10 @@ public class Game {
         for(int i=0;i<12;i++){
             islands.add(new Island(i));
         }
-        mother = Mother.motherInstance();  //should be passed as parameter or created here?
+        mother = Mother.motherInstance();
         this.players = new ArrayList<Player>(p);    //copies p into players
+
+        for(int i = 0, i<players.size())
     }
 
 
@@ -66,4 +76,11 @@ public class Game {
         island.addStudent(player.getBoard().leave(colour));
     }
 
+    public void setAction(Action action){
+        this.action = action;
+    }
+
+    public void doAction(){
+        action.execute();
+    }
 }
