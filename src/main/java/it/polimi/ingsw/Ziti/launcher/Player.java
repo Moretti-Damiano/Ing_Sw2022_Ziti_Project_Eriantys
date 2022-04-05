@@ -3,23 +3,33 @@ package it.polimi.ingsw.Ziti.launcher;
 import java.util.ArrayList;
 
 public class Player {
-        private ArrayList<Assistant> assistants;
-        private Board board;
-        private String name;
+    private ArrayList<Assistant> assistants;
+    private Board board;
+    private String name;
 
 
-        public Player(String name){
-            this.name=name;
-            board=new Board();
-            this.assistants=AssistantParser.parseAssistants("Assistants.xml");
-        }
+    public Player(String name, TowerColour tower_Colour) {
+        this.name = name;
+        this.assistants = AssistantParser.parseAssistants("Assistants.xml");
+        this.board = new Board(tower_Colour);
+
+    }
 
         /**
-         * returns the player's name
+         * @return the player's name
          */
-        public String GetName(){
+        public String getName () {
             return this.name;
         }
+
+        /**s
+         *
+         * @return the player's board
+         */
+        public Board getBoard () {
+            return this.board;
+        }
     }
+
 
 
