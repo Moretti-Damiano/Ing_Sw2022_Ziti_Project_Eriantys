@@ -22,6 +22,15 @@ public class Game {
         this.players = new ArrayList<Player>(p);    //copies p into players
     }
 
+
+    public ArrayList<Island> getIslands() {
+        return islands;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     /**
      * @param i is the main island
      * @return next island to i
@@ -48,36 +57,6 @@ public class Game {
         }
         else
             return islands.get(index-1);
-    }
-
-    /**
-     * @param island
-     * @return the player with most influence on the island
-     * if more than 1 players have the same max influence, this methods returns a 'null' player
-     */
-    public Player getControl(Island island){
-        int max = 0;
-        Player maxPlayer = players.get(0);  //initialize to first player
-        int infl;
-        for(Player p:players){
-            infl = 0;
-            if(p.equals(island.getTowerPlayer())){      //adds towers influence points to the TowerPlayer
-                infl += island.getTowers().size();
-            }
-            for(Professor prof: p.getBoard().getProfessors()){      //for each professor of the players, count how many students with the same colour
-                infl += island.getColour(prof.getColour());
-            }
-
-            if(infl > max){
-                max = infl;
-                maxPlayer = p;
-            }
-
-            if(infl == max){
-                maxPlayer = null;
-            }
-        }
-        return maxPlayer;
     }
 
     /**
