@@ -75,6 +75,22 @@ public class Game {
         return players;
     }
 
+    public ArrayList<CloudIsland> getCloudIslands() {
+        return cloudIslands;
+    }
+
+    public ArrayList<Professor> getProfessors() {
+        return professors;
+    }
+
+    public ArrayList<Character> getCharacters() {
+        return characters;
+    }
+
+    public Player getCurrentPlayer() {
+        return currentPlayer;
+    }
+
     /**
      * @param i is the main island
      * @return next island to i
