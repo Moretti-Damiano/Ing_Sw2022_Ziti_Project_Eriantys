@@ -27,6 +27,10 @@ public class Player {
         public String GetName(){
             return this.name;
         }
+
+    public Board getBoard() {
+        return board;
     }
+}
 
 

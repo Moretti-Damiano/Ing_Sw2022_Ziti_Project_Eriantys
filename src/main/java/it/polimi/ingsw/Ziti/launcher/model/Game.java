@@ -18,7 +18,7 @@ public class Game {
         for(int i=0;i<12;i++){
             islands.add(new Island(i));
         }
-        mother = new Mother();  //should be passed as parameter or created here?
+        mother = Mother.motherInstance();  //should be passed as parameter or created here?
         this.players = new ArrayList<Player>(p);    //copies p into players
     }
 

@@ -1,25 +1,24 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
 /**
- * This classe is a Singleton and represents the Mother Of Nature in the game
+ * This class is a Singleton and represents the Mother Of Nature in the game
  * */
 public class Mother {
     private Island island;
-    private static Mother mother;
+    private static Mother instance;
 
-    private Mother(){
+    private Mother(){}
+
+    public static Mother motherInstance() {
+        if (instance == null) instance = new Mother();
+        return instance;
+    }
+
+    public void setIsland(Island island) {
         this.island = island;
     }
 
-    public static Mother MotherInstance() {
-        if (mother == null) mother  = new Mother();
-        return mother;
-    }
-
-    /**
-     * Moves Mother from an island to an other
-     */
-    public void move(Island i){
-        this.island = i;
+    public Island getIsland() {
+        return island;
     }
 }

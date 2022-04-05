@@ -80,4 +80,8 @@ public class Board {
         }
         return false;
     }
+
+    public ArrayList<Professor> getProfessors() {
+        return professors;
+    }
 }
