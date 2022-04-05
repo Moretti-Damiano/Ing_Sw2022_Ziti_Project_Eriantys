@@ -54,6 +54,7 @@ public class Game {
         cloudIslands = new ArrayList<>();
         for(int i = 0; i < playerNumber; i++){
             cloudIslands.add(new CloudIsland(i,playerNumber,sack));
+            cloudIslands.get(i).toFill();
         }
 
         //set professors
