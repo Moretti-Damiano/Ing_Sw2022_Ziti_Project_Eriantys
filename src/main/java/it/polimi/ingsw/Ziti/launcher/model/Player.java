@@ -28,8 +28,12 @@ public class Player {
             return this.name;
         }
 
-    public Board getBoard() {
+        public Board getBoard() {
         return board;
+        }
+
+    public List<Assistant> getAssistants() {
+        return assistants;
     }
 }
 
