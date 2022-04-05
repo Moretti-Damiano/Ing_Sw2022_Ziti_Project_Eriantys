@@ -67,37 +67,10 @@ public class Island {
         students.add(s);
     }
 
-    /**
-     *Removes old players towers and put them back to his board
-     *Adds the same number of removed Tower from the new players board
-     * @param player is the new island owner
-     */
-    public void UpdateTower(Player player){
-        if(TowerPlayer != player){
-            for(Tower T : towers){
-                TowerPlayer.getBoard().addTower(T);
-            }
-
-            int size = towers.size();
-            towers.clear();
-            TowerPlayer = player;
-
-            for(int i=0; i<size; i++){
-                towers.add(player.getBoard().removeTower());
-            }
-        }
+    public void setTowerPlayer(Player player){
+        this.TowerPlayer = player;
     }
 
-    /**
-     * merge all the param island attributes with this island
-     * @param island refers to the near island to merge with.
-     *               will be removed from the game by Game Controller
-     */
-    public void merge(Island island){
-        //no changes to island id,towerplayer
-        this.students.addAll(island.getStudents());
-        this.towers.addAll(island.getTowers());
-        this.isMother = true;
-    }
+
 }
 

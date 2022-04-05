@@ -66,20 +66,5 @@ public class Game {
         island.addStudent(player.getBoard().leave(colour));
     }
 
-    /**
-     * Merges island2 into island1 using island1.merge. Island2 is then removed from the game
-     * Methods check if the islands have the same TowerPlayer and if they are near.
-     * @param island1 main island, will represents 2 islands
-     * @param island2 island that will be eliminated after merging
-     */
-    public void mergeIslands(Island island1, Island island2){
-        if(island1.getTowerPlayer().equals(island2.getTowerPlayer())
-                && (island1.equals(getNextIsland(island2)) || island1.equals(getPrevIsland(island2)))){
-            island1.merge(island2);
-            islands.remove(island2);
-        }
-        else    //IMPLEMENTARE CON ECCEZIONE?
-            System.out.println("ILLEGAL MERGE BETWEEN "+ island1.getID() + " and " + island2.getID());
-    }
 
 }

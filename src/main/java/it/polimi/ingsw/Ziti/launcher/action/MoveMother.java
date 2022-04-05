@@ -16,19 +16,46 @@ public class MoveMother implements Action{
     @Override
     public Object execute() {
         move();
-        getControl(mother.getIsland());
+        updateIsland(mother.getIsland(),getControl(mother.getIsland()));
 
+        if(checkMerge(mother.getIsland(),game.getNextIsland(mother.getIsland()))){
+            merge(mother.getIsland(),game.getNextIsland(mother.getIsland()));
+        }
+        if(checkMerge(mother.getIsland(),game.getPrevIsland(mother.getIsland()))){
+            merge(mother.getIsland(),game.getPrevIsland(mother.getIsland()));
+        }
         return null;
     }
 
     /**
      * Calculate mother current position and assign mother her new island
      */
-    public void move(){
+    private void move(){
         mother.getIsland().removeMother();
         int newPosition = (game.getIslands().indexOf(mother.getIsland()) + moves) % 12;
         mother.setIsland(game.getIslands().get(newPosition));
         mother.getIsland().addMother();
+    }
+
+    /**
+     * changes all the tower and the island with the new player's ones
+     * @param island
+     * @param player is the new owner of the island
+     */
+    private void updateIsland(Island island,Player player){
+        if(island.getTowerPlayer() != player){
+            for(Tower T : island.getTowers()){
+                island.getTowerPlayer().getBoard().addTower(T);
+            }
+
+            int size = island.getTowers().size();
+            island.getTowers().clear();
+            island.setTowerPlayer(player);
+
+            for(int i=0; i<size; i++){
+                island.getTowers().add(player.getBoard().removeTower());
+            }
+        }
     }
 
     /**
@@ -37,17 +64,8 @@ public class MoveMother implements Action{
      * @param island2
      * @return true if the islands can be merged, else false
      */
-    public boolean checkMerge(Island island1, Island island2){
-        return false;
-    }
-
-    /**
-     * Merges two islands into one
-     * @param  island1 is the 'main' island that will be updated
-     * @param island2 will be deleted after the merge
-     */
-    public void merge(Island island1, Island island2){
-
+    private boolean checkMerge(Island island1, Island island2){
+        return island1.getTowerPlayer().equals(island2.getTowerPlayer());
     }
 
 
@@ -81,4 +99,14 @@ public class MoveMother implements Action{
         return maxPlayer;
     }
 
+
+    /**
+     * Merges two islands into one
+     * @param  island1 is the 'main' island that will be updated
+     * @param island2 will be deleted after the merge
+     */
+    public void merge(Island island1, Island island2){
+        island1.getStudents().addAll(island2.getStudents());
+        island1.getTowers().addAll(island2.getTowers());
+    }
 }
