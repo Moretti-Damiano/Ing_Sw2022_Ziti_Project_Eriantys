@@ -5,6 +5,13 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
 import java.util.ArrayList;
 
+/*
+TO DO
+    *CURRENTPLAYER
+    *ARRAYLIST DI CHARACTER
+
+ */
+
 public class Game {
     private ArrayList<Island> islands;
     private ArrayList<Player> players;
@@ -15,6 +22,7 @@ public class Game {
     private int playerNumber;
     private ArrayList<Professor> professors;
     private ArrayList<Character> characters;
+    private Player currentPlayer;
     private Action action;
 
     /**
@@ -22,14 +30,40 @@ public class Game {
      * @param p arraylist containing all the players
      */
     public Game(ArrayList<Player> p){
-        islands = new ArrayList<Island>();
+
+        //creates 12 islands
+        this.islands = new ArrayList<Island>();
         for(int i=0;i<12;i++){
             islands.add(new Island(i));
         }
-        mother = Mother.motherInstance();
-        this.players = new ArrayList<Player>(p);    //copies p into players
 
-        for(int i = 0, i<players.size())
+        //creates mother
+        this.mother = Mother.motherInstance();
+
+        //copies p into players
+        this.players = new ArrayList<Player>(p);
+
+        //set numplayer
+        this.maxPlayer = players.size();        //PROBABILEMTE SBAGLIATO
+        this.playerNumber = players.size();
+
+        //set sack
+        this.sack = new Sack();
+
+        //set cloudislands
+        cloudIslands = new ArrayList<>();
+        for(int i = 0; i < playerNumber; i++){
+            cloudIslands.add(new CloudIsland(i,playerNumber,sack));
+        }
+
+        //set professors
+        professors = new ArrayList<>();
+        for(Colour c: Colour.values()){
+            professors.add(new Professor(c));
+        }
+
+
+        //set characters TO BE DONE!!!
     }
 
 

@@ -37,7 +37,7 @@ public class CloudIsland {
     }
 
     /**
-     * shows what the island contains
+     * shows what the island contains ->èRPBABLY USELESS, IMPLEMENTED IN VIEW
      */
     public void Show(){
         System.out.println("Cloud Island: "+ID);
