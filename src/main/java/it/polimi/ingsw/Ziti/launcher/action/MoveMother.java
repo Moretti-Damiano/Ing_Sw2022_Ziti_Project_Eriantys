@@ -32,7 +32,7 @@ public class MoveMother implements Action{
      */
     private void move(){
         mother.getIsland().removeMother();
-        int newPosition = (game.getIslands().indexOf(mother.getIsland()) + moves) % 12;
+        int newPosition = (game.getIslands().indexOf(mother.getIsland()) + moves) % (game.getIslands().size());
         mother.setIsland(game.getIslands().get(newPosition));
         mother.getIsland().addMother();
     }
@@ -40,12 +40,13 @@ public class MoveMother implements Action{
     /**
      * changes all the tower and the island with the new player's ones
      * @param island
-     * @param player is the new owner of the island
+     * @param player is the new owner of the island, is passed by getControl. has value null when
+     *               the new player has the same points as the old one
      */
     private void updateIsland(Island island,Player player){
-        if(island.getTowerPlayer() != player){
+        if(island.getTowerPlayer() != player && player != null){
             for(Tower T : island.getTowers()){
-                island.getTowerPlayer().getBoard().addTower(T);
+                island.getTowerPlayer().getBoard().addTower(T); //give back all towers to old towerplayer
             }
 
             int size = island.getTowers().size();
@@ -108,5 +109,6 @@ public class MoveMother implements Action{
     public void merge(Island island1, Island island2){
         island1.getStudents().addAll(island2.getStudents());
         island1.getTowers().addAll(island2.getTowers());
+        game.getIslands().remove(island2);
     }
 }

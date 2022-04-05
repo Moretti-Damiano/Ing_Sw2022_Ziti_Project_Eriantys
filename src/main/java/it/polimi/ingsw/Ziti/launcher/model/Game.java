@@ -66,5 +66,4 @@ public class Game {
         island.addStudent(player.getBoard().leave(colour));
     }
 
-
 }
