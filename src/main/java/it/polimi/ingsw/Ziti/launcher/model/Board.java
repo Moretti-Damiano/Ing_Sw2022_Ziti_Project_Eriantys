@@ -13,7 +13,7 @@ public class Board {
         private ArrayList<Professor> professors;
         private ArrayList<Student>[] students;
         private ArrayList<Coin> wallet;
-
+        private WalletController walletController;
 
 
         public Board() {
@@ -63,7 +63,7 @@ public class Board {
     public void goLunch(Colour student_colour) {
         students[student_colour.getIntAbbreviation()] .add(this.leave(student_colour));
         if(this.checkCoin(student_colour)){
-            wallet.add(WalletController.getCoin());
+            wallet.add(walletController.getCoin());
         }
     }
 

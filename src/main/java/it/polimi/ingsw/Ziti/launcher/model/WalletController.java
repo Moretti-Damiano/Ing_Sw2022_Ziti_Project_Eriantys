@@ -57,7 +57,7 @@ public class WalletController {
     /**
      * decrease the number of avaiable coin
      */
-    public void decrease() {
+    private void decrease() {
         if(AvaiableCoin-1<0){
             AvaiableCoin=0;
         }
