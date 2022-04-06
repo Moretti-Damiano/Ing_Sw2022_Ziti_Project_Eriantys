@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -60,7 +63,7 @@ public class Board {
     public void goLunch(Colour student_colour) {
         students[student_colour.getIntAbbreviation()] .add(this.leave(student_colour));
         if(this.checkCoin(student_colour)){
-            wallet.add(walletController.getCoin());
+            wallet.add(WalletController.getCoin());
         }
     }
 
