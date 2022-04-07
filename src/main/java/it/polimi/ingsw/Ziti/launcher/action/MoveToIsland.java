@@ -24,7 +24,7 @@ public class MoveToIsland implements Action{
     @Override
     public Object execute() {
 
-        chosenIsland.addStudent(player.getBoard().leave(studentColour));
+        chosenIsland.addStudent(player.getBoard().removeStudent(studentColour));
 
         return null;
     }
