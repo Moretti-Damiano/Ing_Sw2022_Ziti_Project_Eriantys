@@ -4,12 +4,12 @@ import it.polimi.ingsw.Ziti.launcher.model.Coin;
 
 public class WalletController {
     private static int MaxNumCoin=20;
-    private static int AvaiableCoin=20;
+    private static int AvailableCoin=20;
 
 
 
-    public int getAvaiableCoin() {
-        return AvaiableCoin;
+    public int getAvailableCoin() {
+        return AvailableCoin;
     }
 
 
@@ -24,22 +24,22 @@ public class WalletController {
 
     
     /**
-     * increase the number of avaiable coin
+     * increase the number of available coin
      */
     public void increase() {
-        if(AvaiableCoin+1>MaxNumCoin)
-        {AvaiableCoin =  MaxNumCoin;}
-        else { AvaiableCoin = AvaiableCoin++;}
+        if(AvailableCoin+1>MaxNumCoin)
+        {AvailableCoin =  MaxNumCoin;}
+        else { AvailableCoin = AvailableCoin++;}
     }
 
     /**
-     * @param i is the value of new avaiable coins
+     * @param i is the value of new available coins
      */
     public void increase(int i) {
-        if(AvaiableCoin+i>MaxNumCoin){
-            AvaiableCoin=MaxNumCoin;
+        if(AvailableCoin+i>MaxNumCoin){
+            AvailableCoin=MaxNumCoin;
         }
-        else{AvaiableCoin = AvaiableCoin + i;}
+        else{AvailableCoin = AvailableCoin + i;}
     }
 
 
@@ -47,29 +47,29 @@ public class WalletController {
      * @param i is the value of coin used
      */
     public void decrease(int i) {
-        if(AvaiableCoin-i<0){
-            AvaiableCoin=0;
+        if(AvailableCoin-i<0){
+            AvailableCoin=0;
         }
-        else{AvaiableCoin = AvaiableCoin - i;}
+        else{AvailableCoin = AvailableCoin - i;}
     }
 
 
     /**
-     * decrease the number of avaiable coin
+     * decrease the number of available coin
      */
     private void decrease() {
-        if(AvaiableCoin-1<0){
-            AvaiableCoin=0;
+        if(AvailableCoin-1<0){
+            AvailableCoin=0;
         }
-        else{AvaiableCoin = AvaiableCoin--;}
+        else{AvailableCoin = AvailableCoin--;}
     }
 
 
     /**
-     * @return a coin if there is a coin avaiable
+     * @return a coin if there is a coin available
      */
     public Coin getCoin() {
-        if (AvaiableCoin > 0) {
+        if (AvailableCoin > 0) {
             this.decrease();
             return new Coin();
         }

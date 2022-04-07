@@ -45,7 +45,7 @@ public class Sack {
             if (numColour[i] == 0) {
                 System.out.println("\nThe Sack is empty!\n");
                 return null;
-            } else exctract();
+            } else extract();
         }
         return null;
 
