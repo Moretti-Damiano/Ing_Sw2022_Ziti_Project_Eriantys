@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
+import it.polimi.ingsw.Ziti.launcher.*;
+import it.polimi.ingsw.Ziti.launcher.enumeration.*;
+
 import java.util.ArrayList;
 
 public class Board {
@@ -10,6 +13,7 @@ public class Board {
         private ArrayList<Professor> professors;
         private ArrayList<Student>[] students;
         private ArrayList<Coin> wallet;
+
 
 
 
