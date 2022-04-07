@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
-import it.polimi.ingsw.Ziti.launcher.*;
-import it.polimi.ingsw.Ziti.launcher.enumeration.*;
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 
 import java.util.ArrayList;
 
@@ -13,7 +13,6 @@ public class Board {
         private ArrayList<Professor> professors;
         private ArrayList<Student>[] students;
         private ArrayList<Coin> wallet;
-
 
 
 
@@ -42,34 +41,42 @@ public class Board {
         this.tower_colour = tower_colour;
     }
 
+    public void addCoin(Coin c){
+        wallet.add(c);
+    }
 
+
+    public int getNumberofCoin(){
+        return wallet.size();
+    }
     /**
-     * Removes a tower from towers and returns it
+     * Remove a tower from towers and returns it
      */
     public Tower removeTower() {
        return towers.remove(0);
     }
 
-
     /**
-     * adds a tower to towers
+     * add a student to the row that contains the student with the same colour
+     * @param s student to add
+     */
+    public void addStudenttoColourRow( Student s){
+        students[s.getColour().getIntAbbreviation()].add(s);
+    }
+    /**
+     * add a tower to towers
      */
     public void addTower(Tower T) {
         towers.add(T);
     }
 
 
-
-    //getintabbreviation dovrebbe restituire l'intero associato al colore
-    public void goLunch(Colour student_colour) {
-        students[student_colour.getIntAbbreviation()] .add(this.leave(student_colour));
-        if(this.checkCoin(student_colour)){
-            wallet.add(walletController.getCoin());
-        }
-    }
-
-
-    public Student leave(Colour student_colour){
+    /**
+     *
+     * @param student_colour colour of the student to be removed
+     * @return the removed student
+     */
+    public Student removeStudent(Colour student_colour){
         for(Student s : students_waiting){
             if(s.getColour()==student_colour){
                students_waiting.remove(s);
@@ -80,12 +87,55 @@ public class Board {
 
     }
 
+    public void addProfessor(Professor p){
+        professors.add(p);
+    }
 
+    /**
+     * check if the player has the professor with the specified colour
+     * @param professor_colour colour of the professor
+     * @return true if the player controls the professor
+     */
+    public boolean hasProfessor(Colour professor_colour){
+        for(Professor p : professors){
+            if(p.getColour()==professor_colour){
+                return true;
+            }
+        }
+        return false;
+    }
 
-    private boolean checkCoin(Colour student_colour){
+    /**
+     * @param colour of the row
+     * @return the size of the specified row
+     */
+    public int getColorRowSize(Colour colour){
+        return students[colour.getIntAbbreviation()].size();
+    }
+
+    /**
+     * check if the size of the chosen row is a multiple of 3
+     * @param student_colour the colour of the row to check
+     * @return true if the size  is a multiple of 3
+     */
+    public boolean checkCoin(Colour student_colour){
         if(students[student_colour.getIntAbbreviation()].size() % 3==0){
             return true;
         }
         return false;
+    }
+
+    /**
+     * @param professor_colour the colour of the professor to be removed
+     * @return the removed professor
+     */
+    public Professor removeProfessorByColour(Colour professor_colour){
+        for(Professor p : professors){
+            if(p.getColour()==professor_colour){
+                professors.remove(p);
+                return p;
+            }
+        }
+        return null;
     }
 }

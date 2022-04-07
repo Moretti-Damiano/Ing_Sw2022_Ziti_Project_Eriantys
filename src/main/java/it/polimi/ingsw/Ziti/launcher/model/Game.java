@@ -91,6 +91,15 @@ public class Game {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+    //?
+    public Professor getProfessorbyColour(Colour professor_colour){
+        for(Professor p : professors){
+            if(p.getColour()==professor_colour){
+                return p;
+            }
+        }
+        return null;
+    }
 
     /**
      * @param i is the main island
@@ -124,7 +133,7 @@ public class Game {
      *Adds a students from player's board, choosen by colour, to the specified island
      */
     public void addStudent(Player player, Island island, Colour colour){
-        island.addStudent(player.getBoard().leave(colour));
+        island.addStudent(player.getBoard().removeStudent(colour));
     }
 
     public void setAction(Action action){
@@ -133,5 +142,19 @@ public class Game {
 
     public void doAction(){
         action.execute();
+    }
+
+    /**
+     *
+     * @param professor_colour the colour of the professor
+     * @return the player who controls the professor with the specified colour
+     */
+    public Player checkProfessor(Colour professor_colour){
+        for(Player p : players){
+            if(p.getBoard().hasProfessor(professor_colour)){
+                return p;
+            }
+        }
+        return null;
     }
 }
