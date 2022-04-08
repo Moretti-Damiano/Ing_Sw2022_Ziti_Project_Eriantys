@@ -19,10 +19,10 @@ public class MoveToTable implements Action{
         this.walletController=walletController;
     }
 
-    public Object execute(){
+    public void execute(){
         this.goLunch(chosencolour);
         this.controlProfessor(chosencolour);
-        return null;
+
     }
 
     /**

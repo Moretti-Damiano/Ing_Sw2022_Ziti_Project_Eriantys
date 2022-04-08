@@ -21,9 +21,9 @@ public class ChooseCloud implements Action{
      * @return null
      */
     @Override
-    public Object execute() {
+    public void execute() {
         for(Student s: chosenCloud.toEmpty())
         player.getBoard().addStudent(s);
-        return null;
+
     }
 }

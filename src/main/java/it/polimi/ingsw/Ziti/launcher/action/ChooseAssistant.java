@@ -20,14 +20,14 @@ public class ChooseAssistant implements Action {
      * @return null
      */
     @Override
-    public Object execute() {
+    public void execute() {
 
         if(checkValidate()){
             player.setAssChoosed(assistant);
             player.getAssistants().get(assistant.getId()).setActual(true);
             player.getAssistants().get(assistant.getId()).setAssChose(true);
         }
-        return null;
+
     }
 
     /**

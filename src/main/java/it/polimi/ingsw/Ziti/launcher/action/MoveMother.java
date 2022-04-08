@@ -14,7 +14,7 @@ public class MoveMother implements Action{
     }
 
     @Override
-    public Object execute() {
+    public void execute() {
         move();
         updateIsland(mother.getIsland(),getControl(mother.getIsland()));
 
@@ -24,7 +24,7 @@ public class MoveMother implements Action{
         if(checkMerge(mother.getIsland(),game.getPrevIsland(mother.getIsland()))){
             merge(mother.getIsland(),game.getPrevIsland(mother.getIsland()));
         }
-        return null;
+
     }
 
     /**
