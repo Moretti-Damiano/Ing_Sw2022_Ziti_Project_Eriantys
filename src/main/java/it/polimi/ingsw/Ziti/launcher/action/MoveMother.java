@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
 public class MoveMother implements Action{
@@ -7,14 +8,24 @@ public class MoveMother implements Action{
     private int moves;
     private Mother mother;
 
-    public MoveMother(Game game, int moves){
+    public MoveMother(Game game, int moves) throws ActionException {
+
         this.game = game;
         this.moves = moves;
         this.mother = Mother.motherInstance();
     }
 
     @Override
-    public void execute() {
+    public void execute() throws ActionException {
+        try{
+        checkInput();
+        }
+        catch (ActionException exc) {
+            //TO DO
+        }
+        finally{
+            //TO DO
+        }
         move();
         updateIsland(mother.getIsland(),getControl(mother.getIsland()));
 
@@ -110,5 +121,10 @@ public class MoveMother implements Action{
         island1.getStudents().addAll(island2.getStudents());
         island1.getTowers().addAll(island2.getTowers());
         game.getIslands().remove(island2);
+    }
+
+    private void checkInput() throws ActionException{
+        if(moves < 1 || moves > game.getCurrentPlayer().getAssChosen().getMovesMother())
+            throw new ActionException();
     }
 }
