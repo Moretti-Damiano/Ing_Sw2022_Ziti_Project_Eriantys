@@ -2,6 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 
 import java.util.ArrayList;
 
@@ -91,6 +92,9 @@ public class Game {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
+
+    public Sack getSack() {return sack;}
+
     //?
     public Professor getProfessorbyColour(Colour professor_colour){
         for(Professor p : professors){
@@ -140,7 +144,7 @@ public class Game {
         this.action = action;
     }
 
-    public void doAction(){
+    public void doAction() throws ActionException {
         action.execute();
     }
 
