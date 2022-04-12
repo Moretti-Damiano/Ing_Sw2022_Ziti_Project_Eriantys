@@ -15,7 +15,7 @@ public class MoveMother implements Action{
     private int moves;
     private Mother mother;
 
-    public MoveMother(Game game, int moves) throws ActionException {
+    public MoveMother(Game game, int moves){
 
         this.game = game;
         this.moves = moves;
@@ -84,7 +84,7 @@ public class MoveMother implements Action{
      * @return true if the islands can be merged, else false
      */
     private boolean checkMerge(Island island1, Island island2){
-        return island1.getTowerPlayer().equals(island2.getTowerPlayer());
+        return (island1.getTowerPlayer() == (island2.getTowerPlayer())) && island1.getTowerPlayer()!=null ;
     }
 
 
@@ -131,7 +131,7 @@ public class MoveMother implements Action{
     }
 
     private void checkInput() throws ActionException{
-        if(moves < 1 || moves > game.getCurrentPlayer().getAssChosen().getMovesMother())
+        if(moves < 1 /*|| moves > game.getCurrentPlayer().getAssChosen().getMovesMother()*/)
             throw new ActionException();
     }
 }
