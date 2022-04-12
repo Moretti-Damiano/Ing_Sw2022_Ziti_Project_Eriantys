@@ -3,6 +3,13 @@ package it.polimi.ingsw.Ziti.launcher.action;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
+/**
+ * This Action takes 2 parameters, the game instance and nuber of moves that the mother can do
+ * Functions: checks valid input, if not valid it retruns an exception
+ *            checks if an island will change players
+ *            updates the tower on the island and on player's board
+ *            can merge islands
+ */
 public class MoveMother implements Action{
     private Game game;
     private int moves;
