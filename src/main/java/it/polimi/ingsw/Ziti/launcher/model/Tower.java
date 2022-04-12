@@ -10,8 +10,12 @@ public class Tower {
     private TowerColour towerColour;
     private Player player;
 
+    public Tower(Player player,TowerColour towerColour){
+        this.player = player;
+        this.towerColour = towerColour;
+    }
+
     /**
-     *
      * @return towerColour
      */
     public TowerColour getTowerColour(){
