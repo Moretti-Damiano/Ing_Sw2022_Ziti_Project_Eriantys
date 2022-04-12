@@ -36,10 +36,11 @@ public class Board {
             students_waiting.add(s);
     }
 
-
     public void setTowerColour(TowerColour tower_colour) {
         this.tower_colour = tower_colour;
     }
+
+    public TowerColour getTower_colour() { return tower_colour; }
 
     public void addCoin(Coin c){
         wallet.add(c);
