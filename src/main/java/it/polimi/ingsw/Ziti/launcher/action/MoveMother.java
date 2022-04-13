@@ -3,6 +3,8 @@ package it.polimi.ingsw.Ziti.launcher.action;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
+import static java.util.Objects.isNull;
+
 /**
  * This Action takes 2 parameters, the game instance and nuber of moves that the mother can do
  * Functions: checks valid input, if not valid it retruns an exception
@@ -62,9 +64,11 @@ public class MoveMother implements Action{
      *               the new player has the same points as the old one
      */
     private void updateIsland(Island island,Player player){
-        if(island.getTowerPlayer() != player && player != null){
+        if(island.getTowerPlayer() != player && !isNull(player)){
             for(Tower T : island.getTowers()){
+                if(!isNull(island.getTowerPlayer())){
                 island.getTowerPlayer().getBoard().addTower(T); //give back all towers to old towerplayer
+                }
             }
 
             int size = island.getTowers().size();
@@ -75,6 +79,38 @@ public class MoveMother implements Action{
                 island.getTowers().add(player.getBoard().removeTower());
             }
         }
+    }
+
+    /**
+     * @param island
+     * @return the player with most influence on the island
+     * if more than 1 players have the same max influence, this methods returns a 'null' player
+     */
+    public Player getControl(Island island){
+        int max = 0;
+        int infl;
+        Player maxPlayer = game.getPlayers().get(0);  //initialize to first player
+        for(Player p:game.getPlayers()){
+            infl = 0;
+            if(p.equals(island.getTowerPlayer())){      //adds towers influence points to the TowerPlayer
+                infl += island.getTowers().size();
+            }
+            for(Professor prof: p.getBoard().getProfessors()){      //for each professor of the players, count how many students with the same colour
+                infl += island.getColour(prof.getColour());
+            }
+            if(infl == max){
+                maxPlayer = null;
+            }
+            if(infl > max){
+                max = infl;
+                maxPlayer = p;
+            }
+        }
+        if(!isNull(maxPlayer)) {
+            System.out.println("Maxplayer: " + maxPlayer.GetName());
+        }
+        else System.out.println("Maxplayer is null");
+        return maxPlayer;
     }
 
     /**
@@ -89,42 +125,12 @@ public class MoveMother implements Action{
 
 
     /**
-     * @param island
-     * @return the player with most influence on the island
-     * if more than 1 players have the same max influence, this methods returns a 'null' player
-     */
-    public Player getControl(Island island){
-        int max = 0;
-        Player maxPlayer = game.getPlayers().get(0);  //initialize to first player
-        int infl;
-        for(Player p:game.getPlayers()){
-            infl = 0;
-            if(p.equals(island.getTowerPlayer())){      //adds towers influence points to the TowerPlayer
-                infl += island.getTowers().size();
-            }
-            for(Professor prof: p.getBoard().getProfessors()){      //for each professor of the players, count how many students with the same colour
-                infl += island.getColour(prof.getColour());
-            }
-
-            if(infl > max){
-                max = infl;
-                maxPlayer = p;
-            }
-
-            if(infl == max){
-                maxPlayer = null;
-            }
-        }
-        return maxPlayer;
-    }
-
-
-    /**
      * Merges two islands into one
      * @param  island1 is the 'main' island that will be updated
      * @param island2 will be deleted after the merge
      */
     public void merge(Island island1, Island island2){
+        System.out.println("Merging island " + island1.getID() + " with island "+island2.getID());
         island1.getStudents().addAll(island2.getStudents());
         island1.getTowers().addAll(island2.getTowers());
         game.getIslands().remove(island2);
