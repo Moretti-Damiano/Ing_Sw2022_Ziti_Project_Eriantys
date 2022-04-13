@@ -106,10 +106,6 @@ public class MoveMother implements Action{
                 maxPlayer = p;
             }
         }
-        if(!isNull(maxPlayer)) {
-            System.out.println("Maxplayer: " + maxPlayer.GetName());
-        }
-        else System.out.println("Maxplayer is null");
         return maxPlayer;
     }
 
