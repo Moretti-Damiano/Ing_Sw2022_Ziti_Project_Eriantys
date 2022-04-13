@@ -29,18 +29,11 @@ public class MoveToIsland implements Action{
     public void execute() throws ActionException {
         try{
             checkInput();
+            chosenIsland.addStudent(game.getCurrentPlayer().getBoard().removeStudent(studentColour));
         }
         catch (ActionException exception) {
             //TO DO
         }
-        finally{
-            //TO DO
-        }
-
-        chosenIsland.addStudent(game.getCurrentPlayer().getBoard().removeStudent(studentColour));
-
-
-
     }
 
     private void checkInput() throws ActionException{

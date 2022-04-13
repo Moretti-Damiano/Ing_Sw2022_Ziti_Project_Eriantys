@@ -20,6 +20,10 @@ public class CloudIsland {
         this.available = false;
     }
 
+    public boolean isAvailable() {
+        return available;
+    }
+
     /**
      * Put 'size' random students from the Sack in the CloudIsland
      */

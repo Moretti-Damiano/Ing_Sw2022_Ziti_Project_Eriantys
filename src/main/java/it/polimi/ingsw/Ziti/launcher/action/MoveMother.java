@@ -26,25 +26,21 @@ public class MoveMother implements Action{
 
     @Override
     public void execute() throws ActionException {
-        try{
-        checkInput();
-        }
-        catch (ActionException exc) {
-            //TO DO
-        }
-        finally{
-            //TO DO
-        }
-        move();
-        updateIsland(mother.getIsland(),getControl(mother.getIsland()));
+        try {
+            checkInput();
+            move();
+            updateIsland(mother.getIsland(), getControl(mother.getIsland()));
 
-        if(checkMerge(mother.getIsland(),game.getNextIsland(mother.getIsland()))){
-            merge(mother.getIsland(),game.getNextIsland(mother.getIsland()));
+            if (checkMerge(mother.getIsland(), game.getNextIsland(mother.getIsland()))) {
+                merge(mother.getIsland(), game.getNextIsland(mother.getIsland()));
+            }
+            if (checkMerge(mother.getIsland(), game.getPrevIsland(mother.getIsland()))) {
+                merge(mother.getIsland(), game.getPrevIsland(mother.getIsland()));
+            }
         }
-        if(checkMerge(mother.getIsland(),game.getPrevIsland(mother.getIsland()))){
-            merge(mother.getIsland(),game.getPrevIsland(mother.getIsland()));
+        catch(ActionException ex){
+            //ASK THE CLIENT TO CALL AGAIN THIS METHOD BUT WITH CORRECT INPUT
         }
-
     }
 
     /**
