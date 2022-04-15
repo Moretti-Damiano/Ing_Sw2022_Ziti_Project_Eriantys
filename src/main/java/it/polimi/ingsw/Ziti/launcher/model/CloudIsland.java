@@ -20,6 +20,18 @@ public class CloudIsland {
         this.available = false;
     }
 
+    public int getID() {
+        return ID;
+    }
+
+    public int getSize() {
+        return size;
+    }
+
+    public ArrayList<Student> getStudents() {
+        return students;
+    }
+
     public boolean isAvailable() {
         return available;
     }

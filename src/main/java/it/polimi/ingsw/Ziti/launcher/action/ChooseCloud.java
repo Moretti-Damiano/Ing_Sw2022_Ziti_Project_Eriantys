@@ -35,9 +35,11 @@ public class ChooseCloud implements Action{
 
     private void checkInput() throws ActionException {
         if(chosenCloudId < 0 || chosenCloudId > game.getCloudIslands().size()-1){
+            System.out.println("Cloud "+ chosenCloudId + " does not exist");
             throw new ActionException();
         }
         if(!game.getCloudIslands().get(chosenCloudId).isAvailable()){
+            System.out.println("Cloud "+ chosenCloudId + " is not available");
             throw new ActionException();
         }
     }
