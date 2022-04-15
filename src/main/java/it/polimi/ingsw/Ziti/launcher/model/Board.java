@@ -46,6 +46,9 @@ public class Board {
         wallet.add(c);
     }
 
+    public ArrayList<Student> getStudents_waiting() {
+        return students_waiting;
+    }
 
     public int getNumberofCoin(){
         return wallet.size();
@@ -79,13 +82,12 @@ public class Board {
      */
     public Student removeStudent(Colour student_colour){
         for(Student s : students_waiting){
-            if(s.getColour()==student_colour){
+            if(s.getColour().equals(student_colour)){
                students_waiting.remove(s);
                return s;
             }
         }
         return null;
-
     }
 
     public void addProfessor(Professor p){
