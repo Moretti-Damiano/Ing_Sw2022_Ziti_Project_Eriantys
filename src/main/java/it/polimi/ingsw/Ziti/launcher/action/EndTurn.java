@@ -4,8 +4,8 @@ import it.polimi.ingsw.Ziti.launcher.model.*;
 
 import java.util.stream.IntStream;
 
-/*
- *This action implements last things to do in a match turn such as re-fill CloudIslands and set used Assistants
+/**
+ * This action implements last things to do in a match turn such as re-fill CloudIslands and set used Assistants
  **/
 public class EndTurn implements Action{
 
@@ -25,9 +25,6 @@ public class EndTurn implements Action{
          checkInput();
       }
       catch (ActionException exc) {
-         //TO DO
-      }
-      finally{
          //TO DO
       }
       // for each CloudIsland calls the method toFill
