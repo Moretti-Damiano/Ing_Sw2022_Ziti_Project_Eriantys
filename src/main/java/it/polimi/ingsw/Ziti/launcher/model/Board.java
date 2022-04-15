@@ -139,4 +139,16 @@ public class Board {
         }
         return null;
     }
+
+    /**
+     * check if there is a student with the specified colour in students_waiting
+     * @param colour the specified colour
+     */
+    public boolean checkpresence(Colour colour){
+        for(Student s : students_waiting){
+            if(colour.equals(s.getColour()))
+                return true;
+        }
+        return false;
+    }
 }
