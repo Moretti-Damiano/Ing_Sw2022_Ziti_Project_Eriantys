@@ -75,7 +75,10 @@ public class MoveToTable implements Action{
      * @throws ActionException
      */
     private void checkInput() throws ActionException{
-        if (!checkColour(chosencolour) ) throw new ActionException();
+        if (!checkColour(chosencolour) ) {
+            System.out.println(" you can't move a student with the indicated colour");
+            throw new ActionException();
+        }
     }
 
     /**

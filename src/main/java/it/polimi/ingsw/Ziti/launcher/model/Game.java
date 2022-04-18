@@ -164,7 +164,10 @@ public class Game {
         }
     }
 
-    //?
+    /**
+     * @param professor_colour the colour of the professor
+     * @return the professor with the indicated colour
+     */
     public Professor getProfessorbyColour(Colour professor_colour){
         for(Professor p : professors){
             if(p.getColour()==professor_colour){
