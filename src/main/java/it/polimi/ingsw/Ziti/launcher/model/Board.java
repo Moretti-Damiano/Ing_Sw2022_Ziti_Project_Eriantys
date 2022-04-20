@@ -153,4 +153,16 @@ public class Board {
         }
         return false;
     }
+    /**
+     * counts how many students there are with the specified colour in students_waiting
+     * @param colour the specified colour
+     * @return count
+     */
+    public int countStudentColor(Colour colour){
+        int count=0;
+        for(Student s : students_waiting){
+            if(colour.equals(s.getColour())) count++;
+        }
+        return count;
+    }
 }
