@@ -67,6 +67,7 @@ public class MoveToTableTest {
        assertEquals(3,p0.getBoard().getColorRowSize(Colour.BLUE));
        p1.getBoard().addStudenttoColourRow(new Student(Colour.PINK));
        p1.getBoard().addStudenttoColourRow(new Student(Colour.PINK));
+       p1.getBoard().addProfessor(new Professor(Colour.PINK));
         game.setAction(new MoveToTable(game,Colour.PINK,new WalletController()));
         game.doAction();
         assertFalse(p0.getBoard().hasProfessor(Colour.PINK));
