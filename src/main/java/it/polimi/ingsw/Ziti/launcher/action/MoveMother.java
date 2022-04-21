@@ -1,30 +1,46 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
+import static java.util.Objects.isNull;
+
+/**
+ * This Action takes 2 parameters, the game instance and nuber of moves that the mother can do
+ * Functions: checks valid input, if not valid it retruns an exception
+ *            checks if an island will change players
+ *            updates the tower on the island and on player's board
+ *            can merge islands
+ */
 public class MoveMother implements Action{
     private Game game;
     private int moves;
     private Mother mother;
 
     public MoveMother(Game game, int moves){
+
         this.game = game;
         this.moves = moves;
         this.mother = Mother.motherInstance();
     }
 
     @Override
-    public Object execute() {
-        move();
-        updateIsland(mother.getIsland(),getControl(mother.getIsland()));
+    public void execute() throws ActionException {
+        try {
+            checkInput();
+            move();
+            updateIsland(mother.getIsland(), getControl(mother.getIsland()));
 
-        if(checkMerge(mother.getIsland(),game.getNextIsland(mother.getIsland()))){
-            merge(mother.getIsland(),game.getNextIsland(mother.getIsland()));
+            if (checkMerge(mother.getIsland(), game.getNextIsland(mother.getIsland()))) {
+                merge(mother.getIsland(), game.getNextIsland(mother.getIsland()));
+            }
+            if (checkMerge(mother.getIsland(), game.getPrevIsland(mother.getIsland()))) {
+                merge(mother.getIsland(), game.getPrevIsland(mother.getIsland()));
+            }
         }
-        if(checkMerge(mother.getIsland(),game.getPrevIsland(mother.getIsland()))){
-            merge(mother.getIsland(),game.getPrevIsland(mother.getIsland()));
+        catch(ActionException ex){
+            //ASK THE CLIENT TO CALL AGAIN THIS METHOD BUT WITH CORRECT INPUT
         }
-        return null;
     }
 
     /**
@@ -44,9 +60,11 @@ public class MoveMother implements Action{
      *               the new player has the same points as the old one
      */
     private void updateIsland(Island island,Player player){
-        if(island.getTowerPlayer() != player && player != null){
+        if(island.getTowerPlayer() != player && !isNull(player)){
             for(Tower T : island.getTowers()){
+                if(!isNull(island.getTowerPlayer())){
                 island.getTowerPlayer().getBoard().addTower(T); //give back all towers to old towerplayer
+                }
             }
 
             int size = island.getTowers().size();
@@ -60,25 +78,14 @@ public class MoveMother implements Action{
     }
 
     /**
-     * checks if island1 and island2 can be merged
-     * @param island1
-     * @param island2
-     * @return true if the islands can be merged, else false
-     */
-    private boolean checkMerge(Island island1, Island island2){
-        return island1.getTowerPlayer().equals(island2.getTowerPlayer());
-    }
-
-
-    /**
      * @param island
      * @return the player with most influence on the island
      * if more than 1 players have the same max influence, this methods returns a 'null' player
      */
     public Player getControl(Island island){
         int max = 0;
-        Player maxPlayer = game.getPlayers().get(0);  //initialize to first player
         int infl;
+        Player maxPlayer = game.getPlayers().get(0);  //initialize to first player
         for(Player p:game.getPlayers()){
             infl = 0;
             if(p.equals(island.getTowerPlayer())){      //adds towers influence points to the TowerPlayer
@@ -87,17 +94,25 @@ public class MoveMother implements Action{
             for(Professor prof: p.getBoard().getProfessors()){      //for each professor of the players, count how many students with the same colour
                 infl += island.getColour(prof.getColour());
             }
-
+            if(infl == max){
+                maxPlayer = null;
+            }
             if(infl > max){
                 max = infl;
                 maxPlayer = p;
             }
-
-            if(infl == max){
-                maxPlayer = null;
-            }
         }
         return maxPlayer;
+    }
+
+    /**
+     * checks if island1 and island2 can be merged
+     * @param island1
+     * @param island2
+     * @return true if the islands can be merged, else false
+     */
+    private boolean checkMerge(Island island1, Island island2){
+        return (island1.getTowerPlayer() == (island2.getTowerPlayer())) && island1.getTowerPlayer()!=null ;
     }
 
 
@@ -107,8 +122,14 @@ public class MoveMother implements Action{
      * @param island2 will be deleted after the merge
      */
     public void merge(Island island1, Island island2){
+        System.out.println("Merging island " + island1.getID() + " with island "+island2.getID());
         island1.getStudents().addAll(island2.getStudents());
         island1.getTowers().addAll(island2.getTowers());
         game.getIslands().remove(island2);
+    }
+
+    private void checkInput() throws ActionException{
+        if(moves < 1 /*|| moves > game.getCurrentPlayer().getAssChosen().getMovesMother()*/)
+            throw new ActionException();
     }
 }

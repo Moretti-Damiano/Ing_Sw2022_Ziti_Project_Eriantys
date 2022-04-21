@@ -36,15 +36,19 @@ public class Board {
             students_waiting.add(s);
     }
 
-
     public void setTowerColour(TowerColour tower_colour) {
         this.tower_colour = tower_colour;
     }
+
+    public TowerColour getTower_colour() { return tower_colour; }
 
     public void addCoin(Coin c){
         wallet.add(c);
     }
 
+    public ArrayList<Student> getStudents_waiting() {
+        return students_waiting;
+    }
 
     public int getNumberofCoin(){
         return wallet.size();
@@ -78,13 +82,12 @@ public class Board {
      */
     public Student removeStudent(Colour student_colour){
         for(Student s : students_waiting){
-            if(s.getColour()==student_colour){
+            if(s.getColour().equals(student_colour)){
                students_waiting.remove(s);
                return s;
             }
         }
         return null;
-
     }
 
     public void addProfessor(Professor p){
@@ -137,5 +140,29 @@ public class Board {
             }
         }
         return null;
+    }
+
+    /**
+     * check if there is a student with the specified colour in students_waiting
+     * @param colour the specified colour
+     */
+    public boolean checkpresence(Colour colour){
+        for(Student s : students_waiting){
+            if(colour.equals(s.getColour()))
+                return true;
+        }
+        return false;
+    }
+    /**
+     * counts how many students there are with the specified colour in students_waiting
+     * @param colour the specified colour
+     * @return count
+     */
+    public int countStudentColor(Colour colour){
+        int count=0;
+        for(Student s : students_waiting){
+            if(colour.equals(s.getColour())) count++;
+        }
+        return count;
     }
 }

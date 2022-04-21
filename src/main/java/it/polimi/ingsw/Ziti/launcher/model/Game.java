@@ -2,12 +2,16 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 /*
 TO DO
     *CURRENTPLAYER
+    *GAME INIT PER 4 GIOCATORI (SETPLAYERS)
     *ARRAYLIST DI CHARACTER
 
  */
@@ -31,7 +35,7 @@ public class Game {
      */
     public Game(ArrayList<Player> p){
 
-        //creates 12 islands
+        //creates 12 empty islands
         this.islands = new ArrayList<Island>();
         for(int i=0;i<12;i++){
             islands.add(new Island(i));
@@ -40,15 +44,34 @@ public class Game {
         //creates mother
         this.mother = Mother.motherInstance();
 
+        //creates sack with 120 remaining students
+        sack = new Sack(130 - (islands.size() - 2));
+
+                    //set islands and mother
+        //places mother on a random island
+        Random rand = new Random();
+        int motherPosition = rand.nextInt(islands.size());
+        mother.setIsland(islands.get(motherPosition));
+        islands.get(motherPosition).addMother();
+
+        //places 2 random student on each island
+        int emptyIsland = (motherPosition + islands.size()/2) % islands.size();
+        for(Island i: islands){
+            if(islands.indexOf(i) != motherPosition && islands.indexOf(i) !=emptyIsland ){
+                i.addStudent(sack.extract());
+                i.addStudent(sack.extract());
+            }
+        }
+
         //copies p into players
         this.players = new ArrayList<Player>(p);
 
         //set numplayer
-        this.maxPlayer = players.size();        //PROBABILEMTE SBAGLIATO
+        this.maxPlayer = players.size();        //PROBABILEMENTE SBAGLIATO
         this.playerNumber = players.size();
 
         //set sack
-        this.sack = new Sack();
+        this.sack = new Sack(islands.size()-2);
 
         //set cloudislands
         cloudIslands = new ArrayList<>();
@@ -62,6 +85,9 @@ public class Game {
         for(Colour c: Colour.values()){
             professors.add(new Professor(c));
         }
+
+        //set players'board
+        setPlayers(p);
 
 
         //set characters TO BE DONE!!!
@@ -91,7 +117,57 @@ public class Game {
     public Player getCurrentPlayer() {
         return currentPlayer;
     }
-    //?
+
+    public Sack getSack() {return sack;}
+
+    private void setPlayers(ArrayList<Player> p){
+        players = new ArrayList<>(p);
+        if(p.size() == 2){
+            //set player towercolour
+            int towerColour = 0;
+            for(Player player: p){
+                player.getBoard().setTowerColour(TowerColour.valueOfAbbreviation(Integer.toString(towerColour)));
+                towerColour ++;
+            }
+
+            //add 7 random students on each player's board and 8 towers
+            for(Player player:p){
+                for(int i = 0; i < 7; i++){
+                    player.getBoard().addStudent(sack.extract());
+                    player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour()));
+                }
+                player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour())); //adds the 8th tower
+            }
+        }
+
+        if(p.size() == 3){
+            //set player towercolour
+            int towerColour = 0;
+            for(Player player: p){
+                player.getBoard().setTowerColour(TowerColour.valueOfAbbreviation(Integer.toString(towerColour)));
+                towerColour ++;
+            }
+
+            //add 9 random students on each player's board and 6 towers
+            for(Player player:p){
+                for(int i = 0; i < 9; i++){
+                    player.getBoard().addStudent(sack.extract());
+                }
+                for(int i = 0; i < 6; i++){
+                player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour())); //adds the 8th tower
+                }
+            }
+        }
+
+        if(p.size() == 4){
+            //TO BE IMPLEMENTED
+        }
+    }
+
+    /**
+     * @param professor_colour the colour of the professor
+     * @return the professor with the indicated colour
+     */
     public Professor getProfessorbyColour(Colour professor_colour){
         for(Professor p : professors){
             if(p.getColour()==professor_colour){
@@ -140,7 +216,7 @@ public class Game {
         this.action = action;
     }
 
-    public void doAction(){
+    public void doAction() throws ActionException {
         action.execute();
     }
 

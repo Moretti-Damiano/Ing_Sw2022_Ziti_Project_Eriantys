@@ -2,10 +2,11 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
+import java.util.Arrays;
 import java.util.Random;
 
 /**
- * This class represents Sack used in the game to spawn Students.
+ * This class represents the Sack used in the game to spawn Students.
  * */
 public class Sack {
     private int[] numColour;
@@ -14,13 +15,9 @@ public class Sack {
     /**
      * Default constructor.
      */
-    public Sack() {
+    public Sack(int studentNumber) {
         numColour = new int[5];
-        numColour[0] = 26;
-        numColour[1] = 26;
-        numColour[2] = 26;
-        numColour[3] = 26;
-        numColour[4] = 26;
+        Arrays.fill(numColour, studentNumber / 5);
     }
 
     /**
@@ -31,24 +28,27 @@ public class Sack {
 
         //create a random number
         Random rand = new Random();
-        int upperLimit = 5;
-        Integer randomNumber = rand.nextInt(upperLimit);
+        int upperLimit = numColour.length;
+        int randomNumber = rand.nextInt(upperLimit);
 
-
-
-        //associates that random number with the Color Enum of the Student
-        if (numColour[randomNumber] > 0) {
-            numColour[randomNumber]--;
-            return new Student(Colour.valueOfAbbreviation(randomNumber.toString()));
-            //checking if array is empty
-        } else for (int i = 0; i < numColour[i]; i++) {
-            if (numColour[i] == 0) {
-                System.out.println("\nThe Sack is empty!\n");
-                return null;
-            } else extract();
+        //check if the sack is empty
+        boolean empty = true;
+        for(int i = 0; i< 5; i++){
+            if (numColour[i] != 0) {
+                empty = false;
+                break;
+            }
         }
-        return null;
+        if(empty){
+            System.out.println("The sack is empty!");
+            return null;
+        }
 
+        //if selected colour is not available, generates another random colour
+        while (numColour[randomNumber] == 0) {
+            randomNumber = rand.nextInt(upperLimit);
+        }
+        return new Student(Colour.valueOfAbbreviation(Integer.toString(randomNumber)));
     }
 }
 

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
 public class ChooseCloud implements Action{
@@ -13,7 +14,6 @@ public class ChooseCloud implements Action{
         this.game = game;
         this.player = player;
         this.chosenCloudId = chosenCloudId;
-        this.chosenCloud = game.getCloudIslands().get(chosenCloudId);
     }
 
     /**
@@ -21,9 +21,26 @@ public class ChooseCloud implements Action{
      * @return null
      */
     @Override
-    public Object execute() {
-        for(Student s: chosenCloud.toEmpty())
-        player.getBoard().addStudent(s);
-        return null;
+    public void execute() throws ActionException {
+        try {
+            checkInput();
+            this.chosenCloud = game.getCloudIslands().get(chosenCloudId);
+            for (Student s : chosenCloud.toEmpty())
+                player.getBoard().addStudent(s);
+        }
+        catch(ActionException ex){
+            //ASK THE CLIENT TO CALL THE FUNCTION WITH CORRECT INPUT
+        }
+    }
+
+    private void checkInput() throws ActionException {
+        if(chosenCloudId < 0 || chosenCloudId > game.getCloudIslands().size()-1){
+            System.out.println("Cloud "+ chosenCloudId + " does not exist");
+            throw new ActionException();
+        }
+        if(!game.getCloudIslands().get(chosenCloudId).isAvailable()){
+            System.out.println("Cloud "+ chosenCloudId + " is not available");
+            throw new ActionException();
+        }
     }
 }
