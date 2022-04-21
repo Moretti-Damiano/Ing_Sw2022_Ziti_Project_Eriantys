@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<assistants>
+    <assistant>
+        <id>0</id>
+        <moves>3</moves>
+        <value>2</value>
+    </assistant>
+    <assistant>
+        <id>1</id>
+        <moves>4</moves>
+        <value>1</value>
+    </assistant>
+    <assistant>
+        <id>2</id>
+        <moves>5</moves>
+        <value>1</value>
+    </assistant>
+    <assistant>
+        <id>3</id>
+        <moves>6</moves>
+        <value>10</value>
+    </assistant>
+</assistants>
