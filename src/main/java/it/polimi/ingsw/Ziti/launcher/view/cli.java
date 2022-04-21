@@ -3,6 +3,9 @@ package it.polimi.ingsw.Ziti.launcher.view;
 import it.polimi.ingsw.Ziti.launcher.networking.Message;
 
 public class cli implements view{
+
+    private Thread readThread;
+
     @Override
     public void showAssistant() {
 
