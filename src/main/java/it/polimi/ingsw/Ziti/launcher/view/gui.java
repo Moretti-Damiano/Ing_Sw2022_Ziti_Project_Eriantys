@@ -1,4 +1,75 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.networking.Message;
+
 public class gui implements view{
+    @Override
+    public void showAssistant() {
+
+    }
+
+    @Override
+    public void showCharacter() {
+
+    }
+
+    @Override
+    public void showIslands() {
+
+    }
+
+    @Override
+    public void showClouds() {
+
+    }
+
+    @Override
+    public void showMyBoard() {
+
+    }
+
+    @Override
+    public void showBoards() {
+
+    }
+
+    @Override
+    public void showMessage(Message message) {
+
+    }
+
+    @Override
+    public void askLogin() {
+
+    }
+
+    @Override
+    public void askAssistant() {
+
+    }
+
+    @Override
+    public void askCharacter() {
+
+    }
+
+    @Override
+    public void askMoveToTable() {
+
+    }
+
+    @Override
+    public void askMoveToIsland() {
+
+    }
+
+    @Override
+    public void askMoveMother() {
+
+    }
+
+    @Override
+    public void askCloudIsland() {
+
+    }
 }
