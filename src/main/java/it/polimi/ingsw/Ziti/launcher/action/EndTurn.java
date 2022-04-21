@@ -7,34 +7,37 @@ import java.util.stream.IntStream;
 /**
  * This action implements last things to do in a match turn such as re-fill CloudIslands and set used Assistants
  **/
-public class EndTurn implements Action{
+public class EndTurn implements Action {
 
    private Game game;
-   private Player player;
 
 
-   public EndTurn (Game game, Player player){
+   public EndTurn(Game game) {
       this.game = game;
-      this.player = player;
+
    }
 
    @Override
    public void execute() throws ActionException {
 
-      try{
+      try {
          checkInput();
-      }
-      catch (ActionException exc) {
-         //TO DO
-      }
-      // for each CloudIsland calls the method toFill
-      IntStream.range(0, game.getCloudIslands().size()).forEach(i -> game.getCloudIslands().get(i).toFill());
-      // for each Player set used Assistants
-      IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setActual(false));
+         // for each CloudIsland calls the method toFill
+         IntStream.range(0, game.getCloudIslands().size()).forEach(i -> game.getCloudIslands().get(i).toFill());
+         // for each Player set false actual Assistants
+         IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setActual(false));
+         // for each Player set true used Assistants
+         IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setAssChose(true));
 
+      } catch (ActionException exc) {
+         // ERROR CHOOSING ASSISTANT OR ISLANDS NOT EMPTY
+      }
    }
 
-   private void checkInput() throws ActionException{
-
+   private void checkInput() throws ActionException {
+      // check if the Cloud Islands are empty
+      for (CloudIsland cloudIsland : game.getCloudIslands()) {
+         if(! cloudIsland.getStudents().isEmpty() ) throw new ActionException();
+      }
    }
 }

@@ -2,22 +2,52 @@
 <assistants>
     <assistant>
         <id>0</id>
-        <moves>3</moves>
-        <value>2</value>
+        <moves>1</moves>
+        <value>1</value>
     </assistant>
     <assistant>
         <id>1</id>
-        <moves>4</moves>
-        <value>1</value>
+        <moves>1</moves>
+        <value>2</value>
     </assistant>
     <assistant>
         <id>2</id>
-        <moves>5</moves>
-        <value>1</value>
+        <moves>2</moves>
+        <value>3</value>
     </assistant>
     <assistant>
         <id>3</id>
-        <moves>6</moves>
+        <moves>2</moves>
+        <value>4</value>
+    </assistant>
+    <assistant>
+        <id>4</id>
+        <moves>3</moves>
+        <value>5</value>
+    </assistant>
+    <assistant>
+        <id>5</id>
+        <moves>3</moves>
+        <value>6</value>
+    </assistant>
+    <assistant>
+        <id>6</id>
+        <moves>4</moves>
+        <value>7</value>
+    </assistant>
+    <assistant>
+        <id>7</id>
+        <moves>4</moves>
+        <value>8</value>
+    </assistant>
+    <assistant>
+        <id>8</id>
+        <moves>5</moves>
+        <value>9</value>
+    </assistant>
+    <assistant>
+        <id>9</id>
+        <moves>5</moves>
         <value>10</value>
     </assistant>
 </assistants>

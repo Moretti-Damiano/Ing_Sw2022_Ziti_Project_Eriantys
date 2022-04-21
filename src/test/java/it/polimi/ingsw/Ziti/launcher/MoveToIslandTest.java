@@ -72,7 +72,7 @@ public class MoveToIslandTest {
 
     }
 
-    // test if there isn't the chosenStudent
+    // test if there isn't the chosenColour
     @Test
     public void NoColour() throws ActionException{
         Student blueStudent = new Student(Colour.BLUE);
@@ -105,6 +105,7 @@ public class MoveToIslandTest {
 
     }
 
+    // test the action if waiting_student is empty
     @Test
     public void EmptyWaitingRoom() throws ActionException{
 
