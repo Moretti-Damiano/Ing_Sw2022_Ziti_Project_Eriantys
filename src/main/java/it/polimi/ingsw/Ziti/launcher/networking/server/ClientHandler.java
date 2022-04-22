@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
 
+import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 import it.polimi.ingsw.Ziti.launcher.networking.Message;
 
 import java.io.IOException;
@@ -13,6 +14,8 @@ public class ClientHandler implements Runnable {
     private ObjectInputStream input;
     private SocketServer socketServer;
     private Message message;
+    private String nickName;
+    private boolean login;
     //private final SocketServer socketServer;
 
     public ClientHandler(SocketServer socketServer,Socket socket) throws IOException {
@@ -20,31 +23,38 @@ public class ClientHandler implements Runnable {
         this.socketServer = socketServer;
         output = new ObjectOutputStream(socket.getOutputStream());
         input = new ObjectInputStream(socket.getInputStream());
+        login = false;
+    }
+
+    public String getNickName() {
+        return nickName;
     }
 
     @Override
     public void run() {
-        //operazioni iniziali...
-
         try {
             keepListening();
         } catch (IOException | ClassNotFoundException e) {System.out.println("Error in listening");}
-
-
     }
-
 
     private void keepListening() throws IOException, ClassNotFoundException {
         while(true){
-            if(input.available() != 0)
+            if(input.available() != 0){
                 message = (Message) input.readObject();
-            socketServer.receive(message);
+                //Login
+                if(message.getMessageType().equals(MessageType.LOGIN) && !login){
+                    this.nickName = message.getBody();
+                    login = true;
+                }
+                socketServer.receive(message);
+                input.reset();
+            }
         }
     }
 
-
-    public void send(Message message){
-
+    public void send(Message message) throws IOException {
+        output.writeObject(message);
+        //output.flush();
+        output.reset();
     }
-
 }

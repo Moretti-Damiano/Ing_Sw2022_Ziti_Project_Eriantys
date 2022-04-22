@@ -7,7 +7,8 @@ package it.polimi.ingsw.Ziti.launcher.enumeration;
 public enum MessageType {
     ACTION_DONE,
     CLIENT_REQUEST,
-    CONNECT,LOGIN,
+    CONNECT,
+    LOGIN,
     DISCONNECT,
     TURN_ERROR,
     INPUT_ERROR,
