@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
-import it.polimi.ingsw.Ziti.launcher.networking.Message;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;

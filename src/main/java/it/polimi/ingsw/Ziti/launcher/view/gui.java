@@ -1,7 +1,5 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
-import it.polimi.ingsw.Ziti.launcher.networking.Message;
-
 public class gui implements view{
     @Override
     public void showAssistant() {

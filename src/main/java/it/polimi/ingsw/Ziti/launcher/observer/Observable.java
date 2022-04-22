@@ -1,7 +1,5 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
-import it.polimi.ingsw.Ziti.launcher.networking.Message;
-
 import java.util.ArrayList;
 import java.util.List;
 

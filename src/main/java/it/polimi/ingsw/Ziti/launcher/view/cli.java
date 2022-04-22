@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
-import it.polimi.ingsw.Ziti.launcher.networking.Message;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 
 import java.util.Scanner;

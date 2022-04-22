@@ -1,13 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
 
-import it.polimi.ingsw.Ziti.launcher.networking.Message;
-
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.ArrayList;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
 
 public class SocketServer implements Runnable{
     private final Server server;
