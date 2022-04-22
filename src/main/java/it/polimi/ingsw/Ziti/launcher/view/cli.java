@@ -12,11 +12,13 @@ public class cli extends Observable implements view{
 
     private Message message;
 
-    private Boolean invalid;
+    private Boolean valid;
 
     private Scanner sc=new Scanner(System.in);
 
-
+    public void setValid(Boolean valid) {
+        this.valid = valid;
+    }
 
     @Override
     public void showAssistant() {

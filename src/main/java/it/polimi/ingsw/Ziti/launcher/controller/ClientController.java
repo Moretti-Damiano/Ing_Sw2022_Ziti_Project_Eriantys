@@ -31,21 +31,20 @@ public class ClientController implements Observer {
 
     public void checkId(String input)
     {
-        Boolean test=isInt(input);
-        }
+        view.setValid(isInt(input));
     }
 
     public void checkColour(String input);
 
-    private Boolean isInt(String input) {
+    private Boolean isInt(String input){
+            if()
+        }
 
-    }
+    private Boolean isColour(String input);
 
-    private Boolean isColour(String input){}
-
-    private Boolean isString(String input){}
+    private Boolean isString(String input);
 
 
 
-}
+
 }

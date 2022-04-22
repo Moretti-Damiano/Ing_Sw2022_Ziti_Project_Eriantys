@@ -82,4 +82,9 @@ public class gui implements view{
     public void askCloudIsland() {
 
     }
+
+    @Override
+    public void setValid(Boolean valid) {
+
+    }
 }
