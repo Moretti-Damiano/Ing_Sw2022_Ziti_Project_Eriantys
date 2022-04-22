@@ -3,7 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view;
 import it.polimi.ingsw.Ziti.launcher.networking.Message;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 
-public interface view extends Observable {
+public interface view {
 
     void showAssistant();
     void showCharacter();
