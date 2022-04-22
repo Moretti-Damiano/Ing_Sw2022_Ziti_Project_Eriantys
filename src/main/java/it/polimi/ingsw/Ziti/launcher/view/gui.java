@@ -54,6 +54,16 @@ public class gui implements view{
     }
 
     @Override
+    public void askIsland() {
+
+    }
+
+    @Override
+    public void askColour() {
+
+    }
+
+    @Override
     public void askMoveToTable() {
 
     }
@@ -70,6 +80,11 @@ public class gui implements view{
 
     @Override
     public void askCloudIsland() {
+
+    }
+
+    @Override
+    public void setValid(Boolean valid) {
 
     }
 }
