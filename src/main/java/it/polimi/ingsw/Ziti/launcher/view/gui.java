@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+
 public class gui implements view{
     @Override
     public void showAssistant() {
@@ -32,6 +34,11 @@ public class gui implements view{
     }
 
     @Override
+    public void showErrorMessage(ErrorMessage message) {
+
+    }
+
+    @Override
     public void showMessage(Message message) {
 
     }
@@ -52,12 +59,12 @@ public class gui implements view{
     }
 
     @Override
-    public Message askIsland() {
+    public int askIsland() {
 
     }
 
     @Override
-    public void askColour() {
+    public String askColour() {
 
     }
 

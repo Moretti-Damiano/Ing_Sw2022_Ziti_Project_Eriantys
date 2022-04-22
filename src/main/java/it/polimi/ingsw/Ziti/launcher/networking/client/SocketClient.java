@@ -1,7 +1,10 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 import it.polimi.ingsw.Ziti.launcher.networking.ObserverClient;
+import it.polimi.ingsw.Ziti.launcher.view.cli;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -17,11 +20,12 @@ public class SocketClient {
     private final ObjectOutputStream outputStm;
     private final ObjectInputStream inputStm;
     private static final int TIMEOUT = 10000;
-
+    private ErrorMessage errorMessage;
+    private cli view,
     public SocketClient (String address, int port) throws IOException{
             this.socket = new Socket();
             this.socket.connect(new InetSocketAddress(address, port), TIMEOUT);
-            this.observerClient=new ObserverClient();
+            this.observerClient=new ObserverClient(view);
             this.outputStm = new ObjectOutputStream(socket.getOutputStream());
             this.inputStm = new ObjectInputStream(socket.getInputStream());
     }
@@ -52,6 +56,17 @@ public class SocketClient {
         } catch (IOException e) {
             message = new Message (MessageType.ERROR,"SocketClient","Could not send message");
             observerClient.update(message);
+        }
+
+    };
+
+    public void sendMoveToIslandMessage(MoveToIslandMessage message) {
+        try {
+            outputStm.writeObject(message);
+            outputStm.reset();
+        } catch (IOException e) {
+            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
+            observerClient.updateError(errorMessage);
         }
 
     };

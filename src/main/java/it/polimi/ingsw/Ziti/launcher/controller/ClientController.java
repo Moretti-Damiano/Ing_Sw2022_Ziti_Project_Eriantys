@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 import it.polimi.ingsw.Ziti.launcher.view.cli;
@@ -16,15 +19,8 @@ public class ClientController implements Observer {
     }
 
 
-    @Override
-    public void update(Message message) {
-        switch(message.getMessageType()){
-            case ID_GIVEN:
-                checkId(message.getBody());
-            case COLOUR_GIVEN:
-                checkColour(message.getBody());
-        }
-
+    public void updateMoveToIsland(MoveToIslandMessage message) {
+        socketClient.sendMessage();
     }
 
     public void checkId(String input)
@@ -43,6 +39,12 @@ public class ClientController implements Observer {
     private Boolean isString(String input);
 
 
+    public void update(Message message) {
 
+    }
 
+    @Override
+    public void updateError(ErrorMessage message) {
+
+    }
 }

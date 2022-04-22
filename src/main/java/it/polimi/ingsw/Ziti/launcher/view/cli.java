@@ -1,23 +1,19 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
+import it.polimi.ingsw.Ziti.launcher.networking.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
+import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 
 import java.util.Scanner;
 
-public class cli extends Observable implements view{
+public class cli extends Observable implements Observer,view {
 
-    private Thread readThread;
-
-    private Message message;
-
-    private Boolean valid;
 
     private Scanner sc=new Scanner(System.in);
-
-    public void setValid(Boolean valid) {
-        this.valid = valid;
-    }
 
     @Override
     public void showAssistant() {
@@ -50,9 +46,8 @@ public class cli extends Observable implements view{
     }
 
     @Override
-    public void showMessage(Message message) {
-        System.out.println(message.getBody()+"from "+message.getSender());
-
+    public void showErrorMessage(ErrorMessage message) {
+        System.out.println(message.getDescription()+"from "+message.getSender());
     }
 
     @Override
@@ -71,15 +66,19 @@ public class cli extends Observable implements view{
     }
 
     @Override
-    public Message askIsland() {
+    public int askIsland() {
         System.out.println(" Inserisci un isola :");
-        Message message;
-        message=new Message(MessageType.ID_GIVEN,"askIsland",sc.nextLine());
-        return message;
+        int islandId;
+       islandId=sc.nextInt();
+        return islandId;
     }
 
     @Override
-    public void askColour() {
+    public String askColour() {
+        System.out.println(" Inserisci un colore :");
+        String colour;
+        colour=sc.nextLine();
+        return colour;
 
     }
 
@@ -90,15 +89,9 @@ public class cli extends Observable implements view{
 
     @Override
     public void askMoveToIsland() {
-        do{
-            notifyObserver(askIsland());
-        }while(!valid);
+        MoveToIslandMessage m;
+        m=new MoveToIslandMessage("cli",askIsland(),askColour());
 
-        Message message=new Message(MOVETOISLAND,"cli",)
-
-        do{
-            askColour();
-        }while(!valid);
 
     }
 
@@ -109,6 +102,21 @@ public class cli extends Observable implements view{
 
     @Override
     public void askCloudIsland() {
+
+    }
+
+    @Override
+    public void setValid(Boolean valid) {
+
+    }
+
+    @Override
+    public void updateError(ErrorMessage message) {
+    showErrorMessage(message);
+    }
+
+    @Override
+    public void updateMoveToIsland(MoveToIslandMessage message) {
 
     }
 }

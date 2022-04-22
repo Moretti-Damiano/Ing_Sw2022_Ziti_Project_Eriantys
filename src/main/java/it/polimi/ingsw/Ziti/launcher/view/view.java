@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+
 public interface view {
 
     void showAssistant();
@@ -8,12 +10,12 @@ public interface view {
     void showClouds();
     void showMyBoard();
     void showBoards();
-    void showMessage(Message message);
+    void showErrorMessage(ErrorMessage message);
     void askLogin();
     void askAssistant();
     void askCharacter();
-    Message askIsland();
-    void askColour();
+    int askIsland();
+    String askColour();
     void askMoveToTable();
     void askMoveToIsland();
     void askMoveMother();

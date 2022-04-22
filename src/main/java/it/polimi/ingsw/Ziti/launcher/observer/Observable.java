@@ -1,5 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -30,9 +34,14 @@ public class Observable {
      * Notifies all the observers with a message
      * @param message is the message sent to the observers
      */
-    protected void notifyObserver(Message message) {
+    protected void notifyObserverErrorMessage(ErrorMessage message) {
         for (Observer observer : observers) {
-            observer.update(message);
+            observer.updateError(message);
+        }
+    }
+    protected void notifyObserverMoveToIslandMessage(MoveToIslandMessage message) {
+        for (Observer observer : observers) {
+            observer.updateMoveToIsland(message);
         }
     }
 }
