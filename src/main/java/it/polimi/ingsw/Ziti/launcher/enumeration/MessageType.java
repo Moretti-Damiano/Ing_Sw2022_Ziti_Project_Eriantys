@@ -6,12 +6,12 @@ package it.polimi.ingsw.Ziti.launcher.enumeration;
 
 public enum MessageType {
     ACTION_DONE,
-    CLIENT_REQUEST,
+    ID_GIVEN,
+    COLOUR_GIVEN,
     CONNECT,LOGIN,
     DISCONNECT,
     TURN_ERROR,
     INPUT_ERROR,
-    RECEIVE_ERROR,
-    SEND_ERROR,
+    ERROR,
     END_MATCH;
 }

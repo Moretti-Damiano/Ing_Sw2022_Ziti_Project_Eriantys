@@ -6,6 +6,8 @@ public class cli implements view{
 
     private Thread readThread;
 
+    private Message message;
+
     @Override
     public void showAssistant() {
 
@@ -38,6 +40,7 @@ public class cli implements view{
 
     @Override
     public void showMessage(Message message) {
+        System.out.println(message.getBody()+"from "+message.getSender());
 
     }
 

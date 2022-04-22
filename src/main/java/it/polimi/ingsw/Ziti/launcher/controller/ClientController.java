@@ -3,29 +3,30 @@ package it.polimi.ingsw.Ziti.launcher.controller;
 import it.polimi.ingsw.Ziti.launcher.networking.Message;
 import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
+import it.polimi.ingsw.Ziti.launcher.view.view;
 
 public class ClientController implements Observer {
 
+    private view view;
     private SocketClient socketClient;
 
     @Override
     public void update(Message message) {
+        switch(message.getMessageType()){
+            case ID_GIVEN:
+                checkId(message.getBody());
+            case COLOUR_GIVEN:
+                checkColour(message.getBody());
+        }
 
     }
 
-    public void checkAssistant(String input);
+    public void checkId(String input)
+    {
 
-    public void checkCharacter(String input);
+    };
 
-    public void checkLogin(String input);
-
-    public void checkMoveToTable(String input);
-
-    public void checkMoveToIsland(String input);
-
-    public void checkMoveMother(String input);
-
-    public void checkCloudIsland(String input);
+    public void checkColour(String input);
 
     private Boolean isInt(String input);
 

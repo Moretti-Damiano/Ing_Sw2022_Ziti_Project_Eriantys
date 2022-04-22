@@ -11,4 +11,16 @@ public class Message {
         this.sender=sender;
         this.body=body;
     }
+
+    public MessageType getMessageType() {
+        return messageType;
+    }
+
+    public String getBody() {
+        return body;
+    }
+
+    public String getSender() {
+        return sender;
+    }
 }
