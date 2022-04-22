@@ -11,5 +11,7 @@ public enum MessageType {
     DISCONNECT,
     TURN_ERROR,
     INPUT_ERROR,
+    RECEIVE_ERROR,
+    SEND_ERROR,
     END_MATCH;
 }

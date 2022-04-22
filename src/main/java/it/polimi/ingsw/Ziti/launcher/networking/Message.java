@@ -6,4 +6,9 @@ public class Message {
     MessageType messageType;
     String sender;
     String body;
+    public Message(MessageType mt,String sender,String body){
+        this.messageType=mt;
+        this.sender=sender;
+        this.body=body;
+    }
 }
