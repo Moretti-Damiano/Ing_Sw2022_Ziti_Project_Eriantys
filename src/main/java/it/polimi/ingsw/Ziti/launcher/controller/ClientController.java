@@ -20,7 +20,7 @@ public class ClientController implements Observer {
 
 
     public void updateMoveToIsland(MoveToIslandMessage message) {
-        socketClient.sendMessage();
+        socketClient.sendMoveToIslandMessage(message);
     }
 
     public void checkId(String input)

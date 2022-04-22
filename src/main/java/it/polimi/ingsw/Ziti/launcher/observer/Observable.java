@@ -34,7 +34,7 @@ public class Observable {
      * Notifies all the observers with a message
      * @param message is the message sent to the observers
      */
-    protected void notifyObserverErrorMessage(ErrorMessage message) {
+    public void notifyObserverErrorMessage(ErrorMessage message) {
         for (Observer observer : observers) {
             observer.updateError(message);
         }

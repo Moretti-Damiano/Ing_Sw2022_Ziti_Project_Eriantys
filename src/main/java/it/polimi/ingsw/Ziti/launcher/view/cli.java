@@ -10,7 +10,7 @@ import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 
 import java.util.Scanner;
 
-public class cli extends Observable implements Observer,view {
+public class cli extends Observable implements view {
 
 
     private Scanner sc=new Scanner(System.in);
@@ -91,8 +91,7 @@ public class cli extends Observable implements Observer,view {
     public void askMoveToIsland() {
         MoveToIslandMessage m;
         m=new MoveToIslandMessage("cli",askIsland(),askColour());
-
-
+        notifyObserverMoveToIslandMessage(m);
     }
 
     @Override
@@ -107,7 +106,7 @@ public class cli extends Observable implements Observer,view {
 
     @Override
     public void setValid(Boolean valid) {
-
+        
     }
 
     @Override
