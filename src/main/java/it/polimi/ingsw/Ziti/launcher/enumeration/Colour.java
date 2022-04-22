@@ -35,7 +35,6 @@ public enum Colour {
         }
     }
 
-
     /**
      * Default constructor.
      */
