@@ -21,9 +21,11 @@ public class MoveToIsland implements Action{
         this.studentColour = studentColour;
 
     }
+
     /**
      * Take a color of a waiting student from the Board of a Player and move it into an Island
-     * */
+     * @throws ActionException
+     */
     @Override
     public void execute() throws ActionException {
         try{

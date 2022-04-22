@@ -24,7 +24,9 @@ public class Island {
     }
 
     /**
-     * return number of colour_students
+     *
+     * @param c is the colour chosen
+     * @return number of students of that colour
      */
     public int getColour(Colour c){
         int i = 0;
