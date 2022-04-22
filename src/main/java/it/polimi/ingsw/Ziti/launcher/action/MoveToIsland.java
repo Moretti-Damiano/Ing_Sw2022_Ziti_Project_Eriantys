@@ -14,7 +14,7 @@ public class MoveToIsland implements Action{
     private Island chosenIsland;
     private Colour studentColour;
 
-    public MoveToIsland(Game game, Island chosenIsland, Colour studentColour) throws ActionException{
+    public MoveToIsland(Game game, Island chosenIsland, Colour studentColour) {
 
         this.game = game;
         this.chosenIsland = chosenIsland;
