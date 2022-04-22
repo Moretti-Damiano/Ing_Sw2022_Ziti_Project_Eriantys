@@ -6,10 +6,18 @@ package it.polimi.ingsw.Ziti.launcher.enumeration;
 
 public enum MessageType {
     ACTION_DONE,
+    CHOOSEASSISTANT,
+    CHOOSECLOUD,
+    MOVEMOTHER,
+    MOVETOISLAND,
+    MOVETOTABLE,
+
     ID_GIVEN,
     COLOUR_GIVEN,
-    CONNECT,LOGIN,
+    CONNECT,
+    LOGIN,
     DISCONNECT,
+
     TURN_ERROR,
     INPUT_ERROR,
     ERROR,
