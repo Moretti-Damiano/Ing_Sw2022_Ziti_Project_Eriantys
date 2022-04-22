@@ -54,7 +54,7 @@ public class gui implements view{
     }
 
     @Override
-    public void askIsland() {
+    public Message askIsland() {
 
     }
 

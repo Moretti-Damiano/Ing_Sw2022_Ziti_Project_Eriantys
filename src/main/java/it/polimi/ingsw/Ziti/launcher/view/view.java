@@ -15,7 +15,7 @@ public interface view {
     void askLogin();
     void askAssistant();
     void askCharacter();
-    void askIsland();
+    Message askIsland();
     void askColour();
     void askMoveToTable();
     void askMoveToIsland();

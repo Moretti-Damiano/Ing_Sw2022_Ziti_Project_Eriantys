@@ -72,11 +72,11 @@ public class cli extends Observable implements view{
     }
 
     @Override
-    public void askIsland() {
+    public Message askIsland() {
         System.out.println(" Inserisci un isola :");
         Message message;
         message=new Message(MessageType.ID_GIVEN,"askIsland",sc.nextLine());
-        notifyObserver(message);
+        return message;
     }
 
     @Override
@@ -91,6 +91,15 @@ public class cli extends Observable implements view{
 
     @Override
     public void askMoveToIsland() {
+        do{
+            notifyObserver(askIsland());
+        }while(!valid);
+
+        Message message=new Message(MOVETOISLAND,"cli",)
+
+        do{
+            askColour();
+        }while(!valid);
 
     }
 
