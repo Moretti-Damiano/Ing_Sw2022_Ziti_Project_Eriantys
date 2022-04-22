@@ -206,8 +206,13 @@ public class Game {
     }
 
     /**
-     *Adds a students from player's board, choosen by colour, to the specified island
+     *
+     * @param player is the player chosen
+     * @param island is the chosen island
+     * @param colour is the colour of the student chosen
+     * Adds a students from player's board, choosen by colour, to the specified island
      */
+
     public void addStudent(Player player, Island island, Colour colour){
         island.addStudent(player.getBoard().removeStudent(colour));
     }

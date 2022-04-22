@@ -13,8 +13,10 @@ public class Sack {
 
 
     /**
-     * Default constructor.
+     *
+     * @param studentNumber
      */
+
     public Sack(int studentNumber) {
         numColour = new int[5];
         Arrays.fill(numColour, studentNumber / 5);

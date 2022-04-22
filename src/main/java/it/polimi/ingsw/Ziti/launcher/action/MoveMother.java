@@ -24,6 +24,10 @@ public class MoveMother implements Action{
         this.mother = Mother.motherInstance();
     }
 
+    /**
+     * This action moves the Mother of nature
+     * @throws ActionException
+     */
     @Override
     public void execute() throws ActionException {
         try {

@@ -28,6 +28,9 @@ public class EndTurn implements Action {
          IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setActual(false));
          // for each Player set true used Assistants
          IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setAssChose(true));
+         // for each Player set actualAssistant as null
+         IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setAssChoosed(null));
+
 
       } catch (ActionException exc) {
          // ERROR CHOOSING ASSISTANT OR ISLANDS NOT EMPTY
