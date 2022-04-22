@@ -1,8 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
 import it.polimi.ingsw.Ziti.launcher.networking.Message;
+import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 
-public interface view {
+public interface view extends Observable {
 
     void showAssistant();
     void showCharacter();
@@ -14,6 +15,8 @@ public interface view {
     void askLogin();
     void askAssistant();
     void askCharacter();
+    void askIsland();
+    void askColour();
     void askMoveToTable();
     void askMoveToIsland();
     void askMoveMother();

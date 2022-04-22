@@ -1,12 +1,22 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 import it.polimi.ingsw.Ziti.launcher.networking.Message;
+import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 
-public class cli implements view{
+import java.util.Scanner;
+
+public class cli extends Observable implements view{
 
     private Thread readThread;
 
     private Message message;
+
+    private Boolean invalid;
+
+    private Scanner sc=new Scanner(System.in);
+
+
 
     @Override
     public void showAssistant() {
@@ -56,6 +66,19 @@ public class cli implements view{
 
     @Override
     public void askCharacter() {
+
+    }
+
+    @Override
+    public void askIsland() {
+        System.out.println(" Inserisci un isola :");
+        Message message;
+        message=new Message(MessageType.ID_GIVEN,"askIsland",sc.nextLine());
+        notifyObserver(message);
+    }
+
+    @Override
+    public void askColour() {
 
     }
 

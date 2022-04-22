@@ -10,6 +10,13 @@ public class ClientController implements Observer {
     private view view;
     private SocketClient socketClient;
 
+    public ClientController(view view,SocketClient socketClient) {
+        this.view = view;
+        view.addObserver(this);
+        this.socketClient=socketClient;
+    }
+
+
     @Override
     public void update(Message message) {
         switch(message.getMessageType()){
@@ -23,12 +30,15 @@ public class ClientController implements Observer {
 
     public void checkId(String input)
     {
-
-    };
+        Boolean test=isInt(input);
+        }
+    }
 
     public void checkColour(String input);
 
-    private Boolean isInt(String input);
+    private Boolean isInt(String input){
+
+        }
 
     private Boolean isColour(String input);
 
