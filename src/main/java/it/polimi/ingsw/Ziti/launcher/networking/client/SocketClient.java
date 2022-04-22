@@ -23,6 +23,6 @@ public class SocketClient {
             this.inputStm = new ObjectInputStream(socket.getInputStream());
     }
 
-    public void reciveMessage();
+    public void receiveMessage();
     public void sendMessage(Message message);
 }

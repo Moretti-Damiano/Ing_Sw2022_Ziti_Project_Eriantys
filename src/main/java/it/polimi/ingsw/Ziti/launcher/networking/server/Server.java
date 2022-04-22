@@ -5,12 +5,23 @@ import it.polimi.ingsw.Ziti.launcher.networking.Message;
 
 public class Server {
 
-    public void notifyPlayers();
-    public void notifyPlayer();
-
     private GameController gameController;
 
+    public Server(){}
+
+    public void startServer(int port){
+        Thread serverThread = new Thread(new SocketServer(this,port));
+        serverThread.start();
+    }
+
+    public void notifyAllPlayers(){
+
+    }
+    public void notifyPlayer(){
+
+    }
+
     public void receive(Message message){
-        gameController.menageMessage(Message message);
+        gameController.menageMessage(message);
     }
 }
