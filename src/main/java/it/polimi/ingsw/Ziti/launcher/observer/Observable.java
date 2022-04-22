@@ -6,34 +6,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Observable class that can be observed by implementing the Observer interface and registering as listener.
+ * Implementation of the observable class
  */
 public class Observable {
 
     private final List<Observer> observers = new ArrayList<>();
 
     /**
-     * Adds an observer.
-     *
-     * @param obs the observer to be added.
+     * Adds an observer
+     * @param observer is the new observer
      */
-    public void addObserver(Observer obs) {
-        observers.add(obs);
+    public void addObserver(Observer observer) {
+        observers.add(observer);
     }
 
     /**
-     * Removes an observer.
-     *
-     * @param obs the observer to be removed.
+     * Removes an observer
+     * @param observer is the removed observer
      */
-    public void removeObserver(Observer obs) {
-        observers.remove(obs);
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
     }
 
     /**
-     * Notifies all the current observers through the update method and passes to them a  Message.
-     *
-     * @param message the message to be passed to the observers.
+     * Notifies all the observers with a message
+     * @param message is the message sent to the observers
      */
     protected void notifyObserver(Message message) {
         for (Observer observer : observers) {
