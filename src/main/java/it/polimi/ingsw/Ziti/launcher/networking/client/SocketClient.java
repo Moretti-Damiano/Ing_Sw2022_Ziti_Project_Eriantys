@@ -32,8 +32,11 @@ public class SocketClient {
         while(true){
             Message message;
             try{
-                message=(Message) inputStm.readObject();
-                clientController.update(message);
+                if(inputStm.available()!=0){
+                    message=(Message) inputStm.readObject();
+                    clientController.update(message);
+                }
+
             } catch (IOException | ClassNotFoundException e) {
 
                 message = new Message (MessageType.RECEIVE_ERROR,"SocketClient","Connection lost");
