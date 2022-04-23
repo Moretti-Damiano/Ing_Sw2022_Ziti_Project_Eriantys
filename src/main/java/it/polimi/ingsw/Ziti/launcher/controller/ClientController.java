@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.LoginMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.Message;
 import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
@@ -27,5 +28,10 @@ public class ClientController extends ViewObservable implements ViewObserver {
     @Override
     public void updateErrorMessage(ErrorMessage message) {
 
+    }
+
+    @Override
+    public void updateLoginMessage(LoginMessage message) {
+        notifyObserver(obs->obs.updateLoginMessage(message));
     }
 }

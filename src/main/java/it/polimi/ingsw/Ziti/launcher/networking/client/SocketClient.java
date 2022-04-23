@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.LoginMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 import it.polimi.ingsw.Ziti.launcher.networking.ObserverClient;
@@ -41,7 +42,16 @@ public class SocketClient extends ViewObservable implements ViewObserver {
             notifyObserver(obs->obs.updateErrorMessage(errorMessage));
         }
 
-    };
+    }
+    private void sendLoginMessage(LoginMessage message) {
+        try {
+            outputStm.writeObject(message);
+            outputStm.reset();
+        } catch (IOException e) {
+            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
+            notifyObserver(obs->obs.updateErrorMessage(errorMessage));
+        }
+    }
 
     public void receiveMoveToIslandMessage(){
 
@@ -61,7 +71,28 @@ public class SocketClient extends ViewObservable implements ViewObserver {
             }
 
         }
-    };
+    }
+    public void receiveLoginMessage(){
+
+        while(true){
+            LoginMessage message;
+            try{
+                if(inputStm.available()!=0){
+                    message=(LoginMessage) inputStm.readObject();
+                    notifyObserver(obs->obs.updateLoginMessage(message));
+                }
+
+            } catch (IOException | ClassNotFoundException e) {
+
+                errorMessage = new ErrorMessage("SocketClient","Connection lost");
+                notifyObserver(obs->obs.updateErrorMessage(errorMessage));
+                disconnect();
+            }
+
+        }
+    }
+
+
 
     public void disconnect() {
 
@@ -80,6 +111,10 @@ public class SocketClient extends ViewObservable implements ViewObserver {
     @Override
     public void updateMoveToIslandMessage(MoveToIslandMessage message) {
         sendMoveToIslandMessage(message);
+    }
+    @Override
+    public void updateLoginMessage(LoginMessage message) {
+        sendLoginMessage(message);
     }
 
     /**

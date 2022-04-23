@@ -1,12 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.LoginMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
-import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
-import it.polimi.ingsw.Ziti.launcher.networking.ObserverClient;
-import it.polimi.ingsw.Ziti.launcher.observer.Observable;
-import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
@@ -19,12 +15,12 @@ public class cli extends ViewObservable implements view, ViewObserver {
     private Scanner sc=new Scanner(System.in);
 
     @Override
-    public void showAssistant() {
+    public void showAssistants() {
 
     }
 
     @Override
-    public void showCharacter() {
+    public void showCharacters() {
 
     }
 
@@ -55,17 +51,28 @@ public class cli extends ViewObservable implements view, ViewObserver {
 
     @Override
     public void askLogin() {
-
+        System.out.println("Inserisci il nome utente");
+        String username;
+        username=sc.nextLine();
+        LoginMessage message;
+        message=new LoginMessage("cli",username);
+        notifyObserver(obs->obs.updateLoginMessage(message));
     }
 
     @Override
-    public void askAssistant() {
-
+    public int askAssistant() {
+        System.out.println(" Inserisci l'id di un assistente :");
+        int assistantId;
+        assistantId=sc.nextInt();
+        return assistantId;
     }
 
     @Override
-    public void askCharacter() {
-
+    public int askCharacter() {
+        System.out.println(" Inserisci l'id del character :");
+        int characterId;
+        characterId=sc.nextInt();
+        return characterId;
     }
 
     @Override
@@ -94,7 +101,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
     public void askMoveToIsland() {
         MoveToIslandMessage m;
         m=new MoveToIslandMessage("cli",askIsland(),askColour());
-        notifyObserver(viewObserver -> viewObserver.updateMoveToIslandMessage(m));
+        notifyObserver(obs -> obs.updateMoveToIslandMessage(m));
     }
 
     @Override
@@ -104,6 +111,11 @@ public class cli extends ViewObservable implements view, ViewObserver {
 
     @Override
     public void askCloudIsland() {
+
+    }
+
+    @Override
+    public void askChoseAssistant() {
 
     }
 
@@ -123,5 +135,13 @@ public class cli extends ViewObservable implements view, ViewObserver {
     @Override
     public void updateErrorMessage(ErrorMessage message) {
         showErrorMessage(message);
+    }
+
+    @Override
+    public void updateLoginMessage(LoginMessage message) {
+        if(message.getCorrect()==false){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askLogin();
+        }
     }
 }

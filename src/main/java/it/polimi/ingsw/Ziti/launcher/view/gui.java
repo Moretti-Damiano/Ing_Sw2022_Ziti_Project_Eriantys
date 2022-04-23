@@ -4,12 +4,12 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
 
 public class gui implements view{
     @Override
-    public void showAssistant() {
+    public void showAssistants() {
 
     }
 
     @Override
-    public void showCharacter() {
+    public void showCharacters() {
 
     }
 
@@ -44,13 +44,15 @@ public class gui implements view{
     }
 
     @Override
-    public void askAssistant() {
+    public int askAssistant() {
 
+        return 0;
     }
 
     @Override
-    public void askCharacter() {
+    public int askCharacter() {
 
+        return 0;
     }
 
     @Override
@@ -80,6 +82,11 @@ public class gui implements view{
 
     @Override
     public void askCloudIsland() {
+
+    }
+
+    @Override
+    public void askChoseAssistant() {
 
     }
 
