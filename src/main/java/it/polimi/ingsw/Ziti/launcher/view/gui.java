@@ -39,11 +39,6 @@ public class gui implements view{
     }
 
     @Override
-    public void showMessage(Message message) {
-
-    }
-
-    @Override
     public void askLogin() {
 
     }
@@ -60,12 +55,12 @@ public class gui implements view{
 
     @Override
     public int askIsland() {
-
+    return 0;
     }
 
     @Override
     public String askColour() {
-
+        return String.valueOf(0);
     }
 
     @Override
@@ -88,8 +83,4 @@ public class gui implements view{
 
     }
 
-    @Override
-    public void setValid(Boolean valid) {
-
-    }
 }

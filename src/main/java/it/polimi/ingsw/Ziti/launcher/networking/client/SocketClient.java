@@ -4,6 +4,8 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 import it.polimi.ingsw.Ziti.launcher.networking.ObserverClient;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.cli;
 
 import java.io.IOException;
@@ -12,53 +14,23 @@ import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-public class SocketClient {
+//Questa classe OSSERVA il ClientController e VIENE OSSERVATA dall' observer client
+
+public class SocketClient extends ViewObservable implements ViewObserver {
 
     private final Socket socket;
-
-    private final ObserverClient observerClient;
     private final ObjectOutputStream outputStm;
     private final ObjectInputStream inputStm;
     private static final int TIMEOUT = 10000;
     private ErrorMessage errorMessage;
-    private cli view,
+
     public SocketClient (String address, int port) throws IOException{
             this.socket = new Socket();
             this.socket.connect(new InetSocketAddress(address, port), TIMEOUT);
-            this.observerClient=new ObserverClient(view);
             this.outputStm = new ObjectOutputStream(socket.getOutputStream());
             this.inputStm = new ObjectInputStream(socket.getInputStream());
     }
 
-    public void receiveMessage(){
-
-        while(true){
-            Message message;
-            try{
-                if(inputStm.available()!=0){
-                    message=(Message) inputStm.readObject();
-                    observerClient.update(message);
-                }
-
-            } catch (IOException | ClassNotFoundException e) {
-
-                message = new Message (MessageType.ERROR,"SocketClient","Connection lost");
-                observerClient.update(message);
-                disconnect();
-            }
-
-        }
-    };
-    public void sendMessage(Message message) {
-        try {
-            outputStm.writeObject(message);
-            outputStm.reset();
-        } catch (IOException e) {
-            message = new Message (MessageType.ERROR,"SocketClient","Could not send message");
-            observerClient.update(message);
-        }
-
-    };
 
     public void sendMoveToIslandMessage(MoveToIslandMessage message) {
         try {
@@ -66,22 +38,57 @@ public class SocketClient {
             outputStm.reset();
         } catch (IOException e) {
             errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            observerClient.updateError(errorMessage);
+            notifyObserver(obs->obs.updateErrorMessage(errorMessage));
         }
 
     };
 
+    public void receiveMoveToIslandMessage(){
+
+        while(true){
+            MoveToIslandMessage message;
+            try{
+                if(inputStm.available()!=0){
+                    message=(MoveToIslandMessage) inputStm.readObject();
+                    notifyObserver(obs->obs.updateMoveToIslandMessage(message));
+                }
+
+            } catch (IOException | ClassNotFoundException e) {
+
+                errorMessage = new ErrorMessage("SocketClient","Connection lost");
+                notifyObserver(obs->obs.updateErrorMessage(errorMessage));
+                disconnect();
+            }
+
+        }
+    };
+
     public void disconnect() {
-        Message message;
+
         try {
             socket.close();
         } catch (IOException e) {
 
-            message = new Message (MessageType.ERROR,"SocketClient","Could not disconnect");
-            observerClient.update(message);
+            errorMessage = new ErrorMessage ("SocketClient","Could not disconnect");
+            notifyObserver(obs->obs.updateErrorMessage(errorMessage));
         }
 
 
+
+    }
+
+    @Override
+    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
+        sendMoveToIslandMessage(message);
+    }
+
+    /**
+     *
+     * Not implemented here
+     */
+
+    @Override
+    public void updateErrorMessage(ErrorMessage message) {
 
     }
 }

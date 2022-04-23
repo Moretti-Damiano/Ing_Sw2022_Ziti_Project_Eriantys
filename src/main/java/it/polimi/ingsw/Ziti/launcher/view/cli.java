@@ -7,11 +7,14 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 import it.polimi.ingsw.Ziti.launcher.networking.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
 import java.util.Scanner;
 
-public class cli extends Observable implements view {
+public class cli extends ViewObservable implements view, ViewObserver {
 
+    //Questa classe OSSERVA l' ObserverClient e VIENE OSSERVATA dal ClientController
 
     private Scanner sc=new Scanner(System.in);
 
@@ -91,7 +94,7 @@ public class cli extends Observable implements view {
     public void askMoveToIsland() {
         MoveToIslandMessage m;
         m=new MoveToIslandMessage("cli",askIsland(),askColour());
-        notifyObserverMoveToIslandMessage(m);
+        notifyObserver(viewObserver -> viewObserver.updateMoveToIslandMessage(m));
     }
 
     @Override
@@ -104,18 +107,21 @@ public class cli extends Observable implements view {
 
     }
 
+
+    /**
+     *
+     * Not Used here
+     */
     @Override
-    public void setValid(Boolean valid) {
-        
+    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
+        if(message.getCorrect()==false){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askMoveToIsland();
+        }
     }
 
     @Override
-    public void updateError(ErrorMessage message) {
-    showErrorMessage(message);
-    }
-
-    @Override
-    public void updateMoveToIsland(MoveToIslandMessage message) {
-
+    public void updateErrorMessage(ErrorMessage message) {
+        showErrorMessage(message);
     }
 }

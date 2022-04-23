@@ -5,46 +5,27 @@ import it.polimi.ingsw.Ziti.launcher.Messages.Message;
 import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.cli;
 
-public class ClientController implements Observer {
+//Questa classe VIENE OSSERVATA dalla SocketClient e OSSERVA la cli
 
-    private cli view;
-    private SocketClient socketClient;
+public class ClientController extends ViewObservable implements ViewObserver {
 
-    public ClientController(cli view,SocketClient socketClient) {
-        this.view = view;
-        view.addObserver(this);
-        this.socketClient=socketClient;
-    }
-
-
-    public void updateMoveToIsland(MoveToIslandMessage message) {
-        socketClient.sendMoveToIslandMessage(message);
-    }
-
-    public void checkId(String input)
-    {
-        view.setValid(isInt(input));
-    }
-
-    public void checkColour(String input);
-
-    private Boolean isInt(String input){
-            if()
-        }
-
-    private Boolean isColour(String input);
-
-    private Boolean isString(String input);
-
-
-    public void update(Message message) {
-
-    }
 
     @Override
-    public void updateError(ErrorMessage message) {
+    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
+        notifyObserver(obs-> obs.updateMoveToIslandMessage(message));
+    }
+
+    /**
+     *
+     * not implemented here
+     */
+
+    @Override
+    public void updateErrorMessage(ErrorMessage message) {
 
     }
 }

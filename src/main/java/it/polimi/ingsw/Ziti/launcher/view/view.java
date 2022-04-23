@@ -20,6 +20,5 @@ public interface view {
     void askMoveToIsland();
     void askMoveMother();
     void askCloudIsland();
-    void setValid(Boolean valid);
 
 }
