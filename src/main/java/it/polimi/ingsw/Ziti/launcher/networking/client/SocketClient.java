@@ -92,8 +92,6 @@ public class SocketClient extends ViewObservable implements ViewObserver {
         }
     }
 
-
-
     public void disconnect() {
 
         try {
