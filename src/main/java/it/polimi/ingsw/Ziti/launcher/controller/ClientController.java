@@ -1,10 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.LoginMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
-import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
-import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
+import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
@@ -15,9 +11,9 @@ import it.polimi.ingsw.Ziti.launcher.view.cli;
 public class ClientController extends ViewObservable implements ViewObserver {
 
 
-    @Override
-    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
-        notifyObserver(obs-> obs.updateMoveToIslandMessage(message));
+
+    public void update(MoveToIslandMessage message) {
+        notifyObserver(obs-> obs.update(message));
     }
 
     /**
@@ -25,13 +21,43 @@ public class ClientController extends ViewObservable implements ViewObserver {
      * not implemented here
      */
 
-    @Override
-    public void updateErrorMessage(ErrorMessage message) {
+
+    public void update(ErrorMessage message) {
+        notifyObserver(obs-> obs.update(message));
 
     }
 
+
+    public void update(LoginMessage message) {
+        notifyObserver(obs->obs.update(message));
+    }
+
+
+    public void update(MoveMotherMessage message) {
+        notifyObserver(obs-> obs.update(message));
+
+    }
+
+
+    public void update(CloudIslandMessage message) {
+        notifyObserver(obs-> obs.update(message));
+
+    }
+
+
+    public void update(MoveToTableMessage message) {
+        notifyObserver(obs-> obs.update(message));
+
+    }
+
+
+    public void update(ChoseAssistantMessage message) {
+        notifyObserver(obs-> obs.update(message));
+
+    }
+    // generic update message
     @Override
-    public void updateLoginMessage(LoginMessage message) {
-        notifyObserver(obs->obs.updateLoginMessage(message));
+    public void update(Message message) {
+
     }
 }
