@@ -1,13 +1,15 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+
 public class gui implements view{
     @Override
-    public void showAssistant() {
+    public void showAssistants() {
 
     }
 
     @Override
-    public void showCharacter() {
+    public void showCharacters() {
 
     }
 
@@ -32,7 +34,7 @@ public class gui implements view{
     }
 
     @Override
-    public void showMessage(Message message) {
+    public void showErrorMessage(ErrorMessage message) {
 
     }
 
@@ -42,23 +44,25 @@ public class gui implements view{
     }
 
     @Override
-    public void askAssistant() {
+    public int askAssistant() {
 
+        return 0;
     }
 
     @Override
-    public void askCharacter() {
+    public int askCharacter() {
 
+        return 0;
     }
 
     @Override
-    public void askIsland() {
-
+    public int askIsland() {
+    return 0;
     }
 
     @Override
-    public void askColour() {
-
+    public String askColour() {
+        return String.valueOf(0);
     }
 
     @Override
@@ -82,7 +86,8 @@ public class gui implements view{
     }
 
     @Override
-    public void setValid(Boolean valid) {
+    public void askChoseAssistant() {
 
     }
+
 }

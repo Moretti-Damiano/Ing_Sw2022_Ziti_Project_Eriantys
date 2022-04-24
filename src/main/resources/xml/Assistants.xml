@@ -50,24 +50,4 @@
         <moves>5</moves>
         <value>10</value>
     </assistant>
-    <assistant>
-        <id>4</id>
-        <moves>6</moves>
-        <value>10</value>
-    </assistant>
-    <assistant>
-        <id>5</id>
-        <moves>6</moves>
-        <value>10</value>
-    </assistant>
-    <assistant>
-        <id>6</id>
-        <moves>6</moves>
-        <value>10</value>
-    </assistant>
-    <assistant>
-        <id>7</id>
-        <moves>6</moves>
-        <value>10</value>
-    </assistant>
 </assistants>

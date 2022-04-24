@@ -1,23 +1,25 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+
 public interface view {
 
-    void showAssistant();
-    void showCharacter();
+    void showAssistants();
+    void showCharacters();
     void showIslands();
     void showClouds();
     void showMyBoard();
     void showBoards();
-    void showMessage(Message message);
+    void showErrorMessage(ErrorMessage message);
     void askLogin();
-    void askAssistant();
-    void askCharacter();
-    void askIsland();
-    void askColour();
+    int askAssistant();
+    int askCharacter();
+    int askIsland();
+    String askColour();
     void askMoveToTable();
     void askMoveToIsland();
     void askMoveMother();
     void askCloudIsland();
-    void setValid(Boolean valid);
+    void askChoseAssistant();
 
 }

@@ -1,31 +1,25 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
-import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
-import it.polimi.ingsw.Ziti.launcher.observer.Observable;
+import it.polimi.ingsw.Ziti.launcher.Messages.*;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
 import java.util.Scanner;
 
-public class cli extends Observable implements view{
+public class cli extends ViewObservable implements view, ViewObserver {
 
-    private Thread readThread;
-
-    private Message message;
-
-    private Boolean valid;
+    //Questa classe OSSERVA l' ObserverClient e VIENE OSSERVATA dal ClientController
 
     private Scanner sc=new Scanner(System.in);
 
-    public void setValid(Boolean valid) {
-        this.valid = valid;
+    @Override
+    public void showAssistants() {
+
+
     }
 
     @Override
-    public void showAssistant() {
-
-    }
-
-    @Override
-    public void showCharacter() {
+    public void showCharacters() {
 
     }
 
@@ -50,56 +44,152 @@ public class cli extends Observable implements view{
     }
 
     @Override
-    public void showMessage(Message message) {
-        System.out.println(message.getBody()+"from "+message.getSender());
-
+    public void showErrorMessage(ErrorMessage message) {
+        System.out.println(message.getDescription()+"from "+message.getSender());
     }
 
     @Override
     public void askLogin() {
-
+        System.out.println("Inserisci il nome utente");
+        String username;
+        username=sc.nextLine();
+        LoginMessage message;
+        message=new LoginMessage("cli",username);
+        notifyObserver(obs->obs.update(message));
     }
 
     @Override
-    public void askAssistant() {
-
+    public int askAssistant() {
+        System.out.println(" Inserisci l'id di un assistente :");
+        int assistantId;
+        assistantId=sc.nextInt();
+        return assistantId;
     }
 
     @Override
-    public void askCharacter() {
-
+    public int askCharacter() {
+        System.out.println(" Inserisci l'id del character :");
+        int characterId;
+        characterId=sc.nextInt();
+        return characterId;
     }
 
     @Override
-    public void askIsland() {
+    public int askIsland() {
         System.out.println(" Inserisci un isola :");
-        Message message;
-        message=new Message(MessageType.ID_GIVEN,"askIsland",sc.nextLine());
-        notifyObserver(message);
+        int islandId;
+       islandId=sc.nextInt();
+        return islandId;
     }
 
     @Override
-    public void askColour() {
+    public String askColour() {
+        System.out.println(" Inserisci un colore :");
+        String colour;
+        colour=sc.nextLine();
+        return colour;
 
     }
 
     @Override
     public void askMoveToTable() {
+        MoveToTableMessage m;
+        m=new MoveToTableMessage("cli",askColour());
+        notifyObserver(obs -> obs.update(m));
 
     }
 
     @Override
     public void askMoveToIsland() {
-
+        MoveToIslandMessage m;
+        m=new MoveToIslandMessage("cli",askIsland(),askColour());
+        notifyObserver(obs -> obs.update(m));
     }
 
     @Override
     public void askMoveMother() {
+        MoveMotherMessage m;
+        int moves;
+        System.out.println("Inserisci di quanto si deve muovere madre natura: ");
+        moves=sc.nextInt();
+        m=new MoveMotherMessage("cli",moves);
+        notifyObserver(obs -> obs.update(m));
 
     }
 
     @Override
     public void askCloudIsland() {
+        CloudIslandMessage m;
+        int cloudID;
+        System.out.println("Inserisci l'id della nuvola che desideri : ");
+        cloudID=sc.nextInt();
+        m=new CloudIslandMessage("cli",cloudID);
+        notifyObserver(obs -> obs.update(m));
+    }
+
+    @Override
+    public void askChoseAssistant() {
+        ChoseAssistantMessage m;
+        int assistantID;
+        System.out.println("Inserisci l'assistente che desideri: ");
+        assistantID=sc.nextInt();
+        m=new ChoseAssistantMessage("cli",assistantID);
+        notifyObserver(obs -> obs.update(m));
+    }
+
+
+
+    public void update(MoveToIslandMessage message) {
+        if(! message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askMoveToIsland();
+        }
+    }
+
+    public void update(ErrorMessage message) {
+        showErrorMessage(message);
+    }
+
+    public void update(LoginMessage message) {
+        if( ! message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askLogin();
+        }
+    }
+
+    public void update(MoveMotherMessage message) {
+        if(!message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askMoveMother();
+        }
+    }
+
+    public void update(CloudIslandMessage message) {
+        if(!message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askCloudIsland();
+        }
+
+    }
+
+    public void update(MoveToTableMessage message) {
+        if(!message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askMoveToTable();
+        }
+
+    }
+
+    public void update(ChoseAssistantMessage message) {
+        if(!message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askChoseAssistant();
+        }
+
+    }
+
+    @Override
+    public void update(Message message) {
 
     }
 }
