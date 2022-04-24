@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.Message;
 import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 
 /**
@@ -8,6 +9,5 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
  */
 public interface Observer {
 
-    void updateError(ErrorMessage message);
-    void updateMoveToIsland(MoveToIslandMessage message);
+    void update(Message message);
 }

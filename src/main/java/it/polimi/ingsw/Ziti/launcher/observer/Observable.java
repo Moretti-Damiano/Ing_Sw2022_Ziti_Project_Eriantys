@@ -34,14 +34,9 @@ public class Observable {
      * Notifies all the observers with a message
      * @param message is the message sent to the observers
      */
-    public void notifyObserverErrorMessage(ErrorMessage message) {
+    public void notifyObserver(Message message) {
         for (Observer observer : observers) {
-            observer.updateError(message);
-        }
-    }
-    protected void notifyObserverMoveToIslandMessage(MoveToIslandMessage message) {
-        for (Observer observer : observers) {
-            observer.updateMoveToIsland(message);
+            observer.update(message);
         }
     }
 }
