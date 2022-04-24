@@ -1,18 +1,22 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.Message;
 import it.polimi.ingsw.Ziti.launcher.controller.GameController;
+import it.polimi.ingsw.Ziti.launcher.observer.Observable;
+import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 
 import java.io.IOException;
 
-public class Server {
+public class Server extends Observable{
 
-    private GameController gameController;
+    private int port;
     private SocketServer socketServer;
 
-    public Server(){
+    public Server(int port){
+        this.port = port;
     }
 
-    public void startServer(int port){
+    public void startServer(){
         socketServer = new SocketServer(this,port);
         Thread serverThread = new Thread(socketServer);
         serverThread.start();
@@ -34,6 +38,7 @@ public class Server {
     }
 
     public void receive(Message message){
-        gameController.menageMessage(message);
+        notifyObserver(message);
     }
+
 }
