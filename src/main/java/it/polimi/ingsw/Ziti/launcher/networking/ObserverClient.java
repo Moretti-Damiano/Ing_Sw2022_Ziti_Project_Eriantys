@@ -15,28 +15,55 @@ public class ObserverClient extends ViewObservable implements ViewObserver {
     //funziona solo in mesaggi in ricezione dal server
 
 
+    /**
+     *
+     * @param message contains if the previous chose was valid
+     */
     public void update(MoveToIslandMessage message) {notifyObserver(obs->obs.update(message));}
+
+    /**
+     *
+     * @param message contains if the previous chose was valid
+     */
 
     public void update(CloudIslandMessage message) {
         notifyObserver(obs->obs.update(message));
     }
 
+    /**
+     *
+     * @param message contains if the previous chose was valid
+     */
     public void update(ChoseAssistantMessage message) {
         notifyObserver(obs->obs.update(message));
     }
 
+    /**
+     *
+     * @param message contains if the previous chose was valid
+     */
     public void update(MoveToTableMessage message) {
         notifyObserver(obs->obs.update(message));
     }
 
+    /**
+     *
+     * @param message is a ErrorMessage, contains the description of the error sent from the server
+     */
+
     public void update(ErrorMessage message) {
         notifyObserver(obs->obs.update(message));
     }
+    /**
+     *
+     * @param message contains if the previous chose was valid
+     */
 
 
     public void update(LoginMessage message) {
         notifyObserver(obs->obs.update(message));
     }
+
 
     @Override
     public void update(Message message) {

@@ -118,42 +118,33 @@ public class cli extends ViewObservable implements view, ViewObserver {
     }
 
 
-    /**
-     *
-     * Not Used here
-     */
-    /*
-    @Override
-    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
+
+    public void update(MoveToIslandMessage message) {
         if(! message.getCorrect()){
             System.out.println("I dati inseriti non sono validi ! ");
             askMoveToIsland();
         }
     }
 
-    @Override
-    public void updateErrorMessage(ErrorMessage message) {
+    public void update(ErrorMessage message) {
         showErrorMessage(message);
     }
 
-    @Override
-    public void updateLoginMessage(LoginMessage message) {
+    public void update(LoginMessage message) {
         if( ! message.getCorrect()){
             System.out.println("I dati inseriti non sono validi ! ");
             askLogin();
         }
     }
 
-    @Override
-    public void updateMoveMotherMessage(MoveMotherMessage message) {
+    public void update(MoveMotherMessage message) {
         if(!message.getCorrect()){
             System.out.println("I dati inseriti non sono validi ! ");
             askMoveMother();
         }
     }
 
-    @Override
-    public void updateCloudIslandMessage(CloudIslandMessage message) {
+    public void update(CloudIslandMessage message) {
         if(!message.getCorrect()){
             System.out.println("I dati inseriti non sono validi ! ");
             askCloudIsland();
@@ -161,8 +152,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
 
     }
 
-    @Override
-    public void updateMoveToTableMessage(MoveToTableMessage message) {
+    public void update(MoveToTableMessage message) {
         if(!message.getCorrect()){
             System.out.println("I dati inseriti non sono validi ! ");
             askMoveToTable();
@@ -170,15 +160,13 @@ public class cli extends ViewObservable implements view, ViewObserver {
 
     }
 
-    @Override
-    public void updateChoseAssistantMessage(ChoseAssistantMessage message) {
+    public void update(ChoseAssistantMessage message) {
         if(!message.getCorrect()){
             System.out.println("I dati inseriti non sono validi ! ");
             askChoseAssistant();
         }
 
     }
-    */
 
     @Override
     public void update(Message message) {

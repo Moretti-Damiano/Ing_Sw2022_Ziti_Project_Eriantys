@@ -11,26 +11,28 @@ import it.polimi.ingsw.Ziti.launcher.view.cli;
 public class ClientController extends ViewObservable implements ViewObserver {
 
 
-
+    /**
+     *
+     * @param message is a MoveToIslandMessage, contains islandID e and info about the number student's colour that will be moved
+     */
     public void update(MoveToIslandMessage message) {
         notifyObserver(obs-> obs.update(message));
     }
 
     /**
      *
-     * not implemented here
+     * @param message is a LoginMessage, contains info about the nickname chose by the player
      */
-
-
-    public void update(ErrorMessage message) {
-        notifyObserver(obs-> obs.update(message));
-
-    }
 
 
     public void update(LoginMessage message) {
         notifyObserver(obs->obs.update(message));
     }
+
+    /**
+     *
+     * @param message is a MoveMotherMessage, contains info about how much movement has to do MotherNature
+     */
 
 
     public void update(MoveMotherMessage message) {
@@ -38,18 +40,31 @@ public class ClientController extends ViewObservable implements ViewObserver {
 
     }
 
+    /**
+     *
+     * @param message is a CloudIslandMessage, contains info about what Cloud has be chosen by the player
+     */
+
 
     public void update(CloudIslandMessage message) {
         notifyObserver(obs-> obs.update(message));
 
     }
 
+    /**
+     *
+     * @param message is a MoveToTableMessage, contains info about which Studend has to be moved on the table
+     */
 
     public void update(MoveToTableMessage message) {
         notifyObserver(obs-> obs.update(message));
 
     }
 
+    /**
+     *
+     * @param message is a ChoseAssistantMessage, contains info about which Assistant has been chosen by the player
+     */
 
     public void update(ChoseAssistantMessage message) {
         notifyObserver(obs-> obs.update(message));
