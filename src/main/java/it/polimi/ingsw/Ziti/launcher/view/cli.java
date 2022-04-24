@@ -15,7 +15,6 @@ public class cli extends ViewObservable implements view, ViewObserver {
     @Override
     public void showAssistants() {
 
-
     }
 
     @Override
