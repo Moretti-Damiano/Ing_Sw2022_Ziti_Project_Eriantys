@@ -1,18 +1,23 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
-public class ChoseAssistantMessage extends Message{
-    int assistantId;
-    Boolean correct=false;
+import java.io.Serializable;
+
+public class ChoseAssistantMessage implements MessagetoServer, Serializable {
+    private int assistantId;
+    private String sender;
     public ChoseAssistantMessage(String sender,int assistantId) {
-        super(sender);
+        this.sender = sender;
         this.assistantId=assistantId;
     }
 
-    public Boolean getCorrect() {
-        return correct;
+
+    @Override
+    public String getSender() {
+        return sender;
     }
 
-    public void setCorrect(Boolean correct) {
-        this.correct = correct;
+    @Override
+    public void handle(ServerMessageHandler serverMessageHandler) {
+        serverMessageHandler.choseAssistantHandler(this);
     }
 }

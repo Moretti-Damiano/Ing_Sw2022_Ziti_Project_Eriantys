@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessagetoServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;
@@ -41,7 +41,7 @@ public class SocketServer implements Runnable{
         }
     }
 
-    public void receive(Message message){
+    public void receive(MessagetoServer message){
         server.receive(message);
     }
 }

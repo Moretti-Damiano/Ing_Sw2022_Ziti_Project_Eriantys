@@ -1,18 +1,22 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
-public class LoginMessage extends Message {
+import java.io.Serializable;
+
+public class LoginMessage implements MessagetoServer, Serializable {
     private String username;
-    private Boolean correct=false;
+    private String sender;
     public LoginMessage(String sender,String username) {
-        super(sender);
+        this.sender = sender;
         this.username=username;
     }
 
-    public void setCorrect(Boolean correct) {
-        this.correct=correct;
+    @Override
+    public String getSender() {
+        return sender;
     }
 
-    public Boolean getCorrect() {
-        return correct;
+    @Override
+    public void handle(ServerMessageHandler serverMessageHandler) {
+
     }
 }

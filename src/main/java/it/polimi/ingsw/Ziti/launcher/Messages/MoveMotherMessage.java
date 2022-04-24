@@ -1,18 +1,24 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
-public class MoveMotherMessage extends Message{
-    int moves;
-    Boolean correct=false;
+import java.io.Serializable;
+
+public class MoveMotherMessage implements MessagetoServer, Serializable {
+    private String sender;
+    private int moves;
+
     public MoveMotherMessage(String sender,int moves) {
-        super(sender);
+        this.sender = sender;
         this.moves=moves;
     }
 
-    public Boolean getCorrect() {
-        return correct;
+
+    @Override
+    public String getSender() {
+        return sender;
     }
 
-    public void setCorrect(Boolean correct) {
-        this.correct = correct;
+    @Override
+    public void handle(ServerMessageHandler serverMessageHandler) {
+        serverMessageHandler.moveMotherHandler(this);
     }
 }

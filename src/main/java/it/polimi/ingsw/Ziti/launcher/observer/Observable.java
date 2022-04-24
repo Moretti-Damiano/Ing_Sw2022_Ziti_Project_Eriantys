@@ -6,6 +6,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 /**
  * Implementation of the observable class

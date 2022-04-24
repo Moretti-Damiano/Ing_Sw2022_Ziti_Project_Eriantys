@@ -2,19 +2,24 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
-public class MoveToTableMessage extends Message{
+import java.io.Serializable;
+
+public class MoveToTableMessage implements MessagetoServer, Serializable {
+    String sender;
     String colour;
-    Boolean correct=false;
+
     public MoveToTableMessage(String sender,String colour) {
-        super(sender);
+        this.sender = sender;
         this.colour=colour;
     }
 
-    public Boolean getCorrect() {
-        return correct;
+    @Override
+    public String getSender() {
+        return sender;
     }
 
-    public void setCorrect(Boolean correct) {
-        this.correct = correct;
+    @Override
+    public void handle(ServerMessageHandler serverMessageHandler) {
+        serverMessageHandler.moveToTableHandler(this);
     }
 }

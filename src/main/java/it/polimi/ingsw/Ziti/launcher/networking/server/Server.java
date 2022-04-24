@@ -1,16 +1,17 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
-
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessagetoServer;
+import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.controller.GameController;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 
 import java.io.IOException;
 
-public class Server extends Observable{
+public class Server {
 
     private int port;
     private SocketServer socketServer;
+    private ServerMessageHandler serverMessageHandler; //needs to be observed by gamecontroller
 
     public Server(int port){
         this.port = port;
@@ -18,17 +19,18 @@ public class Server extends Observable{
 
     public void startServer(){
         socketServer = new SocketServer(this,port);
+        serverMessageHandler = new ServerMessageHandler();
         Thread serverThread = new Thread(socketServer);
         serverThread.start();
     }
 
-    public void notifyAllPlayers(Message message) throws IOException {
+    public void notifyAllPlayers(MessagetoServer message) throws IOException {
         for(ClientHandler c: socketServer.getClientHandlers()){
             c.send(message);
         }
     }
 
-    public void notifyPlayer(Message message, String nickName) throws IOException {
+    public void notifyPlayer(MessagetoServer message, String nickName) throws IOException {
         for(ClientHandler c: socketServer.getClientHandlers()){
             if(c.getNickName().equals(nickName)){       //problema controllo omonimi
                 c.send(message);
@@ -37,8 +39,8 @@ public class Server extends Observable{
         }
     }
 
-    public void receive(Message message){
-        notifyObserver(message);
+    public void receive(MessagetoServer message){
+        message.handle(serverMessageHandler);
     }
 
 }

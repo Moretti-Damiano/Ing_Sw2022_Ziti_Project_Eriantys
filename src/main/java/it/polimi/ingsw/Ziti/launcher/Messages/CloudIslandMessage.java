@@ -1,18 +1,27 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
-public class CloudIslandMessage extends Message{
-    int cloudId;
-    Boolean correct =false;
+import java.io.Serializable;
+
+public class CloudIslandMessage implements MessagetoServer, Serializable {
+    private int cloudId;
+    private String sender;
+
     public CloudIslandMessage(String sender,int cloudId) {
-        super(sender);
+        this.sender = sender;
         this.cloudId=cloudId;
     }
 
-    public void setCorrect(Boolean correct) {
-        this.correct = correct;
+    @Override
+    public String getSender() {
+        return sender;
     }
 
-    public Boolean getCorrect() {
-        return correct;
+    public int getCloudId() {
+        return cloudId;
+    }
+
+    @Override
+    public void handle(ServerMessageHandler serverMessageHandler) {
+        serverMessageHandler.cloudIslandHandler(this);
     }
 }

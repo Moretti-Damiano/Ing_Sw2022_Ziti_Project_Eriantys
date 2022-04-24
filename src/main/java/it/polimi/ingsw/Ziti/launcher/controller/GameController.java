@@ -1,5 +1,5 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.action.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
@@ -8,13 +8,14 @@ import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.networking.server.Server;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
+import it.polimi.ingsw.Ziti.launcher.observer.ServerObserver;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
 
-public class GameController implements Observer {
+public class GameController implements ServerObserver {
 
     Game game;
     Server server;
@@ -26,7 +27,7 @@ public class GameController implements Observer {
     }
 
     //se al GameController il messaggio va bene, chiama la action (controlla player attivo e turno corretto)
-    public void menageMessage(Message message){
+   // public void menageMessage(Message message){
         /*switch (message.getMessageType()){
             case LOGIN:
                 try{
@@ -78,7 +79,7 @@ public class GameController implements Observer {
                 break;
         }*/
 
-    }
+    
 
     private Player getPlayerByName(String nickName){
         for(Player p:players){
@@ -89,12 +90,40 @@ public class GameController implements Observer {
         return null;
     }
 
-    @Override
-    public void update(Message message) {
+    public void handleMoveToIsland(MoveToIslandMessage message){
 
     }
 
-    public void onUpdateTest(Message message){
+    @Override
+    public void moveToIslandHandler(MoveToIslandMessage message) {
+        Island chosenIsland = game.getIslands().get(message.getIslandID());
+        Colour chosenColour = Colour.valueOfName(message.getColour());
+        game.setAction( new MoveToIsland(game,chosenIsland,chosenColour));
+        try {
+            game.doAction();
+        } catch (ActionException e) {
+            /*MANDA ERRORE AL CLIENT*/
+        }
+    }
+
+    @Override
+    public void moveToTableHandler(MoveToTableMessage message) {
+
+    }
+
+    @Override
+    public void moveMotherHandler(MoveMotherMessage message) {
+
+    }
+
+
+    @Override
+    public void choseAssistantHandler(ChoseAssistantMessage message) {
+
+    }
+
+    @Override
+    public void cloudIslandHandler(CloudIslandMessage message) {
 
     }
 }
