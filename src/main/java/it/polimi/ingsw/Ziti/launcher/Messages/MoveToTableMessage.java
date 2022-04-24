@@ -3,9 +3,9 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
 public class MoveToTableMessage extends Message{
-    Colour colour;
+    String colour;
     Boolean correct=false;
-    public MoveToTableMessage(String sender,Colour colour) {
+    public MoveToTableMessage(String sender,String colour) {
         super(sender);
         this.colour=colour;
     }

@@ -15,6 +15,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
     @Override
     public void showAssistants() {
 
+
     }
 
     @Override
@@ -92,6 +93,9 @@ public class cli extends ViewObservable implements view, ViewObserver {
 
     @Override
     public void askMoveToTable() {
+        MoveToTableMessage m;
+        m=new MoveToTableMessage("cli",askColour());
+        notifyObserver(obs -> obs.update(m));
 
     }
 
@@ -104,17 +108,33 @@ public class cli extends ViewObservable implements view, ViewObserver {
 
     @Override
     public void askMoveMother() {
+        MoveMotherMessage m;
+        int moves;
+        System.out.println("Inserisci di quanto si deve muovere madre natura: ");
+        moves=sc.nextInt();
+        m=new MoveMotherMessage("cli",moves);
+        notifyObserver(obs -> obs.update(m));
 
     }
 
     @Override
     public void askCloudIsland() {
-
+        CloudIslandMessage m;
+        int cloudID;
+        System.out.println("Inserisci l'id della nuvola che desideri : ");
+        cloudID=sc.nextInt();
+        m=new CloudIslandMessage("cli",cloudID);
+        notifyObserver(obs -> obs.update(m));
     }
 
     @Override
     public void askChoseAssistant() {
-
+        ChoseAssistantMessage m;
+        int assistantID;
+        System.out.println("Inserisci l'assistente che desideri: ");
+        assistantID=sc.nextInt();
+        m=new ChoseAssistantMessage("cli",assistantID);
+        notifyObserver(obs -> obs.update(m));
     }
 
 
