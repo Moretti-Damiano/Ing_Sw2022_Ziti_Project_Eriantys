@@ -1,8 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.LoginMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
@@ -56,7 +54,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
         username=sc.nextLine();
         LoginMessage message;
         message=new LoginMessage("cli",username);
-        notifyObserver(obs->obs.updateLoginMessage(message));
+        notifyObserver(obs->obs.update(message));
     }
 
     @Override
@@ -101,7 +99,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
     public void askMoveToIsland() {
         MoveToIslandMessage m;
         m=new MoveToIslandMessage("cli",askIsland(),askColour());
-        notifyObserver(obs -> obs.updateMoveToIslandMessage(m));
+        notifyObserver(obs -> obs.update(m));
     }
 
     @Override
@@ -124,9 +122,10 @@ public class cli extends ViewObservable implements view, ViewObserver {
      *
      * Not Used here
      */
+    /*
     @Override
     public void updateMoveToIslandMessage(MoveToIslandMessage message) {
-        if(message.getCorrect()==false){
+        if(! message.getCorrect()){
             System.out.println("I dati inseriti non sono validi ! ");
             askMoveToIsland();
         }
@@ -139,9 +138,50 @@ public class cli extends ViewObservable implements view, ViewObserver {
 
     @Override
     public void updateLoginMessage(LoginMessage message) {
-        if(message.getCorrect()==false){
+        if( ! message.getCorrect()){
             System.out.println("I dati inseriti non sono validi ! ");
             askLogin();
         }
+    }
+
+    @Override
+    public void updateMoveMotherMessage(MoveMotherMessage message) {
+        if(!message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askMoveMother();
+        }
+    }
+
+    @Override
+    public void updateCloudIslandMessage(CloudIslandMessage message) {
+        if(!message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askCloudIsland();
+        }
+
+    }
+
+    @Override
+    public void updateMoveToTableMessage(MoveToTableMessage message) {
+        if(!message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askMoveToTable();
+        }
+
+    }
+
+    @Override
+    public void updateChoseAssistantMessage(ChoseAssistantMessage message) {
+        if(!message.getCorrect()){
+            System.out.println("I dati inseriti non sono validi ! ");
+            askChoseAssistant();
+        }
+
+    }
+    */
+
+    @Override
+    public void update(Message message) {
+
     }
 }

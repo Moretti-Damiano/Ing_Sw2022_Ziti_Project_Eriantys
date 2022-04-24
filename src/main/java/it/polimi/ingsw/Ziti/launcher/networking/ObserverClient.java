@@ -1,9 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.networking;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.LoginMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
-import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
@@ -17,19 +14,33 @@ public class ObserverClient extends ViewObservable implements ViewObserver {
     //chiama il corrispondente metodo nella view, vanno implementate tutte le show da fare in ogni caso
     //funziona solo in mesaggi in ricezione dal server
 
-    @Override
-    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
-        notifyObserver(obs->obs.updateMoveToIslandMessage(message));
+
+    public void update(MoveToIslandMessage message) {notifyObserver(obs->obs.update(message));}
+
+    public void update(CloudIslandMessage message) {
+        notifyObserver(obs->obs.update(message));
+    }
+
+    public void update(ChoseAssistantMessage message) {
+        notifyObserver(obs->obs.update(message));
+    }
+
+    public void update(MoveToTableMessage message) {
+        notifyObserver(obs->obs.update(message));
+    }
+
+    public void update(ErrorMessage message) {
+        notifyObserver(obs->obs.update(message));
+    }
+
+
+    public void update(LoginMessage message) {
+        notifyObserver(obs->obs.update(message));
     }
 
     @Override
-    public void updateErrorMessage(ErrorMessage message) {
-        notifyObserver(obs->obs.updateErrorMessage(message));
-    }
+    public void update(Message message) {
 
-    @Override
-    public void updateLoginMessage(LoginMessage message) {
-        notifyObserver(obs->obs.updateLoginMessage(message));
     }
 }
 

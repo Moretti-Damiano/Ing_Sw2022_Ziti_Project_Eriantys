@@ -1,13 +1,10 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.LoginMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 import it.polimi.ingsw.Ziti.launcher.networking.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
-import it.polimi.ingsw.Ziti.launcher.view.cli;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,27 +29,69 @@ public class SocketClient extends ViewObservable implements ViewObserver {
             this.inputStm = new ObjectInputStream(socket.getInputStream());
     }
 
-
-    public void sendMoveToIslandMessage(MoveToIslandMessage message) {
+    /**
+     * SEND METHODS
+     * @param message used to determinate which send needs to be used
+     */
+    public void send(MoveToIslandMessage message) {
         try {
             outputStm.writeObject(message);
             outputStm.reset();
         } catch (IOException e) {
             errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            notifyObserver(obs->obs.updateErrorMessage(errorMessage));
+            notifyObserver(obs->obs.update(errorMessage));
         }
 
     }
-    private void sendLoginMessage(LoginMessage message) {
+    private void send(LoginMessage message) {
         try {
             outputStm.writeObject(message);
             outputStm.reset();
         } catch (IOException e) {
             errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            notifyObserver(obs->obs.updateErrorMessage(errorMessage));
+            notifyObserver(obs->obs.update(errorMessage));
+        }
+    }
+    private void send(ChoseAssistantMessage message) {
+        try {
+            outputStm.writeObject(message);
+            outputStm.reset();
+        } catch (IOException e) {
+            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
+            notifyObserver(obs->obs.update(errorMessage));
+        }
+    }
+    private void send(CloudIslandMessage message) {
+        try {
+            outputStm.writeObject(message);
+            outputStm.reset();
+        } catch (IOException e) {
+            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
+            notifyObserver(obs->obs.update(errorMessage));
+        }
+    }
+    private void send(MoveMotherMessage message) {
+        try {
+            outputStm.writeObject(message);
+            outputStm.reset();
+        } catch (IOException e) {
+            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
+            notifyObserver(obs->obs.update(errorMessage));
+        }
+    }
+    private void send(MoveToTableMessage message) {
+        try {
+            outputStm.writeObject(message);
+            outputStm.reset();
+        } catch (IOException e) {
+            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
+            notifyObserver(obs->obs.update(errorMessage));
         }
     }
 
+    /**
+     * RECEIVE METHODS
+     */
     public void receiveMoveToIslandMessage(){
 
         while(true){
@@ -60,13 +99,13 @@ public class SocketClient extends ViewObservable implements ViewObserver {
             try{
                 if(inputStm.available()!=0){
                     message=(MoveToIslandMessage) inputStm.readObject();
-                    notifyObserver(obs->obs.updateMoveToIslandMessage(message));
+                    notifyObserver(obs->obs.update(message));
                 }
 
             } catch (IOException | ClassNotFoundException e) {
 
                 errorMessage = new ErrorMessage("SocketClient","Connection lost");
-                notifyObserver(obs->obs.updateErrorMessage(errorMessage));
+                notifyObserver(obs->obs.update(errorMessage));
                 disconnect();
             }
 
@@ -79,13 +118,13 @@ public class SocketClient extends ViewObservable implements ViewObserver {
             try{
                 if(inputStm.available()!=0){
                     message=(LoginMessage) inputStm.readObject();
-                    notifyObserver(obs->obs.updateLoginMessage(message));
+                    notifyObserver(obs->obs.update(message));
                 }
 
             } catch (IOException | ClassNotFoundException e) {
 
                 errorMessage = new ErrorMessage("SocketClient","Connection lost");
-                notifyObserver(obs->obs.updateErrorMessage(errorMessage));
+                notifyObserver(obs->obs.update(errorMessage));
                 disconnect();
             }
 
@@ -99,29 +138,55 @@ public class SocketClient extends ViewObservable implements ViewObserver {
         } catch (IOException e) {
 
             errorMessage = new ErrorMessage ("SocketClient","Could not disconnect");
-            notifyObserver(obs->obs.updateErrorMessage(errorMessage));
+            notifyObserver(obs->obs.update(errorMessage));
         }
 
 
 
     }
 
-    @Override
-    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
-        sendMoveToIslandMessage(message);
-    }
-    @Override
-    public void updateLoginMessage(LoginMessage message) {
-        sendLoginMessage(message);
-    }
 
     /**
      *
      * Not implemented here
      */
 
+/*
+    public void update(ErrorMessage message) {
+
+    }
+
+
+    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
+        send(message);
+    }
+
+    public void updateLoginMessage(LoginMessage message) {
+        send(message);
+    }
+
+
+    public void updateMoveMotherMessage(MoveMotherMessage message) {
+
+    }
+
+
+    public void updateCloudIslandMessage(CloudIslandMessage message) {
+
+    }
+
+
+    public void updateMoveToTableMessage(MoveToTableMessage message) {
+
+    }
+
+
+    public void updateChoseAssistantMessage(ChoseAssistantMessage message) {
+
+    }
+*/
     @Override
-    public void updateErrorMessage(ErrorMessage message) {
+    public void update(Message message) {
 
     }
 }
