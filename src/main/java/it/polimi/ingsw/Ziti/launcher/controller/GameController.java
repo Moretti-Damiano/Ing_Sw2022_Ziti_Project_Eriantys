@@ -91,6 +91,22 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void choseAssistantHandler(ChoseAssistantMessage message) {
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new ChooseAssistant(game, turnController.getCurrentPlayer(),message.getAssistantId()));
+            try{
+                game.doAction();
+            }
+            catch (ActionException e){
+                /*
+                manda errore al client
+                 */
+            }
+        }
+        else{
+            /*
+            ERRORE NON è IL TUO TURNO
+             */
+        }
 
     }
 
