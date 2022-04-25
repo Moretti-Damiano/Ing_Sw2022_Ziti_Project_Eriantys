@@ -21,15 +21,9 @@ public class MoveToTable implements Action{
     }
 
     public void execute() throws ActionException{
-       try {
-           checkInput();
-        this.goLunch(chosencolour);
-        this.controlProfessor(chosencolour);
-       }
-       catch (ActionException ex){
-           //TO DO
-       }
-
+        checkInput();
+        this.goLunch(Colour.valueOf(chosencolour.toLowerCase(Locale.ROOT)));
+        this.controlProfessor(Colour.valueOf(chosencolour.toLowerCase(Locale.ROOT)));
     }
 
     /**

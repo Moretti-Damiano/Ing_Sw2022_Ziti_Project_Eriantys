@@ -1,13 +1,16 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
+import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.controller.GameController;
+import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 
 import java.io.IOException;
 
-public class Server {
+public class Server implements GameControllerObserver {
 
     private int port;
     private SocketServer socketServer;
@@ -24,7 +27,7 @@ public class Server {
         serverThread.start();
     }
 
-    public void notifyAllPlayers(MessagetoServer message) throws IOException {
+    public void notifyAllPlayers(MessageToClient message)  {
         for(ClientHandler c: socketServer.getClientHandlers()){
             c.send(message);
         }
@@ -43,4 +46,8 @@ public class Server {
         message.handle(serverMessageHandler);
     }
 
+    @Override
+    public void update(MessageToClient message, String nickName)  {
+        notifyPlayer(message,nickName);
+    }
 }

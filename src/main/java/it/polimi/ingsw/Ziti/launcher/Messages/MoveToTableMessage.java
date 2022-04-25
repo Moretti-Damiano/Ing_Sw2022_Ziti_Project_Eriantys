@@ -4,7 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
 import java.io.Serializable;
 
-public class MoveToTableMessage implements MessagetoServer, Serializable {
+public class MoveToTableMessage extends MessagetoServer {
     String sender;
     String colour;
 
@@ -17,6 +17,8 @@ public class MoveToTableMessage implements MessagetoServer, Serializable {
     public String getSender() {
         return sender;
     }
+
+    public String getColour(){return colour;}
 
     @Override
     public void handle(ServerMessageHandler serverMessageHandler) {

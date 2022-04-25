@@ -1,5 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
-public class TurnController {
+import it.polimi.ingsw.Ziti.launcher.model.Player;
 
+public class TurnController {
+    private Player currentPlayer;
+
+    public Player getCurrentPlayer(){
+        return currentPlayer;
+    }
 }
