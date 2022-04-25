@@ -121,6 +121,10 @@ public class Game {
         return currentPlayer;
     }
 
+    public void setActivePlayer(Player currentPlayer) {
+        this.currentPlayer = currentPlayer;
+    }
+
     public Sack getSack() {return sack;}
 
     private void setPlayers(ArrayList<Player> p){

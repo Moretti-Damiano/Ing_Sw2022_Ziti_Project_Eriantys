@@ -1,6 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.enumeration;
 
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+
 import java.util.HashMap;
+import java.util.Locale;
 import java.util.Map;
 
 /**
@@ -84,6 +87,20 @@ public enum Colour {
         return abbrev;
     }
 
+
+    /**
+     * checks if the given string is the name of a colour
+     * @param colour the string to check
+     * @return true if the string is the name of a colour
+     */
+    public static boolean checkStringToColour(String colour){
+        for(Colour c: Colour.values()){
+            if(c.getName().equals(colour.toLowerCase(Locale.ROOT))){
+                return true;
+            }
+        }
+        return false;
+    }
 
 
 }
