@@ -4,18 +4,20 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
-import it.polimi.ingsw.Ziti.launcher.model.WalletController;
+import it.polimi.ingsw.Ziti.launcher.model.GameWallet;
+
+import java.util.Locale;
 
 public class MoveToTable implements Action{
 
     private Game game;
-    private Colour chosencolour;
-    private WalletController walletController;
+    private String chosencolour;
+    private GameWallet walletController;
 
-    public MoveToTable(Game game,Colour chosencolour,WalletController walletController){
+    public MoveToTable(Game game, String chosencolour){
         this.game=game;
         this.chosencolour=chosencolour;
-        this.walletController=walletController;
+         GameWallet walletController= game.getGameWallet();
     }
 
     public void execute() throws ActionException{
@@ -75,8 +77,11 @@ public class MoveToTable implements Action{
      * @throws ActionException
      */
     private void checkInput() throws ActionException{
-        if (!checkColour(chosencolour) ) {
-            System.out.println(" you can't move a student with the indicated colour");
+
+        if (!checkColour(Colour.valueOfName(chosencolour.toLowerCase(Locale.ROOT)))) {
+            throw new ActionException();
+        }
+        if(!Colour.checkStringToColour(chosencolour)){
             throw new ActionException();
         }
     }

@@ -30,7 +30,6 @@ public class MoveMother implements Action{
      */
     @Override
     public void execute() throws ActionException {
-        try {
             checkInput();
             move();
             updateIsland(mother.getIsland(), getControl(mother.getIsland()));
@@ -42,10 +41,8 @@ public class MoveMother implements Action{
                 merge(mother.getIsland(), game.getPrevIsland(mother.getIsland()));
             }
         }
-        catch(ActionException ex){
-            //ASK THE CLIENT TO CALL AGAIN THIS METHOD BUT WITH CORRECT INPUT
-        }
-    }
+        
+  
 
     /**
      * Calculate mother current position and assign mother her new island

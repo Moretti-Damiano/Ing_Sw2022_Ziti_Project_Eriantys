@@ -19,8 +19,7 @@ public class EndTurn implements Action {
 
    @Override
    public void execute() throws ActionException {
-
-      try {
+      
          checkInput();
          // for each CloudIsland calls the method toFill
          IntStream.range(0, game.getCloudIslands().size()).forEach(i -> game.getCloudIslands().get(i).toFill());
@@ -32,10 +31,8 @@ public class EndTurn implements Action {
          IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setAssChoosed(null));
 
 
-      } catch (ActionException exc) {
-         // ERROR CHOOSING ASSISTANT OR ISLANDS NOT EMPTY
-      }
-   }
+      } 
+   
 
    private void checkInput() throws ActionException {
       // check if the Cloud Islands are empty

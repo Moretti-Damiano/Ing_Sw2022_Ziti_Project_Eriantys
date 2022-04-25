@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.model.Coin;
 
-public class WalletController {
+public class GameWallet {
     private static int MaxNumCoin=20;
     private static int AvailableCoin=20;
 

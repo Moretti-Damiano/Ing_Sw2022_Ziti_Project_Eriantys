@@ -30,7 +30,7 @@ public class Server {
         }
     }
 
-    public void notifyPlayer(MessagetoServer message, String nickName) throws IOException {
+    public void notifyPlayer(MessageToClient message, String nickName)  {
         for(ClientHandler c: socketServer.getClientHandlers()){
             if(c.getNickName().equals(nickName)){       //problema controllo omonimi
                 c.send(message);
