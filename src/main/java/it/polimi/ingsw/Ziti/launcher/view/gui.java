@@ -1,6 +1,12 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.model.Assistant;
+import it.polimi.ingsw.Ziti.launcher.model.Board;
+import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
+import it.polimi.ingsw.Ziti.launcher.model.Island;
+
+import java.util.List;
 
 public class gui implements view{
     @Override
@@ -30,6 +36,36 @@ public class gui implements view{
 
     @Override
     public void showBoards() {
+
+    }
+
+    @Override
+    public void showAssistants(List<Assistant> assistants) {
+
+    }
+
+    @Override
+    public void showCharacters(List<Character> characters) {
+
+    }
+
+    @Override
+    public void showIslands(List<Island> islands) {
+
+    }
+
+    @Override
+    public void showClouds(List<CloudIsland> clouds) {
+
+    }
+
+    @Override
+    public void showMyBoard(List<Board> boards) {
+
+    }
+
+    @Override
+    public void showBoards(Board board) {
 
     }
 
