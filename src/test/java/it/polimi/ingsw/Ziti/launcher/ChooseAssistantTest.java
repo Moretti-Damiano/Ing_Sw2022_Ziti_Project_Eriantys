@@ -2,7 +2,6 @@ package it.polimi.ingsw.Ziti.launcher;
 
 import it.polimi.ingsw.Ziti.launcher.action.ChooseAssistant;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
-import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import org.junit.jupiter.api.BeforeEach;
@@ -22,7 +21,7 @@ public class ChooseAssistantTest {
     public void setUp() throws ParserConfigurationException, IOException, SAXException {
         ArrayList<Player> players = new ArrayList<>();
         for(int i = 0; i < 3; i ++){
-            players.add(new Player("Giocatore"+ i));
+            players.add(new Player("Player"+ i));
         }
         game = new Game(players); //creates a new game with 3 players
     }
@@ -44,23 +43,23 @@ public class ChooseAssistantTest {
         game.getPlayers().get(2).getAssistants().get(2).setAssChose(true);
 
         Player p3=game.getPlayers().get(2);
-        Assistant ass= p3.getAssistants().get(5);
+        int assID=5;
 
-        game.setAction(new ChooseAssistant(game,p3,ass));
+        game.setAction(new ChooseAssistant(game,p3,assID));
         game.doAction();
 
         assert(p3.getAssistants().get(5).isActual());
         assert(p3.getAssistants().get(5).isAssChose());
-        assertEquals(p3.getAssChosen(),ass);
+        assertEquals(p3.getAssChosen(),p3.getAssistants().get(assID));
 
-        Assistant ass1= p3.getAssistants().get(2);
+        int assID1= 2;
 
-        game.setAction(new ChooseAssistant(game,p3,ass1));
+        game.setAction(new ChooseAssistant(game,p3,assID1));
         game.doAction();
 
         assertFalse(p3.getAssistants().get(5).isActual());
         assert(p3.getAssistants().get(5).isAssChose());
-        assertEquals(p3.getAssChosen(),null);
+        assertNull(p3.getAssChosen());
 
     }
 
@@ -82,21 +81,21 @@ public class ChooseAssistantTest {
         game.getPlayers().get(2).getAssistants().get(2).setAssChose(true);
 
         Player p3=game.getPlayers().get(2);
-        Assistant ass= p3.getAssistants().get(0);
+        int assID= 0;
 
-        game.setAction(new ChooseAssistant(game,p3,ass));
+        game.setAction(new ChooseAssistant(game,p3,assID));
         game.doAction();
 
         assertFalse(p3.getAssistants().get(0).isActual());
-        assertEquals(p3.getAssChosen(),null);
+        assertNull(p3.getAssChosen());
 
-        Assistant ass1= p3.getAssistants().get(1);
+        int assID1= 1;
 
-        game.setAction(new ChooseAssistant(game,p3,ass1));
+        game.setAction(new ChooseAssistant(game,p3,assID1));
         game.doAction();
 
         assertFalse(p3.getAssistants().get(1).isActual());
-        assertEquals(p3.getAssChosen(),null);
+        assertNull(p3.getAssChosen());
 
     }
 
