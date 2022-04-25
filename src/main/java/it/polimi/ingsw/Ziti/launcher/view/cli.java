@@ -1,9 +1,13 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
+import java.lang.Character;
+import java.util.List;
 import java.util.Scanner;
 
 public class cli extends ViewObservable implements view, ViewObserver {
@@ -13,32 +17,65 @@ public class cli extends ViewObservable implements view, ViewObserver {
     private Scanner sc=new Scanner(System.in);
 
     @Override
-    public void showAssistants() {
+    public void showAssistants(List<Assistant> assistants) {
+        System.out.println("Gli assistenti disponibili sono :");
+        for(Assistant ass : assistants){
+            System.out.println(" ID : "+ass.getId());
+            System.out.println(" MotherNature Moves : "+ass.getMovesMother());
+            System.out.println(" Value : "+ass.getValue());
+        }
 
     }
 
     @Override
-    public void showCharacters() {
+    public void showCharacters(List<Character> characters) {
 
     }
 
     @Override
-    public void showIslands() {
+    public void showIslands(List<Island> islands) {
+        System.out.println("Le isole disponibili sono :");
+        for(Island island : islands){
+            System.out.println(" ID : "+island.getID());
+            if(island.getMother()==true){
+                System.out.println("Sull' isola è presente Madre Natura");
+            }
+            if(island.getTowerPlayer()==null){
+                System.out.println("Nessun player possiede una torre sull'isola");
+            }
+            else
+            {
+                System.out.println("Sull'isola è presente la torre di "+island.getTowerPlayer().GetName());
+            }
+                System.out.println("Sull'isola sono presenti :");
+            for(Colour c: Colour){
+                if(island.getColour(c)!=0){
+                    System.out.println(island.getColour(c)+"studenti"+c.getColour());
+                }
+            }
+            }
+    }
+
+    @Override
+    public void showClouds(List<CloudIsland> clouds) {
+        System.out.println("Le nuvole a disposizione sono: ");
+        for(CloudIsland c : clouds){
+            System.out.println("CloudID: "+c.getID());
+            System.out.println("Sull'isola sono presenti :");
+            for(Student s: c.getStudents()){
+                    System.out.println("-studente "+s.getColour().getColour());
+            }
+        }
 
     }
 
     @Override
-    public void showClouds() {
+    public void showMyBoard(List<Board> boards) {
 
     }
 
     @Override
-    public void showMyBoard() {
-
-    }
-
-    @Override
-    public void showBoards() {
+    public void showBoards(Board board) {
 
     }
 
