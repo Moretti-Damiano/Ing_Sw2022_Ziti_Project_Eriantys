@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import java.io.Serializable;
 
-public class LoginMessage implements MessagetoServer, Serializable {
+public class LoginMessage extends MessagetoServer {
     private String username;
     private String sender;
     public LoginMessage(String sender,String username) {
