@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import java.io.Serializable;
 
-public class MoveMotherMessage implements MessagetoServer, Serializable {
+public class MoveMotherMessage extends MessagetoServer {
     private String sender;
     private int moves;
 
@@ -16,6 +16,8 @@ public class MoveMotherMessage implements MessagetoServer, Serializable {
     public String getSender() {
         return sender;
     }
+
+    public int getMoves(){return moves;}
 
     @Override
     public void handle(ServerMessageHandler serverMessageHandler) {

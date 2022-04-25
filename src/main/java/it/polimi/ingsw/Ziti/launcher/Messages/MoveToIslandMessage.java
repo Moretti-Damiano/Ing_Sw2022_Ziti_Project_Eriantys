@@ -4,7 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Island;
 
 import java.io.Serializable;
 
-public class MoveToIslandMessage implements MessagetoServer, Serializable {
+public class MoveToIslandMessage extends MessagetoServer {
 
     private int islandID;
     private String sender;

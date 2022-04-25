@@ -130,7 +130,7 @@ public class MoveMother implements Action{
     }
 
     private void checkInput() throws ActionException{
-        if(moves < 1 /*|| moves > game.getCurrentPlayer().getAssChosen().getMovesMother()*/)
+        if(moves < 1 || moves > game.getCurrentPlayer().getAssChosen().getMovesMother())
             throw new ActionException();
     }
 }
