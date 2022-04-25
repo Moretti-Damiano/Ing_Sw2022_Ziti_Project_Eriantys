@@ -28,6 +28,7 @@ public class Game {
     private ArrayList<Character> characters;
     private Player currentPlayer;
     private Action action;
+    private GameWallet gameWallet;
 
     /**
      * Creates 12 islands,Mother and memorizes the players
@@ -40,6 +41,8 @@ public class Game {
         for(int i=0;i<12;i++){
             islands.add(new Island(i));
         }
+
+        this.gameWallet=new GameWallet();
 
         //creates mother
         this.mother = Mother.motherInstance();
@@ -93,7 +96,7 @@ public class Game {
         //set characters TO BE DONE!!!
     }
 
-
+    public GameWallet getGameWallet() { return gameWallet;}
     public ArrayList<Island> getIslands() {
         return islands;
     }
@@ -162,6 +165,19 @@ public class Game {
         if(p.size() == 4){
             //TO BE IMPLEMENTED
         }
+    }
+
+    /**
+     *
+     * @param id
+     * @return
+     */
+    public Island getIslandbyId(int id){
+        for(Island i : islands){
+            if(i.getID()==id )
+                return i;
+        }
+        return null;
     }
 
     /**

@@ -108,7 +108,17 @@ public class GameController implements ServerObserver {
 
     @Override
     public void moveToTableHandler(MoveToTableMessage message) {
-
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new MoveToTable(game,message.getColour().toLowerCase(Locale.ROOT)));
+            try {
+                game.doAction();
+            } catch (ActionException e) {
+                /*MANDA ERRORE AL CLIENT*/
+            }
+        }
+        else{
+            /* MANDA ERRORE NON E' IL TUO TURNO*/
+        }
     }
 
     @Override
