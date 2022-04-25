@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import java.io.Serializable;
 
-public class ChoseAssistantMessage implements MessagetoServer, Serializable {
+public class ChoseAssistantMessage extends MessagetoServer {
     private int assistantId;
     private String sender;
     public ChoseAssistantMessage(String sender,int assistantId) {

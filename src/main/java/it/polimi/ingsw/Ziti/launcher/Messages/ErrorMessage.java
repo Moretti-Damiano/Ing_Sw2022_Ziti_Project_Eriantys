@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import java.io.Serializable;
 
-public class ErrorMessage implements  MessagetoClient, Serializable {
+public class ErrorMessage  {
 
     private String description;
     private String sender;

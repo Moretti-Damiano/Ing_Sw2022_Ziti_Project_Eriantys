@@ -38,7 +38,7 @@ public class MoveToTableTest {
         colors.add(Colour.YELLOW);
    Player p0=game.getPlayers().get(0);
    Player p1=game.getPlayers().get(1);
-   //game.setCurrentPlayer(p0)
+   game.setActivePlayer(p0);
         //each player has 6 red and 6 pink student in his board
         for(int i=0; i<6; i++){
          p0.getBoard().addStudenttoColourRow(new Student(Colour.RED));

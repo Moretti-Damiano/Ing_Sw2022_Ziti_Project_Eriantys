@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import java.io.Serializable;
 
-public class CloudIslandMessage implements MessagetoServer, Serializable {
+public class CloudIslandMessage extends MessagetoServer {
     private int cloudId;
     private String sender;
 
