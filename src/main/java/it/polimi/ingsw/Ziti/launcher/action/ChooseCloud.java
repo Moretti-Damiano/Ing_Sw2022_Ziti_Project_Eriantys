@@ -22,15 +22,10 @@ public class ChooseCloud implements Action{
      */
     @Override
     public void execute() throws ActionException {
-        try {
             checkInput();
             this.chosenCloud = game.getCloudIslands().get(chosenCloudId);
             for (Student s : chosenCloud.toEmpty())
                 player.getBoard().addStudent(s);
-        }
-        catch(ActionException ex){
-            //ASK THE CLIENT TO CALL THE FUNCTION WITH CORRECT INPUT
-        }
     }
 
     private void checkInput() throws ActionException {

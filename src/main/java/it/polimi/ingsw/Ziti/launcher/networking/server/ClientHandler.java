@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 
 import java.io.IOException;
@@ -12,7 +14,7 @@ public class ClientHandler implements Runnable {
     private ObjectOutputStream output;
     private ObjectInputStream input;
     private SocketServer socketServer;
-    private Message message;
+    private MessagetoServer message;
     private String nickName;
     private boolean login;
     //private final SocketServer socketServer;
@@ -39,12 +41,7 @@ public class ClientHandler implements Runnable {
     private void keepListening() throws IOException, ClassNotFoundException {
         while(true){
             if(input.available() != 0){
-                message = (Message) input.readObject();
-                //Login
-                if(message.getMessageType().equals(MessageType.LOGIN) && !login){
-                    this.nickName = message.getBody();
-                    login = true;
-                }
+                message = (MessagetoServer) input.readObject();
                 socketServer.receive(message);
                 input.reset();
             }
