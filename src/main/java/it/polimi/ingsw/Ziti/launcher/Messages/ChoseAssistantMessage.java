@@ -10,6 +10,9 @@ public class ChoseAssistantMessage extends MessagetoServer {
         this.assistantId=assistantId;
     }
 
+    public int getAssistantId() {
+        return assistantId;
+    }
 
     @Override
     public String getSender() {

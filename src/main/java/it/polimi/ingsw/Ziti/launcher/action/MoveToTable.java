@@ -12,12 +12,11 @@ public class MoveToTable implements Action{
 
     private Game game;
     private String chosencolour;
-    private GameWallet walletController;
+
 
     public MoveToTable(Game game, String chosencolour){
         this.game=game;
         this.chosencolour=chosencolour;
-         GameWallet walletController= game.getGameWallet();
     }
 
     public void execute() throws ActionException{
@@ -33,7 +32,7 @@ public class MoveToTable implements Action{
     private void goLunch(Colour student_colour) {
         game.getCurrentPlayer().getBoard().addStudenttoColourRow(game.getCurrentPlayer().getBoard().removeStudent(student_colour));
         if(game.getCurrentPlayer().getBoard().checkCoin(student_colour)){
-            game.getCurrentPlayer().getBoard().addCoin(walletController.getCoin());
+            game.getCurrentPlayer().getBoard().addCoin(game.getGameWallet().getCoin());
         }
     }
 

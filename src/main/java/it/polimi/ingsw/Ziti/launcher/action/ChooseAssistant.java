@@ -6,12 +6,12 @@ import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 public class ChooseAssistant implements Action {
     private Game game;
-    private Assistant assistant;
+    private int assistantID;
     private Player player;
 
-    public ChooseAssistant (Game game, Player player, Assistant assistant){
+    public ChooseAssistant (Game game, Player player,int assistantID){
         this.game=game;
-        this.assistant=assistant;
+        this.assistantID=assistantID;
         this.player=player;
     }
 
@@ -23,9 +23,9 @@ public class ChooseAssistant implements Action {
     public void execute() {
 
         if(checkValidate()){
-            player.setAssChoosed(assistant);
-            player.getAssistants().get(assistant.getId()).setActual(true);
-            player.getAssistants().get(assistant.getId()).setAssChose(true);
+            player.setAssChoosed(player.getAssistants().get(assistantID));
+            player.getAssistants().get(assistantID).setActual(true);
+            player.getAssistants().get(assistantID).setAssChose(true);
         }
 
     }
@@ -38,10 +38,10 @@ public class ChooseAssistant implements Action {
 
         for (Player p: this.game.getPlayers())
         {
-            if(checkName(p) && checkUsed(p,assistant)){
+            if(checkName(p) && checkUsed(p,assistantID)){
                 return false;
             }
-            if(!checkName(p) && checkTaken(p,assistant) ){
+            if(!checkName(p) && checkTaken(p,assistantID) ){
                 return false;
             }
         }
@@ -63,8 +63,8 @@ public class ChooseAssistant implements Action {
      * @param ass represents a generic assistant
      * @return if p already used this assistant
      */
-    private boolean checkUsed(Player p, Assistant ass){
-        return p.getAssistants().get(ass.getId()).isAssChose();
+    private boolean checkUsed(Player p, int ass){
+        return p.getAssistants().get(ass).isAssChose();
     }
 
     /**
@@ -73,7 +73,7 @@ public class ChooseAssistant implements Action {
      * @param ass represents a generic assistant
      * @return if p is using this assistant
      */
-    private boolean checkTaken(Player p, Assistant ass){
-        return p.getAssistants().get(ass.getId()).isActual();
+    private boolean checkTaken(Player p, int ass){
+        return p.getAssistants().get(ass).isActual();
     }
 }
