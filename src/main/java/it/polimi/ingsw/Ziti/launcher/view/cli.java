@@ -43,7 +43,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
         System.out.println("Le isole disponibili sono :");
         for(Island island : islands){
             System.out.println(" ID : "+island.getID());
-            if(island.getMother()==true){
+            if(island.getMother()){
                 System.out.println("Sull' isola è presente Madre Natura");
             }
             if(island.getTowerPlayer()==null){
@@ -54,7 +54,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
                 System.out.println("Sull'isola è presente la torre di "+island.getTowerPlayer().GetName());
             }
                 System.out.println("Sull'isola sono presenti :");
-            for(Colour c: Colour){
+            for(Colour c: Colour.values()){
                 if(island.getColour(c)!=0){
                     System.out.println(island.getColour(c)+"studenti"+c.getColour());
                 }

@@ -9,35 +9,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Island;
 import java.util.List;
 
 public class gui implements view{
-    @Override
-    public void showAssistants() {
 
-    }
-
-    @Override
-    public void showCharacters() {
-
-    }
-
-    @Override
-    public void showIslands() {
-
-    }
-
-    @Override
-    public void showClouds() {
-
-    }
-
-    @Override
-    public void showMyBoard() {
-
-    }
-
-    @Override
-    public void showBoards() {
-
-    }
 
     @Override
     public void showAssistants(List<Assistant> assistants) {
