@@ -50,4 +50,9 @@ public class Server implements GameControllerObserver {
     public void update(MessageToClient message, String nickName)  {
         notifyPlayer(message,nickName);
     }
+
+    @Override
+    public void update(MessageToClient message) {
+        notifyAllPlayers(message);
+    }
 }
