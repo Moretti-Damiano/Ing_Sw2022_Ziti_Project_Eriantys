@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;
 
+/**
+ * Class used to implement the Observer-Observable pattern between Server and GameController.
+ * This class allows the GameController to be observed.
+ */
 public class GameControllerObservable {
     private final List<GameControllerObserver> observers = new ArrayList<>();
 

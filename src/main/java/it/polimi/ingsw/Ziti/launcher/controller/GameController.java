@@ -21,15 +21,18 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     Game game;
     TurnController turnController;
-    Server server;
     ArrayList<Player> players;
 
-    public GameController(Server server){
+    public GameController(){
         this.turnController = new TurnController();
-        this.server = server;
         players = new ArrayList<>();
     }
 
+    /**
+     * Return a player object by searching for his NickName
+     * @param nickName the player requested
+     * @return the player with the given nickname, returns null if it doesn't exist
+     */
     private Player getPlayerByName(String nickName){
         for(Player p:players){
             if(p.GetName().equals(nickName)){
@@ -39,7 +42,11 @@ public class GameController extends GameControllerObservable implements ServerOb
         return null;
     }
 
-    public boolean checkActivePlayer(String player){
+    /**
+     * @param player the player to check if is the active player
+     * @return true if player is the active player, false otherwise
+     */
+    private boolean checkActivePlayer(String player){
         return turnController.getCurrentPlayer().equals(getPlayerByName(player));
     }
 
