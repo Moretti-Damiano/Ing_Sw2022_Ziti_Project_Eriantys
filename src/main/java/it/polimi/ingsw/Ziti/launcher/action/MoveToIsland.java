@@ -32,7 +32,7 @@ public class MoveToIsland implements Action{
     public void execute() throws ActionException {
         checkInput();
         Island island = game.getIslandbyId(chosenIsland);
-        island.addStudent(game.getPlayers().get(0).getBoard().removeStudent(Colour.valueOf(studentColour.toLowerCase(Locale.ROOT))));
+        island.addStudent(game.getCurrentPlayer().getBoard().removeStudent(Colour.valueOf(studentColour.toLowerCase(Locale.ROOT))));
 
     }
 
@@ -60,7 +60,7 @@ public class MoveToIsland implements Action{
 
 
         // check if the studentColour is in the Board
-        if( ! game.getPlayers().get(0).getBoard().checkpresence(Colour.valueOfName(studentColour.toLowerCase(Locale.ROOT))))
+        if( ! game.getCurrentPlayer().getBoard().checkpresence(Colour.valueOfName(studentColour.toLowerCase(Locale.ROOT))))
             throw new ActionException();
 
 

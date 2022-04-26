@@ -52,7 +52,7 @@ public class MoveToIslandTest {
         p0.getBoard().addStudent(pinkStudent);
 
         game.getIslands().get(1).getStudents().clear();
-        game.setAction( new MoveToIsland(game, game.getIslands().get(1), Colour.BLUE ));
+        game.setAction( new MoveToIsland(game, game.getIslands().get(1).getID(), Colour.BLUE.getName() ));
         game.doAction();
 
         // verify colours in the chosen Island
@@ -91,7 +91,7 @@ public class MoveToIslandTest {
         p0.getBoard().addStudent(greenStudent);
 
         game.getIslands().get(0).getStudents().clear();
-        game.setAction( new MoveToIsland(game, game.getIslands().get(0), Colour.PINK ));
+        game.setAction( new MoveToIsland(game, game.getIslands().get(0).getID(), Colour.PINK.getName() ));
         game.doAction();
 
         // verify colours in the chosen Island
@@ -119,7 +119,7 @@ public class MoveToIslandTest {
         //the player has no students in his board
 
         game.getIslands().get(2).getStudents().clear();
-        game.setAction( new MoveToIsland(game, game.getIslands().get(2), blueStudent.getColour() ));
+        game.setAction( new MoveToIsland(game, game.getIslands().get(2).getID(), blueStudent.getColour().getName() ));
         game.doAction();
 
         // verify colours in the chosen Island

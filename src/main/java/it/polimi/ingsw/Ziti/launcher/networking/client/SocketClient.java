@@ -1,8 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
-import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
-import it.polimi.ingsw.Ziti.launcher.networking.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
@@ -90,8 +88,32 @@ public class SocketClient extends ViewObservable implements ViewObserver {
     }
 
     /**
-     * RECEIVE METHODS
+     * RECEIVE METHOD
      */
+    public void receive() {
+
+        while (true) {
+            MessageToClient messageToClient;
+            try {
+                if (inputStm.available() != 0) {
+                    messageToClient = (MessageToClient) inputStm.readObject();
+                    notifyObserver(obs -> obs.update(messageToClient));
+
+                }
+            } catch (IOException | ClassNotFoundException e) {
+
+                errorMessage = new ErrorMessage("SocketClient", "Connection lost");
+                notifyObserver(obs -> obs.update(errorMessage));
+                disconnect();
+            }
+        }
+    }
+
+
+
+
+/*
+
     public void receiveMoveToIslandMessage(){
 
         while(true){
@@ -131,6 +153,8 @@ public class SocketClient extends ViewObservable implements ViewObserver {
         }
     }
 
+ */
+
     public void disconnect() {
 
         try {
@@ -145,48 +169,68 @@ public class SocketClient extends ViewObservable implements ViewObserver {
 
     }
 
-
-    /**
-     *
-     * Not implemented here
-     */
-
-/*
-    public void update(ErrorMessage message) {
-
-    }
-
-
-    public void updateMoveToIslandMessage(MoveToIslandMessage message) {
-        send(message);
-    }
-
-    public void updateLoginMessage(LoginMessage message) {
-        send(message);
-    }
-
-
-    public void updateMoveMotherMessage(MoveMotherMessage message) {
-
-    }
-
-
-    public void updateCloudIslandMessage(CloudIslandMessage message) {
-
-    }
-
-
-    public void updateMoveToTableMessage(MoveToTableMessage message) {
-
-    }
-
-
-    public void updateChoseAssistantMessage(ChoseAssistantMessage message) {
-
-    }
-*/
     @Override
     public void update(Message message) {
+
+    }
+
+    @Override
+    public void moveToIslandHandler(MoveToIslandMessage message) {
+
+    }
+
+    @Override
+    public void moveToTableHandler(MoveToTableMessage message) {
+
+    }
+
+    @Override
+    public void moveMotherHandler(MoveMotherMessage message) {
+
+    }
+
+    @Override
+    public void choseAssistantHandler(ChoseAssistantMessage message) {
+
+    }
+
+    @Override
+    public void cloudIslandHandler(CloudIslandMessage message) {
+
+    }
+
+    @Override
+    public void showErrorMessageHandler(ErrorMessage message) {
+
+    }
+
+    @Override
+    public void showAssistantsMessageHandler() {
+
+    }
+
+    @Override
+    public void showCharactersMessageHandler() {
+
+    }
+
+    @Override
+    public void showIslandsMessageHandler() {
+
+    }
+
+    @Override
+    public void showCloudsMessageHandler() {
+
+    }
+
+    @Override
+    public void showMyBoardMessageHandler() {
+
+    }
+
+    @Override
+    public void showBoardsMessageHandler() {
 
     }
 }

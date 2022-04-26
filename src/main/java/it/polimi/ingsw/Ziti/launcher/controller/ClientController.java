@@ -75,4 +75,64 @@ public class ClientController extends ViewObservable implements ViewObserver {
     public void update(Message message) {
 
     }
+
+    @Override
+    public void moveToIslandHandler(MoveToIslandMessage message) {
+
+    }
+
+    @Override
+    public void moveToTableHandler(MoveToTableMessage message) {
+
+    }
+
+    @Override
+    public void moveMotherHandler(MoveMotherMessage message) {
+
+    }
+
+    @Override
+    public void choseAssistantHandler(ChoseAssistantMessage message) {
+
+    }
+
+    @Override
+    public void cloudIslandHandler(CloudIslandMessage message) {
+
+    }
+
+    @Override
+    public void showErrorMessageHandler(ErrorMessage message) {
+
+    }
+
+    @Override
+    public void showAssistantsMessageHandler() {
+
+    }
+
+    @Override
+    public void showCharactersMessageHandler() {
+
+    }
+
+    @Override
+    public void showIslandsMessageHandler() {
+
+    }
+
+    @Override
+    public void showCloudsMessageHandler() {
+
+    }
+
+    @Override
+    public void showMyBoardMessageHandler() {
+
+    }
+
+    @Override
+    public void showBoardsMessageHandler() {
+
+    }
 }

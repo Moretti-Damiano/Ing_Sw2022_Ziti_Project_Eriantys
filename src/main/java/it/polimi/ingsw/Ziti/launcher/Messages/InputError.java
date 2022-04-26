@@ -10,4 +10,10 @@ public class InputError extends MessageToClient{
     public String getDescription(){
         return description;
     }
+
+    // da implementare i controlli
+    @Override
+    public void handle(ClientMessageHandler clientMessageHandler) {
+
+    }
 }

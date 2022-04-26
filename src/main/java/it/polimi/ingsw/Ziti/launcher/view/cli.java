@@ -10,7 +10,13 @@ public class cli extends ViewObservable implements view, ViewObserver {
 
     //Questa classe OSSERVA l' ObserverClient e VIENE OSSERVATA dal ClientController
 
-    private Scanner sc=new Scanner(System.in);
+    private Scanner sc;
+    private ClientMessageHandler clientMessageHandler; // needs to be observed by observerClient
+
+    public cli(ClientMessageHandler clientMessageHandler){
+        this.sc = new Scanner(System.in);
+        this.clientMessageHandler=clientMessageHandler;
+    }
 
     @Override
     public void showAssistants() {
@@ -136,59 +142,68 @@ public class cli extends ViewObservable implements view, ViewObserver {
         notifyObserver(obs -> obs.update(m));
     }
 
-
-
-    public void update(MoveToIslandMessage message) {
-        if(! message.getCorrect()){
-            System.out.println("I dati inseriti non sono validi ! ");
-            askMoveToIsland();
-        }
-    }
-
-    public void update(ErrorMessage message) {
-        showErrorMessage(message);
-    }
-
-    public void update(LoginMessage message) {
-        if( ! message.getCorrect()){
-            System.out.println("I dati inseriti non sono validi ! ");
-            askLogin();
-        }
-    }
-
-    public void update(MoveMotherMessage message) {
-        if(!message.getCorrect()){
-            System.out.println("I dati inseriti non sono validi ! ");
-            askMoveMother();
-        }
-    }
-
-    public void update(CloudIslandMessage message) {
-        if(!message.getCorrect()){
-            System.out.println("I dati inseriti non sono validi ! ");
-            askCloudIsland();
-        }
-
-    }
-
-    public void update(MoveToTableMessage message) {
-        if(!message.getCorrect()){
-            System.out.println("I dati inseriti non sono validi ! ");
-            askMoveToTable();
-        }
-
-    }
-
-    public void update(ChoseAssistantMessage message) {
-        if(!message.getCorrect()){
-            System.out.println("I dati inseriti non sono validi ! ");
-            askChoseAssistant();
-        }
+    @Override
+    public void update(Message message) {
 
     }
 
     @Override
-    public void update(Message message) {
+    public void moveToIslandHandler(MoveToIslandMessage message) {
+
+    }
+
+    @Override
+    public void moveToTableHandler(MoveToTableMessage message) {
+
+    }
+
+    @Override
+    public void moveMotherHandler(MoveMotherMessage message) {
+
+    }
+
+    @Override
+    public void choseAssistantHandler(ChoseAssistantMessage message) {
+
+    }
+
+    @Override
+    public void cloudIslandHandler(CloudIslandMessage message) {
+
+    }
+
+    @Override
+    public void showErrorMessageHandler(ErrorMessage message) {
+
+    }
+
+    @Override
+    public void showAssistantsMessageHandler() {
+
+    }
+
+    @Override
+    public void showCharactersMessageHandler() {
+
+    }
+
+    @Override
+    public void showIslandsMessageHandler() {
+
+    }
+
+    @Override
+    public void showCloudsMessageHandler() {
+
+    }
+
+    @Override
+    public void showMyBoardMessageHandler() {
+
+    }
+
+    @Override
+    public void showBoardsMessageHandler() {
 
     }
 }
