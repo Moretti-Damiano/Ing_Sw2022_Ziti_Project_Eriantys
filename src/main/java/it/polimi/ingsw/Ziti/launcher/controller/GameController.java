@@ -73,7 +73,7 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
                 game.doAction();
             } catch (ActionException e) {
-                /*MANDA ERRORE AL CLIENT*/
+
             }
         }
         else{
@@ -132,4 +132,5 @@ public class GameController extends GameControllerObservable implements ServerOb
             /*MANDA ERRORE NON E' IL TUO TURNO*/
         }
     }
+
 }

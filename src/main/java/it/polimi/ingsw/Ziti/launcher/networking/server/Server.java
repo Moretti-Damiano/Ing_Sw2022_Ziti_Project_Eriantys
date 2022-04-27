@@ -61,7 +61,7 @@ public class Server implements GameControllerObserver {
     }
 
     @Override
-    public void update(MessageToClient message) {
+    public void sendToAllPlayers(MessageToClient message) {
         notifyAllPlayers(message);
     }
 }

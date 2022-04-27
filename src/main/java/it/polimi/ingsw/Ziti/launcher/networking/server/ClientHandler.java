@@ -2,7 +2,6 @@ package it.polimi.ingsw.Ziti.launcher.networking.server;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessagetoServer;
-import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -26,7 +25,7 @@ public class ClientHandler implements Runnable {
         input = new ObjectInputStream(socket.getInputStream());
         login = false;
     }
-
+    public void setNickName(String nickName){ this.nickName= nickName; }
     public String getNickName() {
         return nickName;
     }

@@ -5,6 +5,7 @@ import java.io.Serializable;
 public class LoginMessage extends MessagetoServer {
     private String username;
     private String sender;
+    
     public LoginMessage(String sender,String username) {
         this.sender = sender;
         this.username=username;
@@ -17,6 +18,6 @@ public class LoginMessage extends MessagetoServer {
 
     @Override
     public void handle(ServerMessageHandler serverMessageHandler) {
-
+        serverMessageHandler.loginHandler(this);
     }
 }
