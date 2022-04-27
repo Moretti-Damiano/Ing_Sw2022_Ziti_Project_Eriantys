@@ -21,12 +21,21 @@ public class Server implements GameControllerObserver {
         serverThread.start();
     }
 
+    /**
+     * Send a message to every connected client
+     * @param message the message to be sent
+     */
     public void notifyAllPlayers(MessageToClient message)  {
         for(ClientHandler c: socketServer.getClientHandlers()){
             c.send(message);
         }
     }
 
+    /**
+     * Send a message to one client
+     * @param message the message to be sent
+     * @param nickName the client who will receive the message
+     */
     public void notifyPlayer(MessageToClient message, String nickName)  {
         for(ClientHandler c: socketServer.getClientHandlers()){
             if(c.getNickName().equals(nickName)){       //problema controllo omonimi
@@ -41,7 +50,22 @@ public class Server implements GameControllerObserver {
     }
 
     @Override
-    public void update(MessageToClient message, String nickName)  {
+    public void sendToOnePlayer(MessageToClient message, String nickName)  {
+        notifyPlayer(message,nickName);
+    }
+
+    @Override
+    public void sendToAllPlayers(MessageToClient message) {
+        notifyAllPlayers(message);
+    }
+
+    public void successfulLogin(MessageToClient message, String temporaryName, String newName){
+        notifyPlayer(message,temporaryName);
+        socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
+    }
+
+    
+    public void requestPlayerNumber(MessageToClient message, String nickName){
         notifyPlayer(message,nickName);
     }
 }

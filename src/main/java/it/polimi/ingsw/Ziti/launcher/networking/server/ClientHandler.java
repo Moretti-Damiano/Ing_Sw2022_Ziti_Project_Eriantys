@@ -1,8 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.LoginMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessagetoServer;
-import it.polimi.ingsw.Ziti.launcher.enumeration.MessageType;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -16,17 +16,16 @@ public class ClientHandler implements Runnable {
     private SocketServer socketServer;
     private MessagetoServer message;
     private String nickName;
-    private boolean login;
     //private final SocketServer socketServer;
 
-    public ClientHandler(SocketServer socketServer,Socket socket) throws IOException {
+    public ClientHandler(SocketServer socketServer,Socket socket, String temporaryName) throws IOException {
         this.socket = socket;
         this.socketServer = socketServer;
         output = new ObjectOutputStream(socket.getOutputStream());
         input = new ObjectInputStream(socket.getInputStream());
-        login = false;
+        this.nickName = temporaryName;
     }
-
+    public void setNickName(String nickName){ this.nickName= nickName; }
     public String getNickName() {
         return nickName;
     }
@@ -42,6 +41,8 @@ public class ClientHandler implements Runnable {
         while(true){
             if(input.available() != 0){
                 message = (MessagetoServer) input.readObject();
+
+                message.setSender(nickName);
                 socketServer.receive(message);
                 input.reset();
             }

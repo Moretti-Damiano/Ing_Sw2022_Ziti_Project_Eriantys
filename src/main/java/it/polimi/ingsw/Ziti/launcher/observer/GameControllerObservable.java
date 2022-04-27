@@ -4,7 +4,12 @@ import it.polimi.ingsw.Ziti.launcher.Messages.*;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
+/**
+ * Class used to implement the Observer-Observable pattern between Server and GameController.
+ * This class allows the GameController to be observed.
+ */
 public class GameControllerObservable {
     private final List<GameControllerObserver> observers = new ArrayList<>();
 
@@ -25,12 +30,12 @@ public class GameControllerObservable {
     }
 
     /**
-     * Notifies all the observers with a message
-     * @param message is the message sent to the observers
+     * Notifies all the observers with the lambda argument.
+     * @param lambda the function to be called on the observers.
      */
-    public void notifyObserver(MessageToClient message, String nickName) {
+    protected void notifyObserver(Consumer<GameControllerObserver> lambda) {
         for (GameControllerObserver observer : observers) {
-            observer.update(message,nickName);
+            lambda.accept(observer);
         }
     }
 }

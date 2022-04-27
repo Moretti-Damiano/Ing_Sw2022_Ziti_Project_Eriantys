@@ -2,11 +2,19 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObservable;
+import org.xml.sax.SAXException;
+
+import javax.xml.parsers.ParserConfigurationException;
+import java.io.IOException;
 
 /**
- * this class calls the correct handler methods from the observer calls to manage the message received by the server
+ * This class calls the correct handler methods from the observer class to manage the message received by the server
  */
 public class ServerMessageHandler extends ServerObservable {
+
+    public void loginHandler(LoginMessage message) throws ParserConfigurationException,IOException,SAXException{
+        notifyObserver(obs -> obs.loginHandler(message));
+    }
 
     public void moveToIslandHandler(MoveToIslandMessage message) {
         notifyObserver(obs -> obs.moveToIslandHandler(message));
@@ -27,4 +35,10 @@ public class ServerMessageHandler extends ServerObservable {
     public void cloudIslandHandler(CloudIslandMessage message) {
         notifyObserver(obs -> obs.cloudIslandHandler(message));
     }
+
+    public void numberOfPlayersHandler(NumberOfPlayersMessage message){
+        notifyObserver(obs -> obs.numberOfPlayerHandler(message));
+    }
+
+
 }
