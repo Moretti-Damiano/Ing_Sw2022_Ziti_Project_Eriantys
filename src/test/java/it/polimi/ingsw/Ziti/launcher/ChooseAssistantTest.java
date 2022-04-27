@@ -52,13 +52,34 @@ public class ChooseAssistantTest {
         assert(p3.getAssistants().get(5).isAssChose());
         assertEquals(p3.getAssChosen(),p3.getAssistants().get(assID));
 
+
+    }
+    @Test
+    public void assistantUsed2 () throws ActionException {
+        game.getPlayers().get(0).getAssistants().get(0).setActual(true);
+        game.getPlayers().get(0).setAssChoosed(game.getPlayers().get(0).getAssistants().get(0));
+
+        game.getPlayers().get(0).getAssistants().get(0).setAssChose(true);
+        game.getPlayers().get(0).getAssistants().get(3).setAssChose(true);
+        game.getPlayers().get(0).getAssistants().get(2).setAssChose(true);
+        game.getPlayers().get(1).getAssistants().get(2).setAssChose(true);
+        game.getPlayers().get(1).setAssChoosed(game.getPlayers().get(1).getAssistants().get(2));
+        game.getPlayers().get(1).getAssistants().get(2).setActual(true);
+        game.getPlayers().get(1).getAssistants().get(0).setAssChose(true);
+        game.getPlayers().get(1).getAssistants().get(1).setAssChose(true);
+        game.getPlayers().get(2).getAssistants().get(0).setAssChose(true);
+        game.getPlayers().get(2).getAssistants().get(1).setAssChose(true);
+        game.getPlayers().get(2).getAssistants().get(2).setAssChose(true);
+
+        Player p3=game.getPlayers().get(2);
+
         int assID1= 2;
 
         game.setAction(new ChooseAssistant(game,p3,assID1));
         game.doAction();
 
-        assertFalse(p3.getAssistants().get(5).isActual());
-        assert(p3.getAssistants().get(5).isAssChose());
+        assertFalse(p3.getAssistants().get(2).isActual());
+        assert(p3.getAssistants().get(2).isAssChose());
         assertNull(p3.getAssChosen());
 
     }

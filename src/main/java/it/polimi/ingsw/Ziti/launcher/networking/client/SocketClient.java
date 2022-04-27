@@ -1,8 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
-import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
-import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
+import it.polimi.ingsw.Ziti.launcher.observer.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -12,7 +11,7 @@ import java.net.Socket;
 
 //Questa classe OSSERVA il ClientController e VIENE OSSERVATA dall' observer client
 
-public class SocketClient extends ViewObservable implements ViewObserver {
+public class SocketClient extends SocketClientObservable implements ClientObserver {
 
     private final Socket socket;
     private final ObjectOutputStream outputStm;
@@ -31,7 +30,7 @@ public class SocketClient extends ViewObservable implements ViewObserver {
      * SEND METHODS
      * @param message used to determinate which send needs to be used
      */
-    public void send(MoveToIslandMessage message) {
+    public void send(MessagetoServer message) {
         try {
             outputStm.writeObject(message);
             outputStm.reset();
@@ -41,6 +40,29 @@ public class SocketClient extends ViewObservable implements ViewObserver {
         }
 
     }
+
+    /**
+     * RECEIVE METHOD
+     */
+    public void receive() {
+
+        while (true) {
+            MessageToClient messageToClient;
+            try {
+                if (inputStm.available() != 0) {
+                    messageToClient = (MessageToClient) inputStm.readObject();
+                    notifyObserver(obs -> obs.update(messageToClient));
+
+                }
+            } catch (IOException | ClassNotFoundException e) {
+
+                errorMessage = new ErrorMessage("SocketClient", "Connection lost");
+                notifyObserver(obs -> obs.update(errorMessage));
+                disconnect();
+            }
+        }
+    }
+    /*
     private void send(LoginMessage message) {
         try {
             outputStm.writeObject(message);
@@ -86,28 +108,8 @@ public class SocketClient extends ViewObservable implements ViewObserver {
             notifyObserver(obs->obs.update(errorMessage));
         }
     }
+*/
 
-    /**
-     * RECEIVE METHOD
-     */
-    public void receive() {
-
-        while (true) {
-            MessageToClient messageToClient;
-            try {
-                if (inputStm.available() != 0) {
-                    messageToClient = (MessageToClient) inputStm.readObject();
-                    notifyObserver(obs -> obs.update(messageToClient));
-
-                }
-            } catch (IOException | ClassNotFoundException e) {
-
-                errorMessage = new ErrorMessage("SocketClient", "Connection lost");
-                notifyObserver(obs -> obs.update(errorMessage));
-                disconnect();
-            }
-        }
-    }
 
 
 
@@ -169,68 +171,5 @@ public class SocketClient extends ViewObservable implements ViewObserver {
 
     }
 
-    @Override
-    public void update(Message message) {
 
-    }
-
-    @Override
-    public void moveToIslandHandler(MoveToIslandMessage message) {
-
-    }
-
-    @Override
-    public void moveToTableHandler(MoveToTableMessage message) {
-
-    }
-
-    @Override
-    public void moveMotherHandler(MoveMotherMessage message) {
-
-    }
-
-    @Override
-    public void choseAssistantHandler(ChoseAssistantMessage message) {
-
-    }
-
-    @Override
-    public void cloudIslandHandler(CloudIslandMessage message) {
-
-    }
-
-    @Override
-    public void showErrorMessageHandler(ErrorMessage message) {
-
-    }
-
-    @Override
-    public void showAssistantsMessageHandler() {
-
-    }
-
-    @Override
-    public void showCharactersMessageHandler() {
-
-    }
-
-    @Override
-    public void showIslandsMessageHandler() {
-
-    }
-
-    @Override
-    public void showCloudsMessageHandler() {
-
-    }
-
-    @Override
-    public void showMyBoardMessageHandler() {
-
-    }
-
-    @Override
-    public void showBoardsMessageHandler() {
-
-    }
 }

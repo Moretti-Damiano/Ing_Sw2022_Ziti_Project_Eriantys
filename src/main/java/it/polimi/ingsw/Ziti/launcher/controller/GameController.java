@@ -1,19 +1,13 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.action.*;
-import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.networking.server.Server;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObservable;
-import it.polimi.ingsw.Ziti.launcher.observer.Observable;
-import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObserver;
-import org.xml.sax.SAXException;
 
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 

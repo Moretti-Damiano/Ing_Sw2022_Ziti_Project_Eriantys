@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import java.io.Serializable;
 
-public class ErrorMessage extends Message {
+public class ErrorMessage extends MessageToClient {
 
     private String description;
     private String sender;
@@ -19,4 +19,8 @@ public class ErrorMessage extends Message {
         return sender;
     }
 
+    @Override
+    public void handle(ClientMessageHandler clientMessageHandler) {
+        clientMessageHandler.ErrorMessageHandle(this);
+    }
 }

@@ -2,28 +2,13 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
-
+//OSSERVATA dalla cli
 // gestisce le risposte dal server sulla validità dei dati corretti
 public class ClientMessageHandler extends ViewObservable {
-
-    public void moveToIslandHandler(MoveToIslandMessage message) {
-        notifyObserver(obs -> obs.moveToIslandHandler(message));
+    public void showCloudsHandle(showCloudsMessage message){notifyObserver(obs->obs.showCloudsMessageHandler(message));}
+    public void inputErrorHandle(InputError message) {
+        notifyObserver(obs->obs.InputErrorHandler(message));
     }
-
-    public void moveToTableHandler(MoveToTableMessage message) {
-        notifyObserver(obs -> obs.moveToTableHandler(message));
-    }
-
-    public void moveMotherHandler(MoveMotherMessage message) {
-        notifyObserver(obs -> obs.moveMotherHandler(message));
-    }
-
-    public void choseAssistantHandler(ChoseAssistantMessage message) {
-        notifyObserver(obs -> obs.choseAssistantHandler(message));
-    }
-
-    public void cloudIslandHandler(CloudIslandMessage message) {
-        notifyObserver(obs -> obs.cloudIslandHandler(message));
-    }
+    public void ErrorMessageHandle(ErrorMessage message){notifyObserver(obs->obs.ErrorMessageHandler(message));}
     // da implementare gli altri metodi della cli (show)
 }

@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view;
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
+import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
@@ -10,16 +11,14 @@ import java.lang.Character;
 import java.util.List;
 import java.util.Scanner;
 
-public class cli extends ViewObservable implements view, ViewObserver {
+public class cli extends ClientObservable implements view, ViewObserver {
 
-    //Questa classe OSSERVA l' ObserverClient e VIENE OSSERVATA dal ClientController
+    //Questa classe OSSERVA il ClientMessageHandler e VIENE OSSERVATA dal ClientController
 
     private Scanner sc;
-    private ClientMessageHandler clientMessageHandler; // needs to be observed by observerClient
 
     public cli(ClientMessageHandler clientMessageHandler){
         this.sc = new Scanner(System.in);
-        this.clientMessageHandler=clientMessageHandler;
     }
 
     @Override
@@ -76,18 +75,60 @@ public class cli extends ViewObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showMyBoard(List<Board> boards) {
+    public void showMyBoard(Player currentPlayer) {
+        // show waiting Students
+        for (Colour c : Colour.values()) {
+            System.out.println("Gli studenti in attesa di colore " + c.getColour() + " sono: " + currentPlayer.getBoard().countStudentColor(c));
+        }
 
+        // show dining Students
+        for (Colour c : Colour.values()) {
+            System.out.println("Gli studenti in mensa di colore " + c.getColour() + " sono: " + currentPlayer.getBoard().getColorRowSize(c));
+        }
+
+        // show coins
+        System.out.println("Hai " + currentPlayer.getBoard().getNumberofCoin() + " coins");
+
+        // show professors
+        for (Colour c : Colour.values()) {
+            if (currentPlayer.getBoard().hasProfessor(c))
+                System.out.println("Hai il professore di colore " + c.getColour());
+        }
     }
 
     @Override
-    public void showBoards(Board board) {
+    public void showBoards(List<Player> players){
+        for(Player p: players){
+            // do showMyBoard for each player
+
+            // show waiting Students
+            for (Colour c : Colour.values()) {
+                System.out.println("Gli studenti in attesa di colore " + c.getColour() + " sono: " + p.getBoard().countStudentColor(c));
+            }
+
+            // show dining Students
+            for (Colour c : Colour.values()) {
+                System.out.println("Gli studenti in mensa di colore " + c.getColour() + " sono: " + p.getBoard().getColorRowSize(c));
+            }
+
+            // show coins
+            System.out.println("Hai " + p.getBoard().getNumberofCoin() + " coins");
+
+            // show professors
+            for (Colour c : Colour.values()) {
+                if (p.getBoard().hasProfessor(c))
+                    System.out.println("Hai il professore di colore " + c.getColour());
+            }
+        }
 
     }
 
     @Override
     public void showErrorMessage(ErrorMessage message) {
         System.out.println(message.getDescription()+"from "+message.getSender());
+    }
+    public void showInputErrorMessage(InputError message) {
+        System.out.println(message.getDescription()+"from server");
     }
 
     @Override
@@ -97,7 +138,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
         username=sc.nextLine();
         LoginMessage message;
         message=new LoginMessage("cli",username);
-        notifyObserver(obs->obs.update(message));
+        notifyObserver(obs->obs.send(message));
     }
 
     @Override
@@ -137,7 +178,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
     public void askMoveToTable() {
         MoveToTableMessage m;
         m=new MoveToTableMessage("cli",askColour());
-        notifyObserver(obs -> obs.update(m));
+        notifyObserver(obs -> obs.send(m));
 
     }
 
@@ -145,7 +186,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
     public void askMoveToIsland() {
         MoveToIslandMessage m;
         m=new MoveToIslandMessage("cli",askIsland(),askColour());
-        notifyObserver(obs -> obs.update(m));
+        notifyObserver(obs -> obs.send(m));
     }
 
     @Override
@@ -155,7 +196,7 @@ public class cli extends ViewObservable implements view, ViewObserver {
         System.out.println("Inserisci di quanto si deve muovere madre natura: ");
         moves=sc.nextInt();
         m=new MoveMotherMessage("cli",moves);
-        notifyObserver(obs -> obs.update(m));
+        notifyObserver(obs -> obs.send(m));
 
     }
 
@@ -166,23 +207,26 @@ public class cli extends ViewObservable implements view, ViewObserver {
         System.out.println("Inserisci l'id della nuvola che desideri : ");
         cloudID=sc.nextInt();
         m=new CloudIslandMessage("cli",cloudID);
-        notifyObserver(obs -> obs.update(m));
+        notifyObserver(obs -> obs.send(m));
     }
 
     @Override
     public void askChoseAssistant() {
         ChoseAssistantMessage m;
-        int assistantID;
-        System.out.println("Inserisci l'assistente che desideri: ");
-        assistantID=sc.nextInt();
-        m=new ChoseAssistantMessage("cli",assistantID);
-        notifyObserver(obs -> obs.update(m));
+        m=new ChoseAssistantMessage("cli",askAssistant());
+        notifyObserver(obs -> obs.send(m));
     }
+
+    public void InputErrorHandler(InputError message) {
+        showInputErrorMessage(message);
+    }
+
 
     @Override
-    public void update(Message message) {
-
+    public void ErrorMessageHandler(ErrorMessage message) {
+        showErrorMessage(message);
     }
+
 
     @Override
     public void moveToIslandHandler(MoveToIslandMessage message) {
@@ -230,8 +274,8 @@ public class cli extends ViewObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCloudsMessageHandler() {
-
+    public void showCloudsMessageHandler(showCloudsMessage message) {
+        showClouds(message.getCloudIslands());
     }
 
     @Override

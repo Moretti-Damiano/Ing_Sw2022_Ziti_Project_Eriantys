@@ -14,6 +14,6 @@ public class InputError extends MessageToClient{
     // da implementare i controlli
     @Override
     public void handle(ClientMessageHandler clientMessageHandler) {
-
+             clientMessageHandler.inputErrorHandle(this);
     }
 }

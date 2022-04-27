@@ -1,14 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
-import it.polimi.ingsw.Ziti.launcher.controller.GameController;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
-import it.polimi.ingsw.Ziti.launcher.observer.Observable;
-import it.polimi.ingsw.Ziti.launcher.observer.Observer;
-
-import java.io.IOException;
 
 public class Server implements GameControllerObserver {
 
