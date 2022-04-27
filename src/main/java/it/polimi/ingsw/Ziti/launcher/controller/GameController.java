@@ -73,11 +73,11 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
                 game.doAction();
             } catch (ActionException e) {
-
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
         }
         else{
-            /* MANDA ERRORE NON E' IL TUO TURNO*/
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
 
