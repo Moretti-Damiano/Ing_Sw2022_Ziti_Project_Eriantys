@@ -9,16 +9,10 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
  * It contains the methods to send the message to the clients.
  */
 public interface GameControllerObserver {
-    /**
-     * Send the message to every client.
-     * @param message the MessageToClient to be sent.
-     */
-    void update(MessageToClient message);
 
-    /**
-     * Send a message to a specified player.
-     * @param message the MessageToClient to be sent.
-     * @param nickName the client who will receive the message.
-     */
-    void update(MessageToClient message, String nickName);
+    public void sendToOnePlayer(MessageToClient message, String nickName);
+    public void sendToAllPlayers(MessageToClient message);
+    public void successfulLogin(MessageToClient message, String temporaryName,String newName);
+    public void requestPlayerNumber(MessageToClient message, String nickName);
+
 }

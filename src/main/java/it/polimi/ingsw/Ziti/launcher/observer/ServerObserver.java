@@ -18,6 +18,7 @@ public interface ServerObserver {
     public void moveMotherHandler(MoveMotherMessage message);
     public void choseAssistantHandler(ChoseAssistantMessage message);
     public void cloudIslandHandler(CloudIslandMessage message);
+    public void loginHandler(LoginMessage message) throws ParserConfigurationException, IOException, SAXException;
+    public void numberOfPlayerHandler(NumberOfPlayersMessage message);
 
-    //public void loginHandler(LoginMessage message);
 }

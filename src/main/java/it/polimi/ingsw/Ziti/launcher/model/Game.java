@@ -4,19 +4,19 @@ import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 
 import java.util.ArrayList;
 import java.util.Random;
 
 /*
-TO DO
+TO DO:
     *CURRENTPLAYER
     *GAME INIT PER 4 GIOCATORI (SETPLAYERS)
     *ARRAYLIST DI CHARACTER
-
  */
 
-public class Game {
+public class Game extends Observable {
     private ArrayList<Island> islands;
     private ArrayList<Player> players;
     private ArrayList<CloudIsland> cloudIslands;
@@ -97,6 +97,7 @@ public class Game {
     }
 
     public GameWallet getGameWallet() { return gameWallet;}
+
     public ArrayList<Island> getIslands() {
         return islands;
     }
@@ -243,6 +244,7 @@ public class Game {
 
     public void doAction() throws ActionException {
         action.execute();
+        notifyObserver(action.toMessage()));
     }
 
     /**

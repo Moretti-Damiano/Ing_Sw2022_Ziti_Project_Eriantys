@@ -12,6 +12,10 @@ import java.io.IOException;
  */
 public class ServerMessageHandler extends ServerObservable {
 
+    public void loginHandler(LoginMessage message) throws ParserConfigurationException,IOException,SAXException{
+        notifyObserver(obs -> obs.loginHandler(message));
+    }
+
     public void moveToIslandHandler(MoveToIslandMessage message) {
         notifyObserver(obs -> obs.moveToIslandHandler(message));
     }
@@ -31,4 +35,10 @@ public class ServerMessageHandler extends ServerObservable {
     public void cloudIslandHandler(CloudIslandMessage message) {
         notifyObserver(obs -> obs.cloudIslandHandler(message));
     }
+
+    public void numberOfPlayersHandler(NumberOfPlayersMessage message){
+        notifyObserver(obs -> obs.numberOfPlayerHandler(message));
+    }
+
+
 }

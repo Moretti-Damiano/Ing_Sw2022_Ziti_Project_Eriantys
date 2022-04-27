@@ -56,12 +56,22 @@ public class Server implements GameControllerObserver {
     }
 
     @Override
-    public void update(MessageToClient message, String nickName)  {
+    public void sendToOnePlayer(MessageToClient message, String nickName)  {
         notifyPlayer(message,nickName);
     }
 
     @Override
     public void sendToAllPlayers(MessageToClient message) {
         notifyAllPlayers(message);
+    }
+
+    public void successfulLogin(MessageToClient message, String temporaryName, String newName){
+        notifyPlayer(message,temporaryName);
+        socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
+    }
+
+    
+    public void requestPlayerNumber(MessageToClient message, String nickName){
+        notifyPlayer(message,nickName);
     }
 }

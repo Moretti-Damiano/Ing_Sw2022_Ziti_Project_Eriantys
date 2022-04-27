@@ -11,7 +11,7 @@ public class SocketServer implements Runnable{
     private final Server server;
     private final int port;
     ServerSocket serverSocket;
-
+    ClientHandler clientHandler;
 
     private ArrayList<ClientHandler> clientHandlers;
 
@@ -35,7 +35,9 @@ public class SocketServer implements Runnable{
         while(true) {
             try {
                 Socket socket = serverSocket.accept();
-                new Thread(new ClientHandler(this,socket)).start();
+                clientHandler = new ClientHandler(this,socket,Integer.toString(clientHandlers.size()));
+                new Thread(clientHandler).start();
+                clientHandlers.add(clientHandler);
 
             } catch (IOException e) {System.out.println("Connection failed");}
         }

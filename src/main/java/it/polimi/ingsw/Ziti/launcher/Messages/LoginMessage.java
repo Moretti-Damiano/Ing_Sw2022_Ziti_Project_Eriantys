@@ -20,8 +20,11 @@ public class LoginMessage extends MessagetoServer {
         return sender;
     }
 
+    public String getUsername(){return username;}
+
     @Override
     public void handle(ServerMessageHandler serverMessageHandler) {
         serverMessageHandler.loginHandler(this);
     }
+
 }
