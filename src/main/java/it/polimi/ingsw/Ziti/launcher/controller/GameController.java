@@ -55,12 +55,8 @@ public class GameController extends GameControllerObservable implements ServerOb
         if(getPlayerByName(message.getUsername()) == null) {
             try {
                 players.add(new Player(message.getUsername()));
-            } catch (ParserConfigurationException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
-            } catch (SAXException e) {
-                e.printStackTrace();
+            } catch (ParserConfigurationException | IOException | SAXException e) {
+                System.out.println("Error in creating parser");
             }
             notifyObserver(obs -> obs.successfulLogin(new CompletedRequestMessage("Login completed"),message.getSender(),message.getUsername()));
             if(players.size() == 1){
@@ -164,8 +160,8 @@ public class GameController extends GameControllerObservable implements ServerOb
      * receives al the updates from the game model
      * @param message the message sent by the model
      */
-    public void update(Message message){
-
+    public void update(MessageToClient message){
+        notifyObserver(obs -> obs.sendToAllPlayers(message));
     }
 
     private void startGame(){

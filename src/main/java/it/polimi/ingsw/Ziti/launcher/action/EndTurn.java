@@ -1,4 +1,5 @@
 package it.polimi.ingsw.Ziti.launcher.action;
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
@@ -31,10 +32,15 @@ public class EndTurn implements Action {
          IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setAssChoosed(null));
 
 
-      } 
-   
+      }
 
-   private void checkEmptyIslands() throws ActionException {
+    @Override
+    public ActionMessage toMessage() {
+        return null;
+    }
+
+
+    private void checkEmptyIslands() throws ActionException {
       // check if the Cloud Islands are empty
       for (CloudIsland cloudIsland : game.getCloudIslands()) {
          if(! cloudIsland.getStudents().isEmpty() ) throw new ActionException();

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
@@ -41,8 +42,12 @@ public class MoveMother implements Action{
                 merge(mother.getIsland(), game.getPrevIsland(mother.getIsland()));
             }
         }
-        
-  
+
+    @Override
+    public ActionMessage toMessage() {
+        return null;
+    }
+
 
     /**
      * Calculate mother current position and assign mother her new island

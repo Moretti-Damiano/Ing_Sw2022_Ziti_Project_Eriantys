@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
@@ -28,6 +29,11 @@ public class ChooseAssistant implements Action {
             player.getAssistants().get(assistantID).setAssChose(true);
         }
 
+    }
+
+    @Override
+    public ActionMessage toMessage() {
+        return null;
     }
 
     /**

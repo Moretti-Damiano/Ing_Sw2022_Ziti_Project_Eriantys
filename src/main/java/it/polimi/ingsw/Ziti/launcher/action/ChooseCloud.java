@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
@@ -26,6 +27,11 @@ public class ChooseCloud implements Action{
             this.chosenCloud = game.getCloudIslands().get(chosenCloudId);
             for (Student s : chosenCloud.toEmpty())
                 player.getBoard().addStudent(s);
+    }
+
+    @Override
+    public ActionMessage toMessage() {
+        return null;
     }
 
     private void checkInput() throws ActionException {

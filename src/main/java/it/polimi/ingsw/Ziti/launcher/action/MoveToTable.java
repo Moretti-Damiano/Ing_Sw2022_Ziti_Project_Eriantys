@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
@@ -23,6 +24,11 @@ public class MoveToTable implements Action{
         checkInput();
         this.goLunch(Colour.valueOf(chosencolour.toLowerCase(Locale.ROOT)));
         this.controlProfessor(Colour.valueOf(chosencolour.toLowerCase(Locale.ROOT)));
+    }
+
+    @Override
+    public ActionMessage toMessage() {
+        return null;
     }
 
     /**
