@@ -17,9 +17,9 @@ public class MoveMother implements Action{
     private Game game;
     private int moves;
     private Mother mother;
+    private String description;
 
     public MoveMother(Game game, int moves){
-
         this.game = game;
         this.moves = moves;
         this.mother = Mother.motherInstance();
@@ -33,19 +33,24 @@ public class MoveMother implements Action{
     public void execute() throws ActionException {
             checkInput();
             move();
+            description = description.concat(game.getCurrentPlayer().GetName() + "moved the Mother to Island (id): " + mother.getIsland().getID());
             updateIsland(mother.getIsland(), getControl(mother.getIsland()));
 
+            description = description.concat("\nIsland(id) " + mother.getIsland() + " is now under control of : " + mother.getIsland().getTowerPlayer().GetName());
+
             if (checkMerge(mother.getIsland(), game.getNextIsland(mother.getIsland()))) {
+                description = description.concat("\nMerged Island " + mother.getIsland().getID() + " with Island " + game.getNextIsland(mother.getIsland()).getID());
                 merge(mother.getIsland(), game.getNextIsland(mother.getIsland()));
             }
             if (checkMerge(mother.getIsland(), game.getPrevIsland(mother.getIsland()))) {
+                description = description.concat("\nMerged Island " + mother.getIsland().getID() + " with Island " + game.getPrevIsland(mother.getIsland()).getID());
                 merge(mother.getIsland(), game.getPrevIsland(mother.getIsland()));
             }
         }
 
     @Override
     public ActionMessage toMessage() {
-        return null;
+        return new ActionMessage(this.description);
     }
 
 
