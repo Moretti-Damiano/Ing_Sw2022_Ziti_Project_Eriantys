@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
-import it.polimi.ingsw.Ziti.launcher.model.Assistant;
+import it.polimi.ingsw.Ziti.launcher.Messages.ChooseAssistantDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 
@@ -37,7 +37,7 @@ public class ChooseAssistant implements Action {
     @Override
     public ActionMessage toMessage() {
 
-        return new ActionMessage(this.description);
+        return new ChooseAssistantDoneMessage(this.description, player.getAssistants().get(assistantID),game.getCurrentPlayer().GetName() );
     }
 
     /**
