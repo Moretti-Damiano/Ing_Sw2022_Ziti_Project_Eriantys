@@ -18,5 +18,6 @@ public class ClientMessageHandler extends ViewObservable {
         notifyObserver(obs->obs.InputErrorHandler(message));
     }
     public void ErrorMessageHandle(ErrorMessage message){notifyObserver(obs->obs.ErrorMessageHandler(message));}
+    public void ConnectionSuccessfulHandle(ConnectionSuccessfulMessage message){notifyObserver(obs->obs.ConnectionSuccessfulHandler(message));}
     // da implementare gli altri metodi della cli (show)
 }
