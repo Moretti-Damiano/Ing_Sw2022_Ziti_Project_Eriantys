@@ -15,6 +15,7 @@ public interface ViewObserver {
     void chooseCharacterHandler(ChooseCharacterDoneMessage message);
     void endTurnHandler(EndTurnDoneMessage message);
     void cloudIslandHandler(ChooseCloudDoneMessage message);
+    void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }

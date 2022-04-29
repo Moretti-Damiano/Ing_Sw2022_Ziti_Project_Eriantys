@@ -1,11 +1,18 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ConnectionSuccessfulMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.InputError;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
+import it.polimi.ingsw.Ziti.launcher.networking.server.SocketServer;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
+
+import javax.imageio.IIOException;
+import java.io.IOException;
 
 //Questa classe VIENE OSSERVATA dalla SocketClient e OSSERVA la cli
 
@@ -15,6 +22,7 @@ public class ClientController extends ClientObservable implements InputObserver 
      * @param message is a "MessageToServer" used to ask information or to do an action
      */
     ClientMessageHandler clientMessageHandler;
+    SocketClient socketClient;
     public void update(MessageToClient message){ message.handle(clientMessageHandler);}
     @Override
     public void onUpdateLogin(String nickname) {
@@ -22,6 +30,25 @@ public class ClientController extends ClientObservable implements InputObserver 
         message=new LoginMessage("cli",nickname);
         notifyObserver(obs->obs.send(message));
     }
+
+    @Override
+    public void onUpdateConnection(String address, String port) {
+        if(isInt(port)){
+       try{socketClient=new SocketClient(address,Integer.parseInt(port));
+           ConnectionSuccessfulMessage message;
+           message=new ConnectionSuccessfulMessage(true);
+           update(message);
+       }catch(IOException e) {
+           ErrorMessage message = new ErrorMessage("ClientController", "Generic IO Error");
+           update(message);}
+       }
+        else{
+                InputError message;
+                message=new InputError("Not numeric value!");
+                update(message);
+            }
+        }
+
 
     @Override
     public void onUpdateChooseAssistant(String id) {
@@ -32,7 +59,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
         else{
             InputError message;
-            message=new InputError("Hai inserito un valore non numerico !");
+            message=new InputError("Not numeric value!");
             update(message);
         }
 
@@ -48,7 +75,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
         else{
             InputError message;
-            message=new InputError("Hai inserito un valore non numerico !");
+            message=new InputError("Not numeric value!");
             update(message);
         }
 
@@ -64,7 +91,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
         else{
             InputError message;
-            message=new InputError("Hai inserito un valore non numerico !");
+            message=new InputError("Not numeric value!");
             update(message);
         }
 
@@ -80,7 +107,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
         else{
             InputError message;
-            message=new InputError("Hai inserito un valore non numerico !");
+            message=new InputError("Not numeric value!");
             update(message);
         }
     }
