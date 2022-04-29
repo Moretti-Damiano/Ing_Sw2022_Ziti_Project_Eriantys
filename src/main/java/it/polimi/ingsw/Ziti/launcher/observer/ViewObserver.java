@@ -6,18 +6,14 @@ public interface ViewObserver {
 
 
     void InputErrorHandler(InputError message);
-    void moveToIslandHandler(MoveToIslandMessage message);
-    void moveToTableHandler(MoveToTableMessage message);
-    void moveMotherHandler(MoveMotherMessage message);
-    void choseAssistantHandler(ChoseAssistantMessage message);
-    void cloudIslandHandler(CloudIslandMessage message);
-    void showErrorMessageHandler(ErrorMessage message);
-    void showAssistantsMessageHandler();
-    void showCharactersMessageHandler();
-    void showIslandsMessageHandler();
-    void showCloudsMessageHandler(showCloudsMessage message);
-    void showMyBoardMessageHandler();
-    void showBoardsMessageHandler();
     void ErrorMessageHandler(ErrorMessage message);
+    void moveToIslandHandler(MoveToIslandDoneMessage message);
+    void moveToTableHandler(MoveToTableDoneMessage message);
+    void moveMotherHandler(MoveMotherDoneMessage message);
+    void chooseAssistantHandler(ChoseAssistantDoneMessage message);
+    void chooseCharacterHandler(ChooseCharacterDoneMessage message);
+    void endTurnHandler(EndTurnDoneMessage message);
+    void cloudIslandHandler(ChooseCloudMessage message);
+
     //Handler per ogni show (con i messaggi che contengono i dati)
 }
