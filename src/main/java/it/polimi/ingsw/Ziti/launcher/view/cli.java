@@ -3,19 +3,18 @@ package it.polimi.ingsw.Ziti.launcher.view;
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
-import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
 import java.lang.Character;
 import java.util.List;
 import java.util.Scanner;
 
-public class cli extends ClientObservable implements view, ViewObserver {
+public class cli extends InputObservable implements view, ViewObserver {
 
     //Questa classe OSSERVA il ClientMessageHandler e VIENE OSSERVATA dal ClientController
 
-    private Scanner sc;
+    private final Scanner sc;
 
     public cli(ClientMessageHandler clientMessageHandler){
         this.sc = new Scanner(System.in);
@@ -136,32 +135,30 @@ public class cli extends ClientObservable implements view, ViewObserver {
         System.out.println("Inserisci il nome utente");
         String username;
         username=sc.nextLine();
-        LoginMessage message;
-        message=new LoginMessage("cli",username);
-        notifyObserver(obs->obs.send(message));
+        notifyObserver(obs->obs.onUpdateLogin(username));
     }
 
     @Override
-    public int askAssistant() {
+    public String askAssistant() {
         System.out.println(" Inserisci l'id di un assistente :");
-        int assistantId;
-        assistantId=sc.nextInt();
+        String assistantId;
+        assistantId=sc.nextLine();
         return assistantId;
     }
 
     @Override
-    public int askCharacter() {
+    public String askCharacter() {
         System.out.println(" Inserisci l'id del character :");
-        int characterId;
-        characterId=sc.nextInt();
+        String characterId;
+        characterId=sc.nextLine();
         return characterId;
     }
 
     @Override
-    public int askIsland() {
+    public String askIsland() {
         System.out.println(" Inserisci un isola :");
-        int islandId;
-       islandId=sc.nextInt();
+        String islandId;
+       islandId=sc.nextLine();
         return islandId;
     }
 
@@ -176,45 +173,35 @@ public class cli extends ClientObservable implements view, ViewObserver {
 
     @Override
     public void askMoveToTable() {
-        MoveToTableMessage m;
-        m=new MoveToTableMessage("cli",askColour());
-        notifyObserver(obs -> obs.send(m));
+        notifyObserver(obs -> obs.onUpdateMoveToTable(askColour()));
 
     }
 
     @Override
     public void askMoveToIsland() {
-        MoveToIslandMessage m;
-        m=new MoveToIslandMessage("cli",askIsland(),askColour());
-        notifyObserver(obs -> obs.send(m));
+        notifyObserver(obs -> obs.onUpdateMoveToIsland(askColour(),askIsland()));
     }
 
     @Override
     public void askMoveMother() {
-        MoveMotherMessage m;
-        int moves;
+        String moves;
         System.out.println("Inserisci di quanto si deve muovere madre natura: ");
-        moves=sc.nextInt();
-        m=new MoveMotherMessage("cli",moves);
-        notifyObserver(obs -> obs.send(m));
+        moves=sc.nextLine();
+        notifyObserver(obs -> obs.onUpdateMoveMother(moves));
 
     }
 
     @Override
     public void askCloudIsland() {
-        CloudIslandMessage m;
-        int cloudID;
+        String cloudID;
         System.out.println("Inserisci l'id della nuvola che desideri : ");
-        cloudID=sc.nextInt();
-        m=new CloudIslandMessage("cli",cloudID);
-        notifyObserver(obs -> obs.send(m));
+        cloudID=sc.nextLine();
+        notifyObserver(obs -> obs.onUpdateCloudIsland(cloudID));
     }
 
     @Override
     public void askChoseAssistant() {
-        ChoseAssistantMessage m;
-        m=new ChoseAssistantMessage("cli",askAssistant());
-        notifyObserver(obs -> obs.send(m));
+        notifyObserver(obs -> obs.onUpdateChooseAssistant(askAssistant()));
     }
 
     public void InputErrorHandler(InputError message) {
@@ -227,64 +214,38 @@ public class cli extends ClientObservable implements view, ViewObserver {
         showErrorMessage(message);
     }
 
-
     @Override
-    public void moveToIslandHandler(MoveToIslandMessage message) {
+    public void moveToIslandHandler(MoveToIslandDoneMessage message) {
 
     }
 
     @Override
-    public void moveToTableHandler(MoveToTableMessage message) {
+    public void moveToTableHandler(MoveToTableDoneMessage message) {
 
     }
 
     @Override
-    public void moveMotherHandler(MoveMotherMessage message) {
+    public void moveMotherHandler(MoveMotherDoneMessage message) {
 
     }
 
     @Override
-    public void choseAssistantHandler(ChoseAssistantMessage message) {
+    public void chooseAssistantHandler(ChoseAssistantDoneMessage message) {
 
     }
 
     @Override
-    public void cloudIslandHandler(CloudIslandMessage message) {
+    public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
 
     }
 
     @Override
-    public void showErrorMessageHandler(ErrorMessage message) {
+    public void endTurnHandler(EndTurnDoneMessage message) {
 
     }
 
     @Override
-    public void showAssistantsMessageHandler() {
-
-    }
-
-    @Override
-    public void showCharactersMessageHandler() {
-
-    }
-
-    @Override
-    public void showIslandsMessageHandler() {
-
-    }
-
-    @Override
-    public void showCloudsMessageHandler(showCloudsMessage message) {
-        showClouds(message.getCloudIslands());
-    }
-
-    @Override
-    public void showMyBoardMessageHandler() {
-
-    }
-
-    @Override
-    public void showBoardsMessageHandler() {
+    public void cloudIslandHandler(ChooseCloudMessage message) {
 
     }
 }
