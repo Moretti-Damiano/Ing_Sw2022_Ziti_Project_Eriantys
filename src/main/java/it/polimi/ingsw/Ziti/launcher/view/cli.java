@@ -278,6 +278,27 @@ public class cli extends InputObservable implements view, ViewObserver {
         }
     }
 
+    @Override
+    public void CompleteRequestHandler(CompletedRequestMessage message) {
+        System.out.println(message.getDescription());
+    }
+
+    @Override
+    public void LoginErrorHandler(LoginError message) {
+        System.out.println(message.getDescription());
+        gameStarter();
+    }
+
+    @Override
+    public void NumOfPlayerHandler(NumOfPLayersRequest message) {
+        askNumberOfPlayer();
+    }
+
+    @Override
+    public void TurnErrorHandler(TurnError message) {
+        System.out.println(message.getDescription());
+    }
+
     public void init(){
         System.out.println("\n" +
                 "8888888888 "+" 8888888b.  "+"8888888  "+"       d8888   "+"888b    888   "+"88888888888 "+"Y88b   d88P "+" .d8888b.      \n"+
@@ -330,6 +351,8 @@ public class cli extends InputObservable implements view, ViewObserver {
                 case "MOVETOTABLE":
                     askMoveToTable();
                     break;
+                default:
+                    System.out.println("Invalid");
             }
         }
 

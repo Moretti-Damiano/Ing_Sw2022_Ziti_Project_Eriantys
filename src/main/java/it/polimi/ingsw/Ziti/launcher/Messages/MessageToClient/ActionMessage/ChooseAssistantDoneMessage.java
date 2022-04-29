@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 
 import java.util.ArrayList;
@@ -23,6 +24,9 @@ public class ChooseAssistantDoneMessage extends ActionMessage{
         return playername;
     }
 
-
+    @Override
+    public void handle(ClientMessageHandler clientMessageHandler) {
+        clientMessageHandler.ChooseAssistantDoneHandle(this);
+    }
 }
 

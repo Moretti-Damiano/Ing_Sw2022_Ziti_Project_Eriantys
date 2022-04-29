@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
 
 import java.util.ArrayList;
@@ -15,5 +16,10 @@ public class ChooseCloudDoneMessage extends ActionMessage{
 
     public ArrayList<CloudIsland> getCloudIslands() {
         return cloudIslands;
+    }
+
+    @Override
+    public void handle(ClientMessageHandler clientMessageHandler) {
+        clientMessageHandler.ChooseCloudIslandDoneHandle(this);
     }
 }

@@ -16,6 +16,10 @@ public interface ViewObserver {
     void endTurnHandler(EndTurnDoneMessage message);
     void cloudIslandHandler(ChooseCloudDoneMessage message);
     void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message);
+    void CompleteRequestHandler(CompletedRequestMessage message);
+    void LoginErrorHandler(LoginError message);
+    void NumOfPlayerHandler(NumOfPLayersRequest message);
+    void TurnErrorHandler(TurnError message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }

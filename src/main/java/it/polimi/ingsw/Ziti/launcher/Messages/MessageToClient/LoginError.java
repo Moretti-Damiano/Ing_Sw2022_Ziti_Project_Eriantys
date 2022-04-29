@@ -12,6 +12,10 @@ public class LoginError extends MessageToClient{
     public void setDescription(String description){
         this.description=description;
     }
-    
-    public void handle(ClientMessageHandler clientMessageHandler){}
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void handle(ClientMessageHandler clientMessageHandler){clientMessageHandler.LoginErrorHandle(this);}
 }
