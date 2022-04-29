@@ -5,13 +5,13 @@ import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 //OSSERVATA dalla cli
 // gestisce le risposte dal server sulla validità dei dati corretti
 public class ClientMessageHandler extends ViewObservable {
-    public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs->obs.showCloudsMessageHandler(message));}
-    public void MoveToIslandDoneHandle(MoveToIslandDoneMessage message);
-    public void MoveToTableDoneHandle(MoveToTableDoneMessage message);
-    public void ChooseCharacterDoneHandle(ChooseCharacterDoneMessage message);
-    public void ChooseAssistantDoneHandle(ChoseAssistantDoneMessage message);
-    public void EndTurnDoneHandle(EndTurnDoneMessage message);
-    public void ChooseCloudIslandDoneHandle(ChooseCloudDoneMessage message);
+    public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs->obs.moveMotherHandler(message));}
+    public void MoveToIslandDoneHandle(MoveToIslandDoneMessage message){notifyObserver(obs->obs.moveToIslandHandler(message));}
+    public void MoveToTableDoneHandle(MoveToTableDoneMessage message){notifyObserver(obs->obs.moveToTableHandler(message));}
+    public void ChooseCharacterDoneHandle(ChooseCharacterDoneMessage message){notifyObserver(obs->obs.chooseCharacterHandler(message));}
+    public void ChooseAssistantDoneHandle(ChosoeAssistantDoneMessage message){notifyObserver(obs->obs.chooseAssistantHandler(message));}
+    public void EndTurnDoneHandle(EndTurnDoneMessage message){notifyObserver(obs->obs.endTurnHandler(message));}
+    public void ChooseCloudIslandDoneHandle(ChooseCloudDoneMessage message){notifyObserver(obs->obs.cloudIslandHandler(message));}
     public void inputErrorHandle(InputError message) {
         notifyObserver(obs->obs.InputErrorHandler(message));
     }

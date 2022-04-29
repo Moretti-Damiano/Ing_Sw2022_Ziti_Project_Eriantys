@@ -230,7 +230,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void chooseAssistantHandler(ChoseAssistantDoneMessage message) {
+    public void chooseAssistantHandler(ChosoeAssistantDoneMessage message) {
 
     }
 
@@ -245,7 +245,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void cloudIslandHandler(ChooseCloudMessage message) {
+    public void cloudIslandHandler(ChooseCloudDoneMessage message) {
 
     }
 }

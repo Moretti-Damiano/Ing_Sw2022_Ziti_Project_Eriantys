@@ -10,10 +10,10 @@ public interface ViewObserver {
     void moveToIslandHandler(MoveToIslandDoneMessage message);
     void moveToTableHandler(MoveToTableDoneMessage message);
     void moveMotherHandler(MoveMotherDoneMessage message);
-    void chooseAssistantHandler(ChoseAssistantDoneMessage message);
+    void chooseAssistantHandler(ChosoeAssistantDoneMessage message);
     void chooseCharacterHandler(ChooseCharacterDoneMessage message);
     void endTurnHandler(EndTurnDoneMessage message);
-    void cloudIslandHandler(ChooseCloudMessage message);
+    void cloudIslandHandler(ChooseCloudDoneMessage message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }
