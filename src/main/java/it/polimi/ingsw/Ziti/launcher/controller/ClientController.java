@@ -2,7 +2,6 @@ package it.polimi.ingsw.Ziti.launcher.controller;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
-import it.polimi.ingsw.Ziti.launcher.observer.ClientObserver;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 
 //Questa classe VIENE OSSERVATA dalla SocketClient e OSSERVA la cli
@@ -24,8 +23,8 @@ public class ClientController extends ClientObservable implements InputObserver 
     @Override
     public void onUpdateChooseAssistant(String id) {
         if(isInt(id)) {
-            ChoseAssistantMessage m;
-            m=new ChoseAssistantMessage("cli",Integer.parseInt(id));
+            ChooseAssistantMessage m;
+            m=new ChooseAssistantMessage("cli",Integer.parseInt(id));
             notifyObserver(obs -> obs.send(m));
         }
         else{

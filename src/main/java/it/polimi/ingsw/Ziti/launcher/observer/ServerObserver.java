@@ -1,10 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
 
 /**
  * Interface used to implement the Observer-Observable pattern between Server and GameController.
@@ -16,7 +12,7 @@ public interface ServerObserver {
     public void moveToIslandHandler(MoveToIslandMessage message);
     public void moveToTableHandler(MoveToTableMessage message);
     public void moveMotherHandler(MoveMotherMessage message);
-    public void choseAssistantHandler(ChoseAssistantMessage message);
+    public void choseAssistantHandler(ChooseAssistantMessage message);
     public void cloudIslandHandler(CloudIslandMessage message);
     public void loginHandler(LoginMessage message);
     public void numberOfPlayerHandler(NumberOfPlayersMessage message);
