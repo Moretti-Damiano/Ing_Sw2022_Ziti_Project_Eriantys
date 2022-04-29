@@ -8,8 +8,8 @@ import it.polimi.ingsw.Ziti.launcher.model.*;
 import static java.util.Objects.isNull;
 
 /**
- * This Action takes 2 parameters, the game instance and nuber of moves that the mother can do
- * Functions: checks valid input, if not valid it retruns an exception
+ * This Action takes 2 parameters, the game instance and number of moves that the mother can do
+ * Functions: checks valid input, if not valid it returns an exception
  *            checks if an island will change players
  *            updates the tower on the island and on player's board
  *            can merge islands
@@ -139,7 +139,7 @@ public class MoveMother implements Action{
         island1.getTowers().addAll(island2.getTowers());
         game.getIslands().remove(island2);
     }
-
+    // checks input of moves
     private void checkInput() throws ActionException{
         if(moves < 1 || moves > game.getCurrentPlayer().getAssChosen().getMovesMother())
             throw new ActionException();

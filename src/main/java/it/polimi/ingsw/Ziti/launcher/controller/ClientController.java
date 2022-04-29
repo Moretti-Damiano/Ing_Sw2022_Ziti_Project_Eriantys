@@ -7,15 +7,23 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 
-//Questa classe VIENE OSSERVATA dalla SocketClient e OSSERVA la cli
+/**
+ * This class observes cli and is observed by SocketClient
+ */
+
 
 public class ClientController extends ClientObservable implements InputObserver {
-    /**
-     *
-     * @param message is a "MessageToServer" used to ask information or to do an action
-     */
+
     ClientMessageHandler clientMessageHandler;
+
+    /**
+     * this method is used to bring Messages to Client from Server to cli
+     */
+
     public void update(MessageToClient message){ message.handle(clientMessageHandler);}
+
+
+
     @Override
     public void onUpdateLogin(String nickname) {
         LoginMessage message;
@@ -32,7 +40,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
         else{
             InputError message;
-            message=new InputError("Hai inserito un valore non numerico !");
+            message=new InputError("You didn't insert a numeric input! ");
             update(message);
         }
 
@@ -48,7 +56,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
         else{
             InputError message;
-            message=new InputError("Hai inserito un valore non numerico !");
+            message=new InputError("You didn't insert a numeric input! ");
             update(message);
         }
 
@@ -64,7 +72,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
         else{
             InputError message;
-            message=new InputError("Hai inserito un valore non numerico !");
+            message=new InputError("You didn't insert a numeric input! ");
             update(message);
         }
 
@@ -80,7 +88,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
         else{
             InputError message;
-            message=new InputError("Hai inserito un valore non numerico !");
+            message=new InputError("You didn't insert a numeric input! ");
             update(message);
         }
     }
@@ -91,6 +99,20 @@ public class ClientController extends ClientObservable implements InputObserver 
         m=new MoveToTableMessage("cli",colour);
         notifyObserver(obs -> obs.send(m));
 
+    }
+
+    @Override
+    public void onUpdateNumberOfPlayer(String numberOfPlayer) {
+        if(isInt(numberOfPlayer)) {
+            NumberOfPlayersMessage m;
+            m=new NumberOfPlayersMessage("cli",Integer.parseInt(numberOfPlayer));
+            notifyObserver(obs -> obs.send(m));
+        }
+        else{
+            InputError message;
+            message=new InputError("You didn't insert a numeric input! ");
+            update(message);
+        }
     }
 
     private Boolean isInt (String value){

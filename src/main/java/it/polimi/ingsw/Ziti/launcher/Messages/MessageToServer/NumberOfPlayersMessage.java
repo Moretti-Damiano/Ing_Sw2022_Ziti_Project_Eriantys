@@ -3,12 +3,12 @@ package it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 
 public class NumberOfPlayersMessage extends MessagetoServer{
-    int numberofplayers;
+    int numberOfPlayers;
     String sender;
 
     public NumberOfPlayersMessage(String sender, int numberofplayers){
         this.sender=sender;
-        this.numberofplayers=numberofplayers;
+        this.numberOfPlayers=numberofplayers;
     }
 
     public  String getSender(){
@@ -16,7 +16,7 @@ public class NumberOfPlayersMessage extends MessagetoServer{
     }
 
     public int getNumberOfPlayers() {
-        return numberofplayers;
+        return numberOfPlayers;
     }
 
     @Override

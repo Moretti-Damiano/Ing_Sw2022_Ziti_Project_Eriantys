@@ -23,7 +23,6 @@ public class ChooseAssistant implements Action {
      */
     @Override
     public void execute() {
-
         if(checkValidate()){
             player.setAssChoosed(player.getAssistants().get(assistantID));
             player.getAssistants().get(assistantID).setActual(true);
@@ -33,7 +32,6 @@ public class ChooseAssistant implements Action {
         }
 
     }
-
     @Override
     public ActionMessage toMessage() {
 

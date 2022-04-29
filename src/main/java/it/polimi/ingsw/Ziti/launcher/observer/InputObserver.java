@@ -7,4 +7,5 @@ public interface InputObserver {
     void onUpdateMoveMother(String moves);
     void onUpdateMoveToIsland(String colour,String id);
     void onUpdateMoveToTable(String colour);
+    void onUpdateNumberOfPlayer(String numberOfPlayer);
 }

@@ -5,6 +5,9 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.Choo
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
+/**
+ * This action is used to Choose a Cloud Island in the game
+ */
 public class ChooseCloud implements Action{
 
     private Game game;
@@ -39,7 +42,12 @@ public class ChooseCloud implements Action{
         return new ChooseCloudDoneMessage(description,game.getCloudIslands());
     }
 
+    /**
+     * Check that input is correct
+     * @throws ActionException
+     */
     private void checkInput() throws ActionException {
+        // verify chosenCloud's Id
         if(chosenCloudId < 0 || chosenCloudId > game.getCloudIslands().size()-1){
             System.out.println("Cloud "+ chosenCloudId + " does not exist");
             throw new ActionException();

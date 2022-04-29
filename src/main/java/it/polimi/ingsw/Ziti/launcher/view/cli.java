@@ -173,6 +173,13 @@ public class cli extends InputObservable implements view, ViewObserver {
         return colour;
 
     }
+    @Override
+    public String askNumberOfPlayer(){
+        System.out.println("Insert the number of players: ");
+        String numberOfPlayer;
+        numberOfPlayer=sc.nextLine();
+        return numberOfPlayer;
+    }
 
     @Override
     public void askMoveToTable() {

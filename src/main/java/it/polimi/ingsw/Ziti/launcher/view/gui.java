@@ -93,4 +93,9 @@ public class gui implements view{
     public void askChoseAssistant() {
 
     }
+
+    @Override
+    public String askNumberOfPlayer() {
+        return null;
+    }
 }

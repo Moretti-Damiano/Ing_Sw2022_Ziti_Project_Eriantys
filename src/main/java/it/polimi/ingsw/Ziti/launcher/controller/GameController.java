@@ -15,7 +15,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
+/**
+ * This class observes Game (the model) and the Server and is observed by the Server
+ */
+
 public class GameController extends GameControllerObservable implements ServerObserver, Observer {
+
 
     private Game game;
     private TurnController turnController;
@@ -69,7 +74,10 @@ public class GameController extends GameControllerObservable implements ServerOb
             notifyObserver(obs -> obs.sendToOnePlayer(new LoginError("Name already used, try again"), message.getSender()));
     }
 
-
+    /**
+     * This method is used to verify the number of players
+     * @param message is a Message To Server
+     */
     public void numberOfPlayerHandler(NumberOfPlayersMessage message){
         if(message.getNumberOfPlayers() < 2 || message.getNumberOfPlayers() > 4){
             notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid number of players"),message.getSender()));
