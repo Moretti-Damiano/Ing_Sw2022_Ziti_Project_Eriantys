@@ -230,7 +230,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void chooseAssistantHandler(ChosoeAssistantDoneMessage message) {
+    public void chooseAssistantHandler(ChooseAssistantDoneMessage message) {
 
     }
 

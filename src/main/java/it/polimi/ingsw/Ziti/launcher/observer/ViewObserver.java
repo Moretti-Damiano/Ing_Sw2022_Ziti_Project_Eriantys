@@ -10,7 +10,7 @@ public interface ViewObserver {
     void moveToIslandHandler(MoveToIslandDoneMessage message);
     void moveToTableHandler(MoveToTableDoneMessage message);
     void moveMotherHandler(MoveMotherDoneMessage message);
-    void chooseAssistantHandler(ChosoeAssistantDoneMessage message);
+    void chooseAssistantHandler(ChooseAssistantDoneMessage message);
     void chooseCharacterHandler(ChooseCharacterDoneMessage message);
     void endTurnHandler(EndTurnDoneMessage message);
     void cloudIslandHandler(ChooseCloudDoneMessage message);
