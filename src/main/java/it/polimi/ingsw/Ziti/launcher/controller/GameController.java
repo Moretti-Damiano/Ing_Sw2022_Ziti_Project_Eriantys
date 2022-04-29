@@ -70,6 +70,7 @@ public class GameController extends GameControllerObservable implements ServerOb
             if(players.size() == 1){
                 notifyObserver(obs -> obs.requestPlayerNumber(new NumOfPLayersRequest(),message.getUsername()));
             }
+            turnController.updatePhase();
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new LoginError("Name already used, try again"), message.getSender()));
@@ -126,7 +127,7 @@ public class GameController extends GameControllerObservable implements ServerOb
             turnController.updatePhase();
         }
         else{
-           notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
 
@@ -135,14 +136,14 @@ public class GameController extends GameControllerObservable implements ServerOb
         if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.MOVEMENT)){
             game.setAction(new MoveToTable(game,message.getColour().toLowerCase(Locale.ROOT)));
             try {
-                game.doAction();
+            game.doAction();
             } catch (ActionException e) {
-                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
+            notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
             turnController.updatePhase();
         }
         else{
-            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+           notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
 
