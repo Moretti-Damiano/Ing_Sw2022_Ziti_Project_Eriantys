@@ -16,9 +16,9 @@ public interface view {
     void showBoards(List<Player> players);
     void showErrorMessage(ErrorMessage message);
     void askLogin();
-    int askAssistant();
-    int askCharacter();
-    int askIsland();
+    String askAssistant();
+    String askCharacter();
+    String askIsland();
     String askColour();
     void askMoveToTable();
     void askMoveToIsland();

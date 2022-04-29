@@ -5,7 +5,13 @@ import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 //OSSERVATA dalla cli
 // gestisce le risposte dal server sulla validità dei dati corretti
 public class ClientMessageHandler extends ViewObservable {
-    public void showCloudsHandle(showCloudsMessage message){notifyObserver(obs->obs.showCloudsMessageHandler(message));}
+    public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs->obs.showCloudsMessageHandler(message));}
+    public void MoveToIslandDoneHandle(MoveToIslandDoneMessage message);
+    public void MoveToTableDoneHandle(MoveToTableDoneMessage message);
+    public void ChooseCharacterDoneHandle(ChooseCharacterDoneMessage message);
+    public void ChooseAssistantDoneHandle(ChoseAssistantDoneMessage message);
+    public void EndTurnDoneHandle(EndTurnDoneMessage message);
+    public void ChooseCloudIslandDoneHandle(ChooseCloudDoneMessage message);
     public void inputErrorHandle(InputError message) {
         notifyObserver(obs->obs.InputErrorHandler(message));
     }

@@ -30,12 +30,12 @@ public class gui implements view{
     }
 
     @Override
-    public void showMyBoard(Player currentPlayer){
+    public void showMyBoard(Player currentPlayer) {
 
     }
 
     @Override
-    public void showBoards(List<Player> players){
+    public void showBoards(List<Player> players) {
 
     }
 
@@ -50,25 +50,23 @@ public class gui implements view{
     }
 
     @Override
-    public int askAssistant() {
-
-        return 0;
+    public String askAssistant() {
+        return null;
     }
 
     @Override
-    public int askCharacter() {
-
-        return 0;
+    public String askCharacter() {
+        return null;
     }
 
     @Override
-    public int askIsland() {
-    return 0;
+    public String askIsland() {
+        return null;
     }
 
     @Override
     public String askColour() {
-        return String.valueOf(0);
+        return null;
     }
 
     @Override
@@ -95,5 +93,4 @@ public class gui implements view{
     public void askChoseAssistant() {
 
     }
-
 }
