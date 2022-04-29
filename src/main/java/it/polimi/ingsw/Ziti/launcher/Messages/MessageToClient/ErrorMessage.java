@@ -1,6 +1,7 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 
-import java.io.Serializable;
+import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 
 public class ErrorMessage extends MessageToClient {
 

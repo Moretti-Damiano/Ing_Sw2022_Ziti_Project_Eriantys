@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 
 /**
  * Interface used to implement the Observer-Observable pattern between Server and GameController.

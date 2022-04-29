@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.networking.server;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessagetoServer;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
 
 import java.io.IOException;
 import java.net.ServerSocket;

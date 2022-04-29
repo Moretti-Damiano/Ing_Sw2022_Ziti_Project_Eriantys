@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MoveMotherDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.MoveMotherDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 

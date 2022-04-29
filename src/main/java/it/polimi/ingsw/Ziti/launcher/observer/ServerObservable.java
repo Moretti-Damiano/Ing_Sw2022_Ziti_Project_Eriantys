@@ -1,7 +1,5 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Consumer;

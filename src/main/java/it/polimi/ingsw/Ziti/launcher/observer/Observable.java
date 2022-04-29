@@ -1,13 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.Message;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
-import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
-
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Consumer;
 
 /**
  * Implementation of the observable class

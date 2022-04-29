@@ -1,8 +1,11 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer;
+
+import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 
 import java.io.Serializable;
 
-public abstract class MessagetoServer extends Message{
+public abstract class MessagetoServer extends Message {
     private String Sender;
 
     public void setSender(String sender) {
