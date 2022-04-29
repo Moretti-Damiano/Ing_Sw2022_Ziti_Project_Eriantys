@@ -12,7 +12,7 @@ import java.io.IOException;
  */
 public class ServerMessageHandler extends ServerObservable {
 
-    public void loginHandler(LoginMessage message) throws ParserConfigurationException,IOException,SAXException{
+    public void loginHandler(LoginMessage message){
         notifyObserver(obs -> obs.loginHandler(message));
     }
 

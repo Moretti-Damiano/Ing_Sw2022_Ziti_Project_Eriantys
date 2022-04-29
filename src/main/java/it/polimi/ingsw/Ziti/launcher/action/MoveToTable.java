@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
@@ -12,6 +13,7 @@ public class MoveToTable implements Action{
 
     private Game game;
     private String chosencolour;
+     private String description;
 
 
     public MoveToTable(Game game, String chosencolour){
@@ -25,14 +27,22 @@ public class MoveToTable implements Action{
         this.controlProfessor(Colour.valueOf(chosencolour.toLowerCase(Locale.ROOT)));
     }
 
+    @Override
+    public ActionMessage toMessage() {
+
+        return new ActionMessage(this.description);
+    }
+
     /**
      * add a student to the row with the same colour and check if the new student is on a 'coin generator' position
      * @param student_colour the colour of the student to add
      */
     private void goLunch(Colour student_colour) {
         game.getCurrentPlayer().getBoard().addStudenttoColourRow(game.getCurrentPlayer().getBoard().removeStudent(student_colour));
+        description=description.concat(game.getCurrentPlayer().GetName() + "moved a"+ chosencolour + "student from his waiting room to his dining room");
         if(game.getCurrentPlayer().getBoard().checkCoin(student_colour)){
             game.getCurrentPlayer().getBoard().addCoin(game.getGameWallet().getCoin());
+            description=description.concat("new coin added to" + game.getCurrentPlayer().GetName() + "wallet");
         }
     }
 
@@ -44,10 +54,12 @@ public class MoveToTable implements Action{
         Player profplayer= game.checkProfessor(professor_colour);
         if(profplayer==null){
             game.getCurrentPlayer().getBoard().addProfessor(game.getProfessorbyColour(professor_colour));
+            description=description.concat(game.getCurrentPlayer().GetName() + " now controls the" + chosencolour + "professor");
         }
         if(profplayer!=null && profplayer!=game.getCurrentPlayer()){
             if(checkInfluence(profplayer,professor_colour)){
                 game.getCurrentPlayer().getBoard().addProfessor(profplayer.getBoard().removeProfessorByColour(professor_colour));
+                description=description.concat(game.getCurrentPlayer().GetName() + " now controls the" + chosencolour + "professor");
             }
         }
     }

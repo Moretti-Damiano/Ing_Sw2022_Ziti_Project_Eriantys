@@ -244,7 +244,7 @@ public class Game extends Observable {
 
     public void doAction() throws ActionException {
         action.execute();
-        notifyObserver(action.toMessage()));
+        notifyObserver(action.toMessage());
     }
 
     /**

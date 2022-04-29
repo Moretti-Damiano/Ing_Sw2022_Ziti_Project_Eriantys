@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 
 /**
@@ -8,4 +9,5 @@ import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 public interface Action {
     
     public void execute() throws ActionException;
+    public ActionMessage toMessage();
 }

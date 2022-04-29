@@ -1,4 +1,5 @@
 package it.polimi.ingsw.Ziti.launcher.action;
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
@@ -10,6 +11,7 @@ import java.util.stream.IntStream;
 public class EndTurn implements Action {
 
    private Game game;
+   private String description;
 
 
    public EndTurn(Game game) {
@@ -30,11 +32,17 @@ public class EndTurn implements Action {
          // for each Player set actualAssistant as null
          IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setAssChoosed(null));
 
+         description = "The turn has ended";
 
-      } 
-   
+      }
 
-   private void checkEmptyIslands() throws ActionException {
+    @Override
+    public ActionMessage toMessage() {
+        return null;
+    }
+
+
+    private void checkEmptyIslands() throws ActionException {
       // check if the Cloud Islands are empty
       for (CloudIsland cloudIsland : game.getCloudIslands()) {
          if(! cloudIsland.getStudents().isEmpty() ) throw new ActionException();

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
@@ -8,6 +9,7 @@ public class ChooseAssistant implements Action {
     private Game game;
     private int assistantID;
     private Player player;
+    private String description;
 
     public ChooseAssistant (Game game, Player player,int assistantID){
         this.game=game;
@@ -26,8 +28,16 @@ public class ChooseAssistant implements Action {
             player.setAssChoosed(player.getAssistants().get(assistantID));
             player.getAssistants().get(assistantID).setActual(true);
             player.getAssistants().get(assistantID).setAssChose(true);
+            description=description.concat(game.getCurrentPlayer().GetName() + " chose the assistant with move mother value: " + player.getAssistants().get(assistantID).getMovesMother()
+                                                                              + "and priority value:" + player.getAssistants().get(assistantID).getValue());
         }
 
+    }
+
+    @Override
+    public ActionMessage toMessage() {
+
+        return new ActionMessage(this.description);
     }
 
     /**

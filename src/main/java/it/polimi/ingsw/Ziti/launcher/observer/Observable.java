@@ -2,6 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.observer;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.Message;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandMessage;
 
 import java.util.ArrayList;
@@ -35,7 +36,7 @@ public class Observable {
      * Notifies all the observers with a message
      * @param message is the message sent to the observers
      */
-    public void notifyObserver(Message message) {
+    public void notifyObserver(MessageToClient message) {
         for (Observer observer : observers) {
             observer.update(message);
         }

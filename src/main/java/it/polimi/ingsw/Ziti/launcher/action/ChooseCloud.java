@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
@@ -9,6 +10,7 @@ public class ChooseCloud implements Action{
     private int chosenCloudId;
     private Player player;
     private CloudIsland chosenCloud;
+    private String description;
 
     public ChooseCloud(Game game, Player player , int chosenCloudId){
         this.game = game;
@@ -24,8 +26,16 @@ public class ChooseCloud implements Action{
     public void execute() throws ActionException {
             checkInput();
             this.chosenCloud = game.getCloudIslands().get(chosenCloudId);
+
+            description = (game.getCurrentPlayer().GetName() + "has chose cloudIsland n. " + chosenCloud);
+
             for (Student s : chosenCloud.toEmpty())
                 player.getBoard().addStudent(s);
+    }
+
+    @Override
+    public ActionMessage toMessage() {
+        return new ActionMessage(description);
     }
 
     private void checkInput() throws ActionException {
