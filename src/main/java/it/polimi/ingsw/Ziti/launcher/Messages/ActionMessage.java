@@ -1,8 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
-public class ActionMessage extends MessageToClient {
+public abstract class ActionMessage extends MessageToClient {
 
-    String description;
+    private String description;
 
     public ActionMessage(String description){
         this.description = description;
