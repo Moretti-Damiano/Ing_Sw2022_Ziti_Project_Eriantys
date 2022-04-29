@@ -214,6 +214,9 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
         showErrorMessage(message);
+        if(message.getDescription()=="Invalid port/host"||message.getDescription()=="Connection lost"){
+            init();
+        }
     }
 
     @Override
@@ -276,9 +279,43 @@ public class cli extends InputObservable implements view, ViewObserver {
         String address=sc.nextLine();
         System.out.println("Enter the server port §"+defaultPort+"§");
         String port=sc.nextLine();
+        notifyObserver(obs->obs.onUpdateConnection(address,port));
 
     }
     public void gameStarter(){
+        System.out.println("If is your first action, Type LOGIN to insert your username");
+        System.out.println("MAIN ACTION");
+        System.out.println("Type CHOOSEASSISTANT to chose your assistant");
+        System.out.println("Type CHOOSECHARACTER to choose your character");
+        System.out.println("Type CHOOSECLOUD to chose your cloud");
+        System.out.println("Type MOVEMOTHER to chose the number of mother's movements");
+        System.out.println("Type MOVETOISLAND to chose the island where you want to put your students");
+        System.out.println("Type MOVETOTABLE if you want to put your studend on the table");
+        while(true){
+            String input;
+            input=sc.nextLine();
+            switch(input){
+                case "CHOOSEASSISTANT":
+                    askChoseAssistant();
+                    break;
+                case "CHOOSECHARACTER":
+                    askCharacter();
+                    break;
+                case "CHOOSECLOUD":
+                    askCloudIsland();
+                    break;
+                case "MOVEMOTHER":
+                    askMoveMother();
+                    break;
+                case "MOVETOISLAND":
+                    askMoveToIsland();
+                    break;
+                case "MOVETOTABLE":
+                    askMoveToTable();
+                    break;
+            }
+        }
+
 
     }
 
