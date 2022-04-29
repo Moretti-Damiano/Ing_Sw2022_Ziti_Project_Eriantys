@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MoveToIslandDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
@@ -16,6 +17,7 @@ public class MoveToIsland implements Action{
     private Game game;
     private int chosenIsland;
     private String studentColour;
+    private String description;
 
     public MoveToIsland(Game game, int chosenIsland, String studentColour) {
 
@@ -34,12 +36,12 @@ public class MoveToIsland implements Action{
         checkInput();
         Island island = game.getIslandbyId(chosenIsland);
         island.addStudent(game.getCurrentPlayer().getBoard().removeStudent(Colour.valueOf(studentColour.toLowerCase(Locale.ROOT))));
-
+        description=description.concat(game.getCurrentPlayer().GetName() + "moved a" + studentColour + "student to the island" + (chosenIsland) );
     }
 
     @Override
     public ActionMessage toMessage() {
-        return null;
+        return new MoveToIslandDoneMessage(this.description, game.getIslands(), game.getCurrentPlayer().getBoard(),game.getCurrentPlayer().GetName());
     }
 
     /**

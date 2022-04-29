@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MoveMotherDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MoveToTableDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
@@ -30,7 +32,7 @@ public class MoveToTable implements Action{
     @Override
     public ActionMessage toMessage() {
 
-        return new ActionMessage(this.description);
+        return new MoveToTableDoneMessage(this.description,game.getCurrentPlayer().getBoard(),game.getCurrentPlayer().GetName());
     }
 
     /**
