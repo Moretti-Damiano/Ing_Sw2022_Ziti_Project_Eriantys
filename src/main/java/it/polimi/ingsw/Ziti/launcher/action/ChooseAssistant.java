@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.ChooseAssistantDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseAssistantDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 

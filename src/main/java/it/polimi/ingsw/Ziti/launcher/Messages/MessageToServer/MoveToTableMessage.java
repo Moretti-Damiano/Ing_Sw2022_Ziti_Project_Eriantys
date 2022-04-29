@@ -1,8 +1,6 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer;
 
-import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
-
-import java.io.Serializable;
+import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 
 public class MoveToTableMessage extends MessagetoServer {
     String sender;

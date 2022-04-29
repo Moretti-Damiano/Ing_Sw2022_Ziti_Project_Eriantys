@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.ChooseCloudDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCloudDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 

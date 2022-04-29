@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 
 import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
 

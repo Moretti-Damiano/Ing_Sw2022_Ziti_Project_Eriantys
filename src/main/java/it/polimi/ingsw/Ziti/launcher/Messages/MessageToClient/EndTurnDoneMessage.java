@@ -1,11 +1,12 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Character;
 
 import java.util.ArrayList;
 
-public class EndTurnDoneMessage extends ActionMessage{
+public class EndTurnDoneMessage extends ActionMessage {
 
     private ArrayList<Island> islands;
     private ArrayList<Board> boards;

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 
 public interface ViewObserver {
 

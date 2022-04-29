@@ -1,4 +1,7 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
+
+import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 
 public abstract class ActionMessage extends MessageToClient {
 

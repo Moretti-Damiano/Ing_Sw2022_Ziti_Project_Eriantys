@@ -1,8 +1,6 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer;
 
-import it.polimi.ingsw.Ziti.launcher.model.Island;
-
-import java.io.Serializable;
+import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 
 public class MoveToIslandMessage extends MessagetoServer {
 
