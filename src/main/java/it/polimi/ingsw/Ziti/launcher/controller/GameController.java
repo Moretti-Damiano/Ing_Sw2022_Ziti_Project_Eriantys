@@ -2,6 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.controller;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.action.*;
+import it.polimi.ingsw.Ziti.launcher.enumeration.Phase;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
@@ -28,8 +29,11 @@ public class GameController extends GameControllerObservable implements ServerOb
     private int numberOfPlayers; //game for n plauers
 
     public GameController(){
-        this.turnController = new TurnController();
         players = new ArrayList<>();
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     /**
@@ -56,7 +60,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void loginHandler(LoginMessage message)  {
-        if(getPlayerByName(message.getUsername()) == null) {
+        if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers) {
             try {
                 players.add(new Player(message.getUsername()));
             } catch (ParserConfigurationException | IOException | SAXException e) {
@@ -66,12 +70,14 @@ public class GameController extends GameControllerObservable implements ServerOb
             if(players.size() == 1){
                 notifyObserver(obs -> obs.requestPlayerNumber(new NumOfPLayersRequest(),message.getUsername()));
             }
-            if(players.size() == numberOfPlayers){
-                startGame();
-            }
         }
-        else
+        else{
             notifyObserver(obs -> obs.sendToOnePlayer(new LoginError("Name already used, try again"), message.getSender()));
+            return;
+        }
+        if(players.size() == numberOfPlayers){
+            startGame();
+        }
     }
 
     /**
@@ -81,6 +87,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     public void numberOfPlayerHandler(NumberOfPlayersMessage message){
         if(message.getNumberOfPlayers() < 2 || message.getNumberOfPlayers() > 4){
             notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid number of players"),message.getSender()));
+            notifyObserver(obs -> obs.requestPlayerNumber(new NumOfPLayersRequest(),message.getSender()));
         }
         else {
             this.numberOfPlayers = message.getNumberOfPlayers();
@@ -89,14 +96,34 @@ public class GameController extends GameControllerObservable implements ServerOb
     }
 
     @Override
-    public void moveToIslandHandler(MoveToIslandMessage message) {
-        if(checkActivePlayer(message.getSender())){
-        game.setAction( new MoveToIsland(game,message.getIslandID(),message.getColour().toLowerCase(Locale.ROOT)));
-        try {
-            game.doAction();
-        } catch (ActionException e) {
-            notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
+    public void choseAssistantHandler(ChooseAssistantMessage message) {
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.PLANNING)){
+            game.setAction(new ChooseAssistant(game, turnController.getCurrentPlayer(),message.getAssistantId()));
+            try {
+                game.doAction();
+                turnController.getPlayerAssistants().put(turnController.getCurrentPlayer().getAssistants().get(message.getAssistantId()).getValue(),
+                        turnController.getCurrentPlayer());
+
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
+            }
+            turnController.updatePhase();
         }
+        else{
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+        }
+    }
+
+    @Override
+    public void moveToIslandHandler(MoveToIslandMessage message) {
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.MOVEMENT)){
+            game.setAction( new MoveToIsland(game,message.getIslandID(),message.getColour().toLowerCase(Locale.ROOT)));
+            try {
+            game.doAction();
+            } catch (ActionException e) {
+            notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
+            }
+            turnController.updatePhase();
         }
         else{
            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
@@ -105,13 +132,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void moveToTableHandler(MoveToTableMessage message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.MOVEMENT)){
             game.setAction(new MoveToTable(game,message.getColour().toLowerCase(Locale.ROOT)));
             try {
                 game.doAction();
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
+            turnController.updatePhase();
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
@@ -120,43 +148,31 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void moveMotherHandler(MoveMotherMessage message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.MOTHER)){
             game.setAction(new MoveMother(game,message.getMoves()));
             try {
                 game.doAction();
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
+            turnController.updatePhase();
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
 
-    @Override
-    public void choseAssistantHandler(ChooseAssistantMessage message) {
-        if(checkActivePlayer(message.getSender())){
-            game.setAction(new ChooseAssistant(game, turnController.getCurrentPlayer(),message.getAssistantId()));
-            try {
-                game.doAction();
-            } catch (ActionException e) {
-                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
-            }
-        }
-        else{
-            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
-        }
-    }
 
     @Override
     public void cloudIslandHandler(CloudIslandMessage message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.CLOUD)){
             game.setAction(new ChooseCloud(game,turnController.getCurrentPlayer(),message.getCloudId()));
             try {
                 game.doAction();
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
+            turnController.updatePhase();
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
@@ -174,5 +190,6 @@ public class GameController extends GameControllerObservable implements ServerOb
     private void startGame(){
         this.game = new Game(players);
         game.addObserver(this);
+        this.turnController = new TurnController(this,players);
     }
 }

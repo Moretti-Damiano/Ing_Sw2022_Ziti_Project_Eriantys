@@ -1,9 +1,13 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ConnectionSuccessfulMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.InputError;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
+import it.polimi.ingsw.Ziti.launcher.networking.server.SocketServer;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 
@@ -11,10 +15,15 @@ import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
  * This class observes cli and is observed by SocketClient
  */
 
+import javax.imageio.IIOException;
+import java.io.IOException;
+
+//Questa classe VIENE OSSERVATA dalla SocketClient e OSSERVA la cli
 
 public class ClientController extends ClientObservable implements InputObserver {
 
     ClientMessageHandler clientMessageHandler;
+    SocketClient socketClient;
 
     /**
      * this method is used to bring Messages to Client from Server to cli
@@ -30,6 +39,25 @@ public class ClientController extends ClientObservable implements InputObserver 
         message=new LoginMessage("cli",nickname);
         notifyObserver(obs->obs.send(message));
     }
+
+    @Override
+    public void onUpdateConnection(String address, String port) {
+        if(isInt(port)){
+       try{socketClient=new SocketClient(address,Integer.parseInt(port));
+           ConnectionSuccessfulMessage message;
+           message=new ConnectionSuccessfulMessage(true);
+           update(message);
+       }catch(IOException e) {
+           ErrorMessage message = new ErrorMessage("ClientController", "Generic IO Error");
+           update(message);}
+       }
+        else{
+                InputError message;
+                message=new InputError("Not numeric value!");
+                update(message);
+            }
+        }
+
 
     @Override
     public void onUpdateChooseAssistant(String id) {

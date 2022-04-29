@@ -21,9 +21,9 @@ public class EndTurn implements Action {
    }
 
    @Override
-   public void execute() throws ActionException {
+   public void execute(){
       
-         checkEmptyIslands();
+         //checkEmptyIslands();
          // for each CloudIsland calls the method toFill
          IntStream.range(0, game.getCloudIslands().size()).forEach(i -> game.getCloudIslands().get(i).toFill());
          // for each Player set false actual Assistants
@@ -43,10 +43,10 @@ public class EndTurn implements Action {
     }
 
 
-    private void checkEmptyIslands() throws ActionException {
+    /*private void checkEmptyIslands() throws ActionException {
       // check if the Cloud Islands are empty
       for (CloudIsland cloudIsland : game.getCloudIslands()) {
          if(! cloudIsland.getStudents().isEmpty() ) throw new ActionException();
       }
-   }
+   }*/
 }

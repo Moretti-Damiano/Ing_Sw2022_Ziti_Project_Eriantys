@@ -23,7 +23,13 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
 
     public SocketClient (String address, int port) throws IOException{
             this.socket = new Socket();
-            this.socket.connect(new InetSocketAddress(address, port), TIMEOUT);
+            try {
+                this.socket.connect(new InetSocketAddress(address, port), TIMEOUT);
+            }catch(IllegalArgumentException i){
+                errorMessage=new ErrorMessage("SocketClint","Invalid port/host");
+                notifyObserver(obs->obs.update(errorMessage));
+                socket.close();
+            }
             this.outputStm = new ObjectOutputStream(socket.getOutputStream());
             this.inputStm = new ObjectInputStream(socket.getInputStream());
     }
@@ -64,100 +70,6 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
             }
         }
     }
-    /*
-    private void send(LoginMessage message) {
-        try {
-            outputStm.writeObject(message);
-            outputStm.reset();
-        } catch (IOException e) {
-            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            notifyObserver(obs->obs.update(errorMessage));
-        }
-    }
-    private void send(ChoseAssistantMessage message) {
-        try {
-            outputStm.writeObject(message);
-            outputStm.reset();
-        } catch (IOException e) {
-            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            notifyObserver(obs->obs.update(errorMessage));
-        }
-    }
-    private void send(CloudIslandMessage message) {
-        try {
-            outputStm.writeObject(message);
-            outputStm.reset();
-        } catch (IOException e) {
-            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            notifyObserver(obs->obs.update(errorMessage));
-        }
-    }
-    private void send(MoveMotherMessage message) {
-        try {
-            outputStm.writeObject(message);
-            outputStm.reset();
-        } catch (IOException e) {
-            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            notifyObserver(obs->obs.update(errorMessage));
-        }
-    }
-    private void send(MoveToTableMessage message) {
-        try {
-            outputStm.writeObject(message);
-            outputStm.reset();
-        } catch (IOException e) {
-            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            notifyObserver(obs->obs.update(errorMessage));
-        }
-    }
-*/
-
-
-
-
-
-/*
-
-    public void receiveMoveToIslandMessage(){
-
-        while(true){
-            MoveToIslandMessage message;
-            try{
-                if(inputStm.available()!=0){
-                    message=(MoveToIslandMessage) inputStm.readObject();
-                    notifyObserver(obs->obs.update(message));
-                }
-
-            } catch (IOException | ClassNotFoundException e) {
-
-                errorMessage = new ErrorMessage("SocketClient","Connection lost");
-                notifyObserver(obs->obs.update(errorMessage));
-                disconnect();
-            }
-
-        }
-    }
-    public void receiveLoginMessage(){
-
-        while(true){
-            LoginMessage message;
-            try{
-                if(inputStm.available()!=0){
-                    message=(LoginMessage) inputStm.readObject();
-                    notifyObserver(obs->obs.update(message));
-                }
-
-            } catch (IOException | ClassNotFoundException e) {
-
-                errorMessage = new ErrorMessage("SocketClient","Connection lost");
-                notifyObserver(obs->obs.update(errorMessage));
-                disconnect();
-            }
-
-        }
-    }
-
- */
 
     public void disconnect() {
 

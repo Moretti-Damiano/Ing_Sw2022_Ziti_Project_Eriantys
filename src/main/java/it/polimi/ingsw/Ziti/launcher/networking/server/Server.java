@@ -8,7 +8,7 @@ public class Server implements GameControllerObserver {
 
     private int port;
     private SocketServer socketServer;
-    private ServerMessageHandler serverMessageHandler; //needs to be observed by gamecontroller
+    private ServerMessageHandler serverMessageHandler; //observed by GameController
 
     public Server(int port){
         this.port = port;
