@@ -2,6 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.controller;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.action.*;
+import it.polimi.ingsw.Ziti.launcher.enumeration.Phase;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
@@ -23,8 +24,12 @@ public class GameController extends GameControllerObservable implements ServerOb
     private int numberOfPlayers; //game for n plauers
 
     public GameController(){
-        this.turnController = new TurnController();
+        //this.turnController = new TurnController();
         players = new ArrayList<>();
+    }
+
+    public Game getGame() {
+        return game;
     }
 
     /**
@@ -82,7 +87,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void moveToIslandHandler(MoveToIslandMessage message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.MOVEMENT)){
         game.setAction( new MoveToIsland(game,message.getIslandID(),message.getColour().toLowerCase(Locale.ROOT)));
         try {
             game.doAction();
