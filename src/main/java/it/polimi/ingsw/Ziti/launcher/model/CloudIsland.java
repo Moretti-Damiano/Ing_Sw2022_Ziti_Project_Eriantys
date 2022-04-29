@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+
 import java.util.ArrayList;
 
 public class CloudIsland {
@@ -62,5 +64,19 @@ public class CloudIsland {
     public void Show(){
         System.out.println("Cloud Island: "+ID);
         //to be implemented later with more ideas of the game
+    }
+
+    /**
+     *
+     * @param c is the colour chosen
+     * @return number of students of that colour
+     */
+    public int getColour(Colour c){
+        int i = 0;
+        for(Student s: students){
+            if(s.getColour().equals(c))
+                i++;
+        }
+        return i;
     }
 }

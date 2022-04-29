@@ -12,7 +12,7 @@ public interface view {
     void showCharacters(List<Character> characters);
     void showIslands(List<Island> islands);
     void showClouds(List<CloudIsland> clouds);
-    void showMyBoard(Player currentPlayer);
+    void showMyBoard(Board board);
     void showBoards(List<Player> players);
     void showErrorMessage(ErrorMessage message);
     void askLogin();

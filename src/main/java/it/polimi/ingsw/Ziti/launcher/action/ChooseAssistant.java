@@ -37,7 +37,7 @@ public class ChooseAssistant implements Action {
     @Override
     public ActionMessage toMessage() {
 
-        return new ChooseAssistantDoneMessage(this.description, player.getAssistants().get(assistantID),game.getCurrentPlayer().GetName() );
+        return new ChooseAssistantDoneMessage(this.description, player.getAssistants(),game.getCurrentPlayer().GetName() );
     }
 
     /**

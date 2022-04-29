@@ -22,11 +22,13 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showAssistants(List<Assistant> assistants) {
-        System.out.println("Gli assistenti disponibili sono :");
+        System.out.println("Available assistants are :");
         for(Assistant ass : assistants){
-            System.out.println(" ID : "+ass.getId());
-            System.out.println(" MotherNature Moves : "+ass.getMovesMother());
-            System.out.println(" Value : "+ass.getValue());
+            if(!ass.isAssChose()) {
+                System.out.println(" ID : " + ass.getId());
+                System.out.println(" MotherNature Moves : " + ass.getMovesMother());
+                System.out.println(" Value : " + ass.getValue());
+            }
         }
 
     }
@@ -38,23 +40,23 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showIslands(List<Island> islands) {
-        System.out.println("Le isole disponibili sono :");
+        System.out.println("Available islands are ");
         for(Island island : islands){
             System.out.println(" ID : "+island.getID());
             if(island.getMother()){
-                System.out.println("Sull' isola è presente Madre Natura");
+                System.out.println("In this island there's MotherNature ");
             }
             if(island.getTowerPlayer()==null){
-                System.out.println("Nessun player possiede una torre sull'isola");
+                System.out.println("There's no player that owns a tower in this island ");
             }
             else
             {
-                System.out.println("Sull'isola è presente la torre di "+island.getTowerPlayer().GetName());
+                System.out.println("In this island there is "+island.getTowerPlayer().GetName()+"'s tower");
             }
-                System.out.println("Sull'isola sono presenti :");
+                System.out.println("There are :");
             for(Colour c: Colour.values()){
                 if(island.getColour(c)!=0){
-                    System.out.println(island.getColour(c)+"studenti"+c.getColour());
+                    System.out.println(island.getColour(c)+" students "+c.getColour());
                 }
             }
             }
@@ -62,61 +64,60 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showClouds(List<CloudIsland> clouds) {
-        System.out.println("Le nuvole a disposizione sono: ");
-        for(CloudIsland c : clouds){
-            System.out.println("CloudID: "+c.getID());
-            System.out.println("Sull'isola sono presenti :");
-            for(Student s: c.getStudents()){
-                    System.out.println("-studente "+s.getColour().getColour());
+        System.out.println("Available Cloud Islands are: ");
+        for(CloudIsland c : clouds) {
+            System.out.println("CloudID: " + c.getID());
+            System.out.println("In this Cloud Island there are: ");
+            for(Colour colour: Colour.values()){
+                System.out.println(c.getColour(colour)+" "+colour.getColour()+" students");
             }
         }
-
     }
 
     @Override
-    public void showMyBoard(Player currentPlayer) {
+    public void showMyBoard(Board board) {
         // show waiting Students
         for (Colour c : Colour.values()) {
-            System.out.println("Gli studenti in attesa di colore " + c.getColour() + " sono: " + currentPlayer.getBoard().countStudentColor(c));
+            System.out.println("There are " + board.countStudentColor(c)+" "+ c.getColour() + " students waiting " );
         }
 
         // show dining Students
         for (Colour c : Colour.values()) {
-            System.out.println("Gli studenti in mensa di colore " + c.getColour() + " sono: " + currentPlayer.getBoard().getColorRowSize(c));
+            System.out.println("There are " + board.getColorRowSize(c)+" "+ c.getColour() + " students in the dining room " );
         }
 
         // show coins
-        System.out.println("Hai " + currentPlayer.getBoard().getNumberofCoin() + " coins");
+        System.out.println("You have  " + board.getNumberofCoin() + " coins");
 
         // show professors
         for (Colour c : Colour.values()) {
-            if (currentPlayer.getBoard().hasProfessor(c))
-                System.out.println("Hai il professore di colore " + c.getColour());
+            if (board.hasProfessor(c))
+                System.out.println("You have " + c.getColour()+" professor");
         }
     }
 
     @Override
     public void showBoards(List<Player> players){
-        for(Player p: players){
-            // do showMyBoard for each player
-
+        for(Player p:players){
+            // do showMyBoard for each board
+            System.out.println(p.GetName()+"'s board: ");
             // show waiting Students
             for (Colour c : Colour.values()) {
-                System.out.println("Gli studenti in attesa di colore " + c.getColour() + " sono: " + p.getBoard().countStudentColor(c));
+                System.out.println("There are " +p.getBoard().countStudentColor(c)+" "+ c.getColour() + " students waiting " );
             }
 
             // show dining Students
             for (Colour c : Colour.values()) {
-                System.out.println("Gli studenti in mensa di colore " + c.getColour() + " sono: " + p.getBoard().getColorRowSize(c));
+                System.out.println("There are " +p.getBoard().getColorRowSize(c)+" "+ c.getColour() + " students in the dining room " );
             }
 
             // show coins
-            System.out.println("Hai " + p.getBoard().getNumberofCoin() + " coins");
+            System.out.println(p.GetName()+" has " + p.getBoard().getNumberofCoin() + " coins");
 
             // show professors
             for (Colour c : Colour.values()) {
                 if (p.getBoard().hasProfessor(c))
-                    System.out.println("Hai il professore di colore " + c.getColour());
+                    System.out.println(p.GetName()+" has " + c.getColour()+" professor");
             }
         }
 
@@ -132,7 +133,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void askLogin() {
-        System.out.println("Inserisci il nome utente");
+        System.out.println("Insert your username: ");
         String username;
         username=sc.nextLine();
         notifyObserver(obs->obs.onUpdateLogin(username));
@@ -140,7 +141,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public String askAssistant() {
-        System.out.println(" Inserisci l'id di un assistente :");
+        System.out.println("Insert Assistant's id: ");
         String assistantId;
         assistantId=sc.nextLine();
         return assistantId;
@@ -148,7 +149,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public String askCharacter() {
-        System.out.println(" Inserisci l'id del character :");
+        System.out.println("Insert Character's id: ");
         String characterId;
         characterId=sc.nextLine();
         return characterId;
@@ -156,7 +157,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public String askIsland() {
-        System.out.println(" Inserisci un isola :");
+        System.out.println("Insert an Island's id: ");
         String islandId;
        islandId=sc.nextLine();
         return islandId;
@@ -164,7 +165,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public String askColour() {
-        System.out.println(" Inserisci un colore :");
+        System.out.println("Insert a colour: ");
         String colour;
         colour=sc.nextLine();
         return colour;
@@ -185,7 +186,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void askMoveMother() {
         String moves;
-        System.out.println("Inserisci di quanto si deve muovere madre natura: ");
+        System.out.println("Insert how many moves the MotherNature should do: ");
         moves=sc.nextLine();
         notifyObserver(obs -> obs.onUpdateMoveMother(moves));
 
@@ -194,7 +195,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void askCloudIsland() {
         String cloudID;
-        System.out.println("Inserisci l'id della nuvola che desideri : ");
+        System.out.println("Insert CloudIsland's id that you want: ");
         cloudID=sc.nextLine();
         notifyObserver(obs -> obs.onUpdateCloudIsland(cloudID));
     }
@@ -216,36 +217,55 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void moveToIslandHandler(MoveToIslandDoneMessage message) {
+        System.out.println(message.getDescription());
+        showIslands(message.getIslands());
+        System.out.println("Player "+message.getPlayername()+"'s board: ");
+        showMyBoard(message.getBoard());
+
+
 
     }
 
     @Override
     public void moveToTableHandler(MoveToTableDoneMessage message) {
+        System.out.println(message.getDescription());
+        System.out.println("Player "+message.getPlayername()+"'s board: ");
+        showMyBoard(message.getBoard());
 
     }
 
     @Override
     public void moveMotherHandler(MoveMotherDoneMessage message) {
+        System.out.println(message.getDescription());
+        showIslands(message.getIslands());
 
     }
 
     @Override
     public void chooseAssistantHandler(ChooseAssistantDoneMessage message) {
+        System.out.println(message.getDescription());
+        showAssistants(message.getAssistants());
 
     }
 
     @Override
     public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
 
+
     }
 
     @Override
     public void endTurnHandler(EndTurnDoneMessage message) {
+        System.out.println(message.getDescription());
+        showIslands(message.getIslands());
+        showClouds(message.getCloudIslands());
+        showBoards(message.getPlayers());
 
     }
 
     @Override
     public void cloudIslandHandler(ChooseCloudDoneMessage message) {
-
+        System.out.println(message.getDescription());
+        showClouds(message.getCloudIslands());
     }
 }

@@ -30,7 +30,7 @@ public class gui implements view{
     }
 
     @Override
-    public void showMyBoard(Player currentPlayer) {
+    public void showMyBoard(Board board) {
 
     }
 
