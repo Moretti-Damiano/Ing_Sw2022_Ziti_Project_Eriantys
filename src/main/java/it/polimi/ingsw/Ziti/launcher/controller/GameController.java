@@ -79,6 +79,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     public void numberOfPlayerHandler(NumberOfPlayersMessage message){
         if(message.getNumberOfPlayers() < 2 || message.getNumberOfPlayers() > 4){
             notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid number of players"),message.getSender()));
+            notifyObserver(obs -> obs.requestPlayerNumber(new NumOfPLayersRequest(),message.getSender()));
         }
         else {
             this.numberOfPlayers = message.getNumberOfPlayers();
@@ -92,6 +93,9 @@ public class GameController extends GameControllerObservable implements ServerOb
             game.setAction(new ChooseAssistant(game, turnController.getCurrentPlayer(),message.getAssistantId()));
             try {
                 game.doAction();
+                turnController.getPlayerAssistants().put(turnController.getCurrentPlayer().getAssistants().get(message.getAssistantId()).getValue(),
+                        turnController.getCurrentPlayer());
+
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
