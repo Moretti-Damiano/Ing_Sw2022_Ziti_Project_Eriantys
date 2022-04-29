@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObservable;
 
 /**

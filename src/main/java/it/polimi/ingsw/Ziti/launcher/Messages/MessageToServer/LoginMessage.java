@@ -1,10 +1,6 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer;
 
-import org.xml.sax.SAXException;
-
-import javax.xml.parsers.ParserConfigurationException;
-import java.io.IOException;
-import java.io.Serializable;
+import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 
 public class LoginMessage extends MessagetoServer {
     private String username;

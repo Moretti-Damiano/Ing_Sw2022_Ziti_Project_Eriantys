@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.observer.*;
 
 import java.io.IOException;

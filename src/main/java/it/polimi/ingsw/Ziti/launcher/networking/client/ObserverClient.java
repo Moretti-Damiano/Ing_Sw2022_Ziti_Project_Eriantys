@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.observer.*;
 
 public class ObserverClient implements SocketClientObserver {

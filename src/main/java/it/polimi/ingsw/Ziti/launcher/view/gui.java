@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
 import java.lang.Character;

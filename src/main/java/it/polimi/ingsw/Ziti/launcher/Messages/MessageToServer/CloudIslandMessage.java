@@ -1,6 +1,6 @@
-package it.polimi.ingsw.Ziti.launcher.Messages;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer;
 
-import java.io.Serializable;
+import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 
 public class CloudIslandMessage extends MessagetoServer {
     private int cloudId;
