@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.ChooseCloudDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
@@ -35,7 +36,7 @@ public class ChooseCloud implements Action{
 
     @Override
     public ActionMessage toMessage() {
-        return new ActionMessage(description);
+        return new ChooseCloudDoneMessage(description,game.getCloudIslands());
     }
 
     private void checkInput() throws ActionException {

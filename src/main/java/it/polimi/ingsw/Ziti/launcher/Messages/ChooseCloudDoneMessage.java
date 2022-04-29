@@ -1,7 +1,19 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
+import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
+
+import java.util.ArrayList;
+
 public class ChooseCloudDoneMessage extends ActionMessage{
-    public ChooseCloudDoneMessage(String description) {
+
+    private ArrayList<CloudIsland> cloudIslands;
+
+    public ChooseCloudDoneMessage(String description, ArrayList<CloudIsland> cloudIslands) {
         super(description);
+        this.cloudIslands = new ArrayList<>(cloudIslands);
+    }
+
+    public ArrayList<CloudIsland> getCloudIslands() {
+        return cloudIslands;
     }
 }
