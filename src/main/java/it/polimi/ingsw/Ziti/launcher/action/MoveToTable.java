@@ -42,7 +42,7 @@ public class MoveToTable implements Action{
         description=description.concat(game.getCurrentPlayer().GetName() + "moved a"+ chosencolour + "student from his waiting room to his dining room");
         if(game.getCurrentPlayer().getBoard().checkCoin(student_colour)){
             game.getCurrentPlayer().getBoard().addCoin(game.getGameWallet().getCoin());
-            description=description.concat("new coin added to" + game.getCurrentPlayer().GetName() + "wallet");
+            description=description.concat("\nnew coin added to" + game.getCurrentPlayer().GetName() + "wallet\n");
         }
     }
 
@@ -54,7 +54,7 @@ public class MoveToTable implements Action{
         Player profplayer= game.checkProfessor(professor_colour);
         if(profplayer==null){
             game.getCurrentPlayer().getBoard().addProfessor(game.getProfessorbyColour(professor_colour));
-            description=description.concat(game.getCurrentPlayer().GetName() + " now controls the" + chosencolour + "professor");
+            description=description.concat( game.getCurrentPlayer().GetName() + " now controls the" + chosencolour + "professor\n");
         }
         if(profplayer!=null && profplayer!=game.getCurrentPlayer()){
             if(checkInfluence(profplayer,professor_colour)){
