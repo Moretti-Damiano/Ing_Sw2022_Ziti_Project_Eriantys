@@ -1,5 +1,6 @@
-package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
+package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Character;
@@ -42,5 +43,10 @@ public class EndTurnDoneMessage extends ActionMessage {
 
     public ArrayList<Player> getPlayers() {
         return players;
+    }
+
+    @Override
+    public void handle(ClientMessageHandler clientMessageHandler) {
+        clientMessageHandler.EndTurnDoneHandle(this);
     }
 }

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
 
 public class MoveToTableDoneMessage extends ActionMessage{
@@ -18,5 +19,10 @@ public class MoveToTableDoneMessage extends ActionMessage{
 
     public String getPlayername(){
         return this.playername;
+    }
+
+    @Override
+    public void handle(ClientMessageHandler clientMessageHandler) {
+        clientMessageHandler.MoveToTableDoneHandle(this);
     }
 }

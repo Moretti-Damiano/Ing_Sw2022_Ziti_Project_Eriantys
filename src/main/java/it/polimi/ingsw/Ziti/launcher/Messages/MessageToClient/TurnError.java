@@ -9,8 +9,13 @@ public class TurnError extends MessageToClient{
         this.description=descriuption;
     }
 
+    public String getDescription() {
+        return description;
+    }
+
     @Override
     public void handle(ClientMessageHandler clientMessageHandler) {
+        clientMessageHandler.TurnErrorHandle(this);
 
     }
 }

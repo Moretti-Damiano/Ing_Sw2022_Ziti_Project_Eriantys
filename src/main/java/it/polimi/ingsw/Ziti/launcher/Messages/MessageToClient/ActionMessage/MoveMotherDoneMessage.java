@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
 
 import java.util.ArrayList;
@@ -13,5 +14,10 @@ import java.util.ArrayList;
 
         public ArrayList<Island> getIslands() {
             return islands;
+        }
+
+        @Override
+        public void handle(ClientMessageHandler clientMessageHandler) {
+            clientMessageHandler.MoveMotherDoneHandle(this);
         }
     }
