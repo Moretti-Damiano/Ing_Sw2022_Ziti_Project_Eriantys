@@ -7,6 +7,7 @@ import java.util.ArrayList;
 
 public class Board {
         private static final int colorrow = 5;
+        private String nickName;
         private ArrayList<Tower> towers;
         private TowerColour tower_colour;
         private ArrayList<Student> students_waiting;
@@ -16,7 +17,8 @@ public class Board {
 
 
 
-        public Board() {
+        public Board(Player player) {
+            this.nickName = player.GetName();
             towers = new ArrayList<Tower>();
             professors = new ArrayList<Professor>();
             wallet = new ArrayList<Coin>();

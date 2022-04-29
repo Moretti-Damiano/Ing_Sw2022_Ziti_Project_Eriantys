@@ -18,7 +18,6 @@ public class Player {
 
         public Player(String name) throws ParserConfigurationException, IOException, SAXException {
             this.name=name;
-            board=new Board();
             assistants= AssistantParser.parseAssistants("Assistants.xml");
             assChosen=null;
         }
@@ -38,13 +37,16 @@ public class Player {
         this.assChosen = assChoosed;
     }
 
-
     public List<Assistant> getAssistants() {
         return assistants;
     }
 
     public Assistant getAssChosen() {
         return assChosen;
+    }
+
+    public void setBoard(Board board) {
+        this.board = board;
     }
 }
 

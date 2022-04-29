@@ -20,6 +20,7 @@ public class Game extends Observable {
     private ArrayList<Island> islands;
     private ArrayList<Player> players;
     private ArrayList<CloudIsland> cloudIslands;
+    private ArrayList<Board> boards;
     private Mother mother;
     private Sack sack;
     private int maxPlayer;
@@ -35,6 +36,14 @@ public class Game extends Observable {
      * @param p arraylist containing all the players
      */
     public Game(ArrayList<Player> p){
+
+        //Creates all boards
+        boards = new ArrayList<>();
+        for(Player player: p){
+            Board newBoard = new Board(player);
+            boards.add(newBoard);
+            player.setBoard(newBoard);
+        }
 
         //creates 12 empty islands
         this.islands = new ArrayList<Island>();
@@ -127,6 +136,10 @@ public class Game extends Observable {
     }
 
     public Sack getSack() {return sack;}
+
+    public ArrayList<Board> getBoards() {
+        return boards;
+    }
 
     private void setPlayers(ArrayList<Player> p){
         players = new ArrayList<>(p);

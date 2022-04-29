@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 import it.polimi.ingsw.Ziti.launcher.Messages.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.EndTurnDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 
@@ -38,7 +39,7 @@ public class EndTurn implements Action {
 
     @Override
     public ActionMessage toMessage() {
-        return null;
+        return new EndTurnDoneMessage(description,game.getIslands(),game.getBoards(),game.getCloudIslands(),game.getCharacters(),game.getPlayers());
     }
 
 
