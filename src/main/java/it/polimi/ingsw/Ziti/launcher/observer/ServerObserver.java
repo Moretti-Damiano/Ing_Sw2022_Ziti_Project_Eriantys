@@ -16,5 +16,10 @@ public interface ServerObserver {
     public void cloudIslandHandler(CloudIslandMessage message);
     public void loginHandler(LoginMessage message);
     public void numberOfPlayerHandler(NumberOfPlayersMessage message);
-
+    public void showAssistantRequestHandler(ShowAssistantRequest message);
+    public void showBoardsRequestHandler(ShowBoardsRequest message);
+    public void showCloudRequestHandler(ShowCloudRequest message);
+    public void showBoardRequestHandler(ShowBoardRequest message);
+    public void showCharacterRequestHandler(ShowCharacterRequest message);
+    public void showIslandRequestHandler(ShowIslandRequest message);
 }

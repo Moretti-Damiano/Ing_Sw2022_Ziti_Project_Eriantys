@@ -3,7 +3,6 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowIslandRequest;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 //OSSERVATA dalla cli
 // gestisce le risposte dal server sulla validità dei dati corretti

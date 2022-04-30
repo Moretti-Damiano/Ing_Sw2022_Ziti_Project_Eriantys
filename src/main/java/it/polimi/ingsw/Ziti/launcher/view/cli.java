@@ -309,7 +309,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showAssistantHandler(ShowAssistantResponse message) {
-        showIslands(message.getIslands());
+        showAssistants(message.getAssistants());
     }
 
     @Override

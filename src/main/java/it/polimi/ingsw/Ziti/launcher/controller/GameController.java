@@ -179,6 +179,36 @@ public class GameController extends GameControllerObservable implements ServerOb
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
+    @Override
+    public void showAssistantRequestHandler(ShowAssistantRequest message){
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowAssistantResponse(getPlayerByName(message.getSender()).getAssistants()), message.getSender()));
+    }
+
+    @Override
+    public void showBoardsRequestHandler(ShowBoardsRequest message) {
+        notifyObserver(obs -> obs.sendToOnePlayer( new ShowBoardsResponse(getGame().getBoards()), message.getSender()));
+    }
+
+    @Override
+    public void showBoardRequestHandler(ShowBoardRequest message) {
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowBoardResponse(getPlayerByName(message.getSender()).getBoard()), message.getSender()));
+    }
+
+    @Override
+    public void showCharacterRequestHandler(ShowCharacterRequest message) {
+        /*notifyObserver(obs -> obs.sendToOnePlayer(new ShowCharacterResponse(getGame().getCharacters()), message.getSender()));
+         */
+    }
+
+    @Override
+    public void showCloudRequestHandler(ShowCloudRequest message) {
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowCloudResponse(getGame().getCloudIslands()), message.getSender()));
+    }
+
+    @Override
+    public void showIslandRequestHandler(ShowIslandRequest message) {
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowIslandResponse(getGame().getIslands()), message.getSender()));
+    }
 
     /**
      * receives al the updates from the game model

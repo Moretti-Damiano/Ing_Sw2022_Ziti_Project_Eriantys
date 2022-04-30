@@ -35,17 +35,29 @@ public class ServerMessageHandler extends ServerObservable {
     public void numberOfPlayersHandler(NumberOfPlayersMessage message){
         notifyObserver(obs -> obs.numberOfPlayerHandler(message));
     }
-    public void showAssistantRequestHandler(ShowAssistantRequest message);
+    public void showAssistantRequestHandler(ShowAssistantRequest message){
+      notifyObserver(obs -> obs.showAssistantRequestHandler(message));
+    };
 
-    public void showBoardRequestHandler(ShowBoardRequest message);
+    public void showBoardRequestHandler(ShowBoardRequest message){
+        notifyObserver(obs -> obs.showBoardRequestHandler(message));
+    };
 
-    public void showBoardsRequestHandler(ShowBoardsRequest message);
+    public void showBoardsRequestHandler(ShowBoardsRequest message){
+        notifyObserver(obs -> obs.showBoardsRequestHandler(message));
+    };
 
-    public void showCharacterRequestHandler(ShowCharacterRequest message);
+    public void showCharacterRequestHandler(ShowCharacterRequest message){
+        notifyObserver(obs -> obs.showCharacterRequestHandler(message));
+    };
 
-    public void showCloudRequestHandler(ShowCloudRequest message);
+    public void showCloudRequestHandler(ShowCloudRequest message){
+        notifyObserver(obs -> obs.showCloudRequestHandler(message));
+    };
 
-    public void showIslandRequestHandler(ShowIslandRequest message);
+    public void showIslandRequestHandler(ShowIslandRequest message){
+        notifyObserver(obs -> obs.showIslandRequestHandler(message));
+    };
 
 
 }
