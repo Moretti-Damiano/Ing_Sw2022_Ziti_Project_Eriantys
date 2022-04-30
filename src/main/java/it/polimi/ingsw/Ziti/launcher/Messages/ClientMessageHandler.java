@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowIslandRequest;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 //OSSERVATA dalla cli
 // gestisce le risposte dal server sulla validità dei dati corretti
@@ -23,5 +24,11 @@ public class ClientMessageHandler extends ViewObservable {
     public void LoginErrorHandle(LoginError message){notifyObserver(obs->obs.LoginErrorHandler(message));}
     public void NumOfPlayerRequestHandle(NumOfPLayersRequest message){notifyObserver(obs->obs.NumOfPlayerHandler(message));}
     public void TurnErrorHandle(TurnError message){notifyObserver(obs->obs.TurnErrorHandler(message));}
+    public void ShowAssistantResponseHandle(ShowAssistantResponse message){notifyObserver(obs->obs.showAssistantHandler(message));}
+    public void ShowCharacterResponseHandle(ShowCharacterResponse message){notifyObserver(obs->obs.showCharacterHandler(message));}
+    public void ShowBoardResponseHandle(ShowBoardResponse message){notifyObserver(obs->obs.showBoardHandler(message));}
+    public void ShowBoardsResponseHandle(ShowBoardsResponse message){notifyObserver(obs->obs.showBoardsHandler(message));}
+    public void ShowCloudsResponseHandle(ShowCloudResponse message){notifyObserver(obs->obs.showCloudHandler(message));}
+    public void ShowIslandsResponseHandle(ShowIslandResponse message){notifyObserver(obs->obs.showIslandHandler(message));}
     // da implementare gli altri metodi della cli (show)
 }

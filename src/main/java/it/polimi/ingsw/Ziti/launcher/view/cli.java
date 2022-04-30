@@ -307,6 +307,36 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println(message.getDescription());
     }
 
+    @Override
+    public void showAssistantHandler(ShowAssistantResponse message) {
+        showIslands(message.getIslands());
+    }
+
+    @Override
+    public void showCharacterHandler(ShowCharacterResponse message) {
+        showCharacters(message.getCharacters());
+    }
+
+    @Override
+    public void showBoardHandler(ShowBoardResponse message) {
+        showMyBoard(message.getBoard());
+    }
+
+    @Override
+    public void showBoardsHandler(ShowBoardsResponse message) {
+        showBoards(message.getBoards());
+    }
+
+    @Override
+    public void showCloudHandler(ShowCloudResponse message) {
+        showClouds(message.getClouds());
+    }
+
+    @Override
+    public void showIslandHandler(ShowIslandResponse message) {
+        showIslands(message.getIslands());
+    }
+
     public void init(){
         System.out.println("\n" +
                 "8888888888 "+" 8888888b.  "+"8888888  "+"       d8888   "+"888b    888   "+"88888888888 "+"Y88b   d88P "+" .d8888b.      \n"+

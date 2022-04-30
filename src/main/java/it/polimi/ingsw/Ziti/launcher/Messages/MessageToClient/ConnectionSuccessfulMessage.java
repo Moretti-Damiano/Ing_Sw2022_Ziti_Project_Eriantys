@@ -14,6 +14,6 @@ public class ConnectionSuccessfulMessage extends MessageToClient{
 
     @Override
     public void handle(ClientMessageHandler clientMessageHandler) {
-
+        clientMessageHandler.ConnectionSuccessfulHandle(this);
     }
 }

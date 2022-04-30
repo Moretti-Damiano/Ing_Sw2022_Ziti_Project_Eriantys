@@ -20,6 +20,12 @@ public interface ViewObserver {
     void LoginErrorHandler(LoginError message);
     void NumOfPlayerHandler(NumOfPLayersRequest message);
     void TurnErrorHandler(TurnError message);
+    void showAssistantHandler(ShowAssistantResponse message);
+    void showCharacterHandler(ShowCharacterResponse message);
+    void showBoardHandler(ShowBoardResponse message);
+    void showBoardsHandler(ShowBoardsResponse message);
+    void showCloudHandler(ShowCloudResponse message);
+    void showIslandHandler(ShowIslandResponse message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }
