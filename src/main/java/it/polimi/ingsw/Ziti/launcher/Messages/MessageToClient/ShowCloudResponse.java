@@ -4,7 +4,9 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
 
 import java.util.ArrayList;
-
+/**
+ * This message has a list of Cloud Islands as a response to a Show Cloud request
+ */
 public class ShowCloudResponse  extends MessageToClient{
     private ArrayList<CloudIsland> clouds;
 

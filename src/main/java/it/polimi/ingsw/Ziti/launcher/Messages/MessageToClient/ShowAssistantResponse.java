@@ -6,6 +6,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 
 import java.util.List;
 
+/**
+ * This message is a list of assistants as a response to a Show Assistant request
+ */
 public class ShowAssistantResponse extends MessageToClient{
     private List<Assistant> assistants;
 

@@ -4,7 +4,9 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
 
 import java.util.ArrayList;
-
+/**
+ * This message contains a list of board as a response to a Show Boards request
+ */
 public class ShowBoardsResponse  extends MessageToClient {
     private ArrayList<Board> boards;
 

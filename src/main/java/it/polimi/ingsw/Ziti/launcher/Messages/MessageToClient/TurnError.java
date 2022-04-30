@@ -1,12 +1,14 @@
 package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
-
+/**
+ * This message has a little description of the error as a response to a request sent in the wrong moment
+ */
 public class TurnError extends MessageToClient{
     String description;
 
-    public TurnError(String descriuption){
-        this.description=descriuption;
+    public TurnError(String description){
+        this.description=description;
     }
 
     public String getDescription() {

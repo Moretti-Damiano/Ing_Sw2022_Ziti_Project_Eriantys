@@ -3,6 +3,9 @@ package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 
+/**
+ * It's a message to Client used to notify the player that an action is done
+ */
 public abstract class ActionMessage extends MessageToClient {
 
     private String description;
@@ -15,6 +18,10 @@ public abstract class ActionMessage extends MessageToClient {
         return description;
     }
 
+    /**
+     * This method is used to avoid a big switch branch
+     * @param clientMessageHandler is the class that really handle messages to client
+     */
     @Override
     public void handle(ClientMessageHandler clientMessageHandler) {
 

@@ -2,6 +2,9 @@ package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 
+/**
+ * This message is a login error message to client
+ */
 public class LoginError extends MessageToClient{
     String description;
     

@@ -4,7 +4,9 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
 
 import java.util.ArrayList;
-
+/**
+ * This message has a list of  Islands as a response to a Show Island request
+ */
 public class ShowIslandResponse extends MessageToClient{
     private ArrayList<Island> islands;
 

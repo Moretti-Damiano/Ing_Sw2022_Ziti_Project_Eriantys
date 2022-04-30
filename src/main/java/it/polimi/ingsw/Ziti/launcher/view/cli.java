@@ -128,10 +128,10 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showErrorMessage(ErrorMessage message) {
-        System.out.println(message.getDescription()+"from "+message.getSender());
+        System.out.println(message.getDescription()+" from "+message.getSender());
     }
     public void showInputErrorMessage(InputError message) {
-        System.out.println(message.getDescription()+"from server");
+        System.out.println(message.getDescription()+" from server");
     }
 
     @Override

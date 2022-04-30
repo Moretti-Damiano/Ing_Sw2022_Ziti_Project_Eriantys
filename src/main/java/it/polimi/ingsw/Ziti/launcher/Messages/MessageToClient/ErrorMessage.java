@@ -3,6 +3,9 @@ package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 
+/**
+ * This message is a generic error message to client (specialized
+ */
 public class ErrorMessage extends MessageToClient {
 
     private String description;
