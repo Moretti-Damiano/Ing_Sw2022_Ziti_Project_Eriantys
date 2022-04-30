@@ -46,7 +46,7 @@ public class MoveToIsland implements Action{
 
     /**
      * checks if the given island id is valid
-     * @return
+     * @return boolean
      */
     private boolean checkId(){
         for(Island i: game.getIslands()){

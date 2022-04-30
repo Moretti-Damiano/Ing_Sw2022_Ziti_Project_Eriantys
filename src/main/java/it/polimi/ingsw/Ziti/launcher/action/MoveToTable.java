@@ -9,6 +9,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 import java.util.Locale;
 
+/**
+ * This action is used to Move a student from the waiting room to the dining room
+ */
 public class MoveToTable implements Action{
 
     private Game game;

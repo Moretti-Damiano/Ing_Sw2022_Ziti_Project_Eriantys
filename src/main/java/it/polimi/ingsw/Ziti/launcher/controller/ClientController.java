@@ -10,15 +10,12 @@ import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
 import it.polimi.ingsw.Ziti.launcher.networking.server.SocketServer;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
-
-/**
- * This class observes cli and is observed by SocketClient
- */
-
 import javax.imageio.IIOException;
 import java.io.IOException;
-
-//Questa classe VIENE OSSERVATA dalla SocketClient e OSSERVA la cli
+/**
+ * This class observes cli and is observed by SocketClient
+ * Is used to verify inputs and to bring message to the server
+ */
 
 public class ClientController extends ClientObservable implements InputObserver {
 
@@ -26,12 +23,16 @@ public class ClientController extends ClientObservable implements InputObserver 
     SocketClient socketClient;
 
     /**
-     * this method is used to bring Messages to Client from Server to cli
+     * this method is used to bring "Messages to Client" from Server to cli
      */
 
     public void update(MessageToClient message){ message.handle(clientMessageHandler);}
 
 
+    /**
+     * Methods "onUpdate" are used to create Message to Client
+     * Take String as a parameters, if String should be an Integer it verifies it
+     */
 
     @Override
     public void onUpdateLogin(String nickname) {
@@ -143,6 +144,11 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
     }
 
+    /**
+     * Check if the String is an Integer
+     * @param value is the String that needs to be verified
+     * @return boolean
+     */
     private Boolean isInt (String value){
         try{
             int intValue=Integer.parseInt(value);

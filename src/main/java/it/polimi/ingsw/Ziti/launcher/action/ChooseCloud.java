@@ -52,6 +52,7 @@ public class ChooseCloud implements Action{
             System.out.println("Cloud "+ chosenCloudId + " does not exist");
             throw new ActionException();
         }
+        // verify chosenCloud's Id
         if(!game.getCloudIslands().get(chosenCloudId).isAvailable()){
             System.out.println("Cloud "+ chosenCloudId + " is not available");
             throw new ActionException();

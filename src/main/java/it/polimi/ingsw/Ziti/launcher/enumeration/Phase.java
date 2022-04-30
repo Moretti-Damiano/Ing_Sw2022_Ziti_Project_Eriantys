@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.enumeration;
 
+/**
+ * This enumeration is a collection of every Phase of the game
+ */
 public enum Phase {
     NULL,PLANNING, MOVEMENT, MOTHER, CLOUD;
 

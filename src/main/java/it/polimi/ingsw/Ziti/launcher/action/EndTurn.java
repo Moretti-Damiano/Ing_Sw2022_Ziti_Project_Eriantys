@@ -19,11 +19,9 @@ public class EndTurn implements Action {
       this.game = game;
 
    }
-
    @Override
    public void execute(){
-      
-         //checkEmptyIslands();
+
          // for each CloudIsland calls the method toFill
          IntStream.range(0, game.getCloudIslands().size()).forEach(i -> game.getCloudIslands().get(i).toFill());
          // for each Player set false actual Assistants

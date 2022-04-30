@@ -12,6 +12,9 @@ import java.util.TreeMap;
 
 import static it.polimi.ingsw.Ziti.launcher.enumeration.Phase.*;
 
+/**
+ * This class is used to set turns during a game
+ */
 public class TurnController {
     private GameController gameController;
     private Player currentPlayer;
@@ -35,18 +38,25 @@ public class TurnController {
         playersDone = 0;
     }
 
+    /**
+     * Combines each player with the value of the assistant chosen
+     * @return a map of player-assistant chosen
+     */
     public Map<Integer,Player> getPlayerAssistants() {
         return playerAssistants;
     }
 
+    /**
+     * Update phases of the game (declared in enum. Phase)
+     */
     public void updatePhase(){
-
+        // Planning Phase
         if(phase.equals(PLANNING)){
             playersDone++;
             setCurrentPlayer(nextPlayer(currentPlayer));
-
+            // Every player chose an assistant
             if(playersDone == players.size()){
-
+                // Put in Order used to set the real order of the next player
                 orderPlayers = putInOrder(playerAssistants);
 
                 playersDone = 0;
@@ -56,6 +66,7 @@ public class TurnController {
         }
         else if(phase.equals(MOVEMENT)){
             moveNumber++;
+            // Check if the player has already moved 3 students (ToTable or ToIsland)
             if(moveNumber == 3){
                 moveNumber = 0;
                 phase = next(phase);
@@ -68,6 +79,7 @@ public class TurnController {
             playersDone++;
             if (playersDone == players.size()) {
                 gameController.getGame().setAction(new EndTurn(gameController.getGame()));
+                // If every player completed his turn, Game controller calls EndTurn action
                 try {
                     gameController.getGame().doAction();
                 } catch (ActionException e) {
@@ -91,11 +103,20 @@ public class TurnController {
         return currentPlayer;
     }
 
+    /**
+     * Set the current player in game (model)
+     * @param currentPlayer
+     */
     private void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
         gameController.getGame().setActivePlayer(currentPlayer);
     }
 
+    /**
+     * Used to set the real order of the next player
+     * @param map is a map of each player-assistant chosen
+     * @return the real order of players
+     */
     private ArrayList<Player> putInOrder(Map<Integer,Player> map){
         Map<Integer,Player> orderMap = new TreeMap<>(map);
         ArrayList<Player> inOrder = new ArrayList<>();
@@ -107,6 +128,11 @@ public class TurnController {
         return inOrder;
     }
 
+    /**
+     *
+     * @param player is the current player
+     * @return next player
+     */
     private Player nextPlayer(Player player){
         int position = players.indexOf(player);
         if(position == players.size()-1)

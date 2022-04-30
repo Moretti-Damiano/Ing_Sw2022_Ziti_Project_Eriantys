@@ -4,7 +4,9 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.Acti
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseAssistantDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
-
+/**
+ * This action is used to Choose an Assistant in the game
+ */
 public class ChooseAssistant implements Action {
     private Game game;
     private int assistantID;
