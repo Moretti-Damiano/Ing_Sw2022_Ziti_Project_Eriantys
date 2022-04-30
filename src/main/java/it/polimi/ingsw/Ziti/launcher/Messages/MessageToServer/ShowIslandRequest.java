@@ -1,4 +1,15 @@
 package it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer;
 
-public class ShowIslandRequest {
+import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
+
+public class ShowIslandRequest extends MessagetoServer{
+    @Override
+    public String getSender() {
+        return null;
+    }
+
+    @Override
+    public void handle(ServerMessageHandler serverMessageHandler) {
+        serverMessageHandler.showIslandRequestHandler(this);
+    }
 }

@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view;
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
@@ -336,6 +337,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Type MOVEMOTHER to chose the number of mother's movements");
         System.out.println("Type MOVETOISLAND to chose the island where you want to put your students");
         System.out.println("Type MOVETOTABLE if you want to put your studend on the table");
+        System.out.println("Type SHOWASSISTANT to print the available assistants");
+        System.out.println("Type SHOWBOARD to print your board");
+        System.out.println("Type SHOWBOARDS to print the board of each player");
+        System.out.println("Type SHOWCHARACTER to print the available characters");
+        System.out.println("Type SHOWCLOUD to print the available clouds");
+        System.out.println("Type SHOWISLAND to print all the islands");
         while(true){
             String input;
             input=sc.nextLine();
@@ -357,6 +364,24 @@ public class cli extends InputObservable implements view, ViewObserver {
                     break;
                 case "MOVETOTABLE":
                     askMoveToTable();
+                    break;
+                case "SHOWASSISTANT":
+                    notifyObserver(obs->obs.onUpdateAssistantRequest(new ShowAssistantRequest()));
+                    break;
+                case "SHOWBOARD":
+                    notifyObserver(obs->obs.onUpdateBoardRequest(new ShowBoardRequest()));
+                    break;
+                case "SHOWBOARDS":
+                    notifyObserver(obs->obs.onUpdateBoardsRequest(new ShowBoardsRequest()));
+                    break;
+                case "SHOWCHARACTER":
+                    notifyObserver(obs->obs.onUpdateCharacterRequest(new ShowCharacterRequest()));
+                    break;
+                case "SHOWCLOUD":
+                    notifyObserver(obs->obs.onUpdateCloudRequest(new ShowCloudRequest()));
+                    break;
+                case "SHOWISLAND":
+                    notifyObserver(obs->obs.onUpdateIslandRequest(new ShowIslandRequest()));
                     break;
                 default:
                     System.out.println("Invalid");
