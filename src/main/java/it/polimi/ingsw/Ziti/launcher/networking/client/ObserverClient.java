@@ -4,13 +4,15 @@ import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.observer.*;
 
+/**
+ * This class has a reference to Client Message Handler that will handle messages to client
+ * Observes Socket Client
+ *
+ */
 public class ObserverClient implements SocketClientObserver {
 
     ClientMessageHandler clientMessageHandler;
-    //Questa classe OSSERVA il SocketClient
 
-    //chiama il clientmessagehandler che gestirà i messaggi che arrivano dal server
-    //funziona solo in mesaggi in ricezione dal server
 
 
     public void update(MessageToClient message){ message.handle(clientMessageHandler);}

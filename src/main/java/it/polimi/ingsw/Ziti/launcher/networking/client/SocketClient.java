@@ -11,7 +11,11 @@ import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 
-//Questa classe OSSERVA il ClientController e VIENE OSSERVATA dall' observer client
+/**
+ * This class observes Client Controller and is observed by Observer Client
+ * Used to interface with client
+ */
+
 
 public class SocketClient extends SocketClientObservable implements ClientObserver {
 
@@ -35,7 +39,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     }
 
     /**
-     * SEND METHODS
+     * Send messages to the server
      * @param message used to determinate which send needs to be used
      */
     public void send(MessagetoServer message) {
@@ -50,7 +54,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     }
 
     /**
-     * RECEIVE METHOD
+     * Receive methods(messages) from server
      */
     public void receive() {
 
@@ -71,6 +75,9 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
         }
     }
 
+    /**
+     * Method used to close the Socket
+     */
     public void disconnect() {
 
         try {

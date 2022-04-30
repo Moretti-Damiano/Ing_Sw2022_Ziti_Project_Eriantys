@@ -8,6 +8,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
 
+/**
+ * This class is used to
+ */
 public class ClientHandler implements Runnable {
     private Socket socket;
     private ObjectOutputStream output;

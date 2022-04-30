@@ -4,8 +4,12 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
-//OSSERVATA dalla cli
-// gestisce le risposte dal server sulla validità dei dati corretti
+
+/**
+ * This class is observed by cli and by ClientController
+ * Every method handles a request of the similar message: notifies observer calling its method with the message as a parameter
+ */
+
 public class ClientMessageHandler extends ViewObservable {
     public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs->obs.moveMotherHandler(message));}
     public void MoveToIslandDoneHandle(MoveToIslandDoneMessage message){notifyObserver(obs->obs.moveToIslandHandler(message));}
