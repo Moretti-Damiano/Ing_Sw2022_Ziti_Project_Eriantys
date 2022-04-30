@@ -1,4 +1,15 @@
 package it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer;
 
-public class ShowCharacterRequest {
+import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
+
+public class ShowCharacterRequest extends MessagetoServer{
+    @Override
+    public String getSender() {
+        return null;
+    }
+
+    @Override
+    public void handle(ServerMessageHandler serverMessageHandler) {
+        serverMessageHandler.showCharacterRequestHandler(this);
+    }
 }

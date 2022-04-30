@@ -143,6 +143,36 @@ public class ClientController extends ClientObservable implements InputObserver 
         }
     }
 
+    @Override
+    public void onUpdateAssistantRequest(ShowAssistantRequest message) {
+        notifyObserver(obs->obs.send(message));
+    }
+
+    @Override
+    public void onUpdateBoardRequest(ShowBoardRequest message) {
+        notifyObserver(obs->obs.send(message));
+    }
+
+    @Override
+    public void onUpdateBoardsRequest(ShowBoardsRequest message) {
+        notifyObserver(obs->obs.send(message));
+    }
+
+    @Override
+    public void onUpdateCharacterRequest(ShowCharacterRequest message) {
+        notifyObserver(obs->obs.send(message));
+    }
+
+    @Override
+    public void onUpdateCloudRequest(ShowCloudRequest message) {
+        notifyObserver(obs->obs.send(message));
+    }
+
+    @Override
+    public void onUpdateIslandRequest(ShowIslandRequest message) {
+        notifyObserver(obs->obs.send(message));
+    }
+
     private Boolean isInt (String value){
         try{
             int intValue=Integer.parseInt(value);
