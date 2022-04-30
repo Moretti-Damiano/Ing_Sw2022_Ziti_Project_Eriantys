@@ -24,6 +24,7 @@ public class ChooseAssistantTest {
             players.add(new Player("Player"+ i));
         }
         game = new Game(players); //creates a new game with 3 players
+        game.setActivePlayer(game.getPlayers().get(2));
     }
     @Test
     public void assistantUsed () throws ActionException {

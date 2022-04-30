@@ -12,7 +12,7 @@ public class ChooseAssistant implements Action {
     private Game game;
     private int assistantID;
     private Player player;
-    private String description;
+    private String description="";
 
     public ChooseAssistant (Game game, Player player,int assistantID){
         this.game=game;
@@ -33,6 +33,7 @@ public class ChooseAssistant implements Action {
             description=description.concat(game.getCurrentPlayer().GetName() + " chose the assistant with move mother value: " + player.getAssistants().get(assistantID).getMovesMother()
                                                                               + "and priority value:" + player.getAssistants().get(assistantID).getValue());
         }
+
     }
 
     /**
