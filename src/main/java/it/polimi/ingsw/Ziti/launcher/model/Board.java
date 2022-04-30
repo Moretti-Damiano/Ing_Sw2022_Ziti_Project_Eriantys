@@ -14,6 +14,7 @@ public class Board {
         private ArrayList<Professor> professors;
         private ArrayList<Student>[] students;
         private ArrayList<Coin> wallet;
+        private String playername;
 
 
 
@@ -24,6 +25,7 @@ public class Board {
             wallet = new ArrayList<Coin>();
             students_waiting = new ArrayList<Student>();
             students = new ArrayList[colorrow];
+            playername= player.GetName();
             for (int i = 0; i < colorrow; i++) {
                 students[i] = new ArrayList<Student>();
             }
@@ -36,6 +38,10 @@ public class Board {
      */
     public void addStudent(Student s){
             students_waiting.add(s);
+    }
+
+    public String getPlayername() {
+        return playername;
     }
 
     public void setTowerColour(TowerColour tower_colour) {
