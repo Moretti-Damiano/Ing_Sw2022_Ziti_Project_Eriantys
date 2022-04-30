@@ -13,7 +13,7 @@ public interface view {
     void showIslands(List<Island> islands);
     void showClouds(List<CloudIsland> clouds);
     void showMyBoard(Board board);
-    void showBoards(List<Player> players);
+    void showBoards(List<Board> boards);
     void showErrorMessage(ErrorMessage message);
     void askLogin();
     String askAssistant();

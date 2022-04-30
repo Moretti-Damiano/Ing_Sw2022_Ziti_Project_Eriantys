@@ -35,9 +35,10 @@ public class gui implements view{
     }
 
     @Override
-    public void showBoards(List<Player> players) {
+    public void showBoards(List<Board> boards) {
 
     }
+
 
     @Override
     public void showErrorMessage(ErrorMessage message) {

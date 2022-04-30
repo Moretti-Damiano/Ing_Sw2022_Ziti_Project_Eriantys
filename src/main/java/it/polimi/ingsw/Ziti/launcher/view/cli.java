@@ -100,27 +100,27 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showBoards(List<Player> players){
-        for(Player p:players){
+    public void showBoards(List<Board> boards){
+        for(Board board: boards){
             // do showMyBoard for each board
-            System.out.println(p.GetName()+"'s board: ");
+            System.out.println(board.getPlayername()+"'s board: ");
             // show waiting Students
             for (Colour c : Colour.values()) {
-                System.out.println("There are " +p.getBoard().countStudentColor(c)+" "+ c.getColour() + " students waiting " );
+                System.out.println("There are " +board.countStudentColor(c)+" "+ c.getColour() + " students waiting " );
             }
 
             // show dining Students
             for (Colour c : Colour.values()) {
-                System.out.println("There are " +p.getBoard().getColorRowSize(c)+" "+ c.getColour() + " students in the dining room " );
+                System.out.println("There are " +board.getColorRowSize(c)+" "+ c.getColour() + " students in the dining room " );
             }
 
             // show coins
-            System.out.println(p.GetName()+" has " + p.getBoard().getNumberofCoin() + " coins");
+            System.out.println(board.getPlayername()+" has " + board.getNumberofCoin() + " coins");
 
             // show professors
             for (Colour c : Colour.values()) {
-                if (p.getBoard().hasProfessor(c))
-                    System.out.println(p.GetName()+" has " + c.getColour()+" professor");
+                if (board.hasProfessor(c))
+                    System.out.println(board.getPlayername()+" has " + c.getColour()+" professor");
             }
         }
 
@@ -269,7 +269,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println(message.getDescription());
         showIslands(message.getIslands());
         showClouds(message.getCloudIslands());
-        showBoards(message.getPlayers());
+        showBoards(message.getBoards());
 
     }
 
@@ -344,7 +344,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 "888        "+" 888    888 "+"  888    "+"     d88P888   "+"88888b  888  "+"     888     "+"  Y88o88P   "+"Y88b.          \n"+
                 "8888888    "+" 888   d88P "+"  888    "+"    d88P 888   "+"888Y88b 888  "+"     888     "+"   Y888P    "+"   Y888b.      \n"+
                 "888        "+" 8888888P   "+"  888    "+"   d88P  888   "+"888 Y88b888  "+"     888     "+"    888     "+"      Y88b.    \n"+
-                "888        "+" 888 T88b   "+"  888    "+"  d88P   888   "+"888  Y88888  "+"     888     "+"    888     "+"        888$   \n"+
+                "888        "+" 888 T88b   "+"  888    "+"  d88P   888   "+"888  Y88888  "+"     888     "+"    888     "+"        888    \n"+
                 "888        "+" 888  T88b  "+"  888    "+" d8888888888   "+"888   Y8888  "+"     888     "+"    888     "+"Y88b  d88P     \n"+
                 "8888888888 "+" 888   T88b "+"8888888  "+"d88P     888   "+"888    Y888  "+"     888     "+"    888     "+"   Y8888P      \n");
 
