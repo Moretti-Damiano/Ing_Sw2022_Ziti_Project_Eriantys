@@ -2,6 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseAssistantDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 /**
@@ -11,7 +12,7 @@ public class ChooseAssistant implements Action {
     private Game game;
     private int assistantID;
     private Player player;
-    private String description;
+    private String description="";
 
     public ChooseAssistant (Game game, Player player,int assistantID){
         this.game=game;
@@ -21,11 +22,11 @@ public class ChooseAssistant implements Action {
 
     /**
      * Check if the assistant can be chosen by the actual player then set the field of his actual assistant as "in use" and "already taken"
-     * @return null
+     * Also Check if the player can chase an assistant already taken by another player
      */
     @Override
     public void execute() {
-        if(checkValidate()){
+        if(checkValidate()||((checkParticularCase())&&(!player.getAssistants().get(assistantID).isAssChose()))){
             player.setAssChoosed(player.getAssistants().get(assistantID));
             player.getAssistants().get(assistantID).setActual(true);
             player.getAssistants().get(assistantID).setAssChose(true);
@@ -34,6 +35,21 @@ public class ChooseAssistant implements Action {
         }
 
     }
+
+    /**
+     *
+     * @return true if the actual player has already chosen 9/10 assistants
+     */
+
+    private boolean checkParticularCase() {
+        int count=0;
+        for(Assistant ass: this.game.getCurrentPlayer().getAssistants()){
+            if(ass.isAssChose()){count++;}
+        }
+        if(count==9){return true;}
+        else {return false;}
+    }
+
     @Override
     public ActionMessage toMessage() {
 

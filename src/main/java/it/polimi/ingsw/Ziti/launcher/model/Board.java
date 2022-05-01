@@ -7,25 +7,24 @@ import java.util.ArrayList;
 
 public class Board {
         private static final int colorrow = 5;
-        private String nickName;
+        private String playername;
         private ArrayList<Tower> towers;
         private TowerColour tower_colour;
         private ArrayList<Student> students_waiting;
         private ArrayList<Professor> professors;
         private ArrayList<Student>[] students;
         private ArrayList<Coin> wallet;
-        private String playername;
+
 
 
 
         public Board(Player player) {
-            this.nickName = player.GetName();
+            playername = player.GetName();
             towers = new ArrayList<Tower>();
             professors = new ArrayList<Professor>();
             wallet = new ArrayList<Coin>();
             students_waiting = new ArrayList<Student>();
             students = new ArrayList[colorrow];
-            playername= player.GetName();
             for (int i = 0; i < colorrow; i++) {
                 students[i] = new ArrayList<Student>();
             }
