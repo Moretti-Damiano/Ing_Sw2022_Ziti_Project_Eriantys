@@ -21,7 +21,6 @@ public class TurnController {
     private Phase phase;
     private ArrayList<Player> players;
     private ArrayList<Player> orderPlayers;
-    private ArrayList<Player> newOrderPlayer;
     private int moveNumber;
     private int playersDone;
     private Map<Integer,Player> playerAssistants;
@@ -31,7 +30,6 @@ public class TurnController {
         phase = Phase.PLANNING;
         this.players = players;
         orderPlayers = new ArrayList<>(players); //da rivedere poi con che ordine inziare
-        newOrderPlayer = new ArrayList<>();
         playerAssistants = new HashMap<>();
         setCurrentPlayer(players.get(0));
         moveNumber = 0;

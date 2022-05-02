@@ -11,14 +11,20 @@ public class Server implements GameControllerObserver {
     private ServerMessageHandler serverMessageHandler; //observed by GameController
 
     public Server(int port){
+
         this.port = port;
+        serverMessageHandler = new ServerMessageHandler();
     }
 
     public void startServer(){
+        System.out.println("Starting server:");
         socketServer = new SocketServer(this,port);
-        serverMessageHandler = new ServerMessageHandler();
         Thread serverThread = new Thread(socketServer);
         serverThread.start();
+    }
+
+    public ServerMessageHandler getServerMessageHandler() {
+        return serverMessageHandler;
     }
 
     /**

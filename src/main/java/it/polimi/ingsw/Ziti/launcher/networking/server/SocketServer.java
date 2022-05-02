@@ -16,7 +16,6 @@ public class SocketServer implements Runnable{
     private ArrayList<ClientHandler> clientHandlers;
 
     public SocketServer(Server server, int port) {
-
         clientHandlers = new ArrayList<>();
         this.server = server;
         this.port = port;
@@ -30,6 +29,7 @@ public class SocketServer implements Runnable{
     public void run() {
         try {
             serverSocket = new ServerSocket(port);
+            System.out.println("Server started and waiting for connections");
         } catch (IOException e) {System.out.println("Server could not start");}
 
         while(true) {
