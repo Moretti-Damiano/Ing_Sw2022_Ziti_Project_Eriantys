@@ -382,6 +382,9 @@ public class cli extends InputObservable implements view, ViewObserver {
             String input;
             input=sc.nextLine();
             switch(input){
+                case "LOGIN":
+                    askLogin();
+                    break;
                 case "CHOOSEASSISTANT":
                     askChoseAssistant();
                     break;

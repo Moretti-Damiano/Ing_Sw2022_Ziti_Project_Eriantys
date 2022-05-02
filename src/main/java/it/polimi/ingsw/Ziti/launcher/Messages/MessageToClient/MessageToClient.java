@@ -5,7 +5,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.Message;
 
 import java.io.Serializable;
 
-public abstract class MessageToClient extends Message {
+public abstract class MessageToClient extends Message implements Serializable {
 
     public abstract void handle(ClientMessageHandler clientMessageHandler);
     

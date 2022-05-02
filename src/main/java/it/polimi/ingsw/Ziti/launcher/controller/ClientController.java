@@ -44,7 +44,7 @@ public class ClientController extends ClientObservable implements InputObserver 
     @Override
     public void onUpdateLogin(String nickname) {
         LoginMessage message;
-        message=new LoginMessage("cli",nickname);
+        message=new LoginMessage(null,nickname);
         notifyObserver(obs->obs.send(message));
     }
 

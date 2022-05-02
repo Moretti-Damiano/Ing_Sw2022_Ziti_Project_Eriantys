@@ -17,7 +17,7 @@ import java.net.Socket;
  */
 
 
-public class SocketClient extends SocketClientObservable implements ClientObserver {
+public class SocketClient extends SocketClientObservable implements ClientObserver,Runnable {
 
     private final Socket socket;
     private final ObjectOutputStream outputStm;
@@ -94,4 +94,8 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     }
 
 
+    @Override
+    public void run() {
+        receive();
+    }
 }
