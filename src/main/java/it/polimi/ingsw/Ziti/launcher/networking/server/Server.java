@@ -52,6 +52,7 @@ public class Server implements GameControllerObserver {
     }
 
     public void receive(MessagetoServer message){
+            System.out.println("PAssing message from server to MessageHandler");
         message.handle(serverMessageHandler);
     }
 
@@ -66,8 +67,9 @@ public class Server implements GameControllerObserver {
     }
 
     public void successfulLogin(MessageToClient message, String temporaryName, String newName){
+        socketServer.getClientHandlers().get(0).setNickName(newName);
         notifyPlayer(message,temporaryName);
-        socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
+
     }
 
     

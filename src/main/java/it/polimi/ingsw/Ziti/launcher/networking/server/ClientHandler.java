@@ -37,27 +37,29 @@ public class ClientHandler implements Runnable {
         try {
             System.out.println("ClientHandler Started");
             keepListening();
-        } catch (IOException | ClassNotFoundException e) {System.out.println("Error in listening");}
+        }
+        catch (IOException e) {System.out.println("IOexception");}
+        catch (ClassNotFoundException e) {
+            System.out.println("Class not found exc");
+        }
     }
 
     private void keepListening() throws IOException, ClassNotFoundException {
         while(true){
-            System.out.println("TRUEEEEEE");
-            if(input.available() != 0){
-                System.out.println("ClientHandler " +nickName+ " received a message");
-                message = (MessagetoServer) input.readObject();
 
+                message = (MessagetoServer) input.readObject();
+                System.out.println("ClientHandler " + nickName + " received a message");
                 message.setSender(nickName);
                 socketServer.receive(message);
-                input.reset();
-            }
+                //input.reset();
         }
     }
 
     public void send(MessageToClient message)  {
         try {
+            System.out.println("Sending message to " + nickName);
             output.writeObject(message);
-            //output.flush();
+            output.flush();
             output.reset();
         } catch (IOException e) {
             System.out.println("Error in sending message to " + nickName);
