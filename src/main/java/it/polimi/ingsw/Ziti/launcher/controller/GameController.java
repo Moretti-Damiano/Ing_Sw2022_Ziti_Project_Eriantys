@@ -196,8 +196,8 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void showCharacterRequestHandler(ShowCharacterRequest message) {
-        /*notifyObserver(obs -> obs.sendToOnePlayer(new ShowCharacterResponse(getGame().getCharacters()), message.getSender()));
-         */
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowCharacterResponse(getGame().getCharacters()), message.getSender()));
+
     }
 
     @Override

@@ -6,10 +6,11 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
+import it.polimi.ingsw.Ziti.launcher.model.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
-import java.lang.Character;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
@@ -37,9 +38,10 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacters(List<Character> characters) {
+    public void showCharacters(ArrayList<Character> characters) {
 
     }
+
 
     @Override
     public void showIslands(List<Island> islands) {
