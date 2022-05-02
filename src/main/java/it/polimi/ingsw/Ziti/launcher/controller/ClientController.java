@@ -52,6 +52,8 @@ public class ClientController extends ClientObservable implements InputObserver 
     public void onUpdateConnection(String address, String port) {
         if(isInt(port)){
        try{socketClient=new SocketClient(address,Integer.parseInt(port),observerClient);
+           Thread clientThread=new Thread(socketClient);
+           clientThread.start();
            this.addObserver(socketClient);
            ConnectionSuccessfulMessage message;
            message=new ConnectionSuccessfulMessage(true);
@@ -141,9 +143,11 @@ public class ClientController extends ClientObservable implements InputObserver 
     @Override
     public void onUpdateNumberOfPlayer(String numberOfPlayer) {
         if(isInt(numberOfPlayer)) {
+            System.out.println("E un numero");
             NumberOfPlayersMessage m;
-            m=new NumberOfPlayersMessage("cli",Integer.parseInt(numberOfPlayer));
+            m=new NumberOfPlayersMessage(null,Integer.parseInt(numberOfPlayer));
             notifyObserver(obs -> obs.send(m));
+            System.out.println("Ho mandato il messaggio");
         }
         else{
             InputError message;

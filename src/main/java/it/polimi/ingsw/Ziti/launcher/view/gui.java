@@ -98,7 +98,6 @@ public class gui implements view{
     }
 
     @Override
-    public String askNumberOfPlayer() {
-        return null;
+    public void askNumberOfPlayer() {
     }
 }
