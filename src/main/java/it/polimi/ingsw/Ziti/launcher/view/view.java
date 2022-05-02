@@ -6,6 +6,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Character;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public interface view {
 
@@ -16,7 +17,7 @@ public interface view {
     void showMyBoard(Board board);
     void showBoards(List<Board> boards);
     void showErrorMessage(ErrorMessage message);
-    void askLogin();
+    void askLogin() throws ExecutionException;
     String askAssistant();
     String askCharacter();
     String askIsland();
@@ -26,5 +27,5 @@ public interface view {
     void askMoveMother();
     void askCloudIsland();
     void askChoseAssistant();
-    void askNumberOfPlayer();
+    void askNumberOfPlayer() throws ExecutionException;
 }

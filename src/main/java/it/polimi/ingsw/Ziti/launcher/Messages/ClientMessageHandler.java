@@ -5,6 +5,8 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 
+import java.util.concurrent.ExecutionException;
+
 /**
  * This class is observed by cli and by ClientController
  * Every method handles a request of the similar message: notifies observer calling its method with the message as a parameter
@@ -22,10 +24,28 @@ public class ClientMessageHandler extends ViewObservable {
         notifyObserver(obs->obs.InputErrorHandler(message));
     }
     public void ErrorMessageHandle(ErrorMessage message){notifyObserver(obs->obs.ErrorMessageHandler(message));}
-    public void ConnectionSuccessfulHandle(ConnectionSuccessfulMessage message){notifyObserver(obs->obs.ConnectionSuccessfulHandler(message));}
+    public void ConnectionSuccessfulHandle(ConnectionSuccessfulMessage message){notifyObserver(obs-> {
+        try {
+            obs.ConnectionSuccessfulHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
     public void CompletedRequestHandle(CompletedRequestMessage message){notifyObserver(obs->obs.CompleteRequestHandler(message));}
-    public void LoginErrorHandle(LoginError message){notifyObserver(obs->obs.LoginErrorHandler(message));}
-    public void NumOfPlayerRequestHandle(NumOfPLayersRequest message){notifyObserver(obs->obs.NumOfPlayerHandler(message));}
+    public void LoginErrorHandle(LoginError message){notifyObserver(obs-> {
+        try {
+            obs.LoginErrorHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void NumOfPlayerRequestHandle(NumOfPLayersRequest message){notifyObserver(obs-> {
+        try {
+            obs.NumOfPlayerHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
     public void TurnErrorHandle(TurnError message){notifyObserver(obs->obs.TurnErrorHandler(message));}
     public void ShowAssistantResponseHandle(ShowAssistantResponse message){notifyObserver(obs->obs.showAssistantHandler(message));}
     public void ShowCharacterResponseHandle(ShowCharacterResponse message){notifyObserver(obs->obs.showCharacterHandler(message));}
