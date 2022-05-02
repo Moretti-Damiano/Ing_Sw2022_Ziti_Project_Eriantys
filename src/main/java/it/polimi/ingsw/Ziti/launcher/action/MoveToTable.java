@@ -26,8 +26,8 @@ public class MoveToTable implements Action{
 
     public void execute() throws ActionException{
         checkInput();
-        this.goLunch(Colour.valueOf(chosencolour.toLowerCase(Locale.ROOT)));
-        this.controlProfessor(Colour.valueOf(chosencolour.toLowerCase(Locale.ROOT)));
+        this.goLunch(Colour.valueOfName(chosencolour.toLowerCase(Locale.ROOT)));
+        this.controlProfessor(Colour.valueOfName(chosencolour.toLowerCase(Locale.ROOT)));
     }
 
     @Override

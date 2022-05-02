@@ -74,7 +74,7 @@ public enum Colour {
      * @return the enum constant with the specified name.
      */
     public static Colour valueOfName(final String name) {
-        final Colour colour = COLOURS_BY_ABBR.get(name);
+        final Colour colour = COLOURS_BY_NAME.get(name);
         return colour;
     }
 

@@ -26,7 +26,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     private Game game;
     private TurnController turnController;
     private ArrayList<Player> players;
-    private int numberOfPlayers; //game for n plauers
+    private int numberOfPlayers = 4; //game for n plauers
 
     public GameController(){
         players = new ArrayList<>();
@@ -60,7 +60,9 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void loginHandler(LoginMessage message)  {
+        System.out.println("Receveid login message");
         if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers) {
+            System.out.println("IN if");
             try {
                 players.add(new Player(message.getUsername()));
             } catch (ParserConfigurationException | IOException | SAXException e) {
@@ -68,9 +70,9 @@ public class GameController extends GameControllerObservable implements ServerOb
             }
             notifyObserver(obs -> obs.successfulLogin(new CompletedRequestMessage("Login completed"),message.getSender(),message.getUsername()));
             if(players.size() == 1){
+                System.out.println("Send request players number");
                 notifyObserver(obs -> obs.requestPlayerNumber(new NumOfPLayersRequest(),message.getUsername()));
             }
-            turnController.updatePhase();
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new LoginError("Name already used, try again"), message.getSender()));
