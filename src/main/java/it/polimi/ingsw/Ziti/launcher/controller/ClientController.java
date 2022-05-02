@@ -6,6 +6,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.InputError;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
 import it.polimi.ingsw.Ziti.launcher.networking.server.SocketServer;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
@@ -21,6 +22,12 @@ public class ClientController extends ClientObservable implements InputObserver 
 
     ClientMessageHandler clientMessageHandler;
     SocketClient socketClient;
+    ObserverClient observerClient;
+
+    public ClientController(ClientMessageHandler clientMessageHandler,ObserverClient ObserverClient){
+        this.clientMessageHandler=clientMessageHandler;
+        this.observerClient=ObserverClient;
+    }
 
     /**
      * this method is used to bring "Messages to Client" from Server to cli
@@ -44,7 +51,8 @@ public class ClientController extends ClientObservable implements InputObserver 
     @Override
     public void onUpdateConnection(String address, String port) {
         if(isInt(port)){
-       try{socketClient=new SocketClient(address,Integer.parseInt(port));
+       try{socketClient=new SocketClient(address,Integer.parseInt(port),observerClient);
+           this.addObserver(socketClient);
            ConnectionSuccessfulMessage message;
            message=new ConnectionSuccessfulMessage(true);
            update(message);

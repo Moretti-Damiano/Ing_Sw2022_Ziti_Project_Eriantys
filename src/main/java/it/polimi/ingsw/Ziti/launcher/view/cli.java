@@ -4,6 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.controller.ClientController;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Character;
@@ -19,9 +20,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     //Questa classe OSSERVA il ClientMessageHandler e VIENE OSSERVATA dal ClientController
 
     private final Scanner sc;
+    private final ClientController clientController;
 
-    public cli(ClientMessageHandler clientMessageHandler){
+    public cli(ClientController clientController){
         this.sc = new Scanner(System.in);
+        this.clientController=clientController;
     }
 
     @Override
@@ -352,10 +355,10 @@ public class cli extends InputObservable implements view, ViewObserver {
 
         String defaultAddress = "localhost";
         String defaultPort = "16847";
-        System.out.println("Please insert Server Settings. Default value is shown as §DEFAULT§");
-        System.out.println("Enter the server address §"+defaultAddress+"§");
+        System.out.println("Please insert Server Settings. Default value is shown as [DEFAULT]");
+        System.out.println("Enter the server address ["+defaultAddress+"]");
         String address=sc.nextLine();
-        System.out.println("Enter the server port §"+defaultPort+"§");
+        System.out.println("Enter the server port ["+defaultPort+"]");
         String port=sc.nextLine();
         notifyObserver(obs->obs.onUpdateConnection(address,port));
 

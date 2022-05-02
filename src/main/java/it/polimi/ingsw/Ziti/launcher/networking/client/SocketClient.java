@@ -25,8 +25,9 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     private static final int TIMEOUT = 10000;
     private ErrorMessage errorMessage;
 
-    public SocketClient (String address, int port) throws IOException{
+    public SocketClient (String address, int port,ObserverClient observerClient) throws IOException{
             this.socket = new Socket();
+            this.addObserver(observerClient);
             try {
                 this.socket.connect(new InetSocketAddress(address, port), TIMEOUT);
             }catch(IllegalArgumentException i){

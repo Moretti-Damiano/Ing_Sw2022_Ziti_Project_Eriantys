@@ -12,6 +12,9 @@ import it.polimi.ingsw.Ziti.launcher.observer.*;
 public class ObserverClient implements SocketClientObserver {
 
     ClientMessageHandler clientMessageHandler;
+    public ObserverClient(ClientMessageHandler clientMessageHandler){
+        this.clientMessageHandler=clientMessageHandler;
+    }
 
 
 
