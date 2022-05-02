@@ -17,7 +17,7 @@ import java.net.Socket;
  */
 
 
-public class SocketClient extends SocketClientObservable implements ClientObserver,Runnable {
+public class SocketClient extends SocketClientObservable implements ClientObserver {
 
     private final Socket socket;
     private final ObjectOutputStream outputStm;
@@ -62,11 +62,10 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
         while (true) {
             MessageToClient messageToClient;
             try {
-                if (inputStm.available() != 0) {
+
                     messageToClient = (MessageToClient) inputStm.readObject();
                     notifyObserver(obs -> obs.update(messageToClient));
 
-                }
             } catch (IOException | ClassNotFoundException e) {
 
                 errorMessage = new ErrorMessage("SocketClient", "Connection lost");
@@ -91,11 +90,5 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
 
 
 
-    }
-
-
-    @Override
-    public void run() {
-        receive();
     }
 }

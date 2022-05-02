@@ -54,7 +54,7 @@ public class ClientHandler implements Runnable {
     public void send(MessageToClient message)  {
         try {
             output.writeObject(message);
-            //output.flush();
+           // output.flush();
             output.reset();
         } catch (IOException e) {
             System.out.println("Error in sending message to " + nickName);
