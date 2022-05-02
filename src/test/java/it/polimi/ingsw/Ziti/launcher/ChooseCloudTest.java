@@ -38,7 +38,7 @@ public class ChooseCloudTest {
         Player p1 = game.getPlayers().get(0);
         p1.getBoard().getStudents_waiting().clear();
 
-
+        game.setActivePlayer(p1);
         game.setAction(new ChooseCloud(game,p1,0));
         CloudIsland cloud = game.getCloudIslands().get(0);
         ArrayList<Student> cloudStudents = new ArrayList<> (cloud.getStudents());
