@@ -14,13 +14,16 @@ import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.util.concurrent.ExecutionException;
+import java.util.concurrent.FutureTask;
 
 public class cli extends InputObservable implements view, ViewObserver {
 
     //Questa classe OSSERVA il ClientMessageHandler e VIENE OSSERVATA dal ClientController
 
-    private final Scanner sc;
+    private Scanner sc;
     private final ClientController clientController;
+    private Thread inputThread;
 
 
     public cli(ClientController clientController){
@@ -141,10 +144,10 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void askLogin() {
+    public void askLogin() throws ExecutionException {
         System.out.println("Insert your username: ");
         String username;
-        username=sc.next();
+        username=readLine();
         notifyObserver(obs->obs.onUpdateLogin(username));
     }
 
@@ -180,12 +183,13 @@ public class cli extends InputObservable implements view, ViewObserver {
         return colour;
 
     }
-    public void askNumberOfPlayer(){
+    public void askNumberOfPlayer() throws ExecutionException {
         System.out.println("Insert the number of players: ");
-        Scanner scanner=new Scanner(System.in);
-        System.out.println("Sono dentro");
-        String numberOfPlayer=scanner.nextLine();
+        //Scanner scanner=new Scanner(System.in);
+        String numberOfPlayer=sc.nextLine();
+        System.out.println("Ho superato il readLine");
         notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
+        reading();
     }
 
     @Override
@@ -237,9 +241,6 @@ public class cli extends InputObservable implements view, ViewObserver {
         showIslands(message.getIslands());
         System.out.println("Player "+message.getPlayername()+"'s board: ");
         showMyBoard(message.getBoard());
-
-
-
     }
 
     @Override
@@ -286,7 +287,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) {
+    public void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) throws ExecutionException {
         if(message.getSuccess()){
             gameStarter();
         }
@@ -298,13 +299,13 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void LoginErrorHandler(LoginError message) {
+    public void LoginErrorHandler(LoginError message) throws ExecutionException {
         System.out.println(message.getDescription());
         gameStarter();
     }
 
     @Override
-    public void NumOfPlayerHandler(NumOfPLayersRequest message) {
+    public void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException {
         System.out.println("Sto per chiedere il numero dei player");
         askNumberOfPlayer();
     }
@@ -365,7 +366,73 @@ public class cli extends InputObservable implements view, ViewObserver {
         notifyObserver(obs->obs.onUpdateConnection(address,port));
 
     }
-    public void gameStarter(){
+    public String readLine() throws ExecutionException {
+        FutureTask<String> futureTask = new FutureTask<>(new InputReadTask());
+        inputThread = new Thread(futureTask);
+        inputThread.start();
+
+        String input = null;
+
+        try {
+            input = futureTask.get();
+        } catch (InterruptedException e) {
+            futureTask.cancel(true);
+            Thread.currentThread().interrupt();
+        }
+        return input;
+    }
+
+    public void reading() throws ExecutionException {
+        System.out.println("Sono nello switch");
+        String input;
+        input=readLine();
+        switch(input){
+            case "LOGIN":
+                askLogin();
+                break;
+            case "CHOOSEASSISTANT":
+                askChoseAssistant();
+                break;
+            case "CHOOSECHARACTER":
+                askCharacter();
+                break;
+            case "CHOOSECLOUD":
+                askCloudIsland();
+                break;
+            case "MOVEMOTHER":
+                askMoveMother();
+                break;
+            case "MOVETOISLAND":
+                askMoveToIsland();
+                break;
+            case "MOVETOTABLE":
+                askMoveToTable();
+                break;
+            case "SHOWASSISTANT":
+                notifyObserver(obs->obs.onUpdateAssistantRequest(new ShowAssistantRequest()));
+                break;
+            case "SHOWBOARD":
+                notifyObserver(obs->obs.onUpdateBoardRequest(new ShowBoardRequest()));
+                break;
+            case "SHOWBOARDS":
+                notifyObserver(obs->obs.onUpdateBoardsRequest(new ShowBoardsRequest()));
+                break;
+            case "SHOWCHARACTER":
+                notifyObserver(obs->obs.onUpdateCharacterRequest(new ShowCharacterRequest()));
+                break;
+            case "SHOWCLOUD":
+                notifyObserver(obs->obs.onUpdateCloudRequest(new ShowCloudRequest()));
+                break;
+            case "SHOWISLAND":
+                notifyObserver(obs->obs.onUpdateIslandRequest(new ShowIslandRequest()));
+                break;
+            default:
+                System.out.println("Invalid");
+                break;
+        }
+    }
+
+    public void gameStarter() throws ExecutionException {
         System.out.println("If is your first action, Type LOGIN to insert your username");
         System.out.println("MAIN ACTION");
         System.out.println("Type CHOOSEASSISTANT to chose your assistant");
@@ -380,57 +447,6 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Type SHOWCHARACTER to print the available characters");
         System.out.println("Type SHOWCLOUD to print the available clouds");
         System.out.println("Type SHOWISLAND to print all the islands");
-        while(true){
-            String input;
-            input=sc.nextLine();
-            switch(input){
-                case "LOGIN":
-                    askLogin();
-                    break;
-                case "CHOOSEASSISTANT":
-                    askChoseAssistant();
-                    break;
-                case "CHOOSECHARACTER":
-                    askCharacter();
-                    break;
-                case "CHOOSECLOUD":
-                    askCloudIsland();
-                    break;
-                case "MOVEMOTHER":
-                    askMoveMother();
-                    break;
-                case "MOVETOISLAND":
-                    askMoveToIsland();
-                    break;
-                case "MOVETOTABLE":
-                    askMoveToTable();
-                    break;
-                case "SHOWASSISTANT":
-                    notifyObserver(obs->obs.onUpdateAssistantRequest(new ShowAssistantRequest()));
-                    break;
-                case "SHOWBOARD":
-                    notifyObserver(obs->obs.onUpdateBoardRequest(new ShowBoardRequest()));
-                    break;
-                case "SHOWBOARDS":
-                    notifyObserver(obs->obs.onUpdateBoardsRequest(new ShowBoardsRequest()));
-                    break;
-                case "SHOWCHARACTER":
-                    notifyObserver(obs->obs.onUpdateCharacterRequest(new ShowCharacterRequest()));
-                    break;
-                case "SHOWCLOUD":
-                    notifyObserver(obs->obs.onUpdateCloudRequest(new ShowCloudRequest()));
-                    break;
-                case "SHOWISLAND":
-                    notifyObserver(obs->obs.onUpdateIslandRequest(new ShowIslandRequest()));
-                    break;
-                default:
-                    System.out.println("Invalid");
-                    break;
-            }
-        }
-
-
+        while(true){reading();}
     }
-
-
-        }
+}

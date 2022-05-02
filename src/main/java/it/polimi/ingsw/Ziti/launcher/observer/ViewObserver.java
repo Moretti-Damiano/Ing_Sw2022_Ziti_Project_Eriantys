@@ -3,6 +3,8 @@ package it.polimi.ingsw.Ziti.launcher.observer;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 
+import java.util.concurrent.ExecutionException;
+
 public interface ViewObserver {
 
 
@@ -15,10 +17,10 @@ public interface ViewObserver {
     void chooseCharacterHandler(ChooseCharacterDoneMessage message);
     void endTurnHandler(EndTurnDoneMessage message);
     void cloudIslandHandler(ChooseCloudDoneMessage message);
-    void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message);
+    void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) throws ExecutionException;
     void CompleteRequestHandler(CompletedRequestMessage message);
-    void LoginErrorHandler(LoginError message);
-    void NumOfPlayerHandler(NumOfPLayersRequest message);
+    void LoginErrorHandler(LoginError message) throws ExecutionException;
+    void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException;
     void TurnErrorHandler(TurnError message);
     void showAssistantHandler(ShowAssistantResponse message);
     void showCharacterHandler(ShowCharacterResponse message);
