@@ -9,7 +9,6 @@ public class ServerApp {
         Server server = new Server(16847);
         server.getServerMessageHandler().addObserver(gameController);
         gameController.addObserver(server);
-
         server.startServer();
     }
 }
