@@ -35,13 +35,16 @@ public class ClientHandler implements Runnable {
     @Override
     public void run() {
         try {
+            System.out.println("ClientHandler Started");
             keepListening();
         } catch (IOException | ClassNotFoundException e) {System.out.println("Error in listening");}
     }
 
     private void keepListening() throws IOException, ClassNotFoundException {
         while(true){
+            System.out.println("TRUEEEEEE");
             if(input.available() != 0){
+                System.out.println("ClientHandler " +nickName+ " received a message");
                 message = (MessagetoServer) input.readObject();
 
                 message.setSender(nickName);

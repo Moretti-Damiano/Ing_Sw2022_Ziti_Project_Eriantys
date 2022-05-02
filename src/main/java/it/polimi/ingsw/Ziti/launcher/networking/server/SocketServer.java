@@ -29,12 +29,14 @@ public class SocketServer implements Runnable{
     public void run() {
         try {
             serverSocket = new ServerSocket(port);
-            System.out.println("Server started and waiting for connections");
+            System.out.println("Server started");
         } catch (IOException e) {System.out.println("Server could not start");}
 
         while(true) {
             try {
+                System.out.println("Waiting for connections");
                 Socket socket = serverSocket.accept();
+                System.out.println("Connection Received");
                 clientHandler = new ClientHandler(this,socket,Integer.toString(clientHandlers.size()));
                 new Thread(clientHandler).start();
                 clientHandlers.add(clientHandler);
