@@ -26,5 +26,5 @@ public interface view {
     void askMoveMother();
     void askCloudIsland();
     void askChoseAssistant();
-    String askNumberOfPlayer();
+    void askNumberOfPlayer();
 }

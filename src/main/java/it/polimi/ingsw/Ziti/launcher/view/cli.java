@@ -22,6 +22,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     private final Scanner sc;
     private final ClientController clientController;
 
+
     public cli(ClientController clientController){
         this.sc = new Scanner(System.in);
         this.clientController=clientController;
@@ -143,7 +144,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     public void askLogin() {
         System.out.println("Insert your username: ");
         String username;
-        username=sc.nextLine();
+        username=sc.next();
         notifyObserver(obs->obs.onUpdateLogin(username));
     }
 
@@ -179,12 +180,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         return colour;
 
     }
-    @Override
-    public String askNumberOfPlayer(){
+    public void askNumberOfPlayer(){
         System.out.println("Insert the number of players: ");
-        String numberOfPlayer;
-        numberOfPlayer=sc.nextLine();
-        return numberOfPlayer;
+        Scanner scanner=new Scanner(System.in);
+        System.out.println("Sono dentro");
+        String numberOfPlayer=scanner.nextLine();
+        notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
     }
 
     @Override
@@ -304,6 +305,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void NumOfPlayerHandler(NumOfPLayersRequest message) {
+        System.out.println("Sto per chiedere il numero dei player");
         askNumberOfPlayer();
     }
 
@@ -423,6 +425,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                     break;
                 default:
                     System.out.println("Invalid");
+                    break;
             }
         }
 

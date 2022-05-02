@@ -18,7 +18,10 @@ public class ObserverClient implements SocketClientObserver {
 
 
 
-    public void update(MessageToClient message){ message.handle(clientMessageHandler);}
+    public void update(MessageToClient message){
+
+        System.out.println("Observer client");
+        message.handle(clientMessageHandler);}
 
 }
 
