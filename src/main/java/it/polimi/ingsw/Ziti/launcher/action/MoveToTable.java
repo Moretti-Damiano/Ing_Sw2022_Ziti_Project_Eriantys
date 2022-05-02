@@ -16,7 +16,7 @@ public class MoveToTable implements Action{
 
     private Game game;
     private String chosencolour;
-     private String description;
+     private String description = "";
 
 
     public MoveToTable(Game game, String chosencolour){

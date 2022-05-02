@@ -18,7 +18,7 @@ public class MoveMother implements Action{
     private Game game;
     private int moves;
     private Mother mother;
-    private String description;
+    private String description = "";
 
     public MoveMother(Game game, int moves){
         this.game = game;

@@ -17,7 +17,7 @@ public class MoveToIsland implements Action{
     private Game game;
     private int chosenIsland;
     private String studentColour;
-    private String description;
+    private String description = "";
 
     public MoveToIsland(Game game, int chosenIsland, String studentColour) {
 

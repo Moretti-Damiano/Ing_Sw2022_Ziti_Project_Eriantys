@@ -14,7 +14,7 @@ public class ChooseCloud implements Action{
     private int chosenCloudId;
     private Player player;
     private CloudIsland chosenCloud;
-    private String description;
+    private String description = "";
 
     public ChooseCloud(Game game, Player player , int chosenCloudId){
         this.game = game;
