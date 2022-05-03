@@ -10,10 +10,6 @@ public class ConnectionMessage extends MessagetoServer{
         this.Port=port;
         this.Address=address;
     }
-    @Override
-    public String getSender() {
-        return null;
-    }
 
     public String getAddress() {
         return Address;

@@ -8,18 +8,14 @@ public class MoveToIslandMessage extends MessagetoServer {
     private String sender;
     private String Colour;
 
-    public MoveToIslandMessage(String sender,int islandID,String colour) {
-        this.sender = sender;
+    public MoveToIslandMessage(int islandID,String colour) {
+        super();
         this.islandID=islandID;
         this.Colour=colour;
     }
 
     public int getIslandID() {
         return islandID;
-    }
-
-    public String getSender() {
-        return sender;
     }
 
     public String getColour() {
