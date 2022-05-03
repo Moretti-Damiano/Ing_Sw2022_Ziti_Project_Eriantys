@@ -59,7 +59,7 @@ public class cli extends InputObservable implements view, ViewObserver {
             if (island.getTowerPlayer() != null) {
                 System.out.println("In this island there is " + island.getTowerPlayer().GetName() + "'s tower");
             }
-            if (island.getStudents().size() == 0) System.out.println("There are no students ");
+            if (island.getStudents().isEmpty()) System.out.println("There are no students ");
             else {
                 String partial = new String();
                 for (Colour c : Colour.values()) {
@@ -75,11 +75,15 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showClouds(List<CloudIsland> clouds) {
         System.out.println("Available Cloud Islands are: ");
-        for(CloudIsland c : clouds) {
+        for (CloudIsland c : clouds) {
             System.out.println("CloudID: " + c.getID());
-            System.out.println("In this Cloud Island there are: ");
-            for(Colour colour: Colour.values()){
-                System.out.println(c.getColour(colour)+" "+colour.getName()+" students");
+            if (c.getStudents().isEmpty()) System.out.println("In this Cloud Island there are no students");
+            else {
+                System.out.println("In this Cloud Island there are: ");
+                for (Colour colour : Colour.values()) {
+                    if (c.getColour(colour) != 0)
+                        System.out.println(c.getColour(colour) + " " + colour.getName() + " students");
+                }
             }
         }
     }
