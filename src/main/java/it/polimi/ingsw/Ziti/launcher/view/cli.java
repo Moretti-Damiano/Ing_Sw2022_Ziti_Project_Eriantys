@@ -37,9 +37,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Available assistants are :");
         for(Assistant ass : assistants){
             if(!ass.isAssChose()) {
-                System.out.println(" ID : " + ass.getId());
-                System.out.println(" MotherNature Moves : " + ass.getMovesMother());
-                System.out.println(" Value : " + ass.getValue());
+                System.out.println(" ID : " + ass.getId()+"\t\t MotherNature Moves : " + ass.getMovesMother()+"\t\t Value : " + ass.getValue());
             }
         }
 
@@ -55,23 +53,19 @@ public class cli extends InputObservable implements view, ViewObserver {
     public void showIslands(List<Island> islands) {
         System.out.println("Available islands are ");
         for(Island island : islands){
-            System.out.println(" ID : "+island.getID());
-            if(island.getMother()){
-                System.out.println("In this island there's MotherNature ");
-            }
-            if(island.getTowerPlayer()==null){
-                System.out.println("There's no player that owns a tower in this island ");
-            }
-            else
-            {
+            if(island.getMother()) {
+                System.out.println(" ID : " + island.getID() + "\t\t\tIn this island there's MotherNature ");
+            }else System.out.println(" ID : " + island.getID());
+            if(island.getTowerPlayer()!=null){
                 System.out.println("In this island there is "+island.getTowerPlayer().GetName()+"'s tower");
             }
                 System.out.println("There are :");
             for(Colour c: Colour.values()){
                 if(island.getColour(c)!=0){
-                    System.out.println(island.getColour(c)+" students "+c.getName());
+                    System.out.append("\t  "+island.getColour(c)+" students "+c.getName());
                 }
             }
+            System.out.println("\n");
             }
     }
 
@@ -90,12 +84,12 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showMyBoard(Board board) {
         // show waiting Students
-        System.out.println("     WAITING ROOM                             |                         DINING ROOM");
+        System.out.println("     WAITING ROOM                                                       DINING ROOM");
         for (Colour c : Colour.values()) {
             System.out.println("There are " + board.countStudentColor(c)+" "+ c.getName() + " students " +"                                 "+board.getColorRowSize(c)+" "+ c.getName() + " students in the dining room ");
         }
         // show coins
-        System.out.println("You have  " + board.getNumberofCoin() + " coins");
+        System.out.println("There are  " + board.getNumberofCoin() + " coins in wallet");
 
         // show professors
         for (Colour c : Colour.values()) {
