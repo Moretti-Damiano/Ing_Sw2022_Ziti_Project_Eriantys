@@ -30,8 +30,8 @@ public class ChooseAssistant implements Action {
             player.setAssChoosed(player.getAssistants().get(assistantID));
             player.getAssistants().get(assistantID).setActual(true);
             player.getAssistants().get(assistantID).setAssChose(true);
-            description=description.concat(game.getCurrentPlayer().GetName() + " chose the assistant with move mother value: " + player.getAssistants().get(assistantID).getMovesMother()
-                                                                              + "and priority value:" + player.getAssistants().get(assistantID).getValue());
+            description=description.concat(game.getCurrentPlayer().GetName() + " chose the assistant with MotherNature Moves: " + player.getAssistants().get(assistantID).getMovesMother()
+                                                                              + " and priority value: " + player.getAssistants().get(assistantID).getValue());
         }
 
     }

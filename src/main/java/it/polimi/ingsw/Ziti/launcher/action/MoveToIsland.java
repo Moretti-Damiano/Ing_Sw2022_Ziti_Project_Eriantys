@@ -36,7 +36,7 @@ public class MoveToIsland implements Action{
         checkInput();
         Island island = game.getIslandbyId(chosenIsland);
         island.addStudent(game.getCurrentPlayer().getBoard().removeStudent(Colour.valueOf(studentColour.toLowerCase(Locale.ROOT))));
-        description=description.concat(game.getCurrentPlayer().GetName() + "moved a" + studentColour + "student to the island" + (chosenIsland) );
+        description=description.concat(game.getCurrentPlayer().GetName() + " moved a " + studentColour + " student to the island " + (chosenIsland) );
     }
 
     @Override

@@ -31,7 +31,7 @@ public class ChooseCloud implements Action{
             checkInput();
             this.chosenCloud = game.getCloudIslands().get(chosenCloudId);
 
-            description = (game.getCurrentPlayer().GetName() + "has chose cloudIsland n. " + chosenCloud);
+            description = (game.getCurrentPlayer().GetName() + " has chose cloudIsland n. " + chosenCloud);
 
             for (Student s : chosenCloud.toEmpty())
                 player.getBoard().addStudent(s);
@@ -49,12 +49,12 @@ public class ChooseCloud implements Action{
     private void checkInput() throws ActionException {
         // verify chosenCloud's Id
         if(chosenCloudId < 0 || chosenCloudId > game.getCloudIslands().size()-1){
-            System.out.println("Cloud "+ chosenCloudId + " does not exist");
+            System.out.println(" Cloud "+ chosenCloudId + " does not exist ");
             throw new ActionException();
         }
         // verify chosenCloud's Id
         if(!game.getCloudIslands().get(chosenCloudId).isAvailable()){
-            System.out.println("Cloud "+ chosenCloudId + " is not available");
+            System.out.println(" Cloud "+ chosenCloudId + " is not available ");
             throw new ActionException();
         }
     }
