@@ -1,9 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
+import java.io.Serializable;
+
 /**
  * This class is a Singleton and represents the Mother Of Nature in the game
  * */
-public class Mother {
+public class Mother implements Serializable {
     private Island island;
     private static Mother instance;
 
