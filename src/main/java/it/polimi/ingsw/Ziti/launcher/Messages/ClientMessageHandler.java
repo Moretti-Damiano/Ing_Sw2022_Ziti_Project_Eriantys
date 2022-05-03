@@ -5,6 +5,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -43,6 +44,8 @@ public class ClientMessageHandler extends ViewObservable {
         try {
             obs.NumOfPlayerHandler(message);
         } catch (ExecutionException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
             e.printStackTrace();
         }
     });}

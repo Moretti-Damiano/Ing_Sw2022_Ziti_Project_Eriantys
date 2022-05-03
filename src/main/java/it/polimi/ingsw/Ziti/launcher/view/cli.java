@@ -11,6 +11,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -323,7 +324,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException {
+    public void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException, IOException {
         System.out.println("Sto per chiedere il numero dei player");
         askNumberOfPlayer();
     }
@@ -462,6 +463,6 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Type SHOWCHARACTER to print the available characters");
         System.out.println("Type SHOWCLOUD to print the available clouds");
         System.out.println("Type SHOWISLAND to print all the islands");
-        while(true){reading();}
+        //while(true){reading();}
     }
 }

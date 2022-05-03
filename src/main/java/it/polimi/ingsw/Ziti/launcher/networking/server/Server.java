@@ -4,6 +4,8 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 
+import static java.lang.Integer.valueOf;
+
 public class Server implements GameControllerObserver {
 
     private int port;
@@ -67,6 +69,7 @@ public class Server implements GameControllerObserver {
     }
 
     public void successfulLogin(MessageToClient message, String temporaryName, String newName){
+        if(temporaryName==null) temporaryName="0";
         socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
         notifyPlayer(message,newName);
         System.out.println("Fatto la notify in server");
