@@ -23,11 +23,11 @@ public interface view {
     String askCharacter() throws ExecutionException;
     String askIsland() throws ExecutionException;
     String askColour() throws ExecutionException;
-    void askMoveToTable();
-    void askMoveToIsland();
+    void askMoveToTable() throws ExecutionException;
+    void askMoveToIsland() throws ExecutionException;
     void askMoveMother() throws ExecutionException;
     void askCloudIsland() throws ExecutionException;
     void askChoseAssistant();
     void askNumberOfPlayer() throws ExecutionException;
-    void GameStartedHandler(GameStartedMessage message);
+    void GameStartedHandler(GameStartedMessage message) throws ExecutionException;
 }
