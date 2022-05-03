@@ -38,8 +38,8 @@ public class SocketServer implements Runnable{
                 Socket socket = serverSocket.accept();
                 System.out.println("Connection Received");
                 clientHandler = new ClientHandler(this,socket,Integer.toString(clientHandlers.size()));
-                new Thread(clientHandler).start();
                 clientHandlers.add(clientHandler);
+                new Thread(clientHandler).start();
 
             } catch (IOException e) {System.out.println("Connection failed");}
         }

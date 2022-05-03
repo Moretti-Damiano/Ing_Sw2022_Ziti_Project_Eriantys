@@ -192,6 +192,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void GameStartedHandler(GameStartedMessage message) {
+
+    }
+
+    @Override
     public void askMoveToTable() {
         notifyObserver(obs -> {
             try {

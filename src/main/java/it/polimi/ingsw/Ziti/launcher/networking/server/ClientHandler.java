@@ -49,9 +49,7 @@ public class ClientHandler implements Runnable {
 
                 message = (MessagetoServer) input.readObject();
                 System.out.println("ClientHandler " + nickName + " received a message");
-                System.out.println("Valore di nickname alla ricezione: " +nickName);
                 message.setSender(nickName);
-                System.out.println("ClientHandler - Message sender set to "+ message.getSender());
                 socketServer.receive(message);
                 //input.reset();
         }
@@ -61,7 +59,6 @@ public class ClientHandler implements Runnable {
         try {
             System.out.println("Sending message "+ message.toString() +" to " + nickName);
             output.writeObject(message);
-            output.flush();
             output.reset();
         } catch (IOException e) {
             System.out.println("Error in sending message to " + nickName);

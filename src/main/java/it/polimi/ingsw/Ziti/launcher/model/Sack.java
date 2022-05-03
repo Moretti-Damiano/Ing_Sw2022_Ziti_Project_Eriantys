@@ -2,13 +2,14 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Random;
 
 /**
  * This class represents the Sack used in the game to spawn Students.
  * */
-public class Sack {
+public class Sack implements Serializable {
     private int[] numColour;
 
 

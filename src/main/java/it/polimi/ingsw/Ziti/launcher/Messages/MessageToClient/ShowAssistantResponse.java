@@ -4,12 +4,13 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 
 
+import java.io.Serializable;
 import java.util.List;
 
 /**
  * This message is a list of assistants as a response to a Show Assistant request
  */
-public class ShowAssistantResponse extends MessageToClient{
+public class ShowAssistantResponse extends MessageToClient implements Serializable {
     private List<Assistant> assistants;
 
     public ShowAssistantResponse(List<Assistant> assistants){

@@ -2,9 +2,10 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Island {
+public class Island implements Serializable {
 
     private int ID;
     private ArrayList<Student> students;

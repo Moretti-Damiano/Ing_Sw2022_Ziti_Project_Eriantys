@@ -2,9 +2,10 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class CloudIsland {
+public class CloudIsland implements Serializable {
     private int ID;
     private int size;       //number of students, always 3, 4 with 3 players
     private ArrayList<Student> students;
