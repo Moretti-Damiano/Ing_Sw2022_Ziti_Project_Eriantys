@@ -11,6 +11,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -188,16 +189,15 @@ public class cli extends InputObservable implements view, ViewObserver {
         String numberOfPlayer=readLine();
         System.out.println("Ho superato il readLine");
         notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
-        reading();
     }
 
     @Override
-    public void GameStartedHandler(GameStartedMessage message) {
-
+    public void GameStartedHandler(GameStartedMessage message) throws ExecutionException {
+            gameStarter();
     }
 
     @Override
-    public void askMoveToTable() {
+    public void askMoveToTable() throws ExecutionException {
         notifyObserver(obs -> {
             try {
                 obs.onUpdateMoveToTable(askColour());
@@ -209,7 +209,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void askMoveToIsland() {
+    public void askMoveToIsland() throws ExecutionException {
         notifyObserver(obs -> {
             try {
                 obs.onUpdateMoveToIsland(askColour(),askIsland());
@@ -217,6 +217,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 e.printStackTrace();
             }
         });
+
     }
 
     @Override
@@ -234,6 +235,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Insert CloudIsland's id that you want: ");
         cloudID=readLine() ;
         notifyObserver(obs -> obs.onUpdateCloudIsland(cloudID));
+
     }
 
     @Override
@@ -245,6 +247,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 e.printStackTrace();
             }
         });
+
     }
 
     public void InputErrorHandler(InputError message) {
@@ -258,18 +261,20 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void moveToIslandHandler(MoveToIslandDoneMessage message) {
+    public void moveToIslandHandler(MoveToIslandDoneMessage message) throws ExecutionException {
         System.out.println(message.getDescription());
         showIslands(message.getIslands());
         System.out.println("Player "+message.getPlayername()+"'s board: ");
         showMyBoard(message.getBoard());
+        reading();
     }
 
     @Override
-    public void moveToTableHandler(MoveToTableDoneMessage message) {
+    public void moveToTableHandler(MoveToTableDoneMessage message) throws ExecutionException {
         System.out.println(message.getDescription());
         System.out.println("Player "+message.getPlayername()+"'s board: ");
         showMyBoard(message.getBoard());
+        reading();
 
     }
 
@@ -312,60 +317,66 @@ public class cli extends InputObservable implements view, ViewObserver {
     public void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) throws ExecutionException {
         if(message.getSuccess()){
             askLogin();
-            gameStarter();
         }
     }
 
     @Override
-    public void CompleteRequestHandler(CompletedRequestMessage message) {
+    public void CompleteRequestHandler(CompletedRequestMessage message) throws ExecutionException {
         System.out.println(message.getDescription());
     }
 
     @Override
     public void LoginErrorHandler(LoginError message) throws ExecutionException {
         System.out.println(message.getDescription());
-        gameStarter();
+        askLogin();
     }
 
     @Override
-    public void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException {
+    public void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException, IOException {
         System.out.println("Sto per chiedere il numero dei player");
         askNumberOfPlayer();
     }
 
     @Override
-    public void TurnErrorHandler(TurnError message) {
+    public void TurnErrorHandler(TurnError message) throws ExecutionException {
         System.out.println(message.getDescription());
+        reading();
     }
 
     @Override
-    public void showAssistantHandler(ShowAssistantResponse message) {
+    public void showAssistantHandler(ShowAssistantResponse message) throws ExecutionException {
         showAssistants(message.getAssistants());
+        reading();
     }
 
     @Override
-    public void showCharacterHandler(ShowCharacterResponse message) {
+    public void showCharacterHandler(ShowCharacterResponse message) throws ExecutionException {
         showCharacters(message.getCharacters());
+        reading();
     }
 
     @Override
-    public void showBoardHandler(ShowBoardResponse message) {
+    public void showBoardHandler(ShowBoardResponse message) throws ExecutionException {
         showMyBoard(message.getBoard());
+        reading();
     }
 
     @Override
-    public void showBoardsHandler(ShowBoardsResponse message) {
+    public void showBoardsHandler(ShowBoardsResponse message) throws ExecutionException {
         showBoards(message.getBoards());
+        reading();
     }
 
     @Override
-    public void showCloudHandler(ShowCloudResponse message) {
+    public void showCloudHandler(ShowCloudResponse message) throws ExecutionException {
         showClouds(message.getClouds());
+        reading();
     }
 
     @Override
-    public void showIslandHandler(ShowIslandResponse message) {
+    public void showIslandHandler(ShowIslandResponse message) throws ExecutionException {
         showIslands(message.getIslands());
+        reading();
     }
 
     public void init() throws ExecutionException {
@@ -453,7 +464,6 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     public void gameStarter() throws ExecutionException {
-        //System.out.println("If is your first action, Type LOGIN to insert your username");
         System.out.println("MAIN ACTION");
         System.out.println("Type CHOOSEASSISTANT to chose your assistant");
         System.out.println("Type CHOOSECHARACTER to choose your character");
@@ -467,6 +477,6 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Type SHOWCHARACTER to print the available characters");
         System.out.println("Type SHOWCLOUD to print the available clouds");
         System.out.println("Type SHOWISLAND to print all the islands");
-        while(true){reading();}
+        reading();
     }
 }

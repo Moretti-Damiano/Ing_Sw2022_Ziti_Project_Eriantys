@@ -7,6 +7,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Character;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ExecutionException;
 
 public class gui implements view{
 
@@ -103,7 +104,7 @@ public class gui implements view{
     }
 
     @Override
-    public void GameStartedHandler(GameStartedMessage message) {
+    public void GameStartedHandler(GameStartedMessage message) throws ExecutionException {
 
     }
 }

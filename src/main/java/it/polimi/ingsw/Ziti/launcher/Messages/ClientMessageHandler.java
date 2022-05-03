@@ -5,6 +5,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObservable;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 /**
@@ -14,8 +15,20 @@ import java.util.concurrent.ExecutionException;
 
 public class ClientMessageHandler extends ViewObservable {
     public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs->obs.moveMotherHandler(message));}
-    public void MoveToIslandDoneHandle(MoveToIslandDoneMessage message){notifyObserver(obs->obs.moveToIslandHandler(message));}
-    public void MoveToTableDoneHandle(MoveToTableDoneMessage message){notifyObserver(obs->obs.moveToTableHandler(message));}
+    public void MoveToIslandDoneHandle(MoveToIslandDoneMessage message){notifyObserver(obs-> {
+        try {
+            obs.moveToIslandHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void MoveToTableDoneHandle(MoveToTableDoneMessage message){notifyObserver(obs-> {
+        try {
+            obs.moveToTableHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
     public void ChooseCharacterDoneHandle(ChooseCharacterDoneMessage message){notifyObserver(obs->obs.chooseCharacterHandler(message));}
     public void ChooseAssistantDoneHandle(ChooseAssistantDoneMessage message){notifyObserver(obs->obs.chooseAssistantHandler(message));}
     public void EndTurnDoneHandle(EndTurnDoneMessage message){notifyObserver(obs->obs.endTurnHandler(message));}
@@ -31,7 +44,13 @@ public class ClientMessageHandler extends ViewObservable {
             e.printStackTrace();
         }
     });}
-    public void CompletedRequestHandle(CompletedRequestMessage message){notifyObserver(obs->obs.CompleteRequestHandler(message));}
+    public void CompletedRequestHandle(CompletedRequestMessage message){notifyObserver(obs-> {
+        try {
+            obs.CompleteRequestHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
     public void LoginErrorHandle(LoginError message){notifyObserver(obs-> {
         try {
             obs.LoginErrorHandler(message);
@@ -44,15 +63,65 @@ public class ClientMessageHandler extends ViewObservable {
             obs.NumOfPlayerHandler(message);
         } catch (ExecutionException e) {
             e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     });}
-    public void TurnErrorHandle(TurnError message){notifyObserver(obs->obs.TurnErrorHandler(message));}
-    public void ShowAssistantResponseHandle(ShowAssistantResponse message){notifyObserver(obs->obs.showAssistantHandler(message));}
-    public void ShowCharacterResponseHandle(ShowCharacterResponse message){notifyObserver(obs->obs.showCharacterHandler(message));}
-    public void ShowBoardResponseHandle(ShowBoardResponse message){notifyObserver(obs->obs.showBoardHandler(message));}
-    public void ShowBoardsResponseHandle(ShowBoardsResponse message){notifyObserver(obs->obs.showBoardsHandler(message));}
-    public void ShowCloudsResponseHandle(ShowCloudResponse message){notifyObserver(obs->obs.showCloudHandler(message));}
-    public void ShowIslandsResponseHandle(ShowIslandResponse message){notifyObserver(obs->obs.showIslandHandler(message));}
-    public void GameStartedMessageHandle(GameStartedMessage message){notifyObserver(obs->obs.GameStartedHandler(message));}
+    public void TurnErrorHandle(TurnError message){notifyObserver(obs-> {
+        try {
+            obs.TurnErrorHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void ShowAssistantResponseHandle(ShowAssistantResponse message){notifyObserver(obs-> {
+        try {
+            obs.showAssistantHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void ShowCharacterResponseHandle(ShowCharacterResponse message){notifyObserver(obs-> {
+        try {
+            obs.showCharacterHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void ShowBoardResponseHandle(ShowBoardResponse message){notifyObserver(obs-> {
+        try {
+            obs.showBoardHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void ShowBoardsResponseHandle(ShowBoardsResponse message){notifyObserver(obs-> {
+        try {
+            obs.showBoardsHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void ShowCloudsResponseHandle(ShowCloudResponse message){notifyObserver(obs-> {
+        try {
+            obs.showCloudHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void ShowIslandsResponseHandle(ShowIslandResponse message){notifyObserver(obs-> {
+        try {
+            obs.showIslandHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
+    public void GameStartedMessageHandle(GameStartedMessage message){notifyObserver(obs-> {
+        try {
+            obs.GameStartedHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
     // da implementare gli altri metodi della cli (show)
 }

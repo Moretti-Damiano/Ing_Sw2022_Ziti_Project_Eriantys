@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.observer;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 
+import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 public interface ViewObserver {
@@ -10,25 +11,25 @@ public interface ViewObserver {
 
     void InputErrorHandler(InputError message);
     void ErrorMessageHandler(ErrorMessage message);
-    void moveToIslandHandler(MoveToIslandDoneMessage message);
-    void moveToTableHandler(MoveToTableDoneMessage message);
+    void moveToIslandHandler(MoveToIslandDoneMessage message) throws ExecutionException;
+    void moveToTableHandler(MoveToTableDoneMessage message) throws ExecutionException;
     void moveMotherHandler(MoveMotherDoneMessage message);
     void chooseAssistantHandler(ChooseAssistantDoneMessage message);
     void chooseCharacterHandler(ChooseCharacterDoneMessage message);
     void endTurnHandler(EndTurnDoneMessage message);
     void cloudIslandHandler(ChooseCloudDoneMessage message);
     void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) throws ExecutionException;
-    void CompleteRequestHandler(CompletedRequestMessage message);
+    void CompleteRequestHandler(CompletedRequestMessage message) throws ExecutionException;
     void LoginErrorHandler(LoginError message) throws ExecutionException;
-    void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException;
-    void TurnErrorHandler(TurnError message);
-    void showAssistantHandler(ShowAssistantResponse message);
-    void showCharacterHandler(ShowCharacterResponse message);
-    void showBoardHandler(ShowBoardResponse message);
-    void showBoardsHandler(ShowBoardsResponse message);
-    void showCloudHandler(ShowCloudResponse message);
-    void showIslandHandler(ShowIslandResponse message);
-    void GameStartedHandler(GameStartedMessage message);
+    void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException, IOException;
+    void TurnErrorHandler(TurnError message) throws ExecutionException;
+    void showAssistantHandler(ShowAssistantResponse message) throws ExecutionException;
+    void showCharacterHandler(ShowCharacterResponse message) throws ExecutionException;
+    void showBoardHandler(ShowBoardResponse message) throws ExecutionException;
+    void showBoardsHandler(ShowBoardsResponse message) throws ExecutionException;
+    void showCloudHandler(ShowCloudResponse message) throws ExecutionException;
+    void showIslandHandler(ShowIslandResponse message) throws ExecutionException;
+    void GameStartedHandler(GameStartedMessage message) throws ExecutionException;
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }
