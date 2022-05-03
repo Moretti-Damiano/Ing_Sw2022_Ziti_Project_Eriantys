@@ -67,7 +67,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 System.out.println("There are :");
             for(Colour c: Colour.values()){
                 if(island.getColour(c)!=0){
-                    System.out.println(island.getColour(c)+" students "+c.getColour());
+                    System.out.println(island.getColour(c)+" students "+c.getName());
                 }
             }
             }
@@ -80,7 +80,7 @@ public class cli extends InputObservable implements view, ViewObserver {
             System.out.println("CloudID: " + c.getID());
             System.out.println("In this Cloud Island there are: ");
             for(Colour colour: Colour.values()){
-                System.out.println(c.getColour(colour)+" "+colour.getColour()+" students");
+                System.out.println(c.getColour(colour)+" "+colour.getName()+" students");
             }
         }
     }
@@ -89,12 +89,12 @@ public class cli extends InputObservable implements view, ViewObserver {
     public void showMyBoard(Board board) {
         // show waiting Students
         for (Colour c : Colour.values()) {
-            System.out.println("There are " + board.countStudentColor(c)+" "+ c.getColour() + " students waiting " );
+            System.out.println("There are " + board.countStudentColor(c)+" "+ c.getName() + " students waiting " );
         }
 
         // show dining Students
         for (Colour c : Colour.values()) {
-            System.out.println("There are " + board.getColorRowSize(c)+" "+ c.getColour() + " students in the dining room " );
+            System.out.println("There are " + board.getColorRowSize(c)+" "+ c.getName() + " students in the dining room " );
         }
 
         // show coins
@@ -103,7 +103,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         // show professors
         for (Colour c : Colour.values()) {
             if (board.hasProfessor(c))
-                System.out.println("You have " + c.getColour()+" professor");
+                System.out.println("You have " + c.getName()+" professor");
         }
     }
 
@@ -114,12 +114,12 @@ public class cli extends InputObservable implements view, ViewObserver {
             System.out.println(board.getPlayername()+"'s board: ");
             // show waiting Students
             for (Colour c : Colour.values()) {
-                System.out.println("There are " +board.countStudentColor(c)+" "+ c.getColour() + " students waiting " );
+                System.out.println("There are " +board.countStudentColor(c)+" "+ c.getName() + " students waiting " );
             }
 
             // show dining Students
             for (Colour c : Colour.values()) {
-                System.out.println("There are " +board.getColorRowSize(c)+" "+ c.getColour() + " students in the dining room " );
+                System.out.println("There are " +board.getColorRowSize(c)+" "+ c.getName() + " students in the dining room " );
             }
 
             // show coins
@@ -128,7 +128,7 @@ public class cli extends InputObservable implements view, ViewObserver {
             // show professors
             for (Colour c : Colour.values()) {
                 if (board.hasProfessor(c))
-                    System.out.println(board.getPlayername()+" has " + c.getColour()+" professor");
+                    System.out.println(board.getPlayername()+" has " + c.getName()+" professor");
             }
         }
 

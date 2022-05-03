@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.GameStartedMessage;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Character;
 
@@ -99,5 +100,10 @@ public class gui implements view{
 
     @Override
     public void askNumberOfPlayer() {
+    }
+
+    @Override
+    public void GameStartedHandler(GameStartedMessage message) {
+
     }
 }
