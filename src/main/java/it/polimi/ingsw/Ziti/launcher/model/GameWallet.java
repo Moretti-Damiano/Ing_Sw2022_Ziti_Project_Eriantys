@@ -22,14 +22,19 @@ public class GameWallet implements Serializable {
     /**
      * decrease the max number of coin
      */
-    public void reduceCoin(){MaxNumCoin=MaxNumCoin--;}
+    public void reduceCoin(){
+        MaxNumCoin=MaxNumCoin--;
+        if(AvailableCoin > MaxNumCoin){
+            AvailableCoin=MaxNumCoin;
+        }
+    }
 
     
     /**
      * increase the number of available coin
      */
     public void increase() {
-        if(AvailableCoin+1>MaxNumCoin)
+        if(AvailableCoin + 1 > MaxNumCoin)
         {AvailableCoin =  MaxNumCoin;}
         else { AvailableCoin = AvailableCoin++;}
     }
@@ -38,7 +43,7 @@ public class GameWallet implements Serializable {
      * @param i is the value of new available coins
      */
     public void increase(int i) {
-        if(AvailableCoin+i>MaxNumCoin){
+        if(AvailableCoin + i > MaxNumCoin){
             AvailableCoin=MaxNumCoin;
         }
         else{AvailableCoin = AvailableCoin + i;}
@@ -49,8 +54,8 @@ public class GameWallet implements Serializable {
      * @param i is the value of coin used
      */
     public void decrease(int i) {
-        if(AvailableCoin-i<0){
-            AvailableCoin=0;
+        if(AvailableCoin - i < 0){
+            AvailableCoin = 0;
         }
         else{AvailableCoin = AvailableCoin - i;}
     }
@@ -60,8 +65,8 @@ public class GameWallet implements Serializable {
      * decrease the number of available coin
      */
     private void decrease() {
-        if(AvailableCoin-1<0){
-            AvailableCoin=0;
+        if(AvailableCoin - 1 < 0){
+            AvailableCoin = 0;
         }
         else{AvailableCoin = AvailableCoin--;}
     }
