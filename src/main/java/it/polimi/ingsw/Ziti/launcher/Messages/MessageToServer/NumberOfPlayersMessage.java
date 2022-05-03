@@ -6,13 +6,9 @@ public class NumberOfPlayersMessage extends MessagetoServer{
     int numberOfPlayers;
     String sender;
 
-    public NumberOfPlayersMessage(String sender, int numberofplayers){
-        this.sender=sender;
+    public NumberOfPlayersMessage(int numberofplayers){
+        super();
         this.numberOfPlayers=numberofplayers;
-    }
-
-    public  String getSender(){
-        return sender;
     }
 
     public int getNumberOfPlayers() {

@@ -45,6 +45,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
      */
     public void send(MessagetoServer message) {
         try {
+            System.out.println("Sending " + message.toString());
             outputStm.writeObject(message);
             outputStm.reset();
         } catch (IOException e) {
@@ -64,7 +65,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
             try {
                     System.out.println("Sto per leggere");
                     messageToClient = (MessageToClient) inputStm.readObject();
-                    System.out.println("Ho letto");
+                    System.out.println("Ho letto mesaggio di tipo: " + messageToClient.toString());
                     notifyObserver(obs -> obs.update(messageToClient));
 
             } catch (IOException | ClassNotFoundException e) {
