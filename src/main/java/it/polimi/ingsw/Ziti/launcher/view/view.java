@@ -9,6 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.ExecutionException;
 
+/**
+ * Interface implemented by gui and cli
+ */
 public interface view {
 
     void showAssistants(List<Assistant> assistants);

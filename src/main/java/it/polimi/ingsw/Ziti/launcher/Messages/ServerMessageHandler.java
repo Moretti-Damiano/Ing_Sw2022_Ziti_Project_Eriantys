@@ -4,7 +4,8 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObservable;
 
 /**
- * This class calls the correct handler methods from the observer class to manage the message received by the server
+ * This class calls the correct handler methods from the observer class to manage the message received by client and needs to be sent to server
+ * Every method handles a request of the similar message: notifies observer calling its method with the message as a parameter
  */
 public class ServerMessageHandler extends ServerObservable {
 

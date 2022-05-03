@@ -19,9 +19,11 @@ import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
 
+/**
+ * This class observes ClientMessageHandler and is observed by ClientController
+ * It's the real client who calls methods from "command line interface"
+ */
 public class cli extends InputObservable implements view, ViewObserver {
-
-    //Questa classe OSSERVA il ClientMessageHandler e VIENE OSSERVATA dal ClientController
 
 
     private final ClientController clientController;
@@ -358,6 +360,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         reading();
     }
 
+    /**
+     * The first method called by cli
+     * It's used to set address and port and finally to create a connection between client and server
+     * @throws ExecutionException
+     */
     public void init() throws ExecutionException {
         System.out.println("\n" +
                 "8888888888 "+" 8888888b.  "+"8888888  "+"       d8888   "+"888b    888   "+"88888888888 "+"Y88b   d88P "+" .d8888b.      \n"+
@@ -379,6 +386,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         notifyObserver(obs->obs.onUpdateConnection(address,port));
 
     }
+
+    /**
+     * Method used to start a reading thread to catch client's input
+     * @return input read
+     * @throws ExecutionException
+     */
     public String readLine() throws ExecutionException {
         FutureTask<String> futureTask = new FutureTask<>(new InputReadTask());
         inputThread = new Thread(futureTask);
@@ -395,6 +408,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         return input;
     }
 
+    /**
+     * Method used to take inputs from client
+     * It also chooses whether to call a cli method or to generate a message
+     * @throws ExecutionException
+     */
     public void reading() throws ExecutionException {
         System.out.println("Sono nello switch");
         String input;
@@ -443,6 +461,10 @@ public class cli extends InputObservable implements view, ViewObserver {
         }
     }
 
+    /**
+     * Method used to ask what a client wants to do
+     * @throws ExecutionException
+     */
     public void gameStarter() throws ExecutionException {
         System.out.println("MAIN ACTION");
         System.out.println("Type CHOOSEASSISTANT to chose your assistant");

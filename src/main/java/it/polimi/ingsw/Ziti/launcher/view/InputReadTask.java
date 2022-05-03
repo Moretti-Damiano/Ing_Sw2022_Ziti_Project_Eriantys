@@ -6,7 +6,8 @@ import java.io.InputStreamReader;
 import java.util.concurrent.Callable;
 
     /**
-     * This class is used to read the input stream and making the input kind of interruptible.
+     * This class declares a BufferReader (a better scanner) that always scan if it's ready
+     * Doing that input stream is kind of interruptible.
      */
     public class InputReadTask implements Callable<String> {
         private final BufferedReader br;

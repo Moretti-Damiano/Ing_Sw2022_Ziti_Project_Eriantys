@@ -123,5 +123,5 @@ public class ClientMessageHandler extends ViewObservable {
             e.printStackTrace();
         }
     });}
-    // da implementare gli altri metodi della cli (show)
+
 }

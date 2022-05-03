@@ -5,7 +5,11 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 
 import java.io.IOException;
 import java.util.concurrent.ExecutionException;
-
+/**
+ * Interface used to implement the Observer-Observable pattern between Cli and Client Message Handler.
+ * This interface allows Cli to observe the Client Message Handler.
+ * It contains the methods to handle answer messages to clients.
+ */
 public interface ViewObserver {
 
 

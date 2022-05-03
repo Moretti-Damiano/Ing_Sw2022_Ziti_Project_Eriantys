@@ -9,7 +9,8 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
- * This class is used to
+ * This class is used from server to interface with  client
+ * Each client has a thread where is called a keepListening method and a method to send info
  */
 public class ClientHandler implements Runnable {
     private Socket socket;
@@ -44,6 +45,12 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * Method used to read info from client
+     * Calls  receive method in socketServer
+     * @throws IOException
+     * @throws ClassNotFoundException
+     */
     private void keepListening() throws IOException, ClassNotFoundException {
         while(true){
 
@@ -55,6 +62,10 @@ public class ClientHandler implements Runnable {
         }
     }
 
+    /**
+     * Used to send info to Socket Client (each client)
+     * @param message
+     */
     public void send(MessageToClient message)  {
         try {
             System.out.println("Sending message "+ message.toString() +" to " + nickName);

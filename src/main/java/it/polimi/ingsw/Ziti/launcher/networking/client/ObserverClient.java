@@ -17,7 +17,10 @@ public class ObserverClient implements SocketClientObserver {
     }
 
 
-
+    /**
+     * Method used to handle messages to client
+     * @param message used to call the handle in Client Message Handler
+     */
     public void update(MessageToClient message){
 
         System.out.println("Observer client");
