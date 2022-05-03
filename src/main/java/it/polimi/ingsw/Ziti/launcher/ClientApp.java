@@ -5,10 +5,11 @@ import it.polimi.ingsw.Ziti.launcher.controller.ClientController;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.view.cli;
 
+import java.util.concurrent.ExecutionException;
 import java.util.logging.Level;
 
 public class ClientApp {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws ExecutionException {
 
         boolean cliParam = true; // default value
 

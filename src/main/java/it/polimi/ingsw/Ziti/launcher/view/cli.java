@@ -21,13 +21,12 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     //Questa classe OSSERVA il ClientMessageHandler e VIENE OSSERVATA dal ClientController
 
-    private Scanner sc;
+
     private final ClientController clientController;
     private Thread inputThread;
 
 
     public cli(ClientController clientController){
-        this.sc = new Scanner(System.in);
         this.clientController=clientController;
     }
 
@@ -152,41 +151,41 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public String askAssistant() {
+    public String askAssistant() throws ExecutionException {
         System.out.println("Insert Assistant's id: ");
         String assistantId;
-        assistantId=sc.nextLine();
+        assistantId=readLine();
         return assistantId;
     }
 
     @Override
-    public String askCharacter() {
+    public String askCharacter() throws ExecutionException {
         System.out.println("Insert Character's id: ");
         String characterId;
-        characterId=sc.nextLine();
+        characterId=readLine();
         return characterId;
     }
 
     @Override
-    public String askIsland() {
+    public String askIsland() throws ExecutionException {
         System.out.println("Insert an Island's id: ");
         String islandId;
-       islandId=sc.nextLine();
+       islandId=readLine();
         return islandId;
     }
 
     @Override
-    public String askColour() {
+    public String askColour() throws ExecutionException {
         System.out.println("Insert a colour: ");
         String colour;
-        colour=sc.nextLine();
+        colour=readLine();
         return colour;
 
     }
     public void askNumberOfPlayer() throws ExecutionException {
         System.out.println("Insert the number of players: ");
         //Scanner scanner=new Scanner(System.in);
-        String numberOfPlayer=sc.nextLine();
+        String numberOfPlayer=readLine();
         System.out.println("Ho superato il readLine");
         notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
         reading();
@@ -194,35 +193,53 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void askMoveToTable() {
-        notifyObserver(obs -> obs.onUpdateMoveToTable(askColour()));
+        notifyObserver(obs -> {
+            try {
+                obs.onUpdateMoveToTable(askColour());
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
 
     }
 
     @Override
     public void askMoveToIsland() {
-        notifyObserver(obs -> obs.onUpdateMoveToIsland(askColour(),askIsland()));
+        notifyObserver(obs -> {
+            try {
+                obs.onUpdateMoveToIsland(askColour(),askIsland());
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     @Override
-    public void askMoveMother() {
+    public void askMoveMother() throws ExecutionException {
         String moves;
         System.out.println("Insert how many moves the MotherNature should do: ");
-        moves=sc.nextLine();
+        moves=readLine();
         notifyObserver(obs -> obs.onUpdateMoveMother(moves));
 
     }
 
     @Override
-    public void askCloudIsland() {
+    public void askCloudIsland() throws ExecutionException {
         String cloudID;
         System.out.println("Insert CloudIsland's id that you want: ");
-        cloudID=sc.nextLine();
+        cloudID=readLine() ;
         notifyObserver(obs -> obs.onUpdateCloudIsland(cloudID));
     }
 
     @Override
     public void askChoseAssistant() {
-        notifyObserver(obs -> obs.onUpdateChooseAssistant(askAssistant()));
+        notifyObserver(obs -> {
+            try {
+                obs.onUpdateChooseAssistant(askAssistant());
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });
     }
 
     public void InputErrorHandler(InputError message) {
@@ -289,6 +306,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) throws ExecutionException {
         if(message.getSuccess()){
+            askLogin();
             gameStarter();
         }
     }
@@ -345,7 +363,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         showIslands(message.getIslands());
     }
 
-    public void init(){
+    public void init() throws ExecutionException {
         System.out.println("\n" +
                 "8888888888 "+" 8888888b.  "+"8888888  "+"       d8888   "+"888b    888   "+"88888888888 "+"Y88b   d88P "+" .d8888b.      \n"+
                 "888        "+" 888   Y88b "+"  888    "+"      d88888   "+"8888b   888  "+"     888     "+" Y88b d88P  "+"d88P  Y88b     \n"+
@@ -360,9 +378,9 @@ public class cli extends InputObservable implements view, ViewObserver {
         String defaultPort = "16847";
         System.out.println("Please insert Server Settings. Default value is shown as [DEFAULT]");
         System.out.println("Enter the server address ["+defaultAddress+"]");
-        String address=sc.nextLine();
+        String address=readLine();
         System.out.println("Enter the server port ["+defaultPort+"]");
-        String port=sc.nextLine();
+        String port=readLine();
         notifyObserver(obs->obs.onUpdateConnection(address,port));
 
     }
@@ -387,9 +405,6 @@ public class cli extends InputObservable implements view, ViewObserver {
         String input;
         input=readLine();
         switch(input){
-            case "LOGIN":
-                askLogin();
-                break;
             case "CHOOSEASSISTANT":
                 askChoseAssistant();
                 break;
@@ -433,7 +448,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     public void gameStarter() throws ExecutionException {
-        System.out.println("If is your first action, Type LOGIN to insert your username");
+        //System.out.println("If is your first action, Type LOGIN to insert your username");
         System.out.println("MAIN ACTION");
         System.out.println("Type CHOOSEASSISTANT to chose your assistant");
         System.out.println("Type CHOOSECHARACTER to choose your character");
