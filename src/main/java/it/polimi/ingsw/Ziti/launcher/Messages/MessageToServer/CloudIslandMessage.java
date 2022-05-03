@@ -6,15 +6,11 @@ public class CloudIslandMessage extends MessagetoServer {
     private int cloudId;
     private String sender;
 
-    public CloudIslandMessage(String sender,int cloudId) {
-        this.sender = sender;
+    public CloudIslandMessage(int cloudId) {
+        super();
         this.cloudId=cloudId;
     }
 
-    @Override
-    public String getSender() {
-        return sender;
-    }
 
     public int getCloudId() {
         return cloudId;

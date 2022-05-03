@@ -44,7 +44,7 @@ public class ClientController extends ClientObservable implements InputObserver 
     @Override
     public void onUpdateLogin(String nickname) {
         LoginMessage message;
-        message=new LoginMessage(null,nickname);
+        message=new LoginMessage(nickname);
         notifyObserver(obs->obs.send(message));
     }
 
@@ -74,7 +74,7 @@ public class ClientController extends ClientObservable implements InputObserver 
     public void onUpdateChooseAssistant(String id) {
         if(isInt(id)) {
             ChooseAssistantMessage m;
-            m=new ChooseAssistantMessage("cli",Integer.parseInt(id));
+            m=new ChooseAssistantMessage(Integer.parseInt(id));
             notifyObserver(obs -> obs.send(m));
         }
         else{
@@ -90,7 +90,7 @@ public class ClientController extends ClientObservable implements InputObserver 
     public void onUpdateCloudIsland(String id) {
         if(isInt(id)) {
             CloudIslandMessage m;
-            m=new CloudIslandMessage("cli",Integer.parseInt(id));
+            m=new CloudIslandMessage(Integer.parseInt(id));
             notifyObserver(obs -> obs.send(m));
         }
         else{
@@ -106,7 +106,7 @@ public class ClientController extends ClientObservable implements InputObserver 
     public void onUpdateMoveMother(String moves) {
         if(isInt(moves)) {
             MoveMotherMessage m;
-            m=new MoveMotherMessage("cli",Integer.parseInt(moves));
+            m=new MoveMotherMessage(Integer.parseInt(moves));
             notifyObserver(obs -> obs.send(m));
         }
         else{
@@ -122,7 +122,7 @@ public class ClientController extends ClientObservable implements InputObserver 
     public void onUpdateMoveToIsland(String colour, String id) {
         if(isInt(id)) {
             MoveToIslandMessage m;
-            m = new MoveToIslandMessage("cli", Integer.parseInt(id), colour);
+            m = new MoveToIslandMessage( Integer.parseInt(id), colour);
             notifyObserver(obs -> obs.send(m));
         }
         else{
@@ -135,7 +135,7 @@ public class ClientController extends ClientObservable implements InputObserver 
     @Override
     public void onUpdateMoveToTable(String colour) {
         MoveToTableMessage m;
-        m=new MoveToTableMessage("cli",colour);
+        m=new MoveToTableMessage(colour);
         notifyObserver(obs -> obs.send(m));
 
     }
@@ -145,7 +145,7 @@ public class ClientController extends ClientObservable implements InputObserver 
         if(isInt(numberOfPlayer)) {
             System.out.println("E un numero");
             NumberOfPlayersMessage m;
-            m=new NumberOfPlayersMessage(null,Integer.parseInt(numberOfPlayer));
+            m=new NumberOfPlayersMessage(Integer.parseInt(numberOfPlayer));
             notifyObserver(obs -> obs.send(m));
             System.out.println("Ho mandato il messaggio");
         }

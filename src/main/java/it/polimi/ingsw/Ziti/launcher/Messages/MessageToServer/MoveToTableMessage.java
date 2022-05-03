@@ -6,15 +6,11 @@ public class MoveToTableMessage extends MessagetoServer {
     String sender;
     String colour;
 
-    public MoveToTableMessage(String sender,String colour) {
-        this.sender = sender;
+    public MoveToTableMessage(String colour) {
+        super();
         this.colour=colour;
     }
 
-    @Override
-    public String getSender() {
-        return sender;
-    }
 
     public String getColour(){return colour;}
 

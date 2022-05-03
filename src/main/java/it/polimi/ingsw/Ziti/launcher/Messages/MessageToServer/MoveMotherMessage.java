@@ -6,15 +6,9 @@ public class MoveMotherMessage extends MessagetoServer {
     private String sender;
     private int moves;
 
-    public MoveMotherMessage(String sender,int moves) {
-        this.sender = sender;
+    public MoveMotherMessage(int moves) {
+        super();
         this.moves=moves;
-    }
-
-
-    @Override
-    public String getSender() {
-        return sender;
     }
 
     public int getMoves(){return moves;}
