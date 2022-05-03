@@ -14,6 +14,7 @@ import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 import java.util.Scanner;
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.FutureTask;
@@ -89,15 +90,10 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showMyBoard(Board board) {
         // show waiting Students
+        System.out.println("     WAITING ROOM                             |                         DINING ROOM");
         for (Colour c : Colour.values()) {
-            System.out.println("There are " + board.countStudentColor(c)+" "+ c.getName() + " students waiting " );
+            System.out.println("There are " + board.countStudentColor(c)+" "+ c.getName() + " students " +"                                 "+board.getColorRowSize(c)+" "+ c.getName() + " students in the dining room ");
         }
-
-        // show dining Students
-        for (Colour c : Colour.values()) {
-            System.out.println("There are " + board.getColorRowSize(c)+" "+ c.getName() + " students in the dining room " );
-        }
-
         // show coins
         System.out.println("You have  " + board.getNumberofCoin() + " coins");
 
@@ -111,29 +107,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showBoards(List<Board> boards){
         for(Board board: boards){
-            // do showMyBoard for each board
-            System.out.println(board.getPlayername()+"'s board: ");
-            // show waiting Students
-            for (Colour c : Colour.values()) {
-                System.out.println("There are " +board.countStudentColor(c)+" "+ c.getName() + " students waiting " );
-            }
-
-            // show dining Students
-            for (Colour c : Colour.values()) {
-                System.out.println("There are " +board.getColorRowSize(c)+" "+ c.getName() + " students in the dining room " );
-            }
-
-            // show coins
-            System.out.println(board.getPlayername()+" has " + board.getNumberofCoin() + " coins");
-
-            // show professors
-            for (Colour c : Colour.values()) {
-                if (board.hasProfessor(c))
-                    System.out.println(board.getPlayername()+" has " + c.getName()+" professor");
+            System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t"+board.getPlayername().toUpperCase(Locale.ROOT)+"'s BOARD");
+            showMyBoard(board);
             }
         }
 
-    }
 
     @Override
     public void showErrorMessage(ErrorMessage message) {
@@ -459,6 +437,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 break;
             default:
                 System.out.println("Invalid");
+                reading();
                 break;
         }
     }
