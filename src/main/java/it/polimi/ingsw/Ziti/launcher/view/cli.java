@@ -52,21 +52,24 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showIslands(List<Island> islands) {
         System.out.println("Available islands are ");
-        for(Island island : islands){
-            if(island.getMother()) {
-                System.out.println(" ID : " + island.getID() + "\t\t\tIn this island there's MotherNature ");
-            }else System.out.println(" ID : " + island.getID());
-            if(island.getTowerPlayer()!=null){
-                System.out.println("In this island there is "+island.getTowerPlayer().GetName()+"'s tower");
+        for(Island island : islands) {
+            if (island.getMother()) {
+                System.out.println(" ID : " + island.getID() + "\t\tIn this island there's MotherNature ");
+            } else System.out.println(" ID : " + island.getID());
+            if (island.getTowerPlayer() != null) {
+                System.out.println("In this island there is " + island.getTowerPlayer().GetName() + "'s tower");
             }
-                System.out.println("There are :");
-            for(Colour c: Colour.values()){
-                if(island.getColour(c)!=0){
-                    System.out.append("\t  "+island.getColour(c)+" students "+c.getName());
+            if (island.getStudents().size() == 0) System.out.println("There are no students ");
+            else {
+                String partial = new String();
+                for (Colour c : Colour.values()) {
+                    if (island.getColour(c) != 0) {
+                        partial = partial.concat("\t  " + island.getColour(c) + " students " + c.getName());
+                    }
                 }
+                System.out.println("There are: "+partial);
             }
-            System.out.println("\n");
-            }
+        }
     }
 
     @Override
