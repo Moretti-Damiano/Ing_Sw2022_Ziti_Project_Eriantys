@@ -4,8 +4,6 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 
-import static java.lang.Integer.valueOf;
-
 public class Server implements GameControllerObserver {
 
     private int port;
@@ -46,7 +44,7 @@ public class Server implements GameControllerObserver {
      */
     public void notifyPlayer(MessageToClient message, String nickName)  {
         for(ClientHandler c: socketServer.getClientHandlers()){
-            if(c.getNickName().equals(nickName)){       //problema controllo omonimi
+            if(c.getNickName().equals(nickName)){
                 c.send(message);
                 break;
             }
@@ -54,7 +52,6 @@ public class Server implements GameControllerObserver {
     }
 
     public void receive(MessagetoServer message){
-        System.out.println("PAssing message from server to MessageHandler, getsender: " + message.getSender());
         message.handle(serverMessageHandler);
     }
 
@@ -69,10 +66,9 @@ public class Server implements GameControllerObserver {
     }
 
     public void successfulLogin(MessageToClient message, String temporaryName, String newName){
-        if(temporaryName==null) temporaryName="0";
+
         socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
         notifyPlayer(message,newName);
-        System.out.println("Fatto la notify in server");
 
     }
 

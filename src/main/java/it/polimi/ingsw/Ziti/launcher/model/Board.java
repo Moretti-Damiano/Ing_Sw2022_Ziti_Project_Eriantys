@@ -3,9 +3,10 @@ package it.polimi.ingsw.Ziti.launcher.model;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
-public class Board {
+public class Board implements Serializable {
         private static final int colorrow = 5;
         private String playername;
         private ArrayList<Tower> towers;

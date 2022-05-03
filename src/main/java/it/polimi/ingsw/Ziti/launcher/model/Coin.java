@@ -1,4 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
-public class Coin {
+import java.io.Serializable;
+
+public class Coin implements Serializable {
 }

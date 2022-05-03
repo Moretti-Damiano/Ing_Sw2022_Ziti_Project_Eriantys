@@ -2,7 +2,9 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.model.Coin;
 
-public class GameWallet {
+import java.io.Serializable;
+
+public class GameWallet implements Serializable {
     private static int MaxNumCoin=20;
     private static int AvailableCoin=20;
 

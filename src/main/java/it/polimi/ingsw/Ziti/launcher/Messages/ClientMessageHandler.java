@@ -56,5 +56,6 @@ public class ClientMessageHandler extends ViewObservable {
     public void ShowBoardsResponseHandle(ShowBoardsResponse message){notifyObserver(obs->obs.showBoardsHandler(message));}
     public void ShowCloudsResponseHandle(ShowCloudResponse message){notifyObserver(obs->obs.showCloudHandler(message));}
     public void ShowIslandsResponseHandle(ShowIslandResponse message){notifyObserver(obs->obs.showIslandHandler(message));}
+    public void GameStartedMessageHandle(GameStartedMessage message){notifyObserver(obs->obs.GameStartedHandler(message));}
     // da implementare gli altri metodi della cli (show)
 }

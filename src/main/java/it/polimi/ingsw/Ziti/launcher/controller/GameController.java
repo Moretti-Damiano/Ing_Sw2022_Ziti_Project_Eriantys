@@ -60,15 +60,18 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void loginHandler(LoginMessage message)  {
-        System.out.println("Receveid login message");
+        System.out.println("Received login message");
+        System.out.println("GameController - getSedner"+message.getSender());
         if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers) {
-            System.out.println("IN if");
             try {
+                System.out.println("Adding player to list");
                 players.add(new Player(message.getUsername()));
+
+                notifyObserver(obs -> obs.successfulLogin(new CompletedRequestMessage("Login completed"),message.getSender(),message.getUsername()));
             } catch (ParserConfigurationException | IOException | SAXException e) {
                 System.out.println("Error in creating parser");
             }
-            notifyObserver(obs -> obs.successfulLogin(new CompletedRequestMessage("Login completed"),message.getSender(),message.getUsername()));
+
             if(players.size() == 1){
                 System.out.println("Send request players number");
                 notifyObserver(obs -> obs.requestPlayerNumber(new NumOfPLayersRequest(),message.getUsername()));
@@ -225,8 +228,11 @@ public class GameController extends GameControllerObservable implements ServerOb
      * Creates TurnController
      */
     private void startGame(){
+        System.out.println("Starting game for " + players.size() + " players");
         this.game = new Game(players);
         game.addObserver(this);
         this.turnController = new TurnController(this,players);
+        System.out.println("Game started!");
+        notifyObserver(obs -> obs.sendToAllPlayers(new GameStartedMessage()));
     }
 }

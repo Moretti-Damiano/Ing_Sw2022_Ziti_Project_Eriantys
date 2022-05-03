@@ -2,7 +2,9 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.Effect;
 
-public class Character {
+import java.io.Serializable;
+
+public class Character implements Serializable {
     private final int id;
     private int cost;
     private final String description;

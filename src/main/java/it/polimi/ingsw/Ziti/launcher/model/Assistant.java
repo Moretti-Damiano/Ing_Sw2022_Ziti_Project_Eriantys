@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
-public class Assistant {
+import java.io.Serializable;
+
+public class Assistant implements Serializable {
     private final int id;
     private final int movesMother;
     private final int value;
