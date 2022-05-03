@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.GameStartedMessage;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Character;
 
@@ -28,4 +29,5 @@ public interface view {
     void askCloudIsland() throws ExecutionException;
     void askChoseAssistant();
     void askNumberOfPlayer() throws ExecutionException;
+    void GameStartedHandler(GameStartedMessage message);
 }

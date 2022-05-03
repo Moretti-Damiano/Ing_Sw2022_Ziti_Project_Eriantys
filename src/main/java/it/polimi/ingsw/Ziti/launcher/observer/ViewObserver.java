@@ -28,6 +28,7 @@ public interface ViewObserver {
     void showBoardsHandler(ShowBoardsResponse message);
     void showCloudHandler(ShowCloudResponse message);
     void showIslandHandler(ShowIslandResponse message);
+    void GameStartedHandler(GameStartedMessage message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }

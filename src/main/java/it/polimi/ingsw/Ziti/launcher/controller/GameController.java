@@ -233,5 +233,6 @@ public class GameController extends GameControllerObservable implements ServerOb
         game.addObserver(this);
         this.turnController = new TurnController(this,players);
         System.out.println("Game started!");
+        notifyObserver(obs -> obs.sendToAllPlayers(new GameStartedMessage()));
     }
 }
