@@ -18,14 +18,14 @@ public interface view {
     void showBoards(List<Board> boards);
     void showErrorMessage(ErrorMessage message);
     void askLogin() throws ExecutionException;
-    String askAssistant();
-    String askCharacter();
-    String askIsland();
-    String askColour();
+    String askAssistant() throws ExecutionException;
+    String askCharacter() throws ExecutionException;
+    String askIsland() throws ExecutionException;
+    String askColour() throws ExecutionException;
     void askMoveToTable();
     void askMoveToIsland();
-    void askMoveMother();
-    void askCloudIsland();
+    void askMoveMother() throws ExecutionException;
+    void askCloudIsland() throws ExecutionException;
     void askChoseAssistant();
     void askNumberOfPlayer() throws ExecutionException;
 }
