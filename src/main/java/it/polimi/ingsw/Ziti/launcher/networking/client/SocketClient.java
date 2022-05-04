@@ -24,6 +24,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     private final ObjectInputStream inputStm;
     private static final int TIMEOUT = 10000;
     private ErrorMessage errorMessage;
+    MessageToClient messageToClient;
 
     public SocketClient (String address, int port,ObserverClient observerClient) throws IOException{
             this.socket = new Socket();
@@ -59,9 +60,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
      * Receive methods(messages) from server
      */
     public void receive() {
-
         while (true) {
-            MessageToClient messageToClient;
             try {
                     System.out.println("Sto per leggere");
                     messageToClient = (MessageToClient) inputStm.readObject();

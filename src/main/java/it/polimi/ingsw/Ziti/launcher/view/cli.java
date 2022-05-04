@@ -317,6 +317,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     public void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException, IOException {
         System.out.println("Sto per chiedere il numero dei player");
         askNumberOfPlayer();
+
     }
 
     @Override

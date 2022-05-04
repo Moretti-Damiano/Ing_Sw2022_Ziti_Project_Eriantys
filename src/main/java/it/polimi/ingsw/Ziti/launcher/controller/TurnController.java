@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.YourTurnNotification;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.PlanningPhase;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
@@ -106,13 +107,14 @@ public class TurnController {
     public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
         gameController.getGame().setActivePlayer(currentPlayer);
+        gameController.notifyNewActivePlayer(currentPlayer);
     }
 
     /**
      * set the currentPlayer in both turnController and game to the next one
      */
     public void setNextPlayer(){
-        this.currentPlayer = nextPlayer(this.currentPlayer);
+        setCurrentPlayer(nextPlayer(this.currentPlayer));
         gameController.getGame().setActivePlayer(currentPlayer);
     }
 
