@@ -66,7 +66,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 String partial = new String();
                 for (Colour c : Colour.values()) {
                     if (island.getColour(c) != 0) {
-                        partial = partial.concat("\t  " + island.getColour(c) + " students " + c.getName());
+                        partial = partial.concat("\t  " + island.getColour(c) +" " + c.getName()+" students " );
                     }
                 }
                 System.out.println("There are: "+partial);
@@ -89,13 +89,14 @@ public class cli extends InputObservable implements view, ViewObserver {
             }
         }
     }
-
     @Override
     public void showMyBoard(Board board) {
         // show waiting Students
         System.out.println("     WAITING ROOM                                                       DINING ROOM");
         for (Colour c : Colour.values()) {
-            System.out.println("There are " + board.countStudentColor(c)+" "+ c.getName() + " students " +"                                 "+board.getColorRowSize(c)+" "+ c.getName() + " students in the dining room ");
+            System.out.printf("%-50s ", "There are " +  board.countStudentColor(c)+ " " + c.getName() + " students waiting ");
+            System.out.printf("           " + "%-50s ", "" + board.getColorRowSize(c) + " " + c.getName() + " students in the dining room");
+            System.out.println();
         }
         // show coins
         System.out.println("There are  " + board.getNumberofCoin() + " coins in wallet");

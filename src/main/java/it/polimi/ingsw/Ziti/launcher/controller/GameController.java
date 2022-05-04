@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.controller;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.action.*;
-import it.polimi.ingsw.Ziti.launcher.enumeration.Phase;
+import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
@@ -103,7 +103,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void choseAssistantHandler(ChooseAssistantMessage message) {
-        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.PLANNING)){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().getPhaseType().equals(PhaseType.PLANNING)){
             game.setAction(new ChooseAssistant(game, turnController.getCurrentPlayer(),message.getAssistantId()));
             try {
                 game.doAction();
@@ -123,7 +123,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void moveToIslandHandler(MoveToIslandMessage message) {
-        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.MOVEMENT)){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().getPhaseType().equals(PhaseType.MOVEMENT)){
             game.setAction( new MoveToIsland(game,message.getIslandID(),message.getColour().toLowerCase(Locale.ROOT)));
             try {
             game.doAction();
@@ -139,7 +139,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void moveToTableHandler(MoveToTableMessage message) {
-        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.MOVEMENT)){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().getPhaseType().equals(PhaseType.MOVEMENT)){
             game.setAction(new MoveToTable(game,message.getColour().toLowerCase(Locale.ROOT)));
             try {
             game.doAction();
@@ -155,7 +155,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void moveMotherHandler(MoveMotherMessage message) {
-        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.MOTHER)){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().getPhaseType().equals(PhaseType.MOTHER)){
             game.setAction(new MoveMother(game,message.getMoves()));
             try {
                 game.doAction();
@@ -172,7 +172,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void cloudIslandHandler(CloudIslandMessage message) {
-        if(checkActivePlayer(message.getSender()) && turnController.getPhase().equals(Phase.CLOUD)){
+        if(checkActivePlayer(message.getSender()) && turnController.getPhase().getPhaseType().equals(PhaseType.CLOUD)){
             game.setAction(new ChooseCloud(game,turnController.getCurrentPlayer(),message.getCloudId()));
             try {
                 game.doAction();
