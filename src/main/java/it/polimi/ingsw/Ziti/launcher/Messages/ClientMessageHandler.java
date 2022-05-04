@@ -34,8 +34,7 @@ public class ClientMessageHandler extends ViewObservable {
     public void EndTurnDoneHandle(EndTurnDoneMessage message){notifyObserver(obs->obs.endTurnHandler(message));}
     public void ChooseCloudIslandDoneHandle(ChooseCloudDoneMessage message){notifyObserver(obs->obs.cloudIslandHandler(message));}
     public void inputErrorHandle(InputError message) {
-        notifyObserver(obs->obs.InputErrorHandler(message));
-    }
+        notifyObserver(obs->obs.InputErrorHandler(message));}
     public void ErrorMessageHandle(ErrorMessage message){notifyObserver(obs->obs.ErrorMessageHandler(message));}
     public void ConnectionSuccessfulHandle(ConnectionSuccessfulMessage message){notifyObserver(obs-> {
         try {
@@ -73,6 +72,14 @@ public class ClientMessageHandler extends ViewObservable {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
+    });}
+
+    public void TurnNotificationHandle(TurnNotification message){notifyObserver(obs -> {
+       try{
+           obs.TurnNotificationHandler(message);
+       } catch (ExecutionException e){
+           e.printStackTrace();
+       }
     });}
     public void ShowAssistantResponseHandle(ShowAssistantResponse message){notifyObserver(obs-> {
         try {

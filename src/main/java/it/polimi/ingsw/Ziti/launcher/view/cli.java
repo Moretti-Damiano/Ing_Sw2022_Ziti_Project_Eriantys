@@ -324,6 +324,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         reading();
     }
 
+    public void TurnNotificationHandler(TurnNotification message) throws ExecutionException {
+        System.out.println(message.getDescription());
+        reading();
+    }
+
     @Override
     public void showAssistantHandler(ShowAssistantResponse message) throws ExecutionException {
         showAssistants(message.getAssistants());

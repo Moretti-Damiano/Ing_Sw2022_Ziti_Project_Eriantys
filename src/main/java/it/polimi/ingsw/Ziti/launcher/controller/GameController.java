@@ -114,6 +114,7 @@ public class GameController extends GameControllerObservable implements ServerOb
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
             turnController.updatePhase();
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnNotification(game.getCurrentPlayer().GetName() +" it's your turn"),game.getCurrentPlayer().GetName()));
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
@@ -179,6 +180,7 @@ public class GameController extends GameControllerObservable implements ServerOb
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
             turnController.updatePhase();
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnNotification(game.getCurrentPlayer().GetName() +" it's your turn"),game.getCurrentPlayer().GetName()));
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));

@@ -27,6 +27,7 @@ public interface ViewObserver {
     void LoginErrorHandler(LoginError message) throws ExecutionException;
     void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException, IOException;
     void TurnErrorHandler(TurnError message) throws ExecutionException;
+    void TurnNotificationHandler(TurnNotification message) throws ExecutionException;
     void showAssistantHandler(ShowAssistantResponse message) throws ExecutionException;
     void showCharacterHandler(ShowCharacterResponse message) throws ExecutionException;
     void showBoardHandler(ShowBoardResponse message) throws ExecutionException;
