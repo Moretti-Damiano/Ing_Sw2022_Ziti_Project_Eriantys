@@ -28,6 +28,7 @@ public class TurnController {
         orderPlayers = new ArrayList<>(players);
         playerAssistants = new HashMap<>();
         currentPlayer = players.get(0);
+        this.gameController.getGame().setActivePlayer(currentPlayer);
         playersDone = 0;
     }
 
