@@ -37,7 +37,11 @@ public class MoveMother implements Action{
             description = description.concat(game.getCurrentPlayer().GetName() + "moved the Mother to Island (id): " + mother.getIsland().getID());
             updateIsland(mother.getIsland(), getControl(mother.getIsland()));
 
-            description = description.concat("\nIsland(id) " + mother.getIsland() + " is now under control of : " + mother.getIsland().getTowerPlayer().GetName());
+            if(mother.getIsland().getTowerPlayer() == null){
+                description = description.concat("\nIsland(id) " + mother.getIsland() + " is still controlled by nobody");
+            }
+            else
+                description = description.concat("\nIsland(id) " + mother.getIsland() + " is now under control of : " + mother.getIsland().getTowerPlayer().GetName());
 
             if (checkMerge(mother.getIsland(), game.getNextIsland(mother.getIsland()))) {
                 description = description.concat("\nMerged Island " + mother.getIsland().getID() + " with Island " + game.getNextIsland(mother.getIsland()).getID());
