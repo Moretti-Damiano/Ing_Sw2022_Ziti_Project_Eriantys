@@ -3,10 +3,10 @@ package it.polimi.ingsw.Ziti.launcher.enumeration;
 /**
  * This enumeration is a collection of every Phase of the game
  */
-public enum Phase {
+public enum PhaseType {
     NULL,PLANNING, MOVEMENT, MOTHER, CLOUD;
 
-    public static Phase next(Phase phase){
+    public static PhaseType next(PhaseType phase){
         switch(phase){
             case NULL:
                 return PLANNING;
