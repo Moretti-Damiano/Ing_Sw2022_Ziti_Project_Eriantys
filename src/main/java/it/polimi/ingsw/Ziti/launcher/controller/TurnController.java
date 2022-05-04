@@ -1,16 +1,12 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
-import it.polimi.ingsw.Ziti.launcher.action.EndTurn;
-import it.polimi.ingsw.Ziti.launcher.enumeration.Phase;
-import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.PlanningPhase;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
-import java.util.TreeMap;
-
-import static it.polimi.ingsw.Ziti.launcher.enumeration.Phase.*;
 
 /**
  * This class is used to set turns during a game
@@ -18,23 +14,31 @@ import static it.polimi.ingsw.Ziti.launcher.enumeration.Phase.*;
 public class TurnController {
     private GameController gameController;
     private Player currentPlayer;
-    private Phase phase;
     private ArrayList<Player> players;
     private ArrayList<Player> orderPlayers;
-    private int moveNumber;
     private int playersDone;
     private Map<Integer,Player> playerAssistants;
 
+    private Phase phase;
+
     public  TurnController(GameController gameController,ArrayList<Player> players){
         this.gameController = gameController;
-        phase = Phase.PLANNING;
+        setPhase(new PlanningPhase(this));
         this.players = players;
-        orderPlayers = new ArrayList<>(players); //da rivedere poi con che ordine inziare
+        orderPlayers = new ArrayList<>(players);
         playerAssistants = new HashMap<>();
-        setCurrentPlayer(players.get(0));
-        moveNumber = 0;
+        currentPlayer = players.get(0);
         playersDone = 0;
     }
+
+    public void setPhase(it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase phase){
+        this.phase = phase;
+    }
+
+    public void updatePhase(){
+        phase.update();
+    }
+
 
     /**
      * Combines each player with the value of the assistant chosen
@@ -47,7 +51,7 @@ public class TurnController {
     /**
      * Update phases of the game (declared in enum. Phase)
      */
-    public void updatePhase(){
+  /*  public void OLDupdatePhase(){
         // Planning Phase
         if(phase.equals(PLANNING)){
             playersDone++;
@@ -91,39 +95,24 @@ public class TurnController {
                 phase = MOVEMENT;
             }
         }
-    }
+    }*/
 
-    public Phase getPhase() {
-        return phase;
-    }
 
     public Player getCurrentPlayer(){
         return currentPlayer;
     }
 
-    /**
-     * Set the current player in game (model)
-     * @param currentPlayer
-     */
-    private void setCurrentPlayer(Player currentPlayer) {
+    public void setCurrentPlayer(Player currentPlayer) {
         this.currentPlayer = currentPlayer;
         gameController.getGame().setActivePlayer(currentPlayer);
     }
 
     /**
-     * Used to set the real order of the next player
-     * @param map is a map of each player-assistant chosen
-     * @return the real order of players
+     * set the currentPlayer in both turnController and game to the next one
      */
-    private ArrayList<Player> putInOrder(Map<Integer,Player> map){
-        Map<Integer,Player> orderMap = new TreeMap<>(map);
-        ArrayList<Player> inOrder = new ArrayList<>();
-
-        for(Map.Entry<Integer,Player> entry : orderMap.entrySet()){
-            inOrder.add(entry.getValue());
-        }
-        map.clear();
-        return inOrder;
+    public void setNextPlayer(){
+        this.currentPlayer = nextPlayer(this.currentPlayer);
+        gameController.getGame().setActivePlayer(currentPlayer);
     }
 
     /**
@@ -132,10 +121,34 @@ public class TurnController {
      * @return next player
      */
     private Player nextPlayer(Player player){
-        int position = players.indexOf(player);
+        int position = orderPlayers.indexOf(player);
         if(position == players.size()-1)
-            return players.get(0);
+            return orderPlayers.get(0);
         else
-            return  players.get(position+1);
+            return  orderPlayers.get(position+1);
+    }
+
+    public int getPlayersDone() {
+        return playersDone;
+    }
+
+    public GameController getGameController() {
+        return gameController;
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
+    public ArrayList<Player> getOrderPlayers() {
+        return orderPlayers;
+    }
+
+    public void setOrderPlayers(ArrayList<Player> orderPlayers) {
+        this.orderPlayers = orderPlayers;
+    }
+
+    public Phase getPhase() {
+        return phase;
     }
 }
