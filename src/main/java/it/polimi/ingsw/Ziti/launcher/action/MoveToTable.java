@@ -62,7 +62,7 @@ public class MoveToTable implements Action{
         if(profplayer!=null && profplayer!=game.getCurrentPlayer()){
             if(checkInfluence(profplayer,professor_colour)){
                 game.getCurrentPlayer().getBoard().addProfessor(profplayer.getBoard().removeProfessorByColour(professor_colour));
-                description=description.concat(game.getCurrentPlayer().GetName() + " now controls the" + chosencolour + " professor");
+                description=description.concat(game.getCurrentPlayer().GetName() + " now controls the " + chosencolour + " professor");
             }
         }
     }
