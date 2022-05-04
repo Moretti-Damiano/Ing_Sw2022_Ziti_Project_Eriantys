@@ -86,10 +86,13 @@ public class MoveToTable implements Action{
      */
     private void checkInput() throws ActionException{
 
-        if (!checkColour(Colour.valueOfName(chosencolour.toLowerCase(Locale.ROOT)))) {
+        //check if the given string is a colour
+        if(!Colour.checkStringToColour(chosencolour)){
             throw new ActionException();
         }
-        if(!Colour.checkStringToColour(chosencolour)){
+
+        //check if the player has a student available with the given colour
+        if (!checkColour(Colour.valueOfName(chosencolour.toLowerCase(Locale.ROOT)))) {
             throw new ActionException();
         }
     }
