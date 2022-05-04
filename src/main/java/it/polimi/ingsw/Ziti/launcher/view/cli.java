@@ -179,6 +179,12 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void YourTurnNotificationHandler(YourTurnNotification message) throws ExecutionException {
+        System.out.println(message.Description);
+        reading();
+    }
+
+    @Override
     public void askMoveToTable() throws ExecutionException {
         notifyObserver(obs -> {
             try {
@@ -232,8 +238,9 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    public void InputErrorHandler(InputError message) {
+    public void InputErrorHandler(InputError message) throws ExecutionException {
         showInputErrorMessage(message);
+        reading();
     }
 
 
@@ -261,9 +268,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void moveMotherHandler(MoveMotherDoneMessage message) {
+    public void moveMotherHandler(MoveMotherDoneMessage message) throws ExecutionException {
         System.out.println(message.getDescription());
         showIslands(message.getIslands());
+        reading();
+
 
     }
 
@@ -328,7 +337,6 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     public void TurnNotificationHandler(TurnNotification message) throws ExecutionException {
         System.out.println(message.getDescription());
-        reading();
     }
 
     @Override
@@ -401,9 +409,8 @@ public class cli extends InputObservable implements view, ViewObserver {
      */
     public String readLine() throws ExecutionException {
         FutureTask<String> futureTask = new FutureTask<>(new InputReadTask());
-        inputThread = new Thread(futureTask);
+                                            inputThread = new Thread(futureTask);
         inputThread.start();
-
         String input = null;
 
         try {

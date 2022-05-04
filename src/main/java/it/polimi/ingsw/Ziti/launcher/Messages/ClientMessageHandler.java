@@ -14,6 +14,13 @@ import java.util.concurrent.ExecutionException;
  */
 
 public class ClientMessageHandler extends ViewObservable {
+    public void YourTurnNotificationHandle(YourTurnNotification message){notifyObserver(obs-> {
+        try {
+            obs.YourTurnNotificationHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
     public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs->obs.moveMotherHandler(message));}
     public void MoveToIslandDoneHandle(MoveToIslandDoneMessage message){notifyObserver(obs-> {
         try {

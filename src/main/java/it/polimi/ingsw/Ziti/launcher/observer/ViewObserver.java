@@ -13,11 +13,11 @@ import java.util.concurrent.ExecutionException;
 public interface ViewObserver {
 
 
-    void InputErrorHandler(InputError message);
+    void InputErrorHandler(InputError message) throws ExecutionException;
     void ErrorMessageHandler(ErrorMessage message);
     void moveToIslandHandler(MoveToIslandDoneMessage message) throws ExecutionException;
     void moveToTableHandler(MoveToTableDoneMessage message) throws ExecutionException;
-    void moveMotherHandler(MoveMotherDoneMessage message);
+    void moveMotherHandler(MoveMotherDoneMessage message) throws ExecutionException;
     void chooseAssistantHandler(ChooseAssistantDoneMessage message);
     void chooseCharacterHandler(ChooseCharacterDoneMessage message);
     void endTurnHandler(EndTurnDoneMessage message);
@@ -35,6 +35,7 @@ public interface ViewObserver {
     void showCloudHandler(ShowCloudResponse message) throws ExecutionException;
     void showIslandHandler(ShowIslandResponse message) throws ExecutionException;
     void GameStartedHandler(GameStartedMessage message) throws ExecutionException;
+    void YourTurnNotificationHandler(YourTurnNotification message) throws ExecutionException;
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }

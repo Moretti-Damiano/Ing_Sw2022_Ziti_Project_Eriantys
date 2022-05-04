@@ -10,6 +10,9 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.InetSocketAddress;
 import java.net.Socket;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * This class observes Client Controller and is observed by Observer Client
@@ -25,6 +28,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     private static final int TIMEOUT = 10000;
     private ErrorMessage errorMessage;
     MessageToClient messageToClient;
+    private final ExecutorService readExecutionQueue;
 
     public SocketClient (String address, int port,ObserverClient observerClient) throws IOException{
             this.socket = new Socket();
@@ -36,6 +40,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
                 notifyObserver(obs->obs.update(errorMessage));
                 socket.close();
             }
+            this.readExecutionQueue= Executors.newSingleThreadExecutor();
             this.outputStm = new ObjectOutputStream(socket.getOutputStream());
             this.inputStm = new ObjectInputStream(socket.getInputStream());
     }
@@ -60,7 +65,8 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
      * Receive methods(messages) from server
      */
     public void receive() {
-        while (true) {
+        readExecutionQueue.execute(() ->{
+        while (!readExecutionQueue.isShutdown()) {
             try {
                     System.out.println("Sto per leggere");
                     messageToClient = (MessageToClient) inputStm.readObject();
@@ -68,12 +74,12 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
                     notifyObserver(obs -> obs.update(messageToClient));
 
             } catch (IOException | ClassNotFoundException e) {
-
                 errorMessage = new ErrorMessage("SocketClient", "Connection lost");
                 notifyObserver(obs -> obs.update(errorMessage));
                 disconnect();
             }
         }
+    });
     }
 
     /**
@@ -82,15 +88,14 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     public void disconnect() {
 
         try {
-            socket.close();
+            if(!socket.isClosed()){
+                readExecutionQueue.shutdownNow();
+                socket.close();
+            }
         } catch (IOException e) {
-
             errorMessage = new ErrorMessage ("SocketClient","Could not disconnect");
             notifyObserver(obs->obs.update(errorMessage));
         }
-
-
-
     }
 
     @Override

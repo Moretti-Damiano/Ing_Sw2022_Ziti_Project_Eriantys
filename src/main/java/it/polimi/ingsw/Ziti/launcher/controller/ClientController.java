@@ -54,6 +54,7 @@ public class ClientController extends ClientObservable implements InputObserver 
        try{socketClient=new SocketClient(address,Integer.parseInt(port),observerClient);
            Thread clientThread=new Thread(socketClient);
            clientThread.start();
+           clientThread.setPriority(10);
            this.addObserver(socketClient);
            ConnectionSuccessfulMessage message;
            message=new ConnectionSuccessfulMessage(true);
