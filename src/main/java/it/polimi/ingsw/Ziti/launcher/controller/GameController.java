@@ -61,7 +61,6 @@ public class GameController extends GameControllerObservable implements ServerOb
     @Override
     public void loginHandler(LoginMessage message)  {
         System.out.println("Received login message");
-        System.out.println("GameController - getSedner"+message.getSender());
         if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers) {
             try {
                 System.out.println("Adding player to list");
@@ -239,5 +238,9 @@ public class GameController extends GameControllerObservable implements ServerOb
         this.turnController = new TurnController(this,players);
         System.out.println("Game started!");
         notifyObserver(obs -> obs.sendToAllPlayers(new GameStartedMessage()));
+    }
+
+    public void notifyNewActivePlayer(Player currentPlayer) {
+        notifyObserver(obs-> obs.sendToOnePlayer(new YourTurnNotification(),currentPlayer.GetName()));
     }
 }
