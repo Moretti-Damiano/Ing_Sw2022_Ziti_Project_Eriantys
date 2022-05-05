@@ -8,10 +8,8 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
-import it.polimi.ingsw.Ziti.launcher.networking.server.SocketServer;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
-import javax.imageio.IIOException;
 import java.io.IOException;
 /**
  * This class observes cli and is observed by SocketClient
@@ -52,11 +50,6 @@ public class ClientController extends ClientObservable implements InputObserver 
     public void onUpdateConnection(String address, String port) {
         if(isInt(port)){
        try{socketClient=new SocketClient(address,Integer.parseInt(port),observerClient);
-           /*Thread clientThread=new Thread(socketClient);
-           clientThread.start();
-           clientThread.setPriority(10);
-
-            */
            socketClient.connect();
            this.addObserver(socketClient);
            ConnectionSuccessfulMessage message;
