@@ -21,7 +21,13 @@ public class ClientMessageHandler extends ViewObservable {
             e.printStackTrace();
         }
     });}
-    public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs->obs.moveMotherHandler(message));}
+    public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs-> {
+        try {
+            obs.moveMotherHandler(message);
+        } catch (ExecutionException e) {
+            e.printStackTrace();
+        }
+    });}
     public void MoveToIslandDoneHandle(MoveToIslandDoneMessage message){notifyObserver(obs-> {
         try {
             obs.moveToIslandHandler(message);
@@ -41,7 +47,13 @@ public class ClientMessageHandler extends ViewObservable {
     public void EndTurnDoneHandle(EndTurnDoneMessage message){notifyObserver(obs->obs.endTurnHandler(message));}
     public void ChooseCloudIslandDoneHandle(ChooseCloudDoneMessage message){notifyObserver(obs->obs.cloudIslandHandler(message));}
     public void inputErrorHandle(InputError message) {
-        notifyObserver(obs->obs.InputErrorHandler(message));}
+        notifyObserver(obs-> {
+            try {
+                obs.InputErrorHandler(message);
+            } catch (ExecutionException e) {
+                e.printStackTrace();
+            }
+        });}
     public void ErrorMessageHandle(ErrorMessage message){notifyObserver(obs->obs.ErrorMessageHandler(message));}
     public void ConnectionSuccessfulHandle(ConnectionSuccessfulMessage message){notifyObserver(obs-> {
         try {

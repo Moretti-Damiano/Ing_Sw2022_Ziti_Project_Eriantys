@@ -52,9 +52,12 @@ public class ClientController extends ClientObservable implements InputObserver 
     public void onUpdateConnection(String address, String port) {
         if(isInt(port)){
        try{socketClient=new SocketClient(address,Integer.parseInt(port),observerClient);
-           Thread clientThread=new Thread(socketClient);
+           /*Thread clientThread=new Thread(socketClient);
            clientThread.start();
            clientThread.setPriority(10);
+
+            */
+           socketClient.connect();
            this.addObserver(socketClient);
            ConnectionSuccessfulMessage message;
            message=new ConnectionSuccessfulMessage(true);

@@ -2,6 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseAssistantDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
@@ -25,16 +26,17 @@ public class ChooseAssistant implements Action {
      * Also Check if the player can chase an assistant already taken by another player
      */
     @Override
-    public void execute() {
-        if(checkValidate()||((checkParticularCase())&&(!player.getAssistants().get(assistantID).isAssChose()))){
-            player.setAssChoosed(player.getAssistants().get(assistantID));
-            player.getAssistants().get(assistantID).setActual(true);
-            player.getAssistants().get(assistantID).setAssChose(true);
-            description=description.concat(game.getCurrentPlayer().GetName() + " chose the assistant with MotherNature Moves: " + player.getAssistants().get(assistantID).getMovesMother()
-                                                                              + " and Value: " + player.getAssistants().get(assistantID).getValue());
+    public void execute()throws ActionException {
+        if(checkParticularCase()){
+            if(!player.getAssistants().get(assistantID).isAssChose()){
+                SetAssistant();
+            }else throw new ActionException();
+        }else{
+            checkValidate();
+            SetAssistant();
         }
-
     }
+
 
     /**
      *
@@ -60,18 +62,18 @@ public class ChooseAssistant implements Action {
      *
      * @return if the choice is valid
      */
-    private boolean checkValidate(){
+    private void checkValidate() throws ActionException {
 
         for (Player p: this.game.getPlayers())
         {
             if(checkName(p) && checkUsed(p,assistantID)){
-                return false;
+                throw new ActionException();
+
             }
             if(!checkName(p) && checkTaken(p,assistantID) ){
-                return false;
+                throw new ActionException();
             }
         }
-        return true;
     }
 
     /**
@@ -101,5 +103,17 @@ public class ChooseAssistant implements Action {
      */
     private boolean checkTaken(Player p, int ass){
         return p.getAssistants().get(ass).isActual();
+    }
+
+    /**
+     * method used to set assistant as the actual assistant
+     */
+
+    private void SetAssistant(){
+        player.setAssChoosed(player.getAssistants().get(assistantID));
+        player.getAssistants().get(assistantID).setActual(true);
+        player.getAssistants().get(assistantID).setAssChose(true);
+        description=description.concat(game.getCurrentPlayer().GetName() + " chose the assistant with MotherNature Moves: " + player.getAssistants().get(assistantID).getMovesMother()
+                + " and Value: " + player.getAssistants().get(assistantID).getValue());
     }
 }

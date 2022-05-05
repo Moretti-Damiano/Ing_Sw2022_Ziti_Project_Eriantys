@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.InputReadThread;
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
@@ -27,11 +28,16 @@ public class cli extends InputObservable implements view, ViewObserver {
 
 
     private final ClientController clientController;
-    private Thread inputThread;
+    private InputReadThread inputThread;
+    private Scanner scanner;
+    private boolean freeInput;
+
 
 
     public cli(ClientController clientController){
         this.clientController=clientController;
+        scanner = new Scanner(System.in);
+        freeInput = false;
     }
 
     @Override
@@ -113,8 +119,8 @@ public class cli extends InputObservable implements view, ViewObserver {
         for(Board board: boards){
             System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t"+board.getPlayername().toUpperCase(Locale.ROOT)+"'s BOARD");
             showMyBoard(board);
-            }
         }
+    }
 
 
     @Override
@@ -138,14 +144,16 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Insert Assistant's id: ");
         String assistantId;
         assistantId=readLine();
+        inputThread.setFreeInput(true);
         return assistantId;
     }
 
     @Override
-    public String askCharacter() throws ExecutionException {
+    public String askCharacter(){
         System.out.println("Insert Character's id: ");
         String characterId;
         characterId=readLine();
+        inputThread.setFreeInput(true);
         return characterId;
     }
 
@@ -153,7 +161,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     public String askIsland() throws ExecutionException {
         System.out.println("Insert an Island's id: ");
         String islandId;
-       islandId=readLine();
+        islandId=readLine();
+        inputThread.setFreeInput(true);
         return islandId;
     }
 
@@ -162,6 +171,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Insert a colour: ");
         String colour;
         colour=readLine();
+        inputThread.setFreeInput(true);
         return colour;
 
     }
@@ -175,17 +185,16 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void GameStartedHandler(GameStartedMessage message) throws ExecutionException {
-            gameStarter();
+        gameStarter();
     }
 
     @Override
-    public void YourTurnNotificationHandler(YourTurnNotification message) throws ExecutionException {
+    public void YourTurnNotificationHandler(YourTurnNotification message) {
         System.out.println(message.Description);
-        reading();
     }
 
     @Override
-    public void askMoveToTable() throws ExecutionException {
+    public void askMoveToTable() {
         notifyObserver(obs -> {
             try {
                 obs.onUpdateMoveToTable(askColour());
@@ -197,7 +206,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void askMoveToIsland() throws ExecutionException {
+    public void askMoveToIsland(){
         notifyObserver(obs -> {
             try {
                 obs.onUpdateMoveToIsland(askColour(),askIsland());
@@ -209,20 +218,21 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void askMoveMother() throws ExecutionException {
+    public void askMoveMother() {
         String moves;
         System.out.println("Insert how many moves the MotherNature should do: ");
         moves=readLine();
         notifyObserver(obs -> obs.onUpdateMoveMother(moves));
-
+        inputThread.setFreeInput(true);
     }
 
     @Override
-    public void askCloudIsland() throws ExecutionException {
+    public void askCloudIsland() {
         String cloudID;
         System.out.println("Insert CloudIsland's id that you want: ");
         cloudID=readLine() ;
         notifyObserver(obs -> obs.onUpdateCloudIsland(cloudID));
+        inputThread.setFreeInput(true);
 
     }
 
@@ -238,9 +248,9 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    public void InputErrorHandler(InputError message) throws ExecutionException {
+    public void InputErrorHandler(InputError message){
         showInputErrorMessage(message);
-        reading();
+
     }
 
 
@@ -250,29 +260,27 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void moveToIslandHandler(MoveToIslandDoneMessage message) throws ExecutionException {
+    public void moveToIslandHandler(MoveToIslandDoneMessage message){
         System.out.println(message.getDescription());
         showIslands(message.getIslands());
         System.out.println("Player "+message.getPlayername()+"'s board: ");
         showMyBoard(message.getBoard());
-        reading();
+
     }
 
     @Override
-    public void moveToTableHandler(MoveToTableDoneMessage message) throws ExecutionException {
+    public void moveToTableHandler(MoveToTableDoneMessage message)   {
         System.out.println(message.getDescription());
         System.out.println("Player "+message.getPlayername()+"'s board: ");
         showMyBoard(message.getBoard());
-        reading();
+
 
     }
 
     @Override
-    public void moveMotherHandler(MoveMotherDoneMessage message) throws ExecutionException {
+    public void moveMotherHandler(MoveMotherDoneMessage message) {
         System.out.println(message.getDescription());
         showIslands(message.getIslands());
-        reading();
-
 
     }
 
@@ -312,7 +320,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void CompleteRequestHandler(CompletedRequestMessage message) throws ExecutionException {
+    public void CompleteRequestHandler(CompletedRequestMessage message)  {
         System.out.println(message.getDescription());
     }
 
@@ -332,7 +340,6 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void TurnErrorHandler(TurnError message) throws ExecutionException {
         System.out.println(message.getDescription());
-        reading();
     }
 
     public void TurnNotificationHandler(TurnNotification message) throws ExecutionException {
@@ -342,37 +349,31 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showAssistantHandler(ShowAssistantResponse message) throws ExecutionException {
         showAssistants(message.getAssistants());
-        reading();
     }
 
     @Override
     public void showCharacterHandler(ShowCharacterResponse message) throws ExecutionException {
         showCharacters(message.getCharacters());
-        reading();
     }
 
     @Override
     public void showBoardHandler(ShowBoardResponse message) throws ExecutionException {
         showMyBoard(message.getBoard());
-        reading();
     }
 
     @Override
     public void showBoardsHandler(ShowBoardsResponse message) throws ExecutionException {
         showBoards(message.getBoards());
-        reading();
     }
 
     @Override
     public void showCloudHandler(ShowCloudResponse message) throws ExecutionException {
         showClouds(message.getClouds());
-        reading();
     }
 
     @Override
     public void showIslandHandler(ShowIslandResponse message) throws ExecutionException {
         showIslands(message.getIslands());
-        reading();
     }
 
     /**
@@ -407,7 +408,7 @@ public class cli extends InputObservable implements view, ViewObserver {
      * @return input read
      * @throws ExecutionException
      */
-    public String readLine() throws ExecutionException {
+   /* public String readLine() throws ExecutionException {
         FutureTask<String> futureTask = new FutureTask<>(new InputReadTask());
                                             inputThread = new Thread(futureTask);
         inputThread.start();
@@ -421,33 +422,39 @@ public class cli extends InputObservable implements view, ViewObserver {
         }
         return input;
     }
+    */
 
-    /**
-     * Method used to take inputs from client
-     * It also chooses whether to call a cli method or to generate a message
-     * @throws ExecutionException
-     */
-    public void reading() throws ExecutionException {
-        System.out.println("Sono nello switch");
-        String input;
-        input=readLine();
+
+    public String readLine(){
+        return scanner.nextLine();
+    }
+
+
+
+    public void command(String input){
         switch(input){
             case "CHOOSEASSISTANT":
+                inputThread.setFreeInput(false);
                 askChoseAssistant();
                 break;
             case "CHOOSECHARACTER":
+                inputThread.setFreeInput(false);
                 askCharacter();
                 break;
             case "CHOOSECLOUD":
+                inputThread.setFreeInput(false);
                 askCloudIsland();
                 break;
             case "MOVEMOTHER":
+                inputThread.setFreeInput(false);
                 askMoveMother();
                 break;
             case "MOVETOISLAND":
+                inputThread.setFreeInput(false);
                 askMoveToIsland();
                 break;
             case "MOVETOTABLE":
+                inputThread.setFreeInput(false);
                 askMoveToTable();
                 break;
             case "SHOWASSISTANT":
@@ -470,7 +477,6 @@ public class cli extends InputObservable implements view, ViewObserver {
                 break;
             default:
                 System.out.println("Invalid");
-                reading();
                 break;
         }
     }
@@ -493,6 +499,8 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Type SHOWCHARACTER to print the available characters");
         System.out.println("Type SHOWCLOUD to print the available clouds");
         System.out.println("Type SHOWISLAND to print all the islands");
-        reading();
+
+        inputThread = new InputReadThread(this);
+        new Thread(inputThread).start();
     }
 }

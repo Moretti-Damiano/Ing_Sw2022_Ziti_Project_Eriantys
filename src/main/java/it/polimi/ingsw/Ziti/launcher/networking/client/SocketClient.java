@@ -8,6 +8,7 @@ import it.polimi.ingsw.Ziti.launcher.observer.*;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
@@ -20,7 +21,7 @@ import java.util.concurrent.ScheduledExecutorService;
  */
 
 
-public class SocketClient extends SocketClientObservable implements ClientObserver,Runnable {
+public class SocketClient extends SocketClientObservable implements ClientObserver{
 
     private final Socket socket;
     private final ObjectOutputStream outputStm;
@@ -43,6 +44,16 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
             this.readExecutionQueue= Executors.newSingleThreadExecutor();
             this.outputStm = new ObjectOutputStream(socket.getOutputStream());
             this.inputStm = new ObjectInputStream(socket.getInputStream());
+
+    }
+    public void connect() {
+
+        final Thread outThread = new Thread(){
+            public void run() {
+                receive();
+            }
+    };
+    outThread.start();
     }
 
     /**
@@ -58,7 +69,6 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
             errorMessage = new ErrorMessage("SocketClient", "Could not send message");
             notifyObserver(obs->obs.update(errorMessage));
         }
-
     }
 
     /**
@@ -98,8 +108,4 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
         }
     }
 
-    @Override
-    public void run() {
-        this.receive();
-    }
 }
