@@ -20,12 +20,13 @@ public class CloudPhase extends Phase{
             } catch (ActionException e) {
                 e.printStackTrace(); //non verrà mai chiamata perchè chiamo solo endturn
             }
+            getTurncontroller().resetPlayersDone();
             getTurncontroller().setCurrentPlayer(getTurncontroller().getOrderPlayers().get(0)); //first player for next round
             nextPhase(); //rientro fase planning
 
         }
         else {
-            addPlayersDone();
+            getTurncontroller().addPlayersDone();
             getTurncontroller().setNextPlayer();
             getTurncontroller().setPhase(new MovementPhase(getTurncontroller()));
         }

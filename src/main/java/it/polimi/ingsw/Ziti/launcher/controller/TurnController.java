@@ -31,7 +31,7 @@ public class TurnController {
         currentPlayer = players.get(0);
         gameController.notifyNewActivePlayer(currentPlayer);
         this.gameController.getGame().setActivePlayer(currentPlayer);
-        playersDone = 0;
+        playersDone = 1;
     }
 
     public void setPhase(it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase phase){
@@ -135,6 +135,10 @@ public class TurnController {
     public int getPlayersDone() {
         return playersDone;
     }
+
+    public void  addPlayersDone(){playersDone++;}
+
+    public void resetPlayersDone(){playersDone=1;}
 
     public GameController getGameController() {
         return gameController;
