@@ -13,29 +13,29 @@ import java.util.concurrent.ExecutionException;
 public interface ViewObserver {
 
 
-    void InputErrorHandler(InputError message) throws ExecutionException;
+    void InputErrorHandler(InputError message);
     void ErrorMessageHandler(ErrorMessage message);
-    void moveToIslandHandler(MoveToIslandDoneMessage message) throws ExecutionException;
-    void moveToTableHandler(MoveToTableDoneMessage message) throws ExecutionException;
-    void moveMotherHandler(MoveMotherDoneMessage message) throws ExecutionException;
+    void moveToIslandHandler(MoveToIslandDoneMessage message);
+    void moveToTableHandler(MoveToTableDoneMessage message);
+    void moveMotherHandler(MoveMotherDoneMessage message);
     void chooseAssistantHandler(ChooseAssistantDoneMessage message);
     void chooseCharacterHandler(ChooseCharacterDoneMessage message);
     void endTurnHandler(EndTurnDoneMessage message);
     void cloudIslandHandler(ChooseCloudDoneMessage message);
-    void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) throws ExecutionException;
-    void CompleteRequestHandler(CompletedRequestMessage message) throws ExecutionException;
-    void LoginErrorHandler(LoginError message) throws ExecutionException;
-    void NumOfPlayerHandler(NumOfPLayersRequest message) throws ExecutionException, IOException;
-    void TurnErrorHandler(TurnError message) throws ExecutionException;
-    void TurnNotificationHandler(TurnNotification message) throws ExecutionException;
-    void showAssistantHandler(ShowAssistantResponse message) throws ExecutionException;
-    void showCharacterHandler(ShowCharacterResponse message) throws ExecutionException;
-    void showBoardHandler(ShowBoardResponse message) throws ExecutionException;
-    void showBoardsHandler(ShowBoardsResponse message) throws ExecutionException;
-    void showCloudHandler(ShowCloudResponse message) throws ExecutionException;
-    void showIslandHandler(ShowIslandResponse message) throws ExecutionException;
-    void GameStartedHandler(GameStartedMessage message) throws ExecutionException;
-    void YourTurnNotificationHandler(YourTurnNotification message) throws ExecutionException;
+    void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message);
+    void CompleteRequestHandler(CompletedRequestMessage message);
+    void LoginErrorHandler(LoginError message);
+    void NumOfPlayerHandler(NumOfPLayersRequest message);
+    void TurnErrorHandler(TurnError message);
+    void TurnNotificationHandler(TurnNotification message);
+    void showAssistantHandler(ShowAssistantResponse message);
+    void showCharacterHandler(ShowCharacterResponse message);
+    void showBoardHandler(ShowBoardResponse message);
+    void showBoardsHandler(ShowBoardsResponse message);
+    void showCloudHandler(ShowCloudResponse message);
+    void showIslandHandler(ShowIslandResponse message);
+    void GameStartedHandler(GameStartedMessage message);
+    void YourTurnNotificationHandler(YourTurnNotification message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }

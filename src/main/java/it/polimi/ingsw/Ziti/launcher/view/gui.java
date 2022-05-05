@@ -105,7 +105,7 @@ public class gui implements view{
     }
 
     @Override
-    public void GameStartedHandler(GameStartedMessage message) throws ExecutionException {
+    public void GameStartedHandler(GameStartedMessage message) {
 
     }
 
