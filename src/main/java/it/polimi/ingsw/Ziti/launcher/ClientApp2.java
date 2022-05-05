@@ -22,7 +22,7 @@ public class ClientApp2 {
         if (cliParam) {
             ClientMessageHandler clientMessageHandler=new ClientMessageHandler();
             ClientController clientcontroller = new ClientController(clientMessageHandler,new ObserverClient(clientMessageHandler));
-            cli view = new cli(clientcontroller);
+            cli view = new cli();
             view.addObserver(clientcontroller);
             clientMessageHandler.addObserver(view);
             view.init();
