@@ -59,10 +59,6 @@ public class Character1 extends Character{
         Mother.motherInstance().getIsland().removeMother();
         Mother.motherInstance().setIsland(motherIsland);
         Mother.motherInstance().getIsland().addMother();
-        Mother.motherInstance().getIsland().removeMother();
-        Mother.motherInstance().setIsland(motherIsland);
-        Mother.motherInstance().getIsland().addMother();
-
     }
 
     private void checkInput() throws ActionException{
