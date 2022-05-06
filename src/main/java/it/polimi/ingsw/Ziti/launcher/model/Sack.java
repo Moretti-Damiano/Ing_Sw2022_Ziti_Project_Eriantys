@@ -20,7 +20,7 @@ public class Sack implements Serializable {
 
     public Sack(int studentNumber) {
         numColour = new int[5];
-        Arrays.fill(numColour, studentNumber / 5);
+        Arrays.fill(numColour, (studentNumber / 5));
     }
 
     /**
@@ -51,6 +51,7 @@ public class Sack implements Serializable {
         while (numColour[randomNumber] == 0) {
             randomNumber = rand.nextInt(upperLimit);
         }
+        numColour[randomNumber]--;
         return new Student(Colour.valueOfAbbreviation(Integer.toString(randomNumber)));
     }
 }

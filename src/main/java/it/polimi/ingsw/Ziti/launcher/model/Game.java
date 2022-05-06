@@ -56,8 +56,6 @@ public class Game extends Observable {
         //creates mother
         this.mother = Mother.motherInstance();
 
-        //creates sack with 120 remaining students
-        sack = new Sack(130 - (islands.size() - 2));
 
                     //set islands and mother
         //places mother on a random island
@@ -66,14 +64,18 @@ public class Game extends Observable {
         mother.setIsland(islands.get(motherPosition));
         islands.get(motherPosition).addMother();
 
-        //places 2 random student on each island
+             //places 1 random student on each island
+        //creates sack with 10 students
+        sack = new Sack((islands.size() - 2));
         int emptyIsland = (motherPosition + islands.size()/2) % islands.size();
         for(Island i: islands){
             if(islands.indexOf(i) != motherPosition && islands.indexOf(i) !=emptyIsland ){
                 i.addStudent(sack.extract());
-                i.addStudent(sack.extract());
             }
         }
+
+        //creates sack with 120 remaining students
+        sack = new Sack(130 - (islands.size() - 2));
 
         //copies p into players
         this.players = new ArrayList<Player>(p);
