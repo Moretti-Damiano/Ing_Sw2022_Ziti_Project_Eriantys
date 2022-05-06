@@ -26,7 +26,7 @@ public class Game extends Observable {
     private int maxPlayer;
     private int playerNumber;
     private ArrayList<Professor> professors;
-    private ArrayList<Character> characters;
+    private ArrayList<CharacterOLD> characters;
     private Player currentPlayer;
     private Action action;
     private GameWallet gameWallet;
@@ -125,7 +125,7 @@ public class Game extends Observable {
         return professors;
     }
 
-    public ArrayList<Character> getCharacters() {
+    public ArrayList<CharacterOLD> getCharacters() {
         return characters;
     }
 

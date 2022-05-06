@@ -1,9 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Character;
+import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 
 import java.util.ArrayList;
 
@@ -12,11 +11,11 @@ public class EndTurnDoneMessage extends ActionMessage {
     private ArrayList<Island> islands;
     private ArrayList<Board> boards;
     private ArrayList<CloudIsland> cloudIslands;
-    private ArrayList<Character> characters;
+    private ArrayList<CharacterOLD> characters;
     private ArrayList<Player> players;
 
     public EndTurnDoneMessage(String description, ArrayList<Island> islands, ArrayList<Board> boards,
-                              ArrayList<CloudIsland> cloudIslands, ArrayList<Character> characters, ArrayList<Player> players) {
+                              ArrayList<CloudIsland> cloudIslands, ArrayList<CharacterOLD> characters, ArrayList<Player> players) {
         super(description);
         this.islands = islands;
         this.boards = boards;
@@ -37,7 +36,7 @@ public class EndTurnDoneMessage extends ActionMessage {
         return cloudIslands;
     }
 
-    public ArrayList<Character> getCharacters() {
+    public ArrayList<CharacterOLD> getCharacters() {
         return characters;
     }
 

@@ -54,5 +54,13 @@ public class Sack implements Serializable {
         numColour[randomNumber]--;
         return new Student(Colour.valueOfAbbreviation(Integer.toString(randomNumber)));
     }
+
+    /**
+     * insert a student in the sack
+     * @param student to be inserted
+     */
+    public void insert(Student student){
+        numColour[student.getColour().getIntAbbreviation()]++;
+    }
 }
 

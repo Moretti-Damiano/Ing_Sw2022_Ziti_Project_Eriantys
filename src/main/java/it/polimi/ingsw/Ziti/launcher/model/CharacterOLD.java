@@ -4,13 +4,13 @@ import it.polimi.ingsw.Ziti.launcher.Effect;
 
 import java.io.Serializable;
 
-public class Character implements Serializable {
+public class CharacterOLD implements Serializable {
     private final int id;
     private int cost;
     private final String description;
     private final Effect effect;
 
-    private Character(Builder builder){
+    private CharacterOLD(Builder builder){
         this.id=builder.id;
         this.cost=builder.cost;
         this.description=builder.description;
@@ -83,7 +83,7 @@ public class Character implements Serializable {
             return this;
         }
 
-        public Character build(){return new Character(this);}
+        public CharacterOLD build(){return new CharacterOLD(this);}
 
     }
 }

@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher;
 
-import it.polimi.ingsw.Ziti.launcher.model.Character;
+import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
 
@@ -18,9 +18,9 @@ public class CharacterParser {
     private CharacterParser() {
     }
 
-    public static List<Character> parseCharacters(String fileName) throws ParserConfigurationException, IOException, SAXException {
+    public static List<CharacterOLD> parseCharacters(String fileName) throws ParserConfigurationException, IOException, SAXException {
         String filePath = "/xml/" + fileName;
-        List<Character> characters = new ArrayList<>();
+        List<CharacterOLD> characters = new ArrayList<>();
         DocumentBuilder db;
         Document doc = null;
 
@@ -45,12 +45,12 @@ public class CharacterParser {
     }
 
 
-    private static Character buildCharacterObject(Element characterElement) {
+    private static CharacterOLD buildCharacterObject(Element characterElement) {
         int id = Integer.parseInt(characterElement.getElementsByTagName(ID.getText()).item(0).getTextContent());
         int cost = Integer.parseInt(characterElement.getElementsByTagName(COST.getText()).item(0).getTextContent());
         String description = characterElement.getElementsByTagName(DESCRIPTION.getText()).item(0).getTextContent();
 
-        return new Character.Builder(id)
+        return new CharacterOLD.Builder(id)
                 .withCost(cost)
                 .withDescription(description)
                 .build();

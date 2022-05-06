@@ -75,6 +75,15 @@ public class Board implements Serializable {
     public void addStudenttoColourRow( Student s){
         students[s.getColour().getIntAbbreviation()].add(s);
     }
+
+    /**
+     * remove a student from the row that contains the student with the same colour
+     * @param s student to add
+     */
+    public void removeStudentfromColourRow( Student s){
+        students[s.getColour().getIntAbbreviation()].remove(s);
+    }
+
     /**
      * add a tower to towers
      */
@@ -172,5 +181,20 @@ public class Board implements Serializable {
             if(colour.equals(s.getColour())) count++;
         }
         return count;
+    }
+
+    public void removeCoin(int cost) {
+        for(int i = 0; i<cost; i++){
+            wallet.remove(wallet.size()-1);
+        }
+    }
+
+    /**
+     * Return the dining room row of the specified colour
+     * @param colour
+     * @return
+     */
+    public ArrayList<Student> getColourRow(Colour colour){
+        return students[colour.getIntAbbreviation()];
     }
 }
