@@ -20,12 +20,6 @@
                           prefWidth="351.0" styleClass="playBtn" stylesheets="@../css/menu_scene.css"/>
                   <Button fx:id="quitBtn" layoutX="422.0" layoutY="294.0" mnemonicParsing="false" prefHeight="68.0"
                           prefWidth="351.0" styleClass="quitBtn" stylesheets="@../css/menu_scene.css"/>
-                  <ImageView fitHeight="173.0" fitWidth="458.0" layoutX="170.0" layoutY="75.0" pickOnBounds="true"
-                             preserveRatio="true">
-                     <image>
-                        <Image url="@../images/santorini-logo.png"/>
-                     </image>
-                  </ImageView>
                </children>
             </AnchorPane>
          </children>

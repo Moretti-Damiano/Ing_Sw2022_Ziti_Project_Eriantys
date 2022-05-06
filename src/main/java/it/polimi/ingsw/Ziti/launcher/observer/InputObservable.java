@@ -5,7 +5,7 @@ import java.util.List;
 import java.util.function.Consumer;
 
 public abstract class  InputObservable {
-    private final List<InputObserver> observers = new ArrayList<>();
+    protected   final List<InputObserver> observers = new ArrayList<>();
 
     /**
      * Adds an observer
@@ -32,5 +32,8 @@ public abstract class  InputObservable {
         for (InputObserver observer : observers) {
             lambda.accept(observer);
         }
+    }
+    public void addAllObservers(List<InputObserver> observerList) {
+        observers.addAll(observerList);
     }
 }
