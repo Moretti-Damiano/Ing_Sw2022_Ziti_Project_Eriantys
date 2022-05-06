@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 
 import java.util.ArrayList;
 
@@ -15,7 +16,7 @@ public class EndTurnDoneMessage extends ActionMessage {
     private ArrayList<Player> players;
 
     public EndTurnDoneMessage(String description, ArrayList<Island> islands, ArrayList<Board> boards,
-                              ArrayList<CloudIsland> cloudIslands, ArrayList<CharacterOLD> characters, ArrayList<Player> players) {
+                              ArrayList<CloudIsland> cloudIslands, ArrayList<Character> characters, ArrayList<Player> players) {
         super(description);
         this.islands = islands;
         this.boards = boards;

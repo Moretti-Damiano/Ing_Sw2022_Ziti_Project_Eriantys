@@ -27,6 +27,6 @@ public class MenuSceneController extends InputObservable {
      * @param event the mouse click event.
      */
     private void onPlayBtnClick(Event event) {
-        //SceneController.changeRootPane(observers, event, "connect_scene.fxml"//);
+        SceneController.changeRootPane(observers, event, "connect_scene.fxml");
     }
 }

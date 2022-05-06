@@ -4,7 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.GameStartedMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.YourTurnNotification;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 
 import java.util.ArrayList;
 import java.util.List;

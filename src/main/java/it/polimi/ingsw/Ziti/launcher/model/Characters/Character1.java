@@ -16,14 +16,18 @@ public class Character1 extends Character{
     private Island motherIsland;
     private int motherIslandPosition;
 
-    protected Character1(Game game) {
+    public Character1(Game game) {
         super(game);
         setCost(3);
         setUsePhase(PhaseType.MOTHER);
+        setAvailable(true);
     }
 
 
-    public void choose() {
+    public void choose(int islandId) throws ActionException{
+        checkInput();
+        this.islandId=islandId;
+        setAvailable(false);
 
     }
 
@@ -40,14 +44,39 @@ public class Character1 extends Character{
         else{
             moves = islandPosition + (getGame().getIslands().size() - motherIslandPosition);
         }
-        getGame().setAction(new MoveMother(getGame(),moves));
+        getGame().setAction(new MoveMother(getGame(),moves,true));
         getGame().doAction();
+        endAction();
     }
 
     @Override
     public void endEffect() {
+        increaseCost();
+        setAvailable(true);
+    }
+
+    private void endAction(){
         Mother.motherInstance().getIsland().removeMother();
         Mother.motherInstance().setIsland(motherIsland);
         Mother.motherInstance().getIsland().addMother();
+        Mother.motherInstance().getIsland().removeMother();
+        Mother.motherInstance().setIsland(motherIsland);
+        Mother.motherInstance().getIsland().addMother();
+
+    }
+
+    private void checkInput() throws ActionException{
+        if(!checkId()){
+            throw new ActionException();
+        }
+    }
+
+    private boolean checkId(){
+        for(Island i: getGame().getIslands()){
+            if(i.getID() == islandId){
+                return true;
+            }
+        }
+        return false;
     }
 }

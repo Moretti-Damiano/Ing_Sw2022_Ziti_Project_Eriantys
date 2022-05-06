@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ConnectionSceneController extends InputObservable {
+public class ConnectionSceneController extends InputObservable implements GenericSceneController{
 
     private final PseudoClass ERROR_PSEUDO_CLASS = PseudoClass.getPseudoClass("error");
 
@@ -44,13 +44,6 @@ public class ConnectionSceneController extends InputObservable {
         String address = serverAddressField.getText();
         String port = serverPortField.getText();
 
-        // boolean isValidIpAddress = ClientController.isValidIpAddress(address);
-        // boolean isValidPort = ClientController.isValidPort(port);
-
-       // serverAddressField.pseudoClassStateChanged(ERROR_PSEUDO_CLASS, !isValidIpAddress);
-       // serverPortField.pseudoClassStateChanged(ERROR_PSEUDO_CLASS, !isValidPort);
-
-        //if (isValidIpAddress && isValidPort) {
             backBtn.setDisable(true);
             connectBtn.setDisable(true);
 
@@ -68,7 +61,7 @@ public class ConnectionSceneController extends InputObservable {
         backBtn.setDisable(true);
         connectBtn.setDisable(true);
 
-       // SceneController.changeRootPane(observers, event, "menu_scene.fxml");
+       SceneController.changeRootPane(observers, event, "menu_scene.fxml");
     }
 
 }

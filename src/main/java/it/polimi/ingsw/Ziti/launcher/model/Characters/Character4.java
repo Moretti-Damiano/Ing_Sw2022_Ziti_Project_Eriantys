@@ -15,15 +15,18 @@ public class Character4 extends Character{
 
     private Colour colour;
 
-    protected Character4(Game game) {
+    public Character4(Game game) {
         super(game);
         setCost(3);
         setUsePhase(PhaseType.MOTHER);
+        setAvailable(true);
     }
 
 
-    public void choose() {
-
+    public void choose(String colour) throws ActionException{
+     checkInput(colour);
+     setAvailable(false);
+     this.colour=Colour.valueOfName(colour);
     }
 
     @Override
@@ -47,6 +50,14 @@ public class Character4 extends Character{
 
     @Override
     public void endEffect() {
-        //nothing to do
+        setAvailable(true);
+        increaseCost();
     }
+
+    private void checkInput(String colour) throws ActionException{
+        if(!Colour.checkStringToColour(colour)){
+            throw new ActionException();
+        }
+    }
+
 }

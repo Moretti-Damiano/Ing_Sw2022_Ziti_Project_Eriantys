@@ -7,15 +7,16 @@ import it.polimi.ingsw.Ziti.launcher.model.Game;
 /*Puoi muovere Madre Natura fino a 2 Isole addizionali rispetto a quanto indicato sulla carta Assistente che hai giocato.*/
 public class Character2 extends Character{
 
-    protected Character2(Game game) {
+    public Character2(Game game) {
         super(game);
         setCost(1);
         setUsePhase(PhaseType.MOTHER);
+        setAvailable(true);
     }
 
 
     public void choose() {
-
+        setAvailable(false);
     }
 
     @Override
@@ -26,5 +27,7 @@ public class Character2 extends Character{
     @Override
     public void endEffect() {
         getGame().getCurrentPlayer().getAssChosen().reduceMoves(2);
+        setAvailable(true);
+        increaseCost();
     }
 }
