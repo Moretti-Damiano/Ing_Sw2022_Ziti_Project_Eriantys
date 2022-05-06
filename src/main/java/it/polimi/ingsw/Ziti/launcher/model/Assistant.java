@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 public class Assistant implements Serializable {
     private final int id;
-    private final int movesMother;
+    private  int movesMother;
     private final int value;
     private boolean actual;
     private boolean assChose;
@@ -71,6 +71,14 @@ public class Assistant implements Serializable {
      */
     public void setAssChose(boolean assChose) {
         this.assChose = assChose;
+    }
+
+    public void addMoves(int movesMother) {
+        this.movesMother += movesMother;
+    }
+
+    public void reduceMoves(int movesMother) {
+        this.movesMother -= movesMother;
     }
 
     public static class Builder {
