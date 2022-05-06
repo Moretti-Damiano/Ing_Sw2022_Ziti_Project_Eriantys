@@ -136,6 +136,7 @@ public class ChooseAssistantTest {
         game.getPlayers().get(0).getAssistants().get(0).setAssChose(true);
         game.getPlayers().get(0).getAssistants().get(3).setAssChose(true);
         game.getPlayers().get(0).getAssistants().get(2).setAssChose(true);
+
         game.getPlayers().get(1).getAssistants().get(2).setAssChose(true);
         game.getPlayers().get(1).setAssChoosed(game.getPlayers().get(1).getAssistants().get(2));
         game.getPlayers().get(1).getAssistants().get(2).setActual(true);
