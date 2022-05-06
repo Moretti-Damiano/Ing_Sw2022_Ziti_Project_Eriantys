@@ -16,7 +16,7 @@ import java.util.concurrent.ExecutionException;
 public interface view {
 
     void showAssistants(List<Assistant> assistants);
-    void showCharacters(ArrayList<Character> characters);
+    void showCharacters(ArrayList<CharacterOLD> characters);
     void showIslands(List<Island> islands);
     void showClouds(List<CloudIsland> clouds);
     void showMyBoard(Board board);

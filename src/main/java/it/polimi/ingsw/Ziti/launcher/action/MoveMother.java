@@ -38,10 +38,10 @@ public class MoveMother implements Action{
             updateIsland(mother.getIsland(), getControl(mother.getIsland()));
 
             if(mother.getIsland().getTowerPlayer() == null){
-                description = description.concat("\nIsland(id) " + mother.getIsland() + " is still controlled by nobody");
+                description = description.concat("\nIsland(id) " + mother.getIsland().getID() + " is still controlled by nobody");
             }
             else
-                description = description.concat("\nIsland(id) " + mother.getIsland() + " is now under control of : " + mother.getIsland().getTowerPlayer().GetName());
+                description = description.concat("\nIsland(id) " + mother.getIsland().getID() + " is now under control of : " + mother.getIsland().getTowerPlayer().GetName());
 
             if (checkMerge(mother.getIsland(), game.getNextIsland(mother.getIsland()))) {
                 description = description.concat("\nMerged Island " + mother.getIsland().getID() + " with Island " + game.getNextIsland(mother.getIsland()).getID());
@@ -51,6 +51,7 @@ public class MoveMother implements Action{
                 description = description.concat("\nMerged Island " + mother.getIsland().getID() + " with Island " + game.getPrevIsland(mother.getIsland()).getID());
                 merge(mother.getIsland(), game.getPrevIsland(mother.getIsland()));
             }
+
         }
 
     @Override
@@ -127,7 +128,7 @@ public class MoveMother implements Action{
      * @param island2
      * @return true if the islands can be merged, else false
      */
-    private boolean checkMerge(Island island1, Island island2){
+    public boolean checkMerge(Island island1, Island island2){
         return (island1.getTowerPlayer() == (island2.getTowerPlayer())) && island1.getTowerPlayer()!=null ;
     }
 
