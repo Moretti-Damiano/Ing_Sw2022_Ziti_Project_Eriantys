@@ -46,7 +46,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacters(ArrayList<Character> characters) {
+    public void showCharacters(ArrayList<CharacterOLD> characters) {
 
     }
 
@@ -328,9 +328,10 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacterHandler(ShowCharacterResponse message)  {
-        showCharacters(message.getCharacters());
+    public void showCharacterHandler(ShowCharacterResponse message) {
+
     }
+
 
     @Override
     public void showBoardHandler(ShowBoardResponse message)  {

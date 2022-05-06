@@ -21,7 +21,7 @@ public class EndTurnDoneMessage extends ActionMessage {
         this.islands = islands;
         this.boards = boards;
         this.cloudIslands = cloudIslands;
-        this.characters = characters;
+        //this.characters = characters;
         this.players = players;
     }
 
