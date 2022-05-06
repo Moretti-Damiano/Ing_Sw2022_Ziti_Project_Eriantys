@@ -3,7 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view.gui;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Character;
+import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.view;
@@ -21,7 +21,7 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacters(ArrayList<Character> characters) {
+    public void showCharacters(ArrayList<CharacterOLD> characters) {
 
     }
 

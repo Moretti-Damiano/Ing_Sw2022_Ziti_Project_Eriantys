@@ -3,14 +3,12 @@ package it.polimi.ingsw.Ziti.launcher.view.gui;
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.controller.ClientController;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
-import it.polimi.ingsw.Ziti.launcher.view.cli.cli;
 import it.polimi.ingsw.Ziti.launcher.view.gui.scene.MenuSceneController;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.input.KeyCombination;
 import javafx.stage.Stage;
 
