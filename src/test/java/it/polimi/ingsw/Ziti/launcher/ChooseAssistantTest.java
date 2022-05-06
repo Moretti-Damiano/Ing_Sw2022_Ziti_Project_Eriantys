@@ -76,13 +76,15 @@ public class ChooseAssistantTest {
 
         int assID1= 2;
 
-        game.setAction(new ChooseAssistant(game,p3,assID1));
-        game.doAction();
+        try{
+            game.setAction(new ChooseAssistant(game,p3,assID1));
+            game.doAction();
+        }catch(ActionException e) {
 
-        assertFalse(p3.getAssistants().get(2).isActual());
-        assert(p3.getAssistants().get(2).isAssChose());
-        assertNull(p3.getAssChosen());
-
+            assertFalse(p3.getAssistants().get(2).isActual());
+            assert (p3.getAssistants().get(2).isAssChose());
+            assertNull(p3.getAssChosen());
+        }
     }
     @Test
     public void particulCase3() throws ActionException{
@@ -148,22 +150,24 @@ public class ChooseAssistantTest {
 
         Player p3=game.getPlayers().get(2);
         int assID= 0;
-
-        game.setAction(new ChooseAssistant(game,p3,assID));
-        game.doAction();
-
-        assertFalse(p3.getAssistants().get(0).isActual());
-        assertNull(p3.getAssChosen());
+        try{
+            game.setAction(new ChooseAssistant(game,p3,assID));
+            game.doAction();
+        }catch(ActionException e){
+            assertFalse(p3.getAssistants().get(0).isActual());
+            assertNull(p3.getAssChosen());
+        }
 
         int assID1= 1;
 
-        game.setAction(new ChooseAssistant(game,p3,assID1));
-        game.doAction();
-
+        try{
+            game.setAction(new ChooseAssistant(game,p3,assID));
+            game.doAction();
+        }catch(ActionException e){
         assertFalse(p3.getAssistants().get(1).isActual());
         assertNull(p3.getAssChosen());
 
-    }
+    }}
 
 
 }
