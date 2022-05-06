@@ -53,7 +53,7 @@ public class MoveToTable implements Action{
      * check if the player has the highest value of influence for the chosen colour, in this case adds the professor with the same colour to his board
      * @param professor_colour the colour of the professor to check
      */
-    private void controlProfessor(Colour professor_colour){
+    public void controlProfessor(Colour professor_colour){
         Player profplayer= game.checkProfessor(professor_colour);
         if(profplayer==null){
             game.getCurrentPlayer().getBoard().addProfessor(game.getProfessorbyColour(professor_colour));

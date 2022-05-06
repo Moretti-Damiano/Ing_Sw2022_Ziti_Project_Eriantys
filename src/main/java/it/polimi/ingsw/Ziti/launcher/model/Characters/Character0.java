@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.model.Characters;
 
+import it.polimi.ingsw.Ziti.launcher.action.MoveToTable;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
@@ -24,13 +25,18 @@ public class Character0 extends Character{
     public void startEffect() {
         for(Colour colour:Colour.values()){
             getGame().getCurrentPlayer().getBoard().addStudenttoColourRow(new Student(colour));
+            MoveToTable movetotable=new MoveToTable(getGame(),colour.getName());
+            movetotable.controlProfessor(colour);
         }
+
     }
 
     @Override
     public void endEffect() {
         for(Colour colour:Colour.values()){
             getGame().getCurrentPlayer().getBoard().removeStudentfromColourRow(new Student(colour));
+            MoveToTable movetotable = new MoveToTable(getGame(), colour.getName());
+            movetotable.controlProfessor(colour);
         }
     }
 }

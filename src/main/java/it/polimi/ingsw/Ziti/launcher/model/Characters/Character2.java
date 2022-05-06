@@ -11,11 +11,12 @@ public class Character2 extends Character{
         super(game);
         setCost(1);
         setUsePhase(PhaseType.MOTHER);
+        setAvailable(true);
     }
 
 
     public void choose() {
-
+        setAvailable(false);
     }
 
     @Override
@@ -26,5 +27,7 @@ public class Character2 extends Character{
     @Override
     public void endEffect() {
         getGame().getCurrentPlayer().getAssChosen().reduceMoves(2);
+        setAvailable(true);
+        increaseCost();
     }
 }

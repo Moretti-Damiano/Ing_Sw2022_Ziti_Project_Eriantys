@@ -20,9 +20,11 @@ public class Character3 extends Character{
     protected Character3(Game game) {
         super(game);
         setCost(3);
+        setAvailable(true);
     }
 
     public void choose() {
+        setAvailable(false);
 
     }
 
@@ -61,6 +63,8 @@ public class Character3 extends Character{
                 }
             }
         }
+        setAvailable(true);
+        increaseCost();
     }
 
 }
