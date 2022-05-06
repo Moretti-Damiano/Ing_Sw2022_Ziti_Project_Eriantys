@@ -20,6 +20,10 @@ public abstract class Character {
         return id;
     }
 
+    public void setCost(int cost) {
+        this.cost = cost;
+    }
+
     public int getCost() {
         return cost;
     }
@@ -47,7 +51,6 @@ public abstract class Character {
         this.cost++;
     }
 
-    public abstract void choose();
 
     public abstract void startEffect() throws ActionException;
 

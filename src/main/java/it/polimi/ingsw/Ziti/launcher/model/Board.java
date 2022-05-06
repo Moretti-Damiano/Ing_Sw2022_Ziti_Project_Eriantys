@@ -188,4 +188,13 @@ public class Board implements Serializable {
             wallet.remove(wallet.size()-1);
         }
     }
+
+    /**
+     * Return the dining room row of the specified colour
+     * @param colour
+     * @return
+     */
+    public ArrayList<Student> getColourRow(Colour colour){
+        return students[colour.getIntAbbreviation()];
+    }
 }

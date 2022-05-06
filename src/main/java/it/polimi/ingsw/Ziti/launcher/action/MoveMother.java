@@ -51,6 +51,7 @@ public class MoveMother implements Action{
                 description = description.concat("\nMerged Island " + mother.getIsland().getID() + " with Island " + game.getPrevIsland(mother.getIsland()).getID());
                 merge(mother.getIsland(), game.getPrevIsland(mother.getIsland()));
             }
+
         }
 
     @Override
@@ -127,7 +128,7 @@ public class MoveMother implements Action{
      * @param island2
      * @return true if the islands can be merged, else false
      */
-    private boolean checkMerge(Island island1, Island island2){
+    public boolean checkMerge(Island island1, Island island2){
         return (island1.getTowerPlayer() == (island2.getTowerPlayer())) && island1.getTowerPlayer()!=null ;
     }
 
