@@ -21,12 +21,19 @@ public class ChooseAssistant implements Action {
         this.player=player;
     }
 
+    private void ValidID () throws ActionException {
+        if(assistantID<0||assistantID>9){
+            throw new ActionException();
+        }
+    }
+
     /**
      * Check if the assistant can be chosen by the actual player then set the field of his actual assistant as "in use" and "already taken"
      * Also Check if the player can chase an assistant already taken by another player
      */
     @Override
     public void execute()throws ActionException {
+        ValidID();
         if(checkParticularCase()){
             if(!player.getAssistants().get(assistantID).isAssChose()){
                 SetAssistant();
