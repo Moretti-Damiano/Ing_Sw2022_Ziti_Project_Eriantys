@@ -154,11 +154,10 @@ public class GameController extends GameControllerObservable implements ServerOb
            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
-
     @Override
     public void moveMotherHandler(MoveMotherMessage message) {
         if(checkActivePlayer(message.getSender()) && turnController.getPhase().getPhaseType().equals(PhaseType.MOTHER)){
-            game.setAction(new MoveMother(game,message.getMoves()));
+            game.setAction(new MoveMother(game,message.getMoves(),false));
             try {
                 game.doAction();
                 turnController.updatePhase();

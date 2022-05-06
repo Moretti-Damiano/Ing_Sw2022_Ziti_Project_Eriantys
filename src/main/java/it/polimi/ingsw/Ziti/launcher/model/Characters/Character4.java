@@ -15,7 +15,7 @@ public class Character4 extends Character{
 
     private Colour colour;
 
-    protected Character4(Game game) {
+    public Character4(Game game) {
         super(game);
         setCost(3);
         setUsePhase(PhaseType.MOTHER);

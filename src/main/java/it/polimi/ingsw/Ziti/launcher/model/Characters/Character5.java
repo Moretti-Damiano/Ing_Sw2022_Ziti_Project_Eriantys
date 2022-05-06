@@ -17,7 +17,7 @@ public class Character5 extends Character{
     private Player profPlayer;
     private Professor professor;
 
-    protected Character5(Game game) {
+    public Character5(Game game) {
         super(game);
         setCost(3);
         setUsePhase(PhaseType.MOTHER);

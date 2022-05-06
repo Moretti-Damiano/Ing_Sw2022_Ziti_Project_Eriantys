@@ -17,7 +17,7 @@ public class Character3 extends Character{
 
     private ArrayList<Island> originalIslands;
 
-    protected Character3(Game game) {
+    public Character3(Game game) {
         super(game);
         setCost(3);
         setAvailable(true);
@@ -54,7 +54,7 @@ public class Character3 extends Character{
             }
             else{
                 //checks if the island near mother needs to be merged
-                MoveMother moveMother = new MoveMother(getGame(),0);
+                MoveMother moveMother = new MoveMother(getGame(),0,false);
                 if (moveMother.checkMerge(mother.getIsland(), getGame().getNextIsland(mother.getIsland()))) {
                     moveMother.merge(mother.getIsland(), getGame().getNextIsland(mother.getIsland()));
                 }

@@ -16,7 +16,7 @@ public class Character1 extends Character{
     private Island motherIsland;
     private int motherIslandPosition;
 
-    protected Character1(Game game) {
+    public Character1(Game game) {
         super(game);
         setCost(3);
         setUsePhase(PhaseType.MOTHER);
