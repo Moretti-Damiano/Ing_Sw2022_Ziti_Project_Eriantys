@@ -10,7 +10,6 @@ import it.polimi.ingsw.Ziti.launcher.view.view;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class gui extends InputObservable implements view, ViewObserver {
 

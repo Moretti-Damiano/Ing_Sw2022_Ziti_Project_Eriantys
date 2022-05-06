@@ -4,6 +4,8 @@ import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 
 import java.util.ArrayList;
@@ -15,7 +17,6 @@ TO DO:
     *GAME INIT PER 4 GIOCATORI (SETPLAYERS)
     *ARRAYLIST DI CHARACTER
  */
-
 public class Game extends Observable {
     private ArrayList<Island> islands;
     private ArrayList<Player> players;
@@ -26,10 +27,11 @@ public class Game extends Observable {
     private int maxPlayer;
     private int playerNumber;
     private ArrayList<Professor> professors;
-    private ArrayList<CharacterOLD> characters;
     private Player currentPlayer;
     private Action action;
     private GameWallet gameWallet;
+    private ArrayList<Character> allCharacters;
+    private ArrayList<Character> characters;
 
     /**
      * Creates 12 islands,Mother and memorizes the players
@@ -56,23 +58,8 @@ public class Game extends Observable {
         //creates mother
         this.mother = Mother.motherInstance();
 
-
-                    //set islands and mother
-        //places mother on a random island
-        Random rand = new Random();
-        int motherPosition = rand.nextInt(islands.size());
-        mother.setIsland(islands.get(motherPosition));
-        islands.get(motherPosition).addMother();
-
-             //places 1 random student on each island
-        //creates sack with 10 students
-        sack = new Sack((islands.size() - 2));
-        int emptyIsland = (motherPosition + islands.size()/2) % islands.size();
-        for(Island i: islands){
-            if(islands.indexOf(i) != motherPosition && islands.indexOf(i) !=emptyIsland ){
-                i.addStudent(sack.extract());
-            }
-        }
+        //set islands and mother
+       setUpIsland_Mother();
 
         //creates sack with 120 remaining students
         sack = new Sack(130 - (islands.size() - 2));
@@ -84,27 +71,69 @@ public class Game extends Observable {
         this.maxPlayer = players.size();        //PROBABILEMENTE SBAGLIATO
         this.playerNumber = players.size();
 
-        //set sack
         this.sack = new Sack(islands.size()-2);
 
-        //set cloudislands
+        setUpCloudIslands();
+
+        setUpProfessors();
+
+        setPlayers(p);
+
+        setUpCharacters();
+
+    }
+
+    private void setUpIsland_Mother(){
+        //places mother on a random island
+        Random rand = new Random();
+        int motherPosition = rand.nextInt(islands.size());
+        mother.setIsland(islands.get(motherPosition));
+        islands.get(motherPosition).addMother();
+
+        //places 1 random student on each island
+        //creates sack with 10 students
+        sack = new Sack((islands.size() - 2));
+        int emptyIsland = (motherPosition + islands.size()/2) % islands.size();
+        for(Island i: islands){
+            if(islands.indexOf(i) != motherPosition && islands.indexOf(i) !=emptyIsland ){
+                i.addStudent(sack.extract());
+            }
+        }
+    }
+
+    private void setUpCloudIslands(){
         cloudIslands = new ArrayList<>();
         for(int i = 0; i < playerNumber; i++){
             cloudIslands.add(new CloudIsland(i,playerNumber,sack));
             cloudIslands.get(i).toFill();
         }
+    }
 
-        //set professors
+    private void setUpProfessors(){
         professors = new ArrayList<>();
         for(Colour c: Colour.values()){
             professors.add(new Professor(c));
         }
+    }
 
-        //set players'board
-        setPlayers(p);
+    private void setUpCharacters(){
 
+        allCharacters = new ArrayList<>();
+        characters = new ArrayList<>();
+        //creates all possible characters
+        allCharacters.add(new Character0(this));
+        allCharacters.add(new Character1(this));
+        allCharacters.add(new Character2(this));
+        allCharacters.add(new Character3(this));
+        allCharacters.add(new Character4(this));
+        allCharacters.add(new Character5(this));
 
-        //set characters TO BE DONE!!!
+        //set 3 game's characters
+        Random rand = new Random();
+        for(int i = 0; i < 3; i++){
+            //create a random number
+            characters.add(allCharacters.remove(rand.nextInt(allCharacters.size()-1)));
+        }
     }
 
     public GameWallet getGameWallet() { return gameWallet;}
@@ -125,7 +154,7 @@ public class Game extends Observable {
         return professors;
     }
 
-    public ArrayList<CharacterOLD> getCharacters() {
+    public ArrayList<Character> getCharacters() {
         return characters;
     }
 

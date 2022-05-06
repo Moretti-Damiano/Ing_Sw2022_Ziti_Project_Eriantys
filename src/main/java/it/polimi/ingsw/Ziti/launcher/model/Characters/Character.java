@@ -51,6 +51,13 @@ public abstract class Character {
         this.cost++;
     }
 
+    public void setAvailable(boolean available) {
+        this.available = available;
+    }
+
+    public boolean isAvailable() {
+        return available;
+    }
 
     public abstract void startEffect() throws ActionException;
 

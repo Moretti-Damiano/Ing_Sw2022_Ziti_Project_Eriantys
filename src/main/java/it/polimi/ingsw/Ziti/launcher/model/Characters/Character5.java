@@ -17,14 +17,18 @@ public class Character5 extends Character{
     private Player profPlayer;
     private Professor professor;
 
-    protected Character5(Game game) {
+    public Character5(Game game) {
         super(game);
         setCost(3);
         setUsePhase(PhaseType.MOTHER);
+        setAvailable(true);
     }
 
 
-    public void choose() {
+    public void choose(String colour) throws ActionException {
+    checkInput(colour);
+    setAvailable(false);
+    this.colour=Colour.valueOfName(colour);
 
     }
 
@@ -41,5 +45,13 @@ public class Character5 extends Character{
         //rimetto il professore
         if(profPlayer!=null)
             profPlayer.getBoard().addProfessor(professor);
+        setAvailable(true);
+        increaseCost();
+    }
+
+    private void checkInput(String colour) throws ActionException{
+        if(!Colour.checkStringToColour(colour)){
+            throw new ActionException();
+        }
     }
 }

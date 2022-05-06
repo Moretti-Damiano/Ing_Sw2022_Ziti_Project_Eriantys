@@ -2,8 +2,10 @@ package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.MoveMotherDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 
 import static java.util.Objects.isNull;
 
@@ -19,11 +21,14 @@ public class MoveMother implements Action{
     private int moves;
     private Mother mother;
     private String description = "";
+    private boolean calledByCharacter;
+    private Character character;
 
-    public MoveMother(Game game, int moves){
+    public MoveMother(Game game, int moves, boolean calledByCharacter){
         this.game = game;
         this.moves = moves;
         this.mother = Mother.motherInstance();
+        this.calledByCharacter = calledByCharacter;
     }
 
     /**
@@ -33,6 +38,10 @@ public class MoveMother implements Action{
     @Override
     public void execute() throws ActionException {
             checkInput();
+
+            if(checkCharacter())
+                startCharacter();
+
             move();
             description = description.concat(game.getCurrentPlayer().GetName() + "moved the Mother to Island (id): " + mother.getIsland().getID());
             updateIsland(mother.getIsland(), getControl(mother.getIsland()));
@@ -51,7 +60,7 @@ public class MoveMother implements Action{
                 description = description.concat("\nMerged Island " + mother.getIsland().getID() + " with Island " + game.getPrevIsland(mother.getIsland()).getID());
                 merge(mother.getIsland(), game.getPrevIsland(mother.getIsland()));
             }
-
+            endCharacter();
         }
 
     @Override
@@ -146,7 +155,31 @@ public class MoveMother implements Action{
     }
     // checks input of moves
     private void checkInput() throws ActionException{
-        if(moves < 1 || moves > game.getCurrentPlayer().getAssChosen().getMovesMother())
-            throw new ActionException();
+        if(calledByCharacter) {
+            if (moves < 1)
+                throw new ActionException();
+        }
+        else{
+            if (moves < 1 || moves > game.getCurrentPlayer().getAssChosen().getMovesMother())
+                throw new ActionException();
+        }
+    }
+
+    private boolean checkCharacter() throws ActionException {
+        for(Character c: game.getCharacters()){
+            if(c.isAvailable() && c.getUsePhase().equals(PhaseType.MOTHER)){
+                character = c;
+                return  true;
+            }
+        }
+        return false;
+    }
+
+    private void startCharacter() throws ActionException {
+        character.startEffect();
+    }
+
+    private void endCharacter(){
+        character.endEffect();
     }
 }
