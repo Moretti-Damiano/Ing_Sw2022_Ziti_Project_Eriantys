@@ -6,7 +6,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Character;
+import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import java.util.ArrayList;
@@ -43,7 +43,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacters(ArrayList<Character> characters) {
+    public void showCharacters(ArrayList<CharacterOLD> characters) {
 
     }
 

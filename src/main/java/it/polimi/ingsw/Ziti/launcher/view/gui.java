@@ -4,11 +4,10 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.GameStartedMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.YourTurnNotification;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Character;
+import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.concurrent.ExecutionException;
 
 public class gui implements view{
 
@@ -19,7 +18,7 @@ public class gui implements view{
     }
 
     @Override
-    public void showCharacters(ArrayList<Character> characters) {
+    public void showCharacters(ArrayList<CharacterOLD> characters) {
 
     }
 
