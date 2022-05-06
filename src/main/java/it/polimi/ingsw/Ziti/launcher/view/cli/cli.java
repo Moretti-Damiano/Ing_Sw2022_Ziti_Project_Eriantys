@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher.view;
+package it.polimi.ingsw.Ziti.launcher.view.cli;
 
 import it.polimi.ingsw.Ziti.launcher.InputReadThread;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
@@ -9,6 +9,8 @@ import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
+import it.polimi.ingsw.Ziti.launcher.view.view;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;

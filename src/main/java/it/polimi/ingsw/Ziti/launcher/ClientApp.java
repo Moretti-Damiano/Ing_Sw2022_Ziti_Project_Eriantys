@@ -3,10 +3,9 @@ package it.polimi.ingsw.Ziti.launcher;
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.controller.ClientController;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
-import it.polimi.ingsw.Ziti.launcher.view.cli;
+import it.polimi.ingsw.Ziti.launcher.view.cli.cli;
 
 import java.util.concurrent.ExecutionException;
-import java.util.logging.Level;
 
 public class ClientApp {
     public static void main(String[] args) throws ExecutionException {
@@ -23,7 +22,7 @@ public class ClientApp {
         if (cliParam) {
             ClientMessageHandler clientMessageHandler=new ClientMessageHandler();
             ClientController clientcontroller = new ClientController(clientMessageHandler,new ObserverClient(clientMessageHandler));
-            cli view = new cli(/*clientcontroller*/);
+            cli view = new cli();
             view.addObserver(clientcontroller);
             clientMessageHandler.addObserver(view);
             view.init();

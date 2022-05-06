@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher;
 
 
-import it.polimi.ingsw.Ziti.launcher.view.cli;
+import it.polimi.ingsw.Ziti.launcher.view.cli.cli;
 
 import java.util.Scanner;
 
@@ -9,7 +9,7 @@ public class InputReadThread implements Runnable{
     private boolean freeInput;
     private String input;
     private Scanner scanner;
-    private it.polimi.ingsw.Ziti.launcher.view.cli cli;
+    private it.polimi.ingsw.Ziti.launcher.view.cli.cli cli;
 
     public InputReadThread(cli cli){
         this.cli = cli;
