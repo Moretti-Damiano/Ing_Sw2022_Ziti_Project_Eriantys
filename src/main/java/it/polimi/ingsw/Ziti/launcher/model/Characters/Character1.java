@@ -7,8 +7,8 @@ import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
 import it.polimi.ingsw.Ziti.launcher.model.Mother;
 
-/*Scegli un'isola e calcola la maggioranza come se Madre Natura avesse terminato il suo movimento lì.
- In questo turno Madre Natura si muoverà come di consueto e nell'Isola dove terminarà il suo movimento la maggioranza verrà normalmente calcolata.*/
+/*Choose an island and resolve the island as if Mother Nature had ended her movement there.
+Mother Nature will still move and the island where she ends her movement will also be resolved*/
 
 public class Character1 extends Character{
 
@@ -19,6 +19,8 @@ public class Character1 extends Character{
     public Character1(Game game) {
         super(game);
         setCost(3);
+        setDescription(" Choose an island and resolve the island as if Mother Nature had ended her movement there." +
+                " Mother Nature will still move and the island where she ends her movement will also be resolved ");
         setUsePhase(PhaseType.MOTHER);
         setAvailable(true);
     }

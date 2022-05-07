@@ -11,7 +11,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Tower;
 import java.util.ArrayList;
 
 /*
-Durante il conteggio dell'influenza le torri non vengono calcolate
+When resolving a Conquering on an island, towers do not count towards influence
  */
 public class Character3 extends Character{
 
@@ -20,6 +20,7 @@ public class Character3 extends Character{
     public Character3(Game game) {
         super(game);
         setCost(3);
+        setDescription(" When resolving a Conquering on an island, towers do not count towards influence ");
         setAvailable(true);
         setUsePhase(PhaseType.MOTHER);
     }
