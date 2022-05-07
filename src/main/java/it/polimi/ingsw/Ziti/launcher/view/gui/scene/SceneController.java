@@ -17,7 +17,7 @@ import java.util.List;
  */
 public class SceneController extends InputObservable {
 
-    public static final String GOD_IMAGE_PREFIX = "/images/gods/podium_";
+   // public static final String GOD_IMAGE_PREFIX = "/images/gods/podium_";
 
     private static Scene activeScene;
     private static GenericSceneController activeController;

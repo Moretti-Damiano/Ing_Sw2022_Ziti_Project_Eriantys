@@ -183,6 +183,12 @@ public class ClientController extends ClientObservable implements InputObserver 
     public void onUpdateIslandRequest(ShowIslandRequest message) {
         notifyObserver(obs->obs.send(message));
     }
+
+    @Override
+    public void onUpdateDisconnection() {
+
+    }
+
     /**
      * Check if the String is an Integer
      * @param value is the String that needs to be verified
