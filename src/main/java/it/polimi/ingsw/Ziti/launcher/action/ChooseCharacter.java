@@ -27,5 +27,14 @@ public class ChooseCharacter implements Action{
         if(game.getCurrentPlayer().getBoard().getNumberofCoin() < character.getCost()){
             throw new ActionException();
         }
+        if(activeCharacter()){
+            throw new ActionException();
+        }
+    }
+    public boolean activeCharacter(){
+        for(Character c : game.getCharacters()){
+            if(c.isAvailable() ){ return false; }
+        }
+        return true;
     }
 }
