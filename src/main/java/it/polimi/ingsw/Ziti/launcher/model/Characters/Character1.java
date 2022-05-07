@@ -44,7 +44,8 @@ public class Character1 extends Character{
         else{
             moves = islandPosition + (getGame().getIslands().size() - motherIslandPosition);
         }
-        getGame().setAction(new MoveMother(getGame(),moves,true));
+
+        getGame().setAction(new MoveMother(getGame(),moves,false));
         getGame().doAction();
         endAction();
     }
@@ -59,10 +60,6 @@ public class Character1 extends Character{
         Mother.motherInstance().getIsland().removeMother();
         Mother.motherInstance().setIsland(motherIsland);
         Mother.motherInstance().getIsland().addMother();
-        Mother.motherInstance().getIsland().removeMother();
-        Mother.motherInstance().setIsland(motherIsland);
-        Mother.motherInstance().getIsland().addMother();
-
     }
 
     private void checkInput() throws ActionException{

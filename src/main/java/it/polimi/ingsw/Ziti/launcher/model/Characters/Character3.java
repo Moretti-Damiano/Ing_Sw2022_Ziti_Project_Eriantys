@@ -21,11 +21,11 @@ public class Character3 extends Character{
         super(game);
         setCost(3);
         setAvailable(true);
+        setUsePhase(PhaseType.MOTHER);
     }
 
     public void choose() {
         setAvailable(false);
-
     }
 
     @Override
@@ -43,7 +43,7 @@ public class Character3 extends Character{
     public void endEffect() {
         Mother mother = Mother.motherInstance();
 
-        for(int i =0; i< originalIslands.size();i++){
+        for(int i =0; i < originalIslands.size();i++){
             if(getGame().getIslands().get(i)!= mother.getIsland()){
                 //set oll towerPlayer
                 getGame().getIslands().get(i).setTowerPlayer(originalIslands.get(i).getTowerPlayer());
@@ -63,8 +63,7 @@ public class Character3 extends Character{
                 }
             }
         }
-        setAvailable(true);
         increaseCost();
+        setAvailable(true);
     }
-
 }

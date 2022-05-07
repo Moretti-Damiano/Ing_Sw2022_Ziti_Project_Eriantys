@@ -18,7 +18,7 @@ public class Character4 extends Character{
     public Character4(Game game) {
         super(game);
         setCost(3);
-        setUsePhase(PhaseType.MOTHER);
+        setUsePhase(PhaseType.MOVEMENT);
         setAvailable(true);
     }
 

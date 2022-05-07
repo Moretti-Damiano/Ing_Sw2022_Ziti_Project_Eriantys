@@ -157,7 +157,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     @Override
     public void moveMotherHandler(MoveMotherMessage message) {
         if(checkActivePlayer(message.getSender()) && turnController.getPhase().getPhaseType().equals(PhaseType.MOTHER)){
-            game.setAction(new MoveMother(game,message.getMoves(),false));
+            game.setAction(new MoveMother(game,message.getMoves(),true));
             try {
                 game.doAction();
                 turnController.updatePhase();
