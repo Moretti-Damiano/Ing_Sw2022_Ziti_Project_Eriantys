@@ -6,8 +6,7 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Student;
 /*
-Durante questo turno, prendi il controllo dei Professori anche se nella tua Sala hai lo stesso numero
- di Studenti del giocatore che li controlla in quel momento
+During this turn, you take control of any number of professor even if you have the same number of student as the player who controls them
  */
 
 
@@ -15,7 +14,8 @@ public class Character0 extends Character{
 
     public Character0(Game game) {
         super(game);
-        setCost(0);
+        setCost(2);
+        setDescription(" During this turn, you take control of any number of professor even if you have the same number of student as the player who controls them\n ");
         setAvailable(true);
         setUsePhase(PhaseType.MOTHER);
     }

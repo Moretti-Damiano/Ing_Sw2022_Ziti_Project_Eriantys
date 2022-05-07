@@ -8,7 +8,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.model.Professor;
 
 /*
-Scegli un colore di Studente;in questo turno,durante il calcolo dell'influenza quel colore non fornisce influenza
+Choose a colour of student: during the influence calculation this turn,that color adds no influence
  */
 
 public class Character5 extends Character{
@@ -20,6 +20,7 @@ public class Character5 extends Character{
     public Character5(Game game) {
         super(game);
         setCost(3);
+        setDescription("Choose a colour of student: during the influence calculation this turn,that color adds no influence");
         setUsePhase(PhaseType.MOTHER);
         setAvailable(true);
     }
