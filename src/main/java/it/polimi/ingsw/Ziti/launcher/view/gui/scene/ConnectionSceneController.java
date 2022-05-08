@@ -48,7 +48,7 @@ public class ConnectionSceneController extends InputObservable implements Generi
             connectBtn.setDisable(true);
 
           //  Map<String, String> serverInfo = Map.of("address", address, "port", port);
-           // new Thread(() -> notifyObserver(obs -> obs.onUpdateServerInfo(serverInfo))).start();
+            new Thread(() -> notifyObserver(obs -> obs.onUpdateConnection(address,port))).start();
         }
     
 
