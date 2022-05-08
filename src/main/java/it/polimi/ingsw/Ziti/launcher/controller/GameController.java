@@ -73,7 +73,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
             if(players.size() == 1){
                 System.out.println("Send request players number");
-                notifyObserver(obs -> obs.requestPlayerNumber(new NumOfPLayersRequest(),message.getUsername()));
+                notifyObserver(obs -> obs.sendToOnePlayer(new NumOfPLayersRequest(),message.getUsername()));
             }
         }
         else{
@@ -92,7 +92,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     public void numberOfPlayerHandler(NumberOfPlayersMessage message){
         if(message.getNumberOfPlayers() < 2 || message.getNumberOfPlayers() > 4){
             notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid number of players"),message.getSender()));
-            notifyObserver(obs -> obs.requestPlayerNumber(new NumOfPLayersRequest(),message.getSender()));
+            notifyObserver(obs -> obs.sendToOnePlayer(new NumOfPLayersRequest(),message.getSender()));
         }
         else {
             this.numberOfPlayers = message.getNumberOfPlayers();

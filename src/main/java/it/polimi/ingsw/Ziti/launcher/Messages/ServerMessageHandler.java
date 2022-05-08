@@ -60,5 +60,4 @@ public class ServerMessageHandler extends ServerObservable {
         notifyObserver(obs -> obs.showIslandRequestHandler(message));
     };
 
-
 }

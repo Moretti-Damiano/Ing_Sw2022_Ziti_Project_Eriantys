@@ -25,6 +25,10 @@ public class SocketServer implements Runnable{
         return clientHandlers;
     }
 
+    /**
+     * This thread waits for new clients to connect.
+     * When a client connects, a new ClientHandler is created and assigned to him.
+     */
     @Override
     public void run() {
         try {
