@@ -12,6 +12,8 @@ public class CloudPhase extends Phase{
 
     @Override
     public void update() {
+        endCharacter();
+
         if (getTurncontroller().getPlayersDone() == getTurncontroller().getPlayers().size()) {
             getTurncontroller().getGameController().getGame().setAction(new EndTurn(getTurncontroller().getGameController().getGame()));
             // If every player completed his turn, Game controller calls EndTurn action
