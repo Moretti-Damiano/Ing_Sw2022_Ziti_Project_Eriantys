@@ -42,8 +42,7 @@ public class TurnController {
         this.phase = phase;
     }
 
-    public void updatePhase() {
-        try {
+    public void updatePhase() throws WinException {
             checkWin();
             phase.update();
     }
