@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ButtonBar?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+
+<?import java.net.URL?>
+<AnchorPane cacheShape="false" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.SelectSceneController">
+   <children>
+      <ButtonBar layoutX="38.0" layoutY="314.0" prefHeight="60.0" prefWidth="312.0">
+        <buttons>
+          <Button mnemonicParsing="false" onAction="#onChooseAssistantClick" text="ChooseAssistant" textAlignment="CENTER">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+            <Button layoutX="160.0" layoutY="28.0" mnemonicParsing="false" onAction="#onChooseCharacterClick" text="ChooseCharacter">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+            <Button layoutX="76.0" layoutY="28.0" mnemonicParsing="false" onAction="#onMoveToTableClick" text="MoveToTable">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+            <Button layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#onMoveMotherClick" text="MoveMother">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+            <Button layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#onMoveToIslandClick" text="MoveToIsland">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+            <Button layoutX="31.0" layoutY="28.0" mnemonicParsing="false" onAction="#onChooseCloudClick" text="ChooseCloud">
+               <font>
+                  <Font size="8.0" />
+               </font>
+            </Button>
+        </buttons>
+      </ButtonBar>
+      <TextArea editable="false" layoutX="14.0" layoutY="10.0" prefHeight="233.0" prefWidth="574.0" text="&#10;&#10;&#10;CHOOSEASSISTANT to chose your assistant&#10;CHOOSECHARACTER to choose your character&#10;CHOOSECLOUD to chose your cloud&#10;MOVEMOTHER to chose the number of mother's movements&#10;MOVETOISLAND to chose the island where you want to put your students&#10;MOVETOTABLE if you want to put your student on the table" />
+   </children>
+
+    <stylesheets>
+        <URL value="@../css/global.css"/>
+        <URL value="@../css/connect_scene.css"/>
+    </stylesheets>
+</AnchorPane>
