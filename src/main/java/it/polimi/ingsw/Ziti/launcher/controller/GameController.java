@@ -37,6 +37,10 @@ public class GameController extends GameControllerObservable implements ServerOb
         players = new ArrayList<>();
     }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     public Game getGame() {
         return game;
     }
