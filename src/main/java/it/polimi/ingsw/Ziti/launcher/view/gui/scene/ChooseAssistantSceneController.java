@@ -49,6 +49,7 @@ public class ChooseAssistantSceneController extends InputObservable implements G
 
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmBtnClick);
 
+
     }
 
     private void onConfirmBtnClick(Event event) {
