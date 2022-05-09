@@ -11,7 +11,7 @@
 <?import java.net.URL?>
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0"
            prefWidth="1300.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/11.0.1"
-           xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.view.gui.scene.LoginSceneController">
+           xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.LoginSceneController">
     <children>
         <Group scaleX="1.5" scaleY="1.5" scaleZ="1.5">
             <children>
