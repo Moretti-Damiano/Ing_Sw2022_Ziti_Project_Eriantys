@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 import it.polimi.ingsw.Ziti.launcher.action.MoveMother;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
 import it.polimi.ingsw.Ziti.launcher.model.Mother;
@@ -33,7 +34,7 @@ public class Character1 extends Character{
     }
 
 
-    public void choose(int islandId) throws ActionException{
+    public void choose(int islandId) throws CharacterException {
         checkInput();
         this.islandId=islandId;
         setAvailable(false);
@@ -71,9 +72,9 @@ public class Character1 extends Character{
         Mother.motherInstance().getIsland().addMother();
     }
 
-    private void checkInput() throws ActionException{
+    private void checkInput() throws CharacterException{
         if(!checkId()){
-            throw new ActionException();
+            throw new CharacterException();
         }
     }
 

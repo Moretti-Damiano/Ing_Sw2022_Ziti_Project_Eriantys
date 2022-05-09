@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.model.Professor;
@@ -33,7 +34,7 @@ public class Character5 extends Character{
     }
 
 
-    public void choose(String colour) throws ActionException {
+    public void choose(String colour) throws CharacterException {
     checkInput(colour);
     setAvailable(false);
     this.colour=Colour.valueOfName(colour);
@@ -57,9 +58,9 @@ public class Character5 extends Character{
         increaseCost();
     }
 
-    private void checkInput(String colour) throws ActionException{
+    private void checkInput(String colour) throws CharacterException{
         if(!Colour.checkStringToColour(colour)){
-            throw new ActionException();
+            throw new CharacterException();
         }
     }
 }
