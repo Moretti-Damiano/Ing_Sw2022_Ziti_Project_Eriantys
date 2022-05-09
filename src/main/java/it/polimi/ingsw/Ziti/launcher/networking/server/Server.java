@@ -84,7 +84,7 @@ public class Server implements GameControllerObserver {
         socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
         notifyPlayer(message,newName);
     }
-    
+
     public void disconnectAll(){
         for(ClientHandler clientHandler: socketServer.getClientHandlers()){
             try {
