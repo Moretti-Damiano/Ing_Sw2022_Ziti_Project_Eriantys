@@ -34,7 +34,7 @@ public class ChooseCharacter implements Action{
             throw new ActionException();
         }
     }
-    public boolean activeCharacter(){
+    private boolean activeCharacter(){
         for(Character c : game.getCharacters()){
             if(c.isAvailable() ){ return false; }
         }
