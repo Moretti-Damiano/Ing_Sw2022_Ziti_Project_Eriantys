@@ -7,7 +7,7 @@ import javafx.scene.control.Button;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 
-public class MenuSceneController extends InputObservable {
+public class MenuSceneController extends InputObservable implements GenericSceneController{
     @FXML
     private AnchorPane rootPane;
     @FXML

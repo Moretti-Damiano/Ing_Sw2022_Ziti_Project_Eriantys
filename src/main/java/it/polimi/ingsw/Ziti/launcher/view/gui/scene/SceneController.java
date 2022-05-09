@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 
+
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
@@ -17,7 +18,7 @@ import java.util.List;
  */
 public class SceneController extends InputObservable {
 
-    public static final String GOD_IMAGE_PREFIX = "/images/gods/podium_";
+   // public static final String GOD_IMAGE_PREFIX = "/images/gods/podium_";
 
     private static Scene activeScene;
     private static GenericSceneController activeController;
@@ -148,7 +149,7 @@ public class SceneController extends InputObservable {
      * @param title   the title of the popup.
      * @param message the message of the popup.
      */
-    /*
+
     public static void showAlert(String title, String message) {
         FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/alert_scene.fxml"));
 
@@ -156,7 +157,6 @@ public class SceneController extends InputObservable {
         try {
             parent = loader.load();
         } catch (IOException e) {
-            Client.LOGGER.severe(e.getMessage());
             return;
         }
         AlertSceneController alertSceneController = loader.getController();

@@ -48,7 +48,8 @@ public class ConnectionSceneController extends InputObservable implements Generi
             connectBtn.setDisable(true);
 
           //  Map<String, String> serverInfo = Map.of("address", address, "port", port);
-           // new Thread(() -> notifyObserver(obs -> obs.onUpdateServerInfo(serverInfo))).start();
+            new Thread(() -> notifyObserver(obs -> obs.onUpdateConnection(address,port))).start();
+            SceneController.changeRootPane(observers, event, "login_scene.fxml");
         }
     
 
@@ -58,10 +59,10 @@ public class ConnectionSceneController extends InputObservable implements Generi
      * @param event the mouse click event.
      */
     private void onBackBtnClick(Event event) {
+        SceneController.changeRootPane(observers, event, "menu_scene.fxml");
         backBtn.setDisable(true);
         connectBtn.setDisable(true);
 
-       SceneController.changeRootPane(observers, event, "menu_scene.fxml");
     }
 
 }
