@@ -6,6 +6,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.InputError;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;
@@ -73,6 +74,110 @@ public class ClientController extends ClientObservable implements InputObserver 
             ChooseAssistantMessage m;
             m=new ChooseAssistantMessage(Integer.parseInt(id));
             notifyObserver(obs -> obs.send(m));
+        }
+        else{
+            InputError message;
+            message=new InputError("You didn't insert a numeric input! ");
+            update(message);
+        }
+
+
+    }
+
+    @Override
+    public void onUpdateChooseCharacter0(String id) {
+        if(isInt(id)) {
+            Character0Message message;
+            message = new Character0Message();
+            notifyObserver(obs -> obs.send(message));
+
+        }
+        else{
+            InputError message;
+            message=new InputError("You didn't insert a numeric input! ");
+            update(message);
+        }
+
+    }
+
+    @Override
+    public void onUpdateChooseCharacter1(String id, String island) {
+        if (isInt(island)) {
+            if (isInt(id)) {
+                Character1Message message;
+                message = new Character1Message(Integer.parseInt(island));
+                notifyObserver(obs -> obs.send(message));
+
+            } else {
+                InputError message;
+                message = new InputError("You didn't insert a numeric input for the id! ");
+                update(message);
+            }
+        }else{
+            InputError message;
+            message = new InputError("You didn't insert a numeric input for the island! ");
+            update(message);
+        }
+    }
+
+    @Override
+    public void onUpdateChooseCharacter2(String id) {
+        if(isInt(id)) {
+            Character2Message message;
+            message = new Character2Message();
+            notifyObserver(obs -> obs.send(message));
+
+        }
+        else{
+            InputError message;
+            message=new InputError("You didn't insert a numeric input! ");
+            update(message);
+        }
+
+    }
+
+
+    @Override
+    public void onUpdateChooseCharacter3(String id) {
+        if(isInt(id)) {
+            Character3Message message;
+            message = new Character3Message();
+            notifyObserver(obs -> obs.send(message));
+
+        }
+        else{
+            InputError message;
+            message=new InputError("You didn't insert a numeric input! ");
+            update(message);
+        }
+
+    }
+
+
+    @Override
+    public void onUpdateChooseCharacter4(String id, String colour) {
+        if(isInt(id)) {
+            Character4Message message;
+            message = new Character4Message(colour);
+            notifyObserver(obs -> obs.send(message));
+
+        }
+        else{
+            InputError message;
+            message=new InputError("You didn't insert a numeric input! ");
+            update(message);
+        }
+
+    }
+
+
+    @Override
+    public void onUpdateChooseCharacter5(String id, String colour) {
+        if(isInt(id)) {
+            Character5Message message;
+            message = new Character5Message(colour);
+            notifyObserver(obs -> obs.send(message));
+
         }
         else{
             InputError message;
