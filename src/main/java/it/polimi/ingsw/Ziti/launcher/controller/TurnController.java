@@ -42,9 +42,14 @@ public class TurnController {
         this.phase = phase;
     }
 
-    public void updatePhase(){
-        checkWin();
-        phase.update();
+    public void updatePhase() {
+        try {
+            checkWin();
+            phase.update();
+        } catch (WinException e) {
+            setPhase(new EndGamePhase(this, PhaseType.ENDGAME));
+            gameController.endGame(e.getNickname());
+        }
     }
 
 
@@ -115,8 +120,9 @@ public class TurnController {
         return phase;
     }
 
-    private void checkWin(){
-
+    private void checkWin() throws WinException{
+        checkWinTowers();
+        checkWinIslands();
     }
 
     private void checkWinIslands() throws WinException {

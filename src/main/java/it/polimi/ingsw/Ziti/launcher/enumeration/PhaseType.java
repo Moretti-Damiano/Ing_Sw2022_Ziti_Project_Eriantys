@@ -4,10 +4,11 @@ package it.polimi.ingsw.Ziti.launcher.enumeration;
  * This enumeration is a collection of every Phase of the game
  */
 public enum PhaseType {
-    NULL("NULL"),PLANNING("PLANNING"), MOVEMENT("MOVEMENT"), MOTHER("MOTHER"), CLOUD("CLOUD");
+    NULL("NULL"),PLANNING("PLANNING"), MOVEMENT("MOVEMENT"), MOTHER("MOTHER"),
+    CLOUD("CLOUD"),ENDGAME("ENDGAME");
     private String abbreviation;
 
-     PhaseType(String abbreviation){
+    PhaseType(String abbreviation){
          this.abbreviation=abbreviation;
     }
 
