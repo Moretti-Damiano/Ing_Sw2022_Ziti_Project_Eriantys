@@ -46,10 +46,6 @@ public class TurnController {
         try {
             checkWin();
             phase.update();
-        } catch (WinException e) {
-            setPhase(new EndGamePhase(this, PhaseType.ENDGAME));
-            gameController.endGame(e.getNickname());
-        }
     }
 
 
