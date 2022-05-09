@@ -7,6 +7,7 @@ import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.view;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -167,7 +168,11 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void NumOfPlayerHandler(NumOfPLayersRequest message) {
-
+       /* PlayersNumberSceneController pnsc = new PlayersNumberSceneController();
+        pnsc.addAllObservers(observers);
+        pnsc.setPlayersRange(2, 3);
+        Platform.runLater(() -> SceneController.changeRootPane(pnsc, "players_number_scene.fxml"));
+        */
     }
 
     @Override
