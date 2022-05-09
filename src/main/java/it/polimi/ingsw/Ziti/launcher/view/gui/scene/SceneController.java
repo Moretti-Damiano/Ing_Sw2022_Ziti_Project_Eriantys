@@ -15,7 +15,7 @@ import java.util.List;
 /**
  * This class implements the controller of a generic scene.
  */
-public class SceneController /*extends InputObservable*/ {
+public class SceneController extends InputObservable {
 
     public static final String GOD_IMAGE_PREFIX = "/images/gods/podium_";
 
