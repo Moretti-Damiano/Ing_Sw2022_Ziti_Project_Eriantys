@@ -9,7 +9,7 @@
    <children>
       <Group scaleX="1.5" scaleY="1.5">
          <children>
-            <AnchorPane fx:id="rootPane" layoutX="229.0" layoutY="-110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="131.0" prefWidth="272.0">
+            <AnchorPane fx:id="rootPane" layoutX="229.0" layoutY="-110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="821.0">
                <children>
                   <Button fx:id="playBtn" layoutX="32.0" layoutY="296.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="351.0" styleClass="playBtn" stylesheets="@../css/menu_scene.css" />
                   <Button fx:id="quitBtn" layoutX="422.0" layoutY="294.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="351.0" styleClass="quitBtn" stylesheets="@../css/menu_scene.css" />

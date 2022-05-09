@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 
+
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
