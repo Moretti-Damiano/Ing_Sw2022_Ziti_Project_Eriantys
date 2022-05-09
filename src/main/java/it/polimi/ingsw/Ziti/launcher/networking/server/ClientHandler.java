@@ -19,7 +19,6 @@ public class ClientHandler implements Runnable {
     private SocketServer socketServer;
     private MessagetoServer message;
     private String nickName;
-    //private final SocketServer socketServer;
 
     public ClientHandler(SocketServer socketServer,Socket socket, String temporaryName) throws IOException {
         this.socket = socket;
@@ -46,8 +45,8 @@ public class ClientHandler implements Runnable {
     }
 
     /**
-     * Method used to read info from client
-     * Calls  receive method in socketServer
+     * Method used to read messages from client
+     * Calls receive method in socketServer
      * @throws IOException
      * @throws ClassNotFoundException
      */
@@ -58,12 +57,11 @@ public class ClientHandler implements Runnable {
                 System.out.println("ClientHandler " + nickName + " received a message");
                 message.setSender(nickName);
                 socketServer.receive(message);
-                //input.reset();
         }
     }
 
     /**
-     * Used to send info to Socket Client (each client)
+     * Used to send a message to Socket Client (each client)
      * @param message
      */
     public void send(MessageToClient message)  {
