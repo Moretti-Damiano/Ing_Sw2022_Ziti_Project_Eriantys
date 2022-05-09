@@ -5,6 +5,9 @@ import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 
+/**
+ * check if the current Player has enough coins and if there irs already a chosen character
+ */
 public class ChooseCharacter implements Action{
     private Character character;
     private Game game;

@@ -121,7 +121,7 @@ public class Game extends Observable {
         allCharacters = new ArrayList<>();
         characters = new ArrayList<>();
         //creates all possible characters
-        allCharacters.add(new Character0(this));
+        allCharacters.add(Character0.getInstance());
         allCharacters.add(new Character1(this));
         allCharacters.add(new Character2(this));
         allCharacters.add(new Character3(this));
@@ -130,9 +130,13 @@ public class Game extends Observable {
 
         //set 3 game's characters
         Random rand = new Random();
+        int random;
         for(int i = 0; i < 3; i++){
             //create a random number
-            characters.add(allCharacters.remove(rand.nextInt(allCharacters.size()-1)));
+            random =rand.nextInt(allCharacters.size()-1);
+            allCharacters.get(random).setGame(this);
+            characters.add(allCharacters.remove(random));
+
         }
     }
 
@@ -301,6 +305,14 @@ public class Game extends Observable {
             if(p.getBoard().hasProfessor(professor_colour)){
                 return p;
             }
+        }
+        return null;
+    }
+
+    public Character getCharacterbyId(int id){
+        for(Character c: characters){
+            if(c.getId() == id)
+                return c;
         }
         return null;
     }

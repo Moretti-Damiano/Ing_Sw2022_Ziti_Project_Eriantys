@@ -4,6 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.action.MoveToTable;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Mother;
 import it.polimi.ingsw.Ziti.launcher.model.Student;
 /*
 During this turn, you take control of any number of professor even if you have the same number of student as the player who controls them
@@ -12,8 +13,14 @@ During this turn, you take control of any number of professor even if you have t
 
 public class Character0 extends Character{
 
-    public Character0(Game game) {
-        super(game);
+    private static Character0 instance;
+
+    public static Character0 getInstance(){
+        if (instance == null) instance = new Character0();
+        return instance;
+    }
+
+    private Character0() {
         setCost(2);
         setDescription(" During this turn, you take control of any number of professor even if you have the same number of student as the player who controls them\n ");
         setAvailable(true);

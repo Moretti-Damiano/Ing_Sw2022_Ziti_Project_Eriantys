@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.action.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
@@ -217,6 +218,43 @@ public class GameController extends GameControllerObservable implements ServerOb
     @Override
     public void showIslandRequestHandler(ShowIslandRequest message) {
         notifyObserver(obs -> obs.sendToOnePlayer(new ShowIslandResponse(getGame().getIslands()), message.getSender()));
+    }
+
+    @Override
+    public void chooseCharacter0Handler(Character0Message message) {
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new ChooseCharacter(game,game.getCharacterbyId(0)));
+            try {
+                game.doAction();
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            }
+        }
+    }
+
+    @Override
+    public void chooseCharacter1Handler(Character1Message message) {
+
+    }
+
+    @Override
+    public void chooseCharacter2Handler(Character2Message message) {
+
+    }
+
+    @Override
+    public void chooseCharacter3Handler(Character3Message message) {
+
+    }
+
+    @Override
+    public void chooseCharacter4Handler(Character4Message message) {
+
+    }
+
+    @Override
+    public void chooseCharacter5Handler(Character5Message message) {
+
     }
 
     /**
