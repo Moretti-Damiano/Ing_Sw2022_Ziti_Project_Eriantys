@@ -37,6 +37,10 @@ public class GameController extends GameControllerObservable implements ServerOb
         players = new ArrayList<>();
     }
 
+    public ArrayList<Player> getPlayers() {
+        return players;
+    }
+
     public Game getGame() {
         return game;
     }
@@ -351,5 +355,10 @@ public class GameController extends GameControllerObservable implements ServerOb
             summary.add(new CharacterSummary(c.getId(),c.getCost(),c.getDescription()));
         }
         return  summary;
+    }
+    
+    public void endGame(String winnerName){
+        notifyObserver(obs->obs.sendToAllPlayers(new WinMessage(winnerName)));
+        notifyObserver(obs->obs.disconnectAll());
     }
 }

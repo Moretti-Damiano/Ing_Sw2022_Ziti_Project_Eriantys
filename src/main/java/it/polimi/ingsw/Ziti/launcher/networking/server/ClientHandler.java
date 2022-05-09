@@ -72,6 +72,9 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             System.out.println("Error in sending message to " + nickName);
         }
-
+    }
+    
+    public void closeSocket() throws IOException{
+        this.socket.close();
     }
 }

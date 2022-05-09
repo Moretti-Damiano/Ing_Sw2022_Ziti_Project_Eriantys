@@ -197,4 +197,8 @@ public class Board implements Serializable {
     public ArrayList<Student> getColourRow(Colour colour){
         return students[colour.getIntAbbreviation()];
     }
+
+    public int  getTowerSize(){
+        return towers.size();
+    }
 }

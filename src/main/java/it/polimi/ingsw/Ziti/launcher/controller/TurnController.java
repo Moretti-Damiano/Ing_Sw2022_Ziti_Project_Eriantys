@@ -1,8 +1,12 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.YourTurnNotification;
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.EndGamePhase;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.PlanningPhase;
+import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
+import it.polimi.ingsw.Ziti.launcher.exception.WinException;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 import java.util.ArrayList;
@@ -34,12 +38,18 @@ public class TurnController {
         playersDone = 1;
     }
 
-    public void setPhase(it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase phase){
+    public void setPhase(Phase phase){
         this.phase = phase;
     }
 
-    public void updatePhase(){
-        phase.update();
+    public void updatePhase() {
+        try {
+            checkWin();
+            phase.update();
+        } catch (WinException e) {
+            setPhase(new EndGamePhase(this, PhaseType.ENDGAME));
+            gameController.endGame(e.getNickname());
+        }
     }
 
 
@@ -108,5 +118,41 @@ public class TurnController {
 
     public Phase getPhase() {
         return phase;
+    }
+
+    private void checkWin() throws WinException{
+        checkWinTowers();
+        checkWinIslands();
+    }
+
+    private void checkWinIslands() throws WinException {
+        int towers;
+        Player winner;
+
+        if(gameController.getGame().getIslands().size() == 3){
+
+            winner = gameController.getPlayers().get(0);
+            towers = winner.getBoard().getTowerSize();
+
+            for(Player p: gameController.getPlayers()){
+                if(p.getBoard().getTowerSize() < towers){
+                    winner = p;
+                    towers = p.getBoard().getTowerSize();
+
+                }
+                if(p.getBoard().getTowerSize() == towers){
+                    if(p.getBoard().getProfessors().size() > winner.getBoard().getProfessors().size()){
+                        winner = p;
+                    }
+                }
+            }
+            throw new WinException(winner.GetName());
+        }
+    }
+
+    private void checkWinTowers() throws WinException{
+     if(getCurrentPlayer().getBoard().getTowerSize()==0){
+         throw new WinException(getCurrentPlayer().GetName());
+     }
     }
 }

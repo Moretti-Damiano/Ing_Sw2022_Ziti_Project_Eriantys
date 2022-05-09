@@ -254,7 +254,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void GameStartedHandler(GameStartedMessage message) {
-
+        SceneController.changeRootPane(observers, "select_scene.fxml");
     }
 
     @Override
