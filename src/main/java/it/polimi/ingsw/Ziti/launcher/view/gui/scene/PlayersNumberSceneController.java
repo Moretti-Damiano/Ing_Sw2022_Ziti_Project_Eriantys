@@ -1,6 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
+import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,10 +27,21 @@ public class PlayersNumberSceneController extends InputObservable implements Gen
     @FXML
     private ToggleGroup toggleGroup;
 
+    private int minPlayers;
+    private int maxPlayers;
 
+    /**
+     * Default constructor.
+     */
+    public PlayersNumberSceneController() {
+        minPlayers = 2;
+        maxPlayers = 3;
+    }
 
     @FXML
     public void initialize() {
+        radioBtn1.setText(minPlayers + " players");
+        radioBtn2.setText(maxPlayers + " players");
 
         confirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmBtnClick);
         backToMenuBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuBtnClick);
@@ -42,7 +55,7 @@ public class PlayersNumberSceneController extends InputObservable implements Gen
     private void onConfirmBtnClick(Event event) {
         confirmBtn.setDisable(true);
         RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-        String playersNumber = String.valueOf(Character.getNumericValue(selectedRadioButton.getText().charAt(0)));
+        String playersNumber = ""+selectedRadioButton.getText().charAt(0);
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateNumberOfPlayer(playersNumber))).start();
     }
@@ -54,7 +67,7 @@ public class PlayersNumberSceneController extends InputObservable implements Gen
      */
     private void onBackToMenuBtnClick(Event event) {
         backToMenuBtn.setDisable(true);
-        //new Thread(() -> notifyObserver(ViewObserver::onDisconnection)).start();
+        new Thread(() -> notifyObserver(InputObserver::onUpdateDisconnection)).start();
         SceneController.changeRootPane(observers, event, "menu_scene.fxml");
     }
 

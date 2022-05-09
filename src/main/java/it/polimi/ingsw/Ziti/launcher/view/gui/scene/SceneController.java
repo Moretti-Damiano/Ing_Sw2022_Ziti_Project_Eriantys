@@ -149,7 +149,7 @@ public class SceneController extends InputObservable {
      * @param title   the title of the popup.
      * @param message the message of the popup.
      */
-    /*
+
     public static void showAlert(String title, String message) {
         FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/alert_scene.fxml"));
 
@@ -157,7 +157,6 @@ public class SceneController extends InputObservable {
         try {
             parent = loader.load();
         } catch (IOException e) {
-            Client.LOGGER.severe(e.getMessage());
             return;
         }
         AlertSceneController alertSceneController = loader.getController();

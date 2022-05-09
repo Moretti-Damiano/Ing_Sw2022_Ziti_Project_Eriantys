@@ -155,11 +155,13 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message","Connesso al server"));
 
     }
 
     @Override
     public void CompleteRequestHandler(CompletedRequestMessage message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message", message.getDescription()));
 
     }
 
@@ -223,6 +225,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void YourTurnNotificationHandler(YourTurnNotification message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message", message.Description));
 
     }
 
