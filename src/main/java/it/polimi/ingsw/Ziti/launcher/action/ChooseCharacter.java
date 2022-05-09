@@ -5,9 +5,13 @@ import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 
+/**
+ * check if the current Player has enough coins and if there irs already a chosen character
+ */
 public class ChooseCharacter implements Action{
     private Character character;
     private Game game;
+
 
     public ChooseCharacter( Game game, Character character){
         this.character=character;
@@ -15,12 +19,24 @@ public class ChooseCharacter implements Action{
 
     }
     public void execute() throws ActionException {
-       checkCoin();
+        checkCharacterInGame();
+        checkCoin();
     }
+
 
     @Override
     public ActionMessage toMessage() {
         return null;
+    }
+
+    private void checkCharacterInGame() throws ActionException {
+        boolean in = false;
+        for(Character c: game.getCharacters()){
+            if(c.equals(character))
+                in = true;
+        }
+        if(!in)
+            throw new ActionException();
     }
 
     public void checkCoin() throws ActionException{
@@ -31,7 +47,7 @@ public class ChooseCharacter implements Action{
             throw new ActionException();
         }
     }
-    public boolean activeCharacter(){
+    private boolean activeCharacter(){
         for(Character c : game.getCharacters()){
             if(c.isAvailable() ){ return false; }
         }

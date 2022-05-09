@@ -17,8 +17,15 @@ public class Character3 extends Character{
 
     private ArrayList<Island> originalIslands;
 
-    public Character3(Game game) {
-        super(game);
+    private static Character3 instance;
+
+    public static Character3 getInstance(){
+        if (instance == null) instance = new Character3();
+        return instance;
+    }
+
+    public Character3() {
+        setId(3);
         setCost(3);
         setDescription(" When resolving a Conquering on an island, towers do not count towards influence ");
         setAvailable(true);

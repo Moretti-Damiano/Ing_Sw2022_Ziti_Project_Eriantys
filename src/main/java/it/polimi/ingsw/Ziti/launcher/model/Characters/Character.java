@@ -4,7 +4,9 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 
-public abstract class Character {
+import java.io.Serializable;
+
+public abstract class Character implements Serializable {
     private Game game;
     private int id;
     private int cost;
@@ -12,12 +14,12 @@ public abstract class Character {
     private PhaseType usePhase;
     private boolean available;
 
-    protected Character(Game game) {
-        this.game = game;
-    }
-
     public int getId() {
         return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 
     public void setCost(int cost) {
@@ -26,6 +28,10 @@ public abstract class Character {
 
     public int getCost() {
         return cost;
+    }
+
+    public void setGame(Game game) {
+        this.game = game;
     }
 
     public void setDescription(String description){this.description=description;}

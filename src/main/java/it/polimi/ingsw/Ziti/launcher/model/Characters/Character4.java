@@ -13,10 +13,17 @@ If any player has fewer than 3 students of that type, return as many students as
  */
 public class Character4 extends Character{
 
+    private static Character4 instance;
+
+    public static Character4 getInstance(){
+        if (instance == null) instance = new Character4();
+        return instance;
+    }
+
     private Colour colour;
 
-    public Character4(Game game) {
-        super(game);
+    public Character4() {
+        setId(4);
         setCost(3);
         setDescription(" Choose a type of student : every player (including yourself) must return 3 students of that type from their dining room to the bag." +
                 " If any player has fewer than 3 students of that type, return as many students as they have ");

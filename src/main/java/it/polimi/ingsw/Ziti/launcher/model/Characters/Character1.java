@@ -16,8 +16,15 @@ public class Character1 extends Character{
     private Island motherIsland;
     private int motherIslandPosition;
 
-    public Character1(Game game) {
-        super(game);
+    private static Character1 instance;
+
+    public static Character1 getInstance(){
+        if (instance == null) instance = new Character1();
+        return instance;
+    }
+
+    public Character1() {
+        setId(1);
         setCost(3);
         setDescription(" Choose an island and resolve the island as if Mother Nature had ended her movement there." +
                 " Mother Nature will still move and the island where she ends her movement will also be resolved ");

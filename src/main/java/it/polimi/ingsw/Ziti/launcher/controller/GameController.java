@@ -1,10 +1,15 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
+import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.action.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
@@ -30,6 +35,10 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     public GameController(){
         players = new ArrayList<>();
+    }
+
+    public ArrayList<Player> getPlayers() {
+        return players;
     }
 
     public Game getGame() {
@@ -205,7 +214,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void showCharacterRequestHandler(ShowCharacterRequest message) {
-        notifyObserver(obs -> obs.sendToOnePlayer(new ShowCharacterResponse(getGame().getCharacters()), message.getSender()));
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowCharacterResponse(getCharacterSummary()), message.getSender()));
 
     }
 
@@ -217,6 +226,102 @@ public class GameController extends GameControllerObservable implements ServerOb
     @Override
     public void showIslandRequestHandler(ShowIslandRequest message) {
         notifyObserver(obs -> obs.sendToOnePlayer(new ShowIslandResponse(getGame().getIslands()), message.getSender()));
+    }
+
+    @Override
+    public void chooseCharacter0Handler(Character0Message message) {
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new ChooseCharacter(game, Character0.getInstance()));
+            try {
+                game.doAction();
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            }
+            Character0.getInstance().choose();
+            notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 0")));
+        }
+    }
+
+    @Override
+    public void chooseCharacter1Handler(Character1Message message) {
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new ChooseCharacter(game,Character1.getInstance()));
+            try {
+                game.doAction();
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            }
+            try {
+                Character1.getInstance().choose(message.getIslandId());
+            } catch(ActionException e){
+                notifyObserver(obs-> obs.sendToOnePlayer(new InputError("you insert an ivalid island"), message.getSender()));
+            }
+            notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 1")));
+        }
+    }
+
+    @Override
+    public void chooseCharacter2Handler(Character2Message message) {
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new ChooseCharacter(game, Character2.getInstance()));
+            try {
+                game.doAction();
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            }
+            Character2.getInstance().choose();
+            notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 2")));
+        }
+    }
+
+    @Override
+    public void chooseCharacter3Handler(Character3Message message) {
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new ChooseCharacter(game, Character3.getInstance()));
+            try {
+                game.doAction();
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            }
+            Character3.getInstance().choose();
+            notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 3")));
+        }
+    }
+
+    @Override
+    public void chooseCharacter4Handler(Character4Message message) {
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new ChooseCharacter(game, Character4.getInstance()));
+            try {
+                game.doAction();
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            }
+            try {
+                Character4.getInstance().choose(message.getColour());
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You did not insert a valid colour"),message.getSender()));
+            }
+            notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 4")));
+        }
+    }
+
+    @Override
+    public void chooseCharacter5Handler(Character5Message message) {
+        if(checkActivePlayer(message.getSender())){
+            game.setAction(new ChooseCharacter(game,Character5.getInstance()));
+            try {
+                game.doAction();
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            }
+            try {
+                Character5.getInstance().choose(message.getColour());
+            } catch (ActionException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You did not insert a valid colour"),message.getSender()));
+            }
+            notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 5")));
+        }
     }
 
     /**
@@ -242,5 +347,13 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     public void notifyNewActivePlayer(Player currentPlayer) {
         notifyObserver(obs-> obs.sendToOnePlayer(new YourTurnNotification(),currentPlayer.GetName()));
+    }
+
+    private ArrayList<CharacterSummary> getCharacterSummary(){
+        ArrayList<CharacterSummary> summary = new ArrayList<>();
+        for(Character c: game.getCharacters()){
+            summary.add(new CharacterSummary(c.getId(),c.getCost(),c.getDescription()));
+        }
+        return  summary;
     }
 }
