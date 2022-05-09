@@ -38,4 +38,6 @@ public interface ServerObserver {
     public void chooseCharacter4Handler(Character4Message message);
 
     public void chooseCharacter5Handler(Character5Message message);
+
+    public void endGameDisconnection();
 }

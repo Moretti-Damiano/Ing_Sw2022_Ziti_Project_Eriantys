@@ -389,6 +389,12 @@ public class GameController extends GameControllerObservable implements ServerOb
         startNewGame();
     }
 
+    public void endGameDisconnection(){
+        notifyObserver(obs->obs.sendToAllPlayers(new ErrorMessage("Server","Game has ended because a player disconnected")));
+        notifyObserver(GameControllerObserver::disconnectAll);
+        startNewGame();
+    }
+
     private void startNewGame(){
         System.out.println("Starting a new game");
         this.game = null;

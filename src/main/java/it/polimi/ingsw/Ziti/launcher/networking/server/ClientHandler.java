@@ -38,7 +38,10 @@ public class ClientHandler implements Runnable {
             System.out.println("ClientHandler Started");
             keepListening();
         }
-        catch (IOException e) {System.out.println("IOexception");}
+        catch (IOException e) {
+            System.out.println("IOexception in clienthandler " + nickName);
+            socketServer.clientDisconnection();
+        }
         catch (ClassNotFoundException e) {
             System.out.println("Class not found exc");
         }

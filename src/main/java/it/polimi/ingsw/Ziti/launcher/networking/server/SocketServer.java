@@ -56,4 +56,8 @@ public class SocketServer implements Runnable{
     public void resetSocket(){
         clientHandlers.clear();
     }
+
+    public void clientDisconnection(){
+        server.clientDisconnection();
+    }
 }
