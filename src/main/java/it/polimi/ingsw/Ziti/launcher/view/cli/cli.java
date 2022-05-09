@@ -226,39 +226,29 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void askChoseCharacter0() {
-        notifyObserver(obs -> obs.onUpdateChooseCharacter0(askCharacter()));
-
-    }
-
-    @Override
-    public void askChoseCharacter1() {
-        notifyObserver(obs -> obs.onUpdateChooseCharacter1(askCharacter(),askIsland()));
-
-
-    }
-
-    @Override
-    public void askChoseCharacter2() {
-        notifyObserver(obs -> obs.onUpdateChooseCharacter2(askCharacter()));
-
-    }
-
-    @Override
-    public void askChoseCharacter3() {
-        notifyObserver(obs -> obs.onUpdateChooseCharacter3(askCharacter()));
-
-    }
-
-    @Override
-    public void askChoseCharacter4() {
-        notifyObserver(obs -> obs.onUpdateChooseCharacter4(askCharacter(),askColour()));
-
-    }
-
-    @Override
-    public void askChoseCharacter5() {
-        notifyObserver(obs -> obs.onUpdateChooseCharacter5(askCharacter(),askColour()));
+    public void askChoseCharacter() {
+        String characterId = askCharacter();
+        switch (characterId){
+            case"0":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter0(characterId));
+                break;
+            case"1":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter1(characterId,askIsland()));
+                break;
+            case"2":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter2(characterId));
+                break;
+            case"3":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter3(characterId));
+                break;
+            case"4":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter4(characterId,askColour()));
+                break;
+            case"5":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter4(characterId,askColour()));
+                break;
+            default: break;
+        }
 
     }
 
@@ -446,7 +436,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 break;
             case "CHOOSECHARACTER":
                 inputThread.setFreeInput(false);
-                askCharacter();
+                askChoseCharacter();
                 break;
             case "CHOOSECLOUD":
                 inputThread.setFreeInput(false);

@@ -101,32 +101,7 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void askChoseCharacter0() {
-
-    }
-
-    @Override
-    public void askChoseCharacter1() {
-
-    }
-
-    @Override
-    public void askChoseCharacter2() {
-
-    }
-
-    @Override
-    public void askChoseCharacter3() {
-
-    }
-
-    @Override
-    public void askChoseCharacter4() {
-
-    }
-
-    @Override
-    public void askChoseCharacter5() {
+    public void askChoseCharacter() {
 
     }
 

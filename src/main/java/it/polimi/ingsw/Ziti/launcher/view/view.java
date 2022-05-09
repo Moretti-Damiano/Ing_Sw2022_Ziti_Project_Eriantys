@@ -32,12 +32,7 @@ public interface view {
     void askMoveToIsland();
     void askMoveMother();
     void askCloudIsland();
-    void askChoseCharacter0();
-    void askChoseCharacter1();
-    void askChoseCharacter2();
-    void askChoseCharacter3();
-    void askChoseCharacter4();
-    void askChoseCharacter5();
+    void askChoseCharacter();
     void askChoseAssistant();
     void askNumberOfPlayer();
     void GameStartedHandler(GameStartedMessage message);
