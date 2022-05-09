@@ -23,6 +23,6 @@ public interface GameControllerObserver {
     public void sendToAllPlayers(MessageToClient message);
 
     public void successfulLogin(MessageToClient message, String temporaryName,String newName);
-
-
+    
+    void disconnectAll();
 }

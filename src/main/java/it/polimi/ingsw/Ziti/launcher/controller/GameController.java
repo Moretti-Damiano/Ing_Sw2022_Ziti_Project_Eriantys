@@ -356,4 +356,9 @@ public class GameController extends GameControllerObservable implements ServerOb
         }
         return  summary;
     }
+    
+    public void endGame(String winnerName){
+        notifyObserver(obs->obs.sendToAllPlayers(new WinMessage(winnerName)));
+        notifyObserver(obs->obs.disconnectAll());
+    }
 }

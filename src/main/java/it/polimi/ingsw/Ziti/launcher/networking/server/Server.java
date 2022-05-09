@@ -4,6 +4,8 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 
+import java.io.IOException;
+
 public class Server implements GameControllerObserver {
 
     private int port;
@@ -81,6 +83,16 @@ public class Server implements GameControllerObserver {
     public void successfulLogin(MessageToClient message, String temporaryName, String newName){
         socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
         notifyPlayer(message,newName);
+    }
+    
+    public void disconnectAll(){
+        for(ClientHandler clientHandler: socketServer.getClientHandlers()){
+            try {
+                clientHandler.closeSocket();
+            } catch (IOException e) {
+                System.out.println("Error in closing socket");
+            }
+        }
     }
 
 }

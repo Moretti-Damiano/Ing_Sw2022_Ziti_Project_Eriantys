@@ -2,8 +2,10 @@ package it.polimi.ingsw.Ziti.launcher.controller;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.YourTurnNotification;
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.EndGamePhase;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.PlanningPhase;
+import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.WinException;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 
@@ -138,14 +140,13 @@ public class TurnController {
                     }
                 }
             }
-            throw new WinException();
+            throw new WinException(winner.GetName());
         }
     }
 
-    private boolean checkWinTowers(){
+    private void checkWinTowers() throws WinException{
      if(getCurrentPlayer().getBoard().getTowerSize()==0){
-         return true;
+         throw new WinException(getCurrentPlayer().GetName());
      }
-     return false;
     }
 }
