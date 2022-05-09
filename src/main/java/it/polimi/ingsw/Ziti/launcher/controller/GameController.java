@@ -14,6 +14,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObserver;
 import org.xml.sax.SAXException;
@@ -384,7 +385,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     public void endGame(String winnerName){
         notifyObserver(obs->obs.sendToAllPlayers(new WinMessage(winnerName)));
-        notifyObserver(obs->obs.disconnectAll());
+        notifyObserver(GameControllerObserver::disconnectAll);
         startNewGame();
     }
 

@@ -73,7 +73,7 @@ public class ClientHandler implements Runnable {
             System.out.println("Error in sending message to " + nickName);
         }
     }
-    
+
     public void closeSocket() throws IOException{
         this.socket.close();
     }

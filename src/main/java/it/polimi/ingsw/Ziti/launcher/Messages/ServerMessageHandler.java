@@ -4,6 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.ServerObserver;
 
 /**
  * This class calls the correct handler methods from the observer class to manage the message received by client and needs to be sent to server
