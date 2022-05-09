@@ -17,4 +17,6 @@ public interface InputObserver {
     void onUpdateCharacterRequest(ShowCharacterRequest message);
     void onUpdateCloudRequest(ShowCloudRequest message);
     void onUpdateIslandRequest(ShowIslandRequest message);
+    //needs to be implemented
+    void onUpdateDisconnection();
 }
