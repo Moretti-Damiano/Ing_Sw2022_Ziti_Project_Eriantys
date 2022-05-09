@@ -91,7 +91,7 @@ public class Server implements GameControllerObserver {
         int i = 0;
         for(ClientHandler clientHandler: socketServer.getClientHandlers()){
             try {
-                System.out.println("CLosing socket number : "+i);
+                System.out.println("Closing socket number : "+i);
                 i++;
                 clientHandler.closeSocket();
             } catch (IOException e) {
@@ -99,5 +99,9 @@ public class Server implements GameControllerObserver {
             }
         }
         socketServer.resetSocket();
+    }
+
+    public void clientDisconnection(){
+        serverMessageHandler.clientDisconnection();
     }
 }

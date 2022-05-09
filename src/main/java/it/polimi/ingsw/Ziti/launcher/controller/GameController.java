@@ -4,14 +4,17 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.EndGamePhase;
 import it.polimi.ingsw.Ziti.launcher.action.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.WinException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 import it.polimi.ingsw.Ziti.launcher.observer.Observer;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObserver;
 import org.xml.sax.SAXException;
@@ -118,11 +121,15 @@ public class GameController extends GameControllerObservable implements ServerOb
                 turnController.getPlayerAssistants().put(turnController.getCurrentPlayer().getAssistants().get(message.getAssistantId()).getValue(),
                         turnController.getCurrentPlayer());
                 turnController.updatePhase();
+                notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
 
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
-            notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+            catch (WinException e){
+                turnController.setPhase(new EndGamePhase(turnController, PhaseType.ENDGAME));
+                endGame(e.getNickname());
+            }
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
@@ -136,11 +143,16 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
             game.doAction();
             turnController.updatePhase();
+            notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+
             } catch (ActionException e) {
             notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
+            catch (WinException e){
+                turnController.setPhase(new EndGamePhase(turnController, PhaseType.ENDGAME));
+                endGame(e.getNickname());
+            }
 
-            notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
@@ -154,10 +166,15 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
             game.doAction();
             turnController.updatePhase();
+            notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+
             } catch (ActionException e) {
             notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
-            notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+            catch (WinException e){
+                turnController.setPhase(new EndGamePhase(turnController, PhaseType.ENDGAME));
+                endGame(e.getNickname());
+            }
         }
         else{
            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
@@ -170,11 +187,15 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
                 game.doAction();
                 turnController.updatePhase();
+                notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
+            } catch (WinException e){
+                turnController.setPhase(new EndGamePhase(turnController, PhaseType.ENDGAME));
+                endGame(e.getNickname());
             }
-            notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
-        }
+       }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
@@ -188,10 +209,15 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
                 game.doAction();
                 turnController.updatePhase();
+                notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid input parameters"),message.getSender()));
             }
-            notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " + game.getCurrentPlayer().GetName() + " turn and it's " + turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+            catch (WinException e){
+                turnController.setPhase(new EndGamePhase(turnController, PhaseType.ENDGAME));
+                endGame(e.getNickname());
+            }
         }
         else{
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
@@ -356,9 +382,23 @@ public class GameController extends GameControllerObservable implements ServerOb
         }
         return  summary;
     }
-    
+
     public void endGame(String winnerName){
         notifyObserver(obs->obs.sendToAllPlayers(new WinMessage(winnerName)));
-        notifyObserver(obs->obs.disconnectAll());
+        notifyObserver(GameControllerObserver::disconnectAll);
+        startNewGame();
+    }
+
+    public void endGameDisconnection(){
+        notifyObserver(obs->obs.sendToAllPlayers(new ErrorMessage("Server","Game has ended because a player disconnected")));
+        notifyObserver(GameControllerObserver::disconnectAll);
+        startNewGame();
+    }
+
+    private void startNewGame(){
+        System.out.println("Starting a new game");
+        this.game = null;
+        this.players = new ArrayList<>();
+        this.turnController = null;
     }
 }
