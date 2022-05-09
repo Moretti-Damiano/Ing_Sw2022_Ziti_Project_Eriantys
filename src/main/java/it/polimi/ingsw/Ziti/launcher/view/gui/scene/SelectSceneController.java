@@ -8,7 +8,7 @@ public class SelectSceneController extends InputObservable implements GenericSce
 
     @FXML
     void onChooseAssistantClick(ActionEvent event) {
-
+        SceneController.changeRootPane(observers, event, "ChooseAssistant_scene.fxml");
 
     }
 
