@@ -17,8 +17,15 @@ public class Character5 extends Character{
     private Player profPlayer;
     private Professor professor;
 
-    public Character5(Game game) {
-        super(game);
+    private static Character5 instance;
+
+    public static Character5 getInstance(){
+        if (instance == null) instance = new Character5();
+        return instance;
+    }
+
+    public Character5() {
+        setId(5);
         setCost(3);
         setDescription("Choose a colour of student: during the influence calculation this turn,that color adds no influence");
         setUsePhase(PhaseType.MOTHER);

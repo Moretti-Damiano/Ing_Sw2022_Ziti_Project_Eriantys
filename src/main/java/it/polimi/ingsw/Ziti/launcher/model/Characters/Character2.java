@@ -6,6 +6,12 @@ import it.polimi.ingsw.Ziti.launcher.model.Game;
 
 /*You may move Mother Nature up to 2 additional islands than is indicated by the Assistant card you've played.*/
 public class Character2 extends Character{
+    private static Character2 instance;
+
+    public static Character2 getInstance(){
+        if (instance == null) instance = new Character2();
+        return instance;
+    }
 
     public Character2(Game game) {
         super(game);

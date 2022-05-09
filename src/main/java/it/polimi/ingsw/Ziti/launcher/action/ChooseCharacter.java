@@ -18,12 +18,24 @@ public class ChooseCharacter implements Action{
 
     }
     public void execute() throws ActionException {
-       checkCoin();
+        checkCharacterInGame();
+        checkCoin();
     }
+
 
     @Override
     public ActionMessage toMessage() {
         return null;
+    }
+
+    private void checkCharacterInGame() throws ActionException {
+        boolean in = false;
+        for(Character c: game.getCharacters()){
+            if(c.equals(character))
+                in = true;
+        }
+        if(!in)
+            throw new ActionException();
     }
 
     public void checkCoin() throws ActionException{

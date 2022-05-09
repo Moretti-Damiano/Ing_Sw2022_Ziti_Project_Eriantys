@@ -122,11 +122,11 @@ public class Game extends Observable {
         characters = new ArrayList<>();
         //creates all possible characters
         allCharacters.add(Character0.getInstance());
-        allCharacters.add(new Character1(this));
-        allCharacters.add(new Character2(this));
-        allCharacters.add(new Character3(this));
-        allCharacters.add(new Character4(this));
-        allCharacters.add(new Character5(this));
+        allCharacters.add(Character1.getInstance());
+        allCharacters.add(Character2.getInstance());
+        allCharacters.add(Character3.getInstance());
+        allCharacters.add(Character4.getInstance());
+        allCharacters.add(Character5.getInstance());
 
         //set 3 game's characters
         Random rand = new Random();

@@ -22,8 +22,10 @@ public interface ServerObserver {
     public void showBoardsRequestHandler(ShowBoardsRequest message);
     public void showCloudRequestHandler(ShowCloudRequest message);
     public void showBoardRequestHandler(ShowBoardRequest message);
-    public void showCharacterRequestHandler(ShowCharacterRequest message);
+
     public void showIslandRequestHandler(ShowIslandRequest message);
+
+    public void showCharacterRequestHandler(ShowCharacterRequest message);
 
     public void chooseCharacter0Handler(Character0Message message);
 

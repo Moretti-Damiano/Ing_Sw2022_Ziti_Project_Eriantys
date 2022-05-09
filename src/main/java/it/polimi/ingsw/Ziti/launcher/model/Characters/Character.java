@@ -18,6 +18,10 @@ public abstract class Character implements Serializable {
         return id;
     }
 
+    public void setId(int id) {
+        this.id = id;
+    }
+
     public void setCost(int cost) {
         this.cost = cost;
     }
