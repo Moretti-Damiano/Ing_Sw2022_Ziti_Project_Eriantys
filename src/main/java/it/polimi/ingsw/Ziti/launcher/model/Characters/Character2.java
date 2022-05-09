@@ -13,13 +13,14 @@ public class Character2 extends Character{
         return instance;
     }
 
-    public Character2(Game game) {
-        super(game);
+    public Character2() {
+        setId(2);
         setCost(1);
         setDescription(" You may move Mother Nature up to 2 additional islands than is indicated by the Assistant card you've played ");
         setUsePhase(PhaseType.MOTHER);
         setAvailable(true);
     }
+
 
 
     public void choose() {

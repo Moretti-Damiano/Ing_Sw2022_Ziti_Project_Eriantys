@@ -12,6 +12,7 @@ public class ChooseCharacter implements Action{
     private Character character;
     private Game game;
 
+
     public ChooseCharacter( Game game, Character character){
         this.character=character;
         this.game=game;
