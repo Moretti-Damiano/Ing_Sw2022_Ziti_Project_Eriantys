@@ -69,6 +69,7 @@ public class Server implements GameControllerObserver {
     @Override
     public void sendToAllPlayers(MessageToClient message) {
         notifyAllPlayers(message);
+
     }
 
 
@@ -86,13 +87,17 @@ public class Server implements GameControllerObserver {
     }
 
     public void disconnectAll(){
+        System.out.println("Closing all sockets");
+        int i = 0;
         for(ClientHandler clientHandler: socketServer.getClientHandlers()){
             try {
+                System.out.println("CLosing socket number : "+i);
+                i++;
                 clientHandler.closeSocket();
             } catch (IOException e) {
-                System.out.println("Error in closing socket");
+                System.out.println("Error in closing");
             }
         }
+        socketServer.resetSocket();
     }
-
 }
