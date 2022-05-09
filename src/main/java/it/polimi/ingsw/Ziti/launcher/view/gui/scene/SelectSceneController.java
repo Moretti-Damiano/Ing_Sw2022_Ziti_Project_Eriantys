@@ -9,6 +9,7 @@ public class SelectSceneController extends InputObservable implements GenericSce
     @FXML
     void onChooseAssistantClick(ActionEvent event) {
 
+
     }
 
     @FXML
