@@ -58,10 +58,10 @@ public class ConnectionSceneController extends InputObservable implements Generi
      * @param event the mouse click event.
      */
     private void onBackBtnClick(Event event) {
+        SceneController.changeRootPane(observers, event, "menu_scene.fxml");
         backBtn.setDisable(true);
         connectBtn.setDisable(true);
 
-       SceneController.changeRootPane(observers, event, "menu_scene.fxml");
     }
 
 }
