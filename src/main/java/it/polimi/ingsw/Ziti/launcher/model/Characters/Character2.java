@@ -24,7 +24,6 @@ public class Character2 extends Character{
 
 
     public void choose() {
-        setAvailable(false);
     }
 
     @Override

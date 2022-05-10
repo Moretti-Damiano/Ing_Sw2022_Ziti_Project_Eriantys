@@ -35,7 +35,6 @@ public class Character4 extends Character{
 
     public void choose(String colour) throws CharacterException {
      checkInput(colour);
-     setAvailable(false);
      this.colour=Colour.valueOfName(colour);
     }
 

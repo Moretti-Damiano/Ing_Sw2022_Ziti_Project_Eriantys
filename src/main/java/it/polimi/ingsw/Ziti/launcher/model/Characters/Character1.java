@@ -37,8 +37,6 @@ public class Character1 extends Character{
     public void choose(int islandId) throws CharacterException {
         checkInput();
         this.islandId=islandId;
-        setAvailable(false);
-
     }
 
     @Override
@@ -62,8 +60,6 @@ public class Character1 extends Character{
 
     @Override
     public void endEffect() {
-        increaseCost();
-        setAvailable(true);
     }
 
     private void endAction(){

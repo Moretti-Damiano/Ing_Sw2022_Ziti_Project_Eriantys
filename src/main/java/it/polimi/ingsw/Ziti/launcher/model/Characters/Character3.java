@@ -33,7 +33,6 @@ public class Character3 extends Character{
     }
 
     public void choose() {
-        setAvailable(false);
     }
 
     @Override

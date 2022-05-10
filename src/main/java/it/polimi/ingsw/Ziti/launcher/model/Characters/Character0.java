@@ -29,7 +29,7 @@ public class Character0 extends Character{
     }
 
     public void choose(){
-        setAvailable(false);
+
     }
 
     //starta quando inizia movemother
@@ -50,8 +50,6 @@ public class Character0 extends Character{
             MoveToTable movetotable = new MoveToTable(getGame(), colour.getName());
             movetotable.controlProfessor(colour);
         }
-
-        increaseCost();
         setAvailable(true);
     }
 }
