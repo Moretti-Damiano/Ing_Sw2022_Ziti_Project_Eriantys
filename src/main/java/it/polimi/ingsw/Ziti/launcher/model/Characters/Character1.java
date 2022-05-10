@@ -61,6 +61,7 @@ public class Character1 extends Character{
 
     @Override
     public void endEffect() {
+        setAvailable(true);
     }
 
     private void endAction(){
