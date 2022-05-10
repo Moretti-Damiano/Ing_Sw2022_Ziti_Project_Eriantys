@@ -140,7 +140,7 @@ public class Game extends Observable {
         int random;
         for(int i = 0; i < 3; i++){
             //create a random number
-            random =rand.nextInt(allCharacters.size()-1);
+            random =rand.nextInt(allCharacters.size());
             allCharacters.get(random).setGame(this);
             characters.add(allCharacters.remove(random));
 
