@@ -118,12 +118,12 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void InputErrorHandler(InputError message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
@@ -143,17 +143,17 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void chooseAssistantHandler(ChooseAssistantDoneMessage message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void endTurnHandler(EndTurnDoneMessage message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
@@ -175,7 +175,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void LoginErrorHandler(LoginError message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
@@ -188,12 +188,12 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void TurnErrorHandler(TurnError message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void TurnNotificationHandler(TurnNotification message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override

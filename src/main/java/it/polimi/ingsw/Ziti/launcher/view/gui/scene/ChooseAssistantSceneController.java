@@ -58,6 +58,7 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         String assNumber = ""+selectedRadioButton.getText().charAt(0);
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseAssistant(assNumber))).start();
+        SceneController.changeRootPane(observers, event, "select_scene.fxml");
     }
 
 
