@@ -3,27 +3,37 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.model.Student;
 
 /*
-Scegli un colore di studente, ogni giocatore incluso te, deve rimetttere nel sacchetto 3 studenti di quel colore presenti
-nella sala; chi ne ha meno, li rimette tutti.
+Choose a type of student : every player (including yourself) must return 3 students of that type from their dining room to the bag.
+If any player has fewer than 3 students of that type, return as many students as they have
  */
 public class Character4 extends Character{
 
+    private static Character4 instance;
+
+    public static Character4 getInstance(){
+        if (instance == null) instance = new Character4();
+        return instance;
+    }
+
     private Colour colour;
 
-    public Character4(Game game) {
-        super(game);
+    public Character4() {
+        setId(4);
         setCost(3);
-        setUsePhase(PhaseType.MOTHER);
+        setDescription(" Choose a type of student : every player (including yourself) must return 3 students of that type from their dining room to the bag." +
+                " If any player has fewer than 3 students of that type, return as many students as they have ");
+        setUsePhase(PhaseType.MOVEMENT);
         setAvailable(true);
     }
 
 
-    public void choose(String colour) throws ActionException{
+    public void choose(String colour) throws CharacterException {
      checkInput(colour);
      setAvailable(false);
      this.colour=Colour.valueOfName(colour);
@@ -54,9 +64,9 @@ public class Character4 extends Character{
         increaseCost();
     }
 
-    private void checkInput(String colour) throws ActionException{
+    private void checkInput(String colour) throws CharacterException{
         if(!Colour.checkStringToColour(colour)){
-            throw new ActionException();
+            throw new CharacterException();
         }
     }
 

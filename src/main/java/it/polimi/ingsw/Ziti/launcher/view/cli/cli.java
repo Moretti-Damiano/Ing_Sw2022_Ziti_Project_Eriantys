@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.view.cli;
 
 import it.polimi.ingsw.Ziti.launcher.InputReadThread;
+import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
@@ -46,7 +47,12 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacters(ArrayList<Character> characters) {
+    public void showCharacters(ArrayList<CharacterSummary> characterSummary) {
+        for(CharacterSummary character:characterSummary){
+            System.out.println("Character ID: "+character.getId()+"\t\t"+"Cost "+character.getCost());
+            System.out.println("Summary: "+character.getDescription());
+            System.out.println();
+        }
 
     }
 
@@ -220,6 +226,34 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void askChoseCharacter() {
+        String characterId = askCharacter();
+        switch (characterId){
+            case"0":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter0(characterId));
+                break;
+            case"1":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter1(characterId,askIsland()));
+                break;
+            case"2":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter2(characterId));
+                break;
+            case"3":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter3(characterId));
+                break;
+            case"4":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter4(characterId,askColour()));
+                break;
+            case"5":
+                notifyObserver(obs -> obs.onUpdateChooseCharacter5(characterId,askColour()));
+                break;
+            default: break;
+        }
+
+    }
+
+
+    @Override
     public void askChoseAssistant() {
         notifyObserver(obs -> obs.onUpdateChooseAssistant(askAssistant()));
     }
@@ -269,6 +303,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
+        System.out.println(message.getDescription());
 
 
     }
@@ -328,9 +363,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacterHandler(ShowCharacterResponse message)  {
-        showCharacters(message.getCharacters());
+    public void showCharacterHandler(ShowCharacterResponse message) {
+        showCharacters(message.getCharacterSummaries());
     }
+
+
 
     @Override
     public void showBoardHandler(ShowBoardResponse message)  {
@@ -399,7 +436,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 break;
             case "CHOOSECHARACTER":
                 inputThread.setFreeInput(false);
-                askCharacter();
+                askChoseCharacter();
                 break;
             case "CHOOSECLOUD":
                 inputThread.setFreeInput(false);

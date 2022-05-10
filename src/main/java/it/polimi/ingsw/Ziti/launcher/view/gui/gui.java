@@ -1,12 +1,16 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
+import it.polimi.ingsw.Ziti.launcher.view.gui.scene.PlayersNumberSceneController;
+import it.polimi.ingsw.Ziti.launcher.view.gui.scene.SceneController;
 import it.polimi.ingsw.Ziti.launcher.view.view;
+import javafx.application.Platform;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -20,7 +24,7 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacters(ArrayList<CharacterOLD> characters) {
+    public void showCharacters(ArrayList<CharacterSummary> characterSummaries) {
 
     }
 
@@ -97,6 +101,11 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void askChoseCharacter() {
+
+    }
+
+    @Override
     public void askChoseAssistant() {
 
     }
@@ -152,11 +161,13 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message","Connesso al server"));
 
     }
 
     @Override
     public void CompleteRequestHandler(CompletedRequestMessage message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message", message.getDescription()));
 
     }
 
@@ -167,6 +178,9 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void NumOfPlayerHandler(NumOfPLayersRequest message) {
+        PlayersNumberSceneController pnsc = new PlayersNumberSceneController();
+        pnsc.addAllObservers(observers);
+        Platform.runLater(() -> SceneController.changeRootPane(pnsc, "players_number_scene.fxml"));
 
     }
 
@@ -190,6 +204,9 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     }
 
+
+
+
     @Override
     public void showBoardHandler(ShowBoardResponse message) {
 
@@ -212,11 +229,12 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void GameStartedHandler(GameStartedMessage message) {
-
+        SceneController.changeRootPane(observers, "select_scene.fxml");
     }
 
     @Override
     public void YourTurnNotificationHandler(YourTurnNotification message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message", message.Description));
 
     }
 

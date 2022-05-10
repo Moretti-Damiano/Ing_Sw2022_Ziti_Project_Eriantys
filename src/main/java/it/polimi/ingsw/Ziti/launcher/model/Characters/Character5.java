@@ -3,12 +3,13 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.model.Professor;
 
 /*
-Scegli un colore di Studente;in questo turno,durante il calcolo dell'influenza quel colore non fornisce influenza
+Choose a colour of student: during the influence calculation this turn,that color adds no influence
  */
 
 public class Character5 extends Character{
@@ -17,15 +18,23 @@ public class Character5 extends Character{
     private Player profPlayer;
     private Professor professor;
 
-    public Character5(Game game) {
-        super(game);
+    private static Character5 instance;
+
+    public static Character5 getInstance(){
+        if (instance == null) instance = new Character5();
+        return instance;
+    }
+
+    public Character5() {
+        setId(5);
         setCost(3);
+        setDescription("Choose a colour of student: during the influence calculation this turn,that color adds no influence");
         setUsePhase(PhaseType.MOTHER);
         setAvailable(true);
     }
 
 
-    public void choose(String colour) throws ActionException {
+    public void choose(String colour) throws CharacterException {
     checkInput(colour);
     setAvailable(false);
     this.colour=Colour.valueOfName(colour);
@@ -49,9 +58,9 @@ public class Character5 extends Character{
         increaseCost();
     }
 
-    private void checkInput(String colour) throws ActionException{
+    private void checkInput(String colour) throws CharacterException{
         if(!Colour.checkStringToColour(colour)){
-            throw new ActionException();
+            throw new CharacterException();
         }
     }
 }

@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.GameStartedMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.YourTurnNotification;
@@ -16,7 +17,7 @@ import java.util.concurrent.ExecutionException;
 public interface view {
 
     void showAssistants(List<Assistant> assistants);
-    void showCharacters(ArrayList<CharacterOLD> characters);
+    void showCharacters(ArrayList<CharacterSummary> characterSummaries);
     void showIslands(List<Island> islands);
     void showClouds(List<CloudIsland> clouds);
     void showMyBoard(Board board);
@@ -31,6 +32,7 @@ public interface view {
     void askMoveToIsland();
     void askMoveMother();
     void askCloudIsland();
+    void askChoseCharacter();
     void askChoseAssistant();
     void askNumberOfPlayer();
     void GameStartedHandler(GameStartedMessage message);

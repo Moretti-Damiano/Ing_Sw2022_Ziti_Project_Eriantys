@@ -4,6 +4,8 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 
+import java.io.IOException;
+
 public class Server implements GameControllerObserver {
 
     private int port;
@@ -51,6 +53,10 @@ public class Server implements GameControllerObserver {
         }
     }
 
+    /**
+     * Passes the received message to the serverMessageHandler
+     * @param message the message received
+     */
     public void receive(MessagetoServer message){
         message.handle(serverMessageHandler);
     }
@@ -63,17 +69,39 @@ public class Server implements GameControllerObserver {
     @Override
     public void sendToAllPlayers(MessageToClient message) {
         notifyAllPlayers(message);
+
     }
 
-    public void successfulLogin(MessageToClient message, String temporaryName, String newName){
 
+    /**
+     * Handles the final part of the login of a client:
+     *      sends a completedRequestMessage to the client,
+     *      sets his clientHandler name to the name chosen by the player
+     * @param message is a completedRequestMessage sent to the client
+     * @param temporaryName is the automatically assigned name to the clientHandler before the player's login
+     * @param newName is the name indicated by the client during login
+     */
+    public void successfulLogin(MessageToClient message, String temporaryName, String newName){
         socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
         notifyPlayer(message,newName);
-
     }
 
-    
-    public void requestPlayerNumber(MessageToClient message, String nickName){
-        notifyPlayer(message,nickName);
+    public void disconnectAll(){
+        System.out.println("Closing all sockets");
+        int i = 0;
+        for(ClientHandler clientHandler: socketServer.getClientHandlers()){
+            try {
+                System.out.println("Closing socket number : "+i);
+                i++;
+                clientHandler.closeSocket();
+            } catch (IOException e) {
+                System.out.println("Error in closing");
+            }
+        }
+        socketServer.resetSocket();
+    }
+
+    public void clientDisconnection(){
+        serverMessageHandler.clientDisconnection();
     }
 }

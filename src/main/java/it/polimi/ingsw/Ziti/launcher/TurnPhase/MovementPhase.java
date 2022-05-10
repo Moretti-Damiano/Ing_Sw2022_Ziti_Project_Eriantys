@@ -14,11 +14,15 @@ public class MovementPhase extends Phase{
 
     @Override
     public void update() {
+        endCharacter();
         moveNumber++;
         // Check if the player has already moved 3 students (ToTable or ToIsland)
         if(moveNumber == 3){
             moveNumber = 0;
             nextPhase();
+        }
+        else {
+            checkCharacter();
         }
     }
 

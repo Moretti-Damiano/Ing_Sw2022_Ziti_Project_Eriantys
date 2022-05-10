@@ -34,7 +34,7 @@ public class MoveMotherTest {
     @ValueSource(ints = {0,5,7,10})
     public void correctPosition(int pos) throws ActionException {
         Mother.motherInstance().setIsland(game.getIslands().get(pos));
-        game.setAction(new MoveMother(game,4,false));
+        game.setAction(new MoveMother(game,4,true));
         game.doAction();
         assertEquals((pos + 4)%(game.getIslands().size()),game.getIslands().indexOf(Mother.motherInstance().getIsland()));
     }
@@ -43,7 +43,7 @@ public class MoveMotherTest {
     public void InfluenceTest() throws ActionException {
         //for this test mother will move of 1 island
         Island start = Mother.motherInstance().getIsland();
-        game.setAction(new MoveMother(game,1,false));
+        game.setAction(new MoveMother(game,1,true));
         Island destination = game.getNextIsland(start);
 
         destination.getStudents().clear();
@@ -72,7 +72,7 @@ public class MoveMotherTest {
     public void InfluenceWithTowerTest() throws ActionException {
         //for this test mother will move of 1 island
         Island start = Mother.motherInstance().getIsland();
-        game.setAction(new MoveMother(game,1,false));
+        game.setAction(new MoveMother(game,1,true));
         Island destination = game.getNextIsland(start);
 
         destination.getStudents().clear();
@@ -106,7 +106,7 @@ public class MoveMotherTest {
     @Test
     public void mergeTest() throws ActionException {
         //for this test mother will move of 1 island
-        game.setAction(new MoveMother(game,1,false));
+        game.setAction(new MoveMother(game,1,true));
         Island start = Mother.motherInstance().getIsland();
         Island destination = game.getNextIsland(start);
 

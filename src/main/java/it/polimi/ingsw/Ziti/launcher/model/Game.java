@@ -39,13 +39,7 @@ public class Game extends Observable {
      */
     public Game(ArrayList<Player> p){
 
-        //Creates all boards
-        boards = new ArrayList<>();
-        for(Player player: p){
-            Board newBoard = new Board(player);
-            boards.add(newBoard);
-            player.setBoard(newBoard);
-        }
+        this.players = new ArrayList<>(p);
 
         //creates 12 empty islands
         this.islands = new ArrayList<Island>();
@@ -64,8 +58,15 @@ public class Game extends Observable {
         //creates sack with 120 remaining students
         sack = new Sack(130 - (islands.size() - 2));
 
-        //copies p into players
-        this.players = new ArrayList<Player>(p);
+        //Creates all boards
+        boards = new ArrayList<>();
+        for(Player player: players){
+            Board newBoard = new Board(player);
+            boards.add(newBoard);
+            player.setBoard(newBoard);
+        }
+
+        setPlayers(players);
 
         //set numplayer
         this.maxPlayer = players.size();        //PROBABILEMENTE SBAGLIATO
@@ -76,8 +77,6 @@ public class Game extends Observable {
         setUpCloudIslands();
 
         setUpProfessors();
-
-        setPlayers(p);
 
         setUpCharacters();
 
@@ -121,18 +120,22 @@ public class Game extends Observable {
         allCharacters = new ArrayList<>();
         characters = new ArrayList<>();
         //creates all possible characters
-        allCharacters.add(new Character0(this));
-        allCharacters.add(new Character1(this));
-        allCharacters.add(new Character2(this));
-        allCharacters.add(new Character3(this));
-        allCharacters.add(new Character4(this));
-        allCharacters.add(new Character5(this));
+        allCharacters.add(Character0.getInstance());
+        allCharacters.add(Character1.getInstance());
+        allCharacters.add(Character2.getInstance());
+        allCharacters.add(Character3.getInstance());
+        allCharacters.add(Character4.getInstance());
+        allCharacters.add(Character5.getInstance());
 
         //set 3 game's characters
         Random rand = new Random();
+        int random;
         for(int i = 0; i < 3; i++){
             //create a random number
-            characters.add(allCharacters.remove(rand.nextInt(allCharacters.size()-1)));
+            random =rand.nextInt(allCharacters.size()-1);
+            allCharacters.get(random).setGame(this);
+            characters.add(allCharacters.remove(random));
+
         }
     }
 
@@ -173,7 +176,7 @@ public class Game extends Observable {
     }
 
     private void setPlayers(ArrayList<Player> p){
-        players = new ArrayList<>(p);
+
         if(p.size() == 2){
             //set player towercolour
             int towerColour = 0;
@@ -209,10 +212,6 @@ public class Game extends Observable {
                 player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour())); //adds the 8th tower
                 }
             }
-        }
-
-        if(p.size() == 4){
-            //TO BE IMPLEMENTED
         }
     }
 
@@ -301,6 +300,14 @@ public class Game extends Observable {
             if(p.getBoard().hasProfessor(professor_colour)){
                 return p;
             }
+        }
+        return null;
+    }
+
+    public Character getCharacterbyId(int id){
+        for(Character c: characters){
+            if(c.getId() == id)
+                return c;
         }
         return null;
     }

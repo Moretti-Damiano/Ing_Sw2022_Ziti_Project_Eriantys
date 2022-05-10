@@ -9,9 +9,20 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
  */
 public interface GameControllerObserver {
 
+    /**
+     * Send the message to the specified client
+     * @param message the message to be sent
+     * @param nickName the client nickname
+     */
     public void sendToOnePlayer(MessageToClient message, String nickName);
-    public void sendToAllPlayers(MessageToClient message);
-    public void successfulLogin(MessageToClient message, String temporaryName,String newName);
-    public void requestPlayerNumber(MessageToClient message, String nickName);
 
+    /**
+     * Send the message to every connected client
+     * @param message the message to be sent
+     */
+    public void sendToAllPlayers(MessageToClient message);
+
+    public void successfulLogin(MessageToClient message, String temporaryName,String newName);
+    
+    void disconnectAll();
 }

@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import java.util.Map;
 import java.util.Scanner;
 
-public class ConnectionSceneController extends InputObservable {
+public class ConnectionSceneController extends InputObservable implements GenericSceneController{
 
     private final PseudoClass ERROR_PSEUDO_CLASS = PseudoClass.getPseudoClass("error");
 
@@ -44,18 +44,12 @@ public class ConnectionSceneController extends InputObservable {
         String address = serverAddressField.getText();
         String port = serverPortField.getText();
 
-        // boolean isValidIpAddress = ClientController.isValidIpAddress(address);
-        // boolean isValidPort = ClientController.isValidPort(port);
-
-       // serverAddressField.pseudoClassStateChanged(ERROR_PSEUDO_CLASS, !isValidIpAddress);
-       // serverPortField.pseudoClassStateChanged(ERROR_PSEUDO_CLASS, !isValidPort);
-
-        //if (isValidIpAddress && isValidPort) {
             backBtn.setDisable(true);
             connectBtn.setDisable(true);
 
           //  Map<String, String> serverInfo = Map.of("address", address, "port", port);
-           // new Thread(() -> notifyObserver(obs -> obs.onUpdateServerInfo(serverInfo))).start();
+            new Thread(() -> notifyObserver(obs -> obs.onUpdateConnection(address,port))).start();
+            SceneController.changeRootPane(observers, event, "login_scene.fxml");
         }
     
 
@@ -65,10 +59,10 @@ public class ConnectionSceneController extends InputObservable {
      * @param event the mouse click event.
      */
     private void onBackBtnClick(Event event) {
+        SceneController.changeRootPane(observers, event, "menu_scene.fxml");
         backBtn.setDisable(true);
         connectBtn.setDisable(true);
 
-       // SceneController.changeRootPane(observers, event, "menu_scene.fxml");
     }
 
 }

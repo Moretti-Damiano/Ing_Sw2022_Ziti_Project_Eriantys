@@ -4,15 +4,23 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 
-/*Puoi muovere Madre Natura fino a 2 Isole addizionali rispetto a quanto indicato sulla carta Assistente che hai giocato.*/
+/*You may move Mother Nature up to 2 additional islands than is indicated by the Assistant card you've played.*/
 public class Character2 extends Character{
+    private static Character2 instance;
 
-    public Character2(Game game) {
-        super(game);
+    public static Character2 getInstance(){
+        if (instance == null) instance = new Character2();
+        return instance;
+    }
+
+    public Character2() {
+        setId(2);
         setCost(1);
+        setDescription(" You may move Mother Nature up to 2 additional islands than is indicated by the Assistant card you've played ");
         setUsePhase(PhaseType.MOTHER);
         setAvailable(true);
     }
+
 
 
     public void choose() {

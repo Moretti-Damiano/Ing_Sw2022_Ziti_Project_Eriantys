@@ -3,12 +3,13 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 import it.polimi.ingsw.Ziti.launcher.action.MoveMother;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
 import it.polimi.ingsw.Ziti.launcher.model.Mother;
 
-/*Scegli un'isola e calcola la maggioranza come se Madre Natura avesse terminato il suo movimento lì.
- In questo turno Madre Natura si muoverà come di consueto e nell'Isola dove terminarà il suo movimento la maggioranza verrà normalmente calcolata.*/
+/*Choose an island and resolve the island as if Mother Nature had ended her movement there.
+Mother Nature will still move and the island where she ends her movement will also be resolved*/
 
 public class Character1 extends Character{
 
@@ -16,15 +17,24 @@ public class Character1 extends Character{
     private Island motherIsland;
     private int motherIslandPosition;
 
-    public Character1(Game game) {
-        super(game);
+    private static Character1 instance;
+
+    public static Character1 getInstance(){
+        if (instance == null) instance = new Character1();
+        return instance;
+    }
+
+    public Character1() {
+        setId(1);
         setCost(3);
+        setDescription(" Choose an island and resolve the island as if Mother Nature had ended her movement there." +
+                " Mother Nature will still move and the island where she ends her movement will also be resolved ");
         setUsePhase(PhaseType.MOTHER);
         setAvailable(true);
     }
 
 
-    public void choose(int islandId) throws ActionException{
+    public void choose(int islandId) throws CharacterException {
         checkInput();
         this.islandId=islandId;
         setAvailable(false);
@@ -44,7 +54,8 @@ public class Character1 extends Character{
         else{
             moves = islandPosition + (getGame().getIslands().size() - motherIslandPosition);
         }
-        getGame().setAction(new MoveMother(getGame(),moves,true));
+
+        getGame().setAction(new MoveMother(getGame(),moves,false));
         getGame().doAction();
         endAction();
     }
@@ -61,9 +72,9 @@ public class Character1 extends Character{
         Mother.motherInstance().getIsland().addMother();
     }
 
-    private void checkInput() throws ActionException{
+    private void checkInput() throws CharacterException{
         if(!checkId()){
-            throw new ActionException();
+            throw new CharacterException();
         }
     }
 

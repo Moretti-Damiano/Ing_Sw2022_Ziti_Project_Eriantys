@@ -6,6 +6,12 @@ public interface InputObserver {
     void onUpdateLogin(String nickname);
     void onUpdateConnection(String address,String port);
     void onUpdateChooseAssistant(String id);
+    void onUpdateChooseCharacter0(String id);
+    void onUpdateChooseCharacter1(String id, String island);
+    void onUpdateChooseCharacter2(String id);
+    void onUpdateChooseCharacter3(String id);
+    void onUpdateChooseCharacter4(String id, String colour);
+    void onUpdateChooseCharacter5(String id, String colour);
     void onUpdateCloudIsland(String id);
     void onUpdateMoveMother(String moves);
     void onUpdateMoveToIsland(String colour,String id);
@@ -17,4 +23,6 @@ public interface InputObserver {
     void onUpdateCharacterRequest(ShowCharacterRequest message);
     void onUpdateCloudRequest(ShowCloudRequest message);
     void onUpdateIslandRequest(ShowIslandRequest message);
+    //needs to be implemented
+    void onUpdateDisconnection();
 }

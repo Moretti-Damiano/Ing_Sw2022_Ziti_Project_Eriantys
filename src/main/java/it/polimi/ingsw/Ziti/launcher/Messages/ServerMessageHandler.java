@@ -1,7 +1,10 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObservable;
+import it.polimi.ingsw.Ziti.launcher.observer.ServerObserver;
 
 /**
  * This class calls the correct handler methods from the observer class to manage the message received by client and needs to be sent to server
@@ -60,5 +63,26 @@ public class ServerMessageHandler extends ServerObservable {
         notifyObserver(obs -> obs.showIslandRequestHandler(message));
     };
 
+    public void chooseCharacter0Handler(Character0Message message){
+        notifyObserver(obs -> obs.chooseCharacter0Handler(message));
+    }
+    public void chooseCharacter1Handler(Character1Message message){
+        notifyObserver(obs -> obs.chooseCharacter1Handler(message));
+    }
+    public void chooseCharacter2Handler(Character2Message message){
+        notifyObserver(obs -> obs.chooseCharacter2Handler(message));
+    }
+    public void chooseCharacter3Handler(Character3Message message){
+        notifyObserver(obs -> obs.chooseCharacter3Handler(message));
+    }
+    public void chooseCharacter4Handler(Character4Message message){
+        notifyObserver(obs -> obs.chooseCharacter4Handler(message));
+    }
+    public void chooseCharacter5Handler(Character5Message message){
+        notifyObserver(obs -> obs.chooseCharacter5Handler(message));
+    }
 
+    public void clientDisconnection(){
+        notifyObserver(ServerObserver::endGameDisconnection);
+    }
 }
