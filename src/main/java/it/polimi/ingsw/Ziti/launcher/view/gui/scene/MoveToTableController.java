@@ -12,6 +12,12 @@ public class MoveToTableController implements GenericSceneController{
     private Button prevBoard;
     @FXML
     private Button nextBoard;
+    @FXML
+    private Button selectGodBtn;
+    @FXML
+    private Button deselectGodBtn;
+    @FXML
+    private Button confirmBtn;
 
     /*back to select scene button
     * select move button

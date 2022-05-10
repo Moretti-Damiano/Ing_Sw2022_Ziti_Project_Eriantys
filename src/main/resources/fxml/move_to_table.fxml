@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="fxml.MoveToTable">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.MoveToTableController">
    <children>
       <ImageView fitHeight="163.0" fitWidth="315.0" layoutX="143.0" layoutY="119.0" AnchorPane.bottomAnchor="118.0" AnchorPane.leftAnchor="143.0" AnchorPane.rightAnchor="142.0" AnchorPane.topAnchor="119.0">
          <image>
@@ -20,12 +19,12 @@
             <Rectangle2D />
          </viewport>
       </ImageView>
-      <Button fx:id="nextBoard" layoutX="481.0" layoutY="184.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="36.0" styleClass="nextGodBtn" stylesheets="@../../../../../IngSw-Project-2020-master/src/main/resources/css/gods_scene.css">
+      <Button fx:id="nextBoard" layoutX="481.0" layoutY="184.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="36.0" styleClass="" stylesheets="@../../../../../IngSw-Project-2020-master/src/main/resources/css/gods_scene.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
       </Button>
-      <Button fx:id="prevGodBtn" layoutX="84.0" layoutY="184.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="36.0" styleClass="prevGodBtn" stylesheets="@../../../../../IngSw-Project-2020-master/src/main/resources/css/gods_scene.css">
+      <Button fx:id="prevBoard" layoutX="84.0" layoutY="184.0" mnemonicParsing="false" prefHeight="33.0" prefWidth="36.0" styleClass="prevGodBtn" stylesheets="@../../../../../IngSw-Project-2020-master/src/main/resources/css/gods_scene.css">
          <cursor>
             <Cursor fx:constant="HAND" />
          </cursor>
