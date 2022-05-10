@@ -9,6 +9,7 @@ import javafx.scene.control.ToggleGroup;
 import javafx.scene.input.MouseEvent;
 
 public class ChooseAssistantSceneController extends InputObservable implements GenericSceneController{
+
     @FXML
     private Button ConfirmBtn;
 

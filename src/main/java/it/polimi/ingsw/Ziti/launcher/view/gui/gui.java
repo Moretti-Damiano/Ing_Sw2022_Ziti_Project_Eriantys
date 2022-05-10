@@ -7,10 +7,7 @@ import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
-import it.polimi.ingsw.Ziti.launcher.view.gui.scene.ChooseAssistantSceneController;
-import it.polimi.ingsw.Ziti.launcher.view.gui.scene.GodsSceneController;
-import it.polimi.ingsw.Ziti.launcher.view.gui.scene.PlayersNumberSceneController;
-import it.polimi.ingsw.Ziti.launcher.view.gui.scene.SceneController;
+import it.polimi.ingsw.Ziti.launcher.view.gui.scene.*;
 import it.polimi.ingsw.Ziti.launcher.view.view;
 import javafx.application.Platform;
 
@@ -198,9 +195,11 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showAssistantHandler(ShowAssistantResponse message) {
-        //ChooseAssistantSceneController gsc = new ChooseAssistantSceneController();
-        //gsc.addAllObservers(observers);
-        //Platform.runLater(() -> SceneController.changeRootPane(gsc,"chooseAssistant_scene.fxml"));
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getAssistants().toString()));
+        ChooseCharacterController gsc = new ChooseCharacterController();
+        gsc.addAllObservers(observers);
+        gsc.addAssistant(message.getAssistants());
+        Platform.runLater(() -> SceneController.changeRootPane(gsc,"ChooseCharacter_scene.fxml"));
     }
 
     @Override
