@@ -11,4 +11,5 @@ public class ChooseCharacterDoneMessage extends ActionMessage{
     public void handle(ClientMessageHandler clientMessageHandler) {
         clientMessageHandler.ChooseCharacterDoneHandle(this);
     }
+
 }

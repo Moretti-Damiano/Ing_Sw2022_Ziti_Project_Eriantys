@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class CloudIsland implements Serializable {
     private int ID;
-    private int size;       //number of students, always 3, 4 with 3 players
+    private int size;       //number of student on the cloudisland
     private ArrayList<Student> students;
     private Sack sack;
     private boolean available;

@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
@@ -21,12 +22,14 @@ public class ChooseCharacter implements Action{
     public void execute() throws ActionException {
         checkCharacterInGame();
         checkCoin();
+        character.setAvailable(false);
+        character.increaseCost();
     }
 
 
     @Override
     public ActionMessage toMessage() {
-        return null;
+        return new ChooseCharacterDoneMessage(game.getCurrentPlayer().GetName() + " Activated character " + character.getId()+"\nEffect: "+character.getDescription());
     }
 
     private void checkCharacterInGame() throws ActionException {
@@ -49,8 +52,8 @@ public class ChooseCharacter implements Action{
     }
     private boolean activeCharacter(){
         for(Character c : game.getCharacters()){
-            if(c.isAvailable() ){ return false; }
+            if(!c.isAvailable() ){ return true; }
         }
-        return true;
+        return false;
     }
 }

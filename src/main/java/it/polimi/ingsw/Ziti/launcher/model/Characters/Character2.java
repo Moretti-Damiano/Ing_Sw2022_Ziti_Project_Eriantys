@@ -24,7 +24,6 @@ public class Character2 extends Character{
 
 
     public void choose() {
-        setAvailable(false);
     }
 
     @Override
@@ -36,6 +35,5 @@ public class Character2 extends Character{
     public void endEffect() {
         getGame().getCurrentPlayer().getAssChosen().reduceMoves(2);
         setAvailable(true);
-        increaseCost();
     }
 }
