@@ -7,6 +7,7 @@ import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
+import it.polimi.ingsw.Ziti.launcher.view.gui.scene.GodsSceneController;
 import it.polimi.ingsw.Ziti.launcher.view.gui.scene.PlayersNumberSceneController;
 import it.polimi.ingsw.Ziti.launcher.view.gui.scene.SceneController;
 import it.polimi.ingsw.Ziti.launcher.view.view;
@@ -196,7 +197,10 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showAssistantHandler(ShowAssistantResponse message) {
-
+        GodsSceneController gsc = new GodsSceneController();
+        gsc.addAllObservers(observers);
+        gsc.setGods(message.getAssistants());
+        Platform.runLater(() -> SceneController.changeRootPane(gsc,"gods_scene.fxml"));
     }
 
     @Override

@@ -112,12 +112,14 @@
     -fx-background-size: stretch;
     -fx-background-repeat: no-repeat;
 }
-
+/*
 .menuBackground {
     -fx-background-image: url("../images/connection.jpg");
     -fx-background-size: stretch;
     -fx-position: relative;
 }
+*/
+
 
 .menuField {
     -fx-font-size: 16;
