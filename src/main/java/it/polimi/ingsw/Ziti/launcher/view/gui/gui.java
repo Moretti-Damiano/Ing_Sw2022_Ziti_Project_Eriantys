@@ -7,8 +7,7 @@ import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
-import it.polimi.ingsw.Ziti.launcher.view.gui.scene.PlayersNumberSceneController;
-import it.polimi.ingsw.Ziti.launcher.view.gui.scene.SceneController;
+import it.polimi.ingsw.Ziti.launcher.view.gui.scene.*;
 import it.polimi.ingsw.Ziti.launcher.view.view;
 import javafx.application.Platform;
 
@@ -116,12 +115,12 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void InputErrorHandler(InputError message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
@@ -141,17 +140,17 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void chooseAssistantHandler(ChooseAssistantDoneMessage message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void endTurnHandler(EndTurnDoneMessage message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
@@ -173,7 +172,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void LoginErrorHandler(LoginError message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
@@ -186,17 +185,21 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void TurnErrorHandler(TurnError message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void TurnNotificationHandler(TurnNotification message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }
 
     @Override
     public void showAssistantHandler(ShowAssistantResponse message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getAssistants().toString()));
+        ChooseCharacterController gsc = new ChooseCharacterController();
+        gsc.addAllObservers(observers);
+        gsc.addAssistant(message.getAssistants());
+        Platform.runLater(() -> SceneController.changeRootPane(gsc,"ChooseCharacter_scene.fxml"));
     }
 
     @Override

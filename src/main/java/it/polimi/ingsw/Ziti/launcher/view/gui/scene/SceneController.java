@@ -18,7 +18,7 @@ import java.util.List;
  */
 public class SceneController extends InputObservable {
 
-   // public static final String GOD_IMAGE_PREFIX = "/images/gods/podium_";
+    //public static final String GOD_IMAGE_PREFIX = "/images/gods/podium_";
 
     private static Scene activeScene;
     private static GenericSceneController activeController;
@@ -175,7 +175,7 @@ public class SceneController extends InputObservable {
      * @param description the description of the God.
      */
 
-    /*
+
     public static void showGodInformation(String name, String caption, String description) {
         FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/god_info_scene.fxml"));
 
@@ -183,7 +183,6 @@ public class SceneController extends InputObservable {
         try {
             parent = loader.load();
         } catch (IOException e) {
-            Client.LOGGER.severe(e.getMessage());
             return;
         }
         GodInfoSceneController godInfoSceneController = loader.getController();

@@ -35,6 +35,7 @@ public class JavaFXgui extends Application {
 
         controller.addObserver(clientcontroller);
 
+
         // Show the scene containing the root layout.
         Scene scene = new Scene(rootLayout);
         stage.setScene(scene);
