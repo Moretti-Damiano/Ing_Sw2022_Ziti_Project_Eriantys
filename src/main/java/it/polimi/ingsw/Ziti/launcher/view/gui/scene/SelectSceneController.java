@@ -18,7 +18,10 @@ public class SelectSceneController extends InputObservable implements GenericSce
 
     @FXML
     void onChooseCharacterClick(ActionEvent event) {
-        SceneController.changeRootPane(observers, event, "ChooseCharacter_scene.fxml");
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateAssistantRequest(new ShowAssistantRequest()))).start();
+        //SceneController.changeRootPane(observers, event, "ChooseCharacter_scene.fxml");
+        //new Thread(() -> notifyObserver(obs -> obs.onUpdateAssistantRequest(new ShowAssistantRequest()))).start();
+
     }
 
     @FXML
