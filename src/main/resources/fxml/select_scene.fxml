@@ -44,7 +44,7 @@
             </Button>
         </buttons>
       </ButtonBar>
-      <TextArea editable="false" layoutX="14.0" layoutY="10.0" prefHeight="233.0" prefWidth="574.0" text="&#10;&#10;&#10;CHOOSEASSISTANT to chose your assistant&#10;CHOOSECHARACTER to choose your character&#10;CHOOSECLOUD to chose your cloud&#10;MOVEMOTHER to chose the number of mother's movements&#10;MOVETOISLAND to chose the island where you want to put your students&#10;MOVETOTABLE if you want to put your student on the table" />
+      <TextArea editable="false" layoutX="14.0" layoutY="10.0" prefHeight="233.0" prefWidth="574.0" text="&#10;&#10;&#10;CHOOSEASSISTANT to choose your assistant&#10;CHOOSECHARACTER to choose your character&#10;CHOOSECLOUD to choose your cloud&#10;MOVEMOTHER to choose the number of mother's movements&#10;MOVETOISLAND to choose the island where you want to put your students&#10;MOVETOTABLE if you want to put your student on the table" />
    </children>
 
     <stylesheets>

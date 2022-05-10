@@ -245,7 +245,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 notifyObserver(obs -> obs.onUpdateChooseCharacter4(characterId,askColour()));
                 break;
             case"5":
-                notifyObserver(obs -> obs.onUpdateChooseCharacter4(characterId,askColour()));
+                notifyObserver(obs -> obs.onUpdateChooseCharacter5(characterId,askColour()));
                 break;
             default: break;
         }
