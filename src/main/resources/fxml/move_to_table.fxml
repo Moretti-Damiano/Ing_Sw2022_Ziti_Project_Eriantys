@@ -25,13 +25,13 @@
 
    <Button fx:id="selectColourBtn" layoutX="105.0" layoutY="267.0" mnemonicParsing="false" prefHeight="26.0"
            prefWidth="135.0" styleClass="godButton" stylesheets="@../css/move_to_table.css" text="Select"/>
-   <Button fx:id="nextBoardBtn" layoutX="240.0" layoutY="138.0" mnemonicParsing="false" prefHeight="52.0"
+   <Button fx:id="nextBoard" layoutX="240.0" layoutY="138.0" mnemonicParsing="false" prefHeight="52.0"
            prefWidth="52.0" styleClass="nextBoardBtn" stylesheets="@../css/move_to_table.css">
       <cursor>
          <Cursor fx:constant="HAND"/>
       </cursor>
    </Button>
-   <Button fx:id="prevBoardBtn" layoutX="60.0" layoutY="139.0" mnemonicParsing="false" prefHeight="52.0"
+   <Button fx:id="prevBoard" layoutX="60.0" layoutY="139.0" mnemonicParsing="false" prefHeight="52.0"
            prefWidth="51.0" styleClass="prevBoardBtn" stylesheets="@../css/move_to_table.css">
       <cursor>
          <Cursor fx:constant="HAND"/>
