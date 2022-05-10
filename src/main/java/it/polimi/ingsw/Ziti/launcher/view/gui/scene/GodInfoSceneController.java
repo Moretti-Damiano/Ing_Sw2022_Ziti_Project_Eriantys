@@ -135,7 +135,7 @@ public class GodInfoSceneController implements GenericSceneController {
      * Sets the god's image.
      */
     public void setGodImage() {
-        Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Assistente (" + godName.toLowerCase() + ").png")));
+        Image img = new Image(getClass().getResourceAsStream("/images/Assistente (" + godName.toLowerCase() + ").png"));
         godImg.setImage(img);
     }
 }

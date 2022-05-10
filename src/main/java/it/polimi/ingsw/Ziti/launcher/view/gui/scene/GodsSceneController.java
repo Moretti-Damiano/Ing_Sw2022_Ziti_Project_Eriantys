@@ -41,11 +41,12 @@ public class GodsSceneController extends InputObservable implements GenericScene
     @FXML
     private ImageView focusGodImg;
     @FXML
-    private ListView<String> selectedGodsListView;
+    private ListView<Integer> selectedGodsListView;
 
     public GodsSceneController() {
         godIndex = 0;
         selectedGods = new ArrayList<>();
+
     }
 
     @FXML
@@ -90,7 +91,7 @@ public class GodsSceneController extends InputObservable implements GenericScene
     }
 
     private void setFocusGodImage(String godName) {
-        Image img = new Image(Objects.requireNonNull(getClass().getResourceAsStream("/images/Assistente (" + godName + ").png")));
+        Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+godName+").png"));
         focusGodImg.setImage(img);
     }
 
@@ -170,6 +171,13 @@ public class GodsSceneController extends InputObservable implements GenericScene
             deselectGodBtn.setDisable(true);
         }
 
+    }
+    private void updateSelectedGodsListView() {
+        List<Integer> godNameList = selectedGods.stream()
+                .map(Assistant::getId)
+                .collect(Collectors.toList());
+
+        selectedGodsListView.setItems(FXCollections.observableArrayList(godNameList));
     }
 
 

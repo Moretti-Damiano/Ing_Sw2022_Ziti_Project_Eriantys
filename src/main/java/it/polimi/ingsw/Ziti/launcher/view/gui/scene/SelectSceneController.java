@@ -11,7 +11,7 @@ public class SelectSceneController extends InputObservable implements GenericSce
     void onChooseAssistantClick(ActionEvent event) {
         new Thread(() -> notifyObserver(obs -> obs.onUpdateAssistantRequest(new ShowAssistantRequest()))).start();
         //SceneController.changeRootPane(observers, event, "ChooseAssistant_scene.fxml");
-        SceneController.changeRootPane(observers, event, "gods_scene.fxml");
+        //SceneController.changeRootPane(observers, event, "gods_scene.fxml");
 
     }
 
