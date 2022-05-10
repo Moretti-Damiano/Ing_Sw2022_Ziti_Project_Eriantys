@@ -23,12 +23,13 @@ public class ChooseCharacter implements Action{
         checkCharacterInGame();
         checkCoin();
         character.setAvailable(false);
+        character.increaseCost();
     }
 
 
     @Override
     public ActionMessage toMessage() {
-        return new ChooseCharacterDoneMessage("Activated character " + character.getId()+"\nEffect: "+character.getDescription());
+        return new ChooseCharacterDoneMessage(game.getCurrentPlayer().GetName() + " Activated character " + character.getId()+"\nEffect: "+character.getDescription());
     }
 
     private void checkCharacterInGame() throws ActionException {

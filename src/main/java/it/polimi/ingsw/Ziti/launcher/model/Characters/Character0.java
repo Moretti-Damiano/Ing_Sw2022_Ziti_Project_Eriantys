@@ -29,7 +29,6 @@ public class Character0 extends Character{
     }
 
     public void choose(){
-
     }
 
     //starta quando inizia movemother

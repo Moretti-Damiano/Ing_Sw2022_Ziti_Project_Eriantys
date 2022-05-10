@@ -70,7 +70,6 @@ public class Character3 extends Character{
                 }
             }
         }
-        increaseCost();
         setAvailable(true);
     }
 }

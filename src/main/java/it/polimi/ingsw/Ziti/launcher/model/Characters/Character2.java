@@ -35,6 +35,5 @@ public class Character2 extends Character{
     public void endEffect() {
         getGame().getCurrentPlayer().getAssChosen().reduceMoves(2);
         setAvailable(true);
-        increaseCost();
     }
 }

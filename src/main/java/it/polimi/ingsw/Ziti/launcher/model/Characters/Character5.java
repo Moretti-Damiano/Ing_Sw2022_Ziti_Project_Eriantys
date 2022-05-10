@@ -37,7 +37,6 @@ public class Character5 extends Character{
     public void choose(String colour) throws CharacterException {
     checkInput(colour);
     this.colour=Colour.valueOfName(colour);
-
     }
 
     @Override
@@ -54,7 +53,6 @@ public class Character5 extends Character{
         if(profPlayer!=null)
             profPlayer.getBoard().addProfessor(professor);
         setAvailable(true);
-        increaseCost();
     }
 
     private void checkInput(String colour) throws CharacterException{

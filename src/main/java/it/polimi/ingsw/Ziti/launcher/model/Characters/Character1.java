@@ -35,8 +35,9 @@ public class Character1 extends Character{
 
 
     public void choose(int islandId) throws CharacterException {
-        checkInput();
+        checkInput(islandId);
         this.islandId=islandId;
+
     }
 
     @Override
@@ -68,13 +69,13 @@ public class Character1 extends Character{
         Mother.motherInstance().getIsland().addMother();
     }
 
-    private void checkInput() throws CharacterException{
-        if(!checkId()){
+    private void checkInput(int islandId) throws CharacterException{
+        if(!checkId(islandId)){
             throw new CharacterException();
         }
     }
 
-    private boolean checkId(){
+    private boolean checkId(int islandId){
         for(Island i: getGame().getIslands()){
             if(i.getID() == islandId){
                 return true;
