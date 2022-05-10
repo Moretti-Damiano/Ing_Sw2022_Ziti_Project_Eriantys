@@ -52,4 +52,12 @@ public class SocketServer implements Runnable{
     public void receive(MessagetoServer message){
         server.receive(message);
     }
+
+    public void resetSocket(){
+        clientHandlers.clear();
+    }
+
+    public void clientDisconnection(){
+        server.clientDisconnection();
+    }
 }

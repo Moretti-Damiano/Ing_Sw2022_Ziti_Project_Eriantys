@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.model.*;
@@ -24,7 +25,7 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showCharacters(ArrayList<CharacterOLD> characters) {
+    public void showCharacters(ArrayList<CharacterSummary> characterSummaries) {
 
     }
 
@@ -97,6 +98,11 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void askCloudIsland() {
+
+    }
+
+    @Override
+    public void askChoseCharacter() {
 
     }
 
@@ -201,6 +207,9 @@ public class gui extends InputObservable implements view, ViewObserver {
     public void showCharacterHandler(ShowCharacterResponse message) {
 
     }
+
+
+
 
     @Override
     public void showBoardHandler(ShowBoardResponse message) {

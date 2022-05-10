@@ -38,7 +38,10 @@ public class ClientHandler implements Runnable {
             System.out.println("ClientHandler Started");
             keepListening();
         }
-        catch (IOException e) {System.out.println("IOexception");}
+        catch (IOException e) {
+            System.out.println("IOexception in clienthandler " + nickName);
+            socketServer.clientDisconnection();
+        }
         catch (ClassNotFoundException e) {
             System.out.println("Class not found exc");
         }
@@ -72,6 +75,9 @@ public class ClientHandler implements Runnable {
         } catch (IOException e) {
             System.out.println("Error in sending message to " + nickName);
         }
+    }
 
+    public void closeSocket() throws IOException{
+        this.socket.close();
     }
 }

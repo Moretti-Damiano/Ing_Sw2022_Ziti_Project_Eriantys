@@ -29,16 +29,17 @@ public class Character0 extends Character{
     }
 
     public void choose(){
-        setAvailable(false);
     }
 
     //starta quando inizia movemother
     @Override
     public void startEffect() {
         for(Colour colour:Colour.values()){
+            if(getGame().getCurrentPlayer().getBoard().getColorRowSize(colour) > 0){
             getGame().getCurrentPlayer().getBoard().addStudenttoColourRow(new Student(colour));
             MoveToTable movetotable=new MoveToTable(getGame(),colour.getName());
             movetotable.controlProfessor(colour);
+        }
         }
 
     }
@@ -46,12 +47,12 @@ public class Character0 extends Character{
     @Override
     public void endEffect() {
         for(Colour colour:Colour.values()){
+            if(getGame().getCurrentPlayer().getBoard().getColorRowSize(colour) > 0){
             getGame().getCurrentPlayer().getBoard().removeStudentfromColourRow(new Student(colour));
             MoveToTable movetotable = new MoveToTable(getGame(), colour.getName());
             movetotable.controlProfessor(colour);
         }
-
-        increaseCost();
+        }
         setAvailable(true);
     }
 }

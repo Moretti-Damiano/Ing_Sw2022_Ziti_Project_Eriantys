@@ -5,11 +5,12 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 /**
  * This message has a list of characters as a response to a Show Character request
  */
-public class ShowCharacterResponse extends MessageToClient{
+public class ShowCharacterResponse extends MessageToClient implements Serializable {
 
     ArrayList<CharacterSummary> characterSummaries;
 
