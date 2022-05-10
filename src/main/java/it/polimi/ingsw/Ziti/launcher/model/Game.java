@@ -24,8 +24,8 @@ public class Game extends Observable {
     private ArrayList<Board> boards;
     private Mother mother;
     private Sack sack;
-    private int maxPlayer;
-    private int playerNumber;
+    //private int maxPlayer;
+    private int playerNumber;   //indictes the number of player at the start of the game
     private ArrayList<Professor> professors;
     private Player currentPlayer;
     private Action action;
@@ -62,17 +62,15 @@ public class Game extends Observable {
         boards = new ArrayList<>();
         for(Player player: players){
             Board newBoard = new Board(player);
-            boards.add(newBoard);
             player.setBoard(newBoard);
+            boards.add(newBoard);
         }
 
         setPlayers(players);
 
         //set numplayer
-        this.maxPlayer = players.size();        //PROBABILEMENTE SBAGLIATO
+        //this.maxPlayer = players.size();        //PROBABILEMENTE SBAGLIATO
         this.playerNumber = players.size();
-
-        this.sack = new Sack(islands.size()-2);
 
         setUpCloudIslands();
 
@@ -82,6 +80,10 @@ public class Game extends Observable {
 
     }
 
+    /**
+     * Places Mother on a random island, then it fills the sack with 10 students (2 per colour)
+     * and adds a student from the sack to each island, except for the one with Mother on, and the opposite one.
+     */
     private void setUpIsland_Mother(){
         //places mother on a random island
         Random rand = new Random();
@@ -100,6 +102,9 @@ public class Game extends Observable {
         }
     }
 
+    /**
+     * creates and setup all the cloudIslands
+     */
     private void setUpCloudIslands(){
         cloudIslands = new ArrayList<>();
         for(int i = 0; i < playerNumber; i++){
@@ -108,6 +113,9 @@ public class Game extends Observable {
         }
     }
 
+    /**
+     * Create all the professor
+     */
     private void setUpProfessors(){
         professors = new ArrayList<>();
         for(Colour c: Colour.values()){
@@ -175,6 +183,11 @@ public class Game extends Observable {
         return boards;
     }
 
+    /**
+     * depending on the game number of players, this method initializes each player's board
+     * adding students and towers of the automatically assigned colour
+     * @param p the arraylist containing all the players
+     */
     private void setPlayers(ArrayList<Player> p){
 
         if(p.size() == 2){
