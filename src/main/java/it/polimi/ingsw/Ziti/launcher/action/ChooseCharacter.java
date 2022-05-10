@@ -52,8 +52,8 @@ public class ChooseCharacter implements Action{
     }
     private boolean activeCharacter(){
         for(Character c : game.getCharacters()){
-            if(c.isAvailable() ){ return false; }
+            if(!c.isAvailable() ){ return true; }
         }
-        return true;
+        return false;
     }
 }
