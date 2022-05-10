@@ -112,23 +112,21 @@
     -fx-background-size: stretch;
     -fx-background-repeat: no-repeat;
 }
-/*
+
 .menuBackground {
     -fx-background-image: url("../images/connection.jpg");
     -fx-background-size: stretch;
     -fx-position: relative;
 }
-*/
-
 
 .menuField {
     -fx-font-size: 16;
 }
-
+/*
 .menuField:error {
     -fx-border-color: red;
 }
-
+*/
 .blueGlow:hover {
     -fx-effect: dropshadow(gaussian, #3333ff, 20, 0.3, 0, 0);
 }
