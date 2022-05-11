@@ -15,41 +15,50 @@ If any player has fewer than 3 students of that type, return as many students as
 public class Character4 extends Character{
 
     private static Character4 instance;
+    private Colour colour;
 
     public static Character4 getInstance(){
         if (instance == null) instance = new Character4();
         return instance;
     }
 
-    private Colour colour;
 
     public Character4() {
+        super();
         setId(4);
         setCost(3);
         setDescription(" Choose a type of student : every player (including yourself) must return 3 students of that type from their dining room to the bag." +
                 " If any player has fewer than 3 students of that type, return as many students as they have ");
-        setUsePhase(PhaseType.MOVEMENT);
+        getUsePhase().add(PhaseType.MOVEMENT);
+        getUsePhase().add(PhaseType.MOTHER);
         setAvailable(true);
+        setEndPhase(PhaseType.MOTHER);
     }
 
 
     public void choose(String colour) throws CharacterException {
      checkInput(colour);
-     this.colour=Colour.valueOfName(colour);
+     this.colour = Colour.valueOfName(colour);
     }
 
+    /**
+     * Removes 3 student of the selected colour from each player's table.
+     * If there are less than 3, it removes all.
+     */
     @Override
     public void startEffect(){
+        setUsed(true);
         for(Player player: getGame().getPlayers()){
             if(player.getBoard().getColorRowSize(colour) < 3){
-                for(Student student: player.getBoard().getColourRow(colour)){
-                    player.getBoard().getColourRow(colour).remove(student);
+                int size = player.getBoard().getColorRowSize(colour);
+                player.getBoard().getColourRow(colour).clear();
+                for(int i = 0; i < size; i++){
                     getGame().getSack().insert(new Student(colour));
                 }
             }
             else
             {
-                for(int i = 0; i<3;i++){
+                for(int i = 0; i < 3; i++){
                     player.getBoard().getColourRow(colour).remove(player.getBoard().getColorRowSize(colour)-1);
                     getGame().getSack().insert(new Student(colour));
                 }
@@ -60,7 +69,7 @@ public class Character4 extends Character{
     @Override
     public void endEffect() {
         setAvailable(true);
-        increaseCost();
+        setUsed(false);
     }
 
     private void checkInput(String colour) throws CharacterException{

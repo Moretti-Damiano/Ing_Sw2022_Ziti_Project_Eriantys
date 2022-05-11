@@ -260,10 +260,11 @@ public class GameController extends GameControllerObservable implements ServerOb
         if(checkActivePlayer(message.getSender())){
             game.setAction(new ChooseCharacter(game, Character0.getInstance()));
             try {
-                //Character0.getInstance().choose();
                 game.doAction();
-                //notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 0")));
                 //notifica di choosecharacterDone è fatta da game.doAction()!!!
+                if(Character0.getInstance().isPhase(turnController.getPhase().getPhaseType())){
+                    Character0.getInstance().startEffect();
+                }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
@@ -278,7 +279,9 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
                 Character1.getInstance().choose(message.getIslandId());
                 game.doAction();
-                //notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 1")));
+                if(Character1.getInstance().isPhase(turnController.getPhase().getPhaseType())){
+                    Character1.getInstance().startEffect();
+                }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
@@ -295,8 +298,9 @@ public class GameController extends GameControllerObservable implements ServerOb
             game.setAction(new ChooseCharacter(game, Character2.getInstance()));
             try {
                 game.doAction();
-                //Character2.getInstance().choose();
-                //notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 2")));
+                if(Character2.getInstance().isPhase(turnController.getPhase().getPhaseType())){
+                    Character2.getInstance().startEffect();
+                }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
@@ -309,8 +313,9 @@ public class GameController extends GameControllerObservable implements ServerOb
             game.setAction(new ChooseCharacter(game, Character3.getInstance()));
             try {
                 game.doAction();
-                //Character3.getInstance().choose();
-                //notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 3")));
+                if(Character3.getInstance().isPhase(turnController.getPhase().getPhaseType())){
+                    Character3.getInstance().startEffect();
+                }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
@@ -324,7 +329,9 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
                 Character4.getInstance().choose(message.getColour());
                 game.doAction();
-                //notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 4")));
+                if(Character4.getInstance().isPhase(turnController.getPhase().getPhaseType())){
+                    Character4.getInstance().startEffect();
+                }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
@@ -342,7 +349,9 @@ public class GameController extends GameControllerObservable implements ServerOb
             try {
                 Character5.getInstance().choose(message.getColour());
                 game.doAction();
-                //notifyObserver(obs -> obs.sendToAllPlayers(new ChooseCharacterDoneMessage((message.getSender()) + " has chosen character 5")));
+                if(Character5.getInstance().isPhase(turnController.getPhase().getPhaseType())){
+                    Character5.getInstance().startEffect();
+                }
             }
             catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));

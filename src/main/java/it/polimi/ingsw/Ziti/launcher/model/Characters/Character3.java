@@ -2,11 +2,9 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 
 import it.polimi.ingsw.Ziti.launcher.action.MoveMother;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
+import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
-import it.polimi.ingsw.Ziti.launcher.model.Game;
-import it.polimi.ingsw.Ziti.launcher.model.Island;
-import it.polimi.ingsw.Ziti.launcher.model.Mother;
-import it.polimi.ingsw.Ziti.launcher.model.Tower;
+import it.polimi.ingsw.Ziti.launcher.model.*;
 
 import java.util.ArrayList;
 
@@ -25,11 +23,14 @@ public class Character3 extends Character{
     }
 
     public Character3() {
+        super();
         setId(3);
         setCost(3);
         setDescription(" When resolving a Conquering on an island, towers do not count towards influence ");
         setAvailable(true);
-        setUsePhase(PhaseType.MOTHER);
+        getUsePhase().add(PhaseType.MOVEMENT);
+        getUsePhase().add(PhaseType.MOTHER);
+        setEndPhase(PhaseType.MOTHER);
     }
 
     public void choose() {
@@ -37,6 +38,7 @@ public class Character3 extends Character{
 
     @Override
     public void startEffect(){
+        setUsed(true);
         originalIslands = new ArrayList<>(getGame().getIslands());
         for(Island island: getGame().getIslands()){
             if(island.getTowerPlayer()!=null){
@@ -51,12 +53,14 @@ public class Character3 extends Character{
         Mother mother = Mother.motherInstance();
 
         for(int i =0; i < originalIslands.size();i++){
-            if(getGame().getIslands().get(i)!= mother.getIsland()){
+            if(getGame().getIslands().get(i) != mother.getIsland()){
                 //set oll towerPlayer
                 getGame().getIslands().get(i).setTowerPlayer(originalIslands.get(i).getTowerPlayer());
                 //add old towers
-                for(Tower tower: originalIslands.get(i).getTowers()){
-                    getGame().getIslands().get(i).getTowers().add(tower);
+                for(int j = 0; j < originalIslands.get(i).getTowers().size(); j++){
+                    Player player = originalIslands.get(i).getTowerPlayer();
+                    TowerColour towerColour = player.getBoard().getTower_colour();
+                    getGame().getIslands().get(i).getTowers().add(new Tower(player,towerColour));
                 }
             }
             else{
@@ -71,5 +75,6 @@ public class Character3 extends Character{
             }
         }
         setAvailable(true);
+        setUsed(false);
     }
 }

@@ -5,14 +5,23 @@ import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public abstract class Character implements Serializable {
     private Game game;
     private int id;
     private int cost;
     private String description;
-    private PhaseType usePhase;
+    private ArrayList<PhaseType> usePhase;
+    private PhaseType endPhase;
     private boolean available;
+    private boolean used;
+
+    public Character(){
+        this.usePhase = new ArrayList<>();
+        this.used = false;
+    }
+
 
     public int getId() {
         return id;
@@ -44,12 +53,31 @@ public abstract class Character implements Serializable {
         return game;
     }
 
-    public PhaseType getUsePhase() {
+    public ArrayList<PhaseType> getUsePhase() {
         return usePhase;
     }
 
-    public void setUsePhase(PhaseType usePhase) {
-        this.usePhase = usePhase;
+    public PhaseType getEndPhase() {
+        return endPhase;
+    }
+
+    public void setEndPhase(PhaseType endPhase) {
+        this.endPhase = endPhase;
+    }
+
+    public boolean isUsed() {
+        return used;
+    }
+
+    public void setUsed(boolean used) {
+        this.used = used;
+    }
+
+    public boolean isPhase(PhaseType phase){
+        if(usePhase.contains(phase))
+            return true;
+        else
+            return false;
     }
 
     public void increaseCost(){

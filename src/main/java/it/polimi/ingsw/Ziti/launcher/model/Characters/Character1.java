@@ -25,12 +25,15 @@ public class Character1 extends Character{
     }
 
     public Character1() {
+        super();
         setId(1);
         setCost(3);
         setDescription(" Choose an island and resolve the island as if Mother Nature had ended her movement there." +
                 " Mother Nature will still move and the island where she ends her movement will also be resolved ");
-        setUsePhase(PhaseType.MOTHER);
+        getUsePhase().add(PhaseType.MOVEMENT);
+        getUsePhase().add(PhaseType.MOTHER);
         setAvailable(true);
+        setEndPhase(PhaseType.MOTHER);
     }
 
 
@@ -42,6 +45,7 @@ public class Character1 extends Character{
 
     @Override
     public void startEffect() throws ActionException {
+        setUsed(true);
         int moves;
         int islandPosition = getGame().getIslands().indexOf(getGame().getIslandbyId(islandId));
         motherIsland = getGame().getIslandbyId(Mother.motherInstance().getIsland().getID());
@@ -62,6 +66,7 @@ public class Character1 extends Character{
     @Override
     public void endEffect() {
         setAvailable(true);
+        setUsed(false);
     }
 
     private void endAction(){
