@@ -24,6 +24,7 @@ public class Board implements Serializable {
             towers = new ArrayList<Tower>();
             professors = new ArrayList<Professor>();
             wallet = new ArrayList<Coin>();
+
             students_waiting = new ArrayList<Student>();
             students = new ArrayList[colorrow];
             for (int i = 0; i < colorrow; i++) {

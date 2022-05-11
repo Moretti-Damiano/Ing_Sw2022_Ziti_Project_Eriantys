@@ -112,6 +112,9 @@ public class cli extends InputObservable implements view, ViewObserver {
             if (board.hasProfessor(c))
                 System.out.println("You have " + c.getName()+" professor");
         }
+
+        //show towers
+        System.out.println("There are " + board.getTowerSize() + " towers");
     }
 
     @Override
