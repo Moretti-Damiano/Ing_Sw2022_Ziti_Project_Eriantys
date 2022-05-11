@@ -86,7 +86,6 @@ public class MoveMother implements Action {
      *               the new player has the same points as the old one
      */
     private void updateIsland(Island island, Player player) {
-        System.out.println("In updateisland:");
         if (island.getTowerPlayer() != player && !isNull(player)) {
             for (Tower T : island.getTowers()) {
                 if (!isNull(island.getTowerPlayer())) {
@@ -103,7 +102,6 @@ public class MoveMother implements Action {
             }
             else{
                 for (int i = 0; i < size; i++) {
-                    System.out.println("Removing tower from " + player.GetName());
                     island.getTowers().add(player.getBoard().removeTower());
                 }
             }
