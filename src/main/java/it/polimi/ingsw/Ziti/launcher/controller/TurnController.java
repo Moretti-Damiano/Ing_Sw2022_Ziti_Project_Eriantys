@@ -23,6 +23,7 @@ public class TurnController {
     private ArrayList<Player> orderPlayers;
     private int playersDone;
     private Map<Integer,Player> playerAssistants;
+    private int turnNumber;
 
     private Phase phase;
 
@@ -36,6 +37,7 @@ public class TurnController {
         gameController.notifyNewActivePlayer(currentPlayer);
         this.gameController.getGame().setActivePlayer(currentPlayer);
         playersDone = 1;
+        turnNumber = 0;
     }
 
     public void setPhase(Phase phase){
@@ -43,8 +45,9 @@ public class TurnController {
     }
 
     public void updatePhase() throws WinException {
-            checkWin();
+            checkWin();     //check number of tower and islands
             phase.update();
+            checkWin();     //check if it's the 10th turn
     }
 
 
@@ -66,6 +69,13 @@ public class TurnController {
         gameController.notifyNewActivePlayer(currentPlayer);
     }
 
+    public void addTurnDone() {
+        turnNumber++;
+    }
+
+    public int getTurnNumber() {
+        return turnNumber;
+    }
     /**
      * set the currentPlayer in both turnController and game to the next one
      */
@@ -115,33 +125,16 @@ public class TurnController {
         return phase;
     }
 
-    private void checkWin() throws WinException{
+    public void checkWin() throws WinException{
         checkWinTowers();
         checkWinIslands();
+        checkWinAssistant();
     }
 
     private void checkWinIslands() throws WinException {
-        int towers;
-        Player winner;
 
         if(gameController.getGame().getIslands().size() == 3){
-
-            winner = gameController.getPlayers().get(0);
-            towers = winner.getBoard().getTowerSize();
-
-            for(Player p: gameController.getPlayers()){
-                if(p.getBoard().getTowerSize() < towers){
-                    winner = p;
-                    towers = p.getBoard().getTowerSize();
-
-                }
-                if(p.getBoard().getTowerSize() == towers){
-                    if(p.getBoard().getProfessors().size() > winner.getBoard().getProfessors().size()){
-                        winner = p;
-                    }
-                }
-            }
-            throw new WinException(winner.GetName());
+            chooseWinnerByTowers();
         }
     }
 
@@ -150,4 +143,37 @@ public class TurnController {
          throw new WinException(getCurrentPlayer().GetName());
      }
     }
+
+
+    private void checkWinAssistant() throws WinException {
+        if(turnNumber == 10)    //updated by CloudPhase at the end of the turn of the last player
+            chooseWinnerByTowers();
+    }
+
+
+    /**
+     * This method gets called only if one of the winConditions is verified.
+     * It calculates the winning player, then throws a winexception containing the winner's name
+     * @throws WinException containing the winner's name
+     */
+    private void chooseWinnerByTowers() throws WinException {
+
+        Player winner = gameController.getPlayers().get(0);
+        int towers = winner.getBoard().getTowerSize();
+
+        for(Player p: players){
+            if(p.getBoard().getTowerSize() < towers){
+                winner = p;
+                towers = p.getBoard().getTowerSize();
+
+            }
+            if(p.getBoard().getTowerSize() == towers){
+                if(p.getBoard().getProfessors().size() > winner.getBoard().getProfessors().size()){
+                    winner = p;
+                }
+            }
+        }
+        throw new WinException(winner.GetName());
+    }
+
 }
