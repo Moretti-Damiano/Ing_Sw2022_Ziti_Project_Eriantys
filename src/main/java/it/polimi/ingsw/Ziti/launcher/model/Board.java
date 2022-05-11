@@ -66,7 +66,7 @@ public class Board implements Serializable {
      * Remove a tower from towers and returns it
      */
     public Tower removeTower() {
-       return towers.remove(0);
+       return towers.remove(towers.size()-1);
     }
 
     /**

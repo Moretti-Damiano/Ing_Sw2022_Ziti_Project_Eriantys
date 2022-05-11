@@ -139,17 +139,15 @@ public class TurnController {
     }
 
     private void checkWinTowers() throws WinException{
-     if(getCurrentPlayer().getBoard().getTowerSize()==0){
+     if(getCurrentPlayer().getBoard().getTowerSize() == 0){
          throw new WinException(getCurrentPlayer().GetName());
      }
     }
-
 
     private void checkWinAssistant() throws WinException {
         if(turnNumber == 10)    //updated by CloudPhase at the end of the turn of the last player
             chooseWinnerByTowers();
     }
-
 
     /**
      * This method gets called only if one of the winConditions is verified.
