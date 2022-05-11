@@ -42,14 +42,15 @@ public abstract class Phase {
 
     /**
      * Check if in the game there's an active character whose effect starts in this phase,
-     * if it exists, the method starts the character effect.
+     * if it exists, the method starts the character effect if it hasn't started already
      */
     public void checkCharacter(){
         for(Character c: getTurncontroller().getGameController().getGame().getCharacters()){
-            if(!c.isAvailable() && c.getUsePhase().equals(this.getPhaseType())){
+            if(!c.isAvailable() && c.isPhase(this.getPhaseType())){
                 try {
                     setActiveCharacter(c);
-                    c.startEffect();
+                    if(!c.isUsed())
+                        c.startEffect();
                 } catch (ActionException e) {
                     //send invalid input error (never gonna happen)
                 }
@@ -61,7 +62,7 @@ public abstract class Phase {
      * Run the end_effect of the active character started in this phase
      */
     public void endCharacter(){
-        if(activeCharacter != null){
+        if(activeCharacter != null && activeCharacter.getEndPhase().equals(phaseType)){
             activeCharacter.endEffect();
         }
     }

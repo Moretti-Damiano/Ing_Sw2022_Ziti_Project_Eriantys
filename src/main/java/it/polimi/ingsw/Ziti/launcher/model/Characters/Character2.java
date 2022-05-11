@@ -14,11 +14,14 @@ public class Character2 extends Character{
     }
 
     public Character2() {
+        super();
         setId(2);
         setCost(1);
         setDescription(" You may move Mother Nature up to 2 additional islands than is indicated by the Assistant card you've played ");
-        setUsePhase(PhaseType.MOTHER);
+        getUsePhase().add(PhaseType.MOVEMENT);
+        getUsePhase().add(PhaseType.MOTHER);
         setAvailable(true);
+        setEndPhase(PhaseType.MOTHER);
     }
 
 
@@ -28,6 +31,7 @@ public class Character2 extends Character{
 
     @Override
     public void startEffect(){
+        setUsed(true);
         getGame().getCurrentPlayer().getAssChosen().addMoves(2);
     }
 
@@ -35,5 +39,6 @@ public class Character2 extends Character{
     public void endEffect() {
         getGame().getCurrentPlayer().getAssChosen().reduceMoves(2);
         setAvailable(true);
+        setUsed(false);
     }
 }

@@ -21,27 +21,31 @@ public class Character0 extends Character{
     }
 
     private Character0() {
+        super();
         setId(0);
         setCost(2);
         setDescription(" During this turn, you take control of any number of professor even if you have the same number of student as the player who controls them\n ");
         setAvailable(true);
-        setUsePhase(PhaseType.MOTHER);
+        getUsePhase().add(PhaseType.MOVEMENT);
+        getUsePhase().add(PhaseType.MOTHER);
+        setEndPhase(PhaseType.MOTHER);
     }
 
     public void choose(){
     }
 
-    //starta quando inizia movemother
     @Override
     public void startEffect() {
+        setUsed(true);
         for(Colour colour:Colour.values()){
             if(getGame().getCurrentPlayer().getBoard().getColorRowSize(colour) > 0){
+
             getGame().getCurrentPlayer().getBoard().addStudenttoColourRow(new Student(colour));
+
             MoveToTable movetotable=new MoveToTable(getGame(),colour.getName());
             movetotable.controlProfessor(colour);
+            }
         }
-        }
-
     }
 
     @Override
@@ -51,8 +55,9 @@ public class Character0 extends Character{
             getGame().getCurrentPlayer().getBoard().removeStudentfromColourRow(new Student(colour));
             MoveToTable movetotable = new MoveToTable(getGame(), colour.getName());
             movetotable.controlProfessor(colour);
-        }
+            }
         }
         setAvailable(true);
+        setUsed(false);
     }
 }

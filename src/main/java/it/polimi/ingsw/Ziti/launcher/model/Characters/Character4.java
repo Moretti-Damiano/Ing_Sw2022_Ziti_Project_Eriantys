@@ -24,12 +24,15 @@ public class Character4 extends Character{
 
 
     public Character4() {
+        super();
         setId(4);
         setCost(3);
         setDescription(" Choose a type of student : every player (including yourself) must return 3 students of that type from their dining room to the bag." +
                 " If any player has fewer than 3 students of that type, return as many students as they have ");
-        setUsePhase(PhaseType.MOVEMENT);
+        getUsePhase().add(PhaseType.MOVEMENT);
+        getUsePhase().add(PhaseType.MOTHER);
         setAvailable(true);
+        setEndPhase(PhaseType.MOTHER);
     }
 
 
@@ -44,6 +47,7 @@ public class Character4 extends Character{
      */
     @Override
     public void startEffect(){
+        setUsed(true);
         for(Player player: getGame().getPlayers()){
             if(player.getBoard().getColorRowSize(colour) < 3){
                 int size = player.getBoard().getColorRowSize(colour);
@@ -65,7 +69,7 @@ public class Character4 extends Character{
     @Override
     public void endEffect() {
         setAvailable(true);
-        increaseCost();
+        setUsed(false);
     }
 
     private void checkInput(String colour) throws CharacterException{

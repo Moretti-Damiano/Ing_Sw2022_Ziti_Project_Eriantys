@@ -26,11 +26,13 @@ public class Character5 extends Character{
     }
 
     public Character5() {
+        super();
         setId(5);
         setCost(3);
         setDescription("Choose a colour of student: during the influence calculation this turn,that color adds no influence");
-        setUsePhase(PhaseType.MOTHER);
+        getUsePhase().add(PhaseType.MOTHER);
         setAvailable(true);
+        setEndPhase(PhaseType.MOTHER);
     }
 
 
@@ -41,6 +43,7 @@ public class Character5 extends Character{
 
     @Override
     public void startEffect()  {
+        setUsed(true);
         //tolgo il prof di quel colore
         Player profPlayer = getGame().checkProfessor(colour);
         if(profPlayer != null)
@@ -52,7 +55,9 @@ public class Character5 extends Character{
         //rimetto il professore
         if(profPlayer!=null)
             profPlayer.getBoard().addProfessor(professor);
+
         setAvailable(true);
+        setUsed(false);
     }
 
     private void checkInput(String colour) throws CharacterException{

@@ -7,7 +7,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 
 /**
- * check if the current Player has enough coins and if there irs already a chosen character
+ * check if the current Player has enough coins and if there is already a chosen character
  */
 public class ChooseCharacter implements Action{
     private Character character;
@@ -29,7 +29,7 @@ public class ChooseCharacter implements Action{
 
     @Override
     public ActionMessage toMessage() {
-        return new ChooseCharacterDoneMessage(game.getCurrentPlayer().GetName() + " Activated character " + character.getId()+"\nEffect: "+character.getDescription());
+        return new ChooseCharacterDoneMessage(game.getCurrentPlayer().GetName() + " has chosen character " + character.getId()+"\nEffect: "+character.getDescription());
     }
 
     private void checkCharacterInGame() throws ActionException {
