@@ -1,93 +1,28 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
+<?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.RadioButton?>
-<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.scene.layout.StackPane?>
 
-<AnchorPane prefHeight="760.0" prefWidth="1300.0" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.ChooseAssistantSceneController">
-   <children>
-      <ImageView fitHeight="760.0" fitWidth="1300.0" opacity="0.66" pickOnBounds="true">
-         <image>
-            <Image url="@../images/islands.png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="140.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (1).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="382.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (2).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="629.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (3).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="866.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (4).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1078.0" layoutY="246.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (5).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="140.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (6).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="382.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (7).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="629.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (8).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="866.0" layoutY="443.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (9).png" />
-         </image>
-      </ImageView>
-      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="1078.0" layoutY="450.0" pickOnBounds="true" preserveRatio="true">
-         <image>
-            <Image url="@../images/Assistente (10).png" />
-         </image>
-      </ImageView>
-      <Text layoutX="331.0" layoutY="110.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Please select an assistant then confirm your choise">
-         <font>
-            <Font name="Baskerville Old Face" size="32.0" />
-         </font>
-      </Text>
-      <RadioButton fx:id="ass9" layoutX="902.0" layoutY="606.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="9">
-         <toggleGroup>
-            <ToggleGroup fx:id="toggleGroup" />
-         </toggleGroup></RadioButton>
-      <RadioButton fx:id="ass8" layoutX="672.0" layoutY="606.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="8" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ass7" layoutX="418.0" layoutY="606.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="7" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ass6" layoutX="177.0" layoutY="606.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="6" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ass5" layoutX="1120.0" layoutY="396.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="5" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ass4" layoutX="908.0" layoutY="396.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="4" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ass3" layoutX="672.0" layoutY="396.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="3" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ass2" layoutX="425.0" layoutY="396.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="2" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ass1" layoutX="184.0" layoutY="396.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="1" toggleGroup="$toggleGroup" />
-      <RadioButton fx:id="ass10" layoutX="1120.0" layoutY="606.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="15.0" text="10" toggleGroup="$toggleGroup" />
-      <Button fx:id="ConfirmBtn" layoutX="603.0" layoutY="660.0" mnemonicParsing="false" prefHeight="32.0" prefWidth="161.0" text="CONFIRM">
-         <font>
-            <Font name="Britannic Bold" size="18.0" />
-         </font>
-      </Button>
-   </children>
-</AnchorPane>
+<StackPane prefHeight="720.0" prefWidth="1280.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" >
+   <Group scaleX="2.0" scaleY="2.0" scaleZ="2.0" StackPane.alignment="CENTER">
+      <AnchorPane layoutX="910.0" layoutY="-270.0" prefHeight="351.0" prefWidth="561.0">
+         <ImageView fx:id="AssistantImg" fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/Assistente (0).png" />
+            </image>
+         </ImageView>
+         <Button fx:id="NextBtn" layoutX="351.0" layoutY="163.0" mnemonicParsing="false"  text="Next" />
+         <Button fx:id="PreviousBtn" layoutX="143.0" layoutY="163.0" mnemonicParsing="false" text="Previous" />
+         <Button fx:id="ConfirmBtn" layoutX="252.0" layoutY="265.0" mnemonicParsing="false" text="Confirm" />
+      </AnchorPane>
+   </Group>
+   <stylesheets>
+      <URL value="@../css/connect_scene.css" />
+      <URL value="@../css/global.css" />
+   </stylesheets>
+</StackPane>

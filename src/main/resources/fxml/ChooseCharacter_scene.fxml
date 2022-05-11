@@ -13,7 +13,7 @@
       <AnchorPane layoutX="910.0" layoutY="-270.0" prefHeight="351.0" prefWidth="561.0">
          <ImageView fx:id="CharacterImg" fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../images/Assistente (1).png" />
+               <Image url="@../images/Assistente (0).png" />
             </image>
          </ImageView>
          <Button fx:id="NextBtn" layoutX="351.0" layoutY="163.0" mnemonicParsing="false"  text="Next" />
