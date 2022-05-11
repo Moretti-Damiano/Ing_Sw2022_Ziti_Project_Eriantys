@@ -42,7 +42,7 @@ public class SelectSceneController extends InputObservable implements GenericSce
     @FXML
     void onMoveToTableClick(ActionEvent event) {
         new Thread(() -> notifyObserver(obs -> obs.onUpdateBoardsRequest(new ShowBoardsRequest()))).start();
-        SceneController.changeRootPane(observers, event, "move_to_table.fxml");
+        SceneController.changeRootPane(observers, event, "move_to_table_scene.fxml");
 
     }
 

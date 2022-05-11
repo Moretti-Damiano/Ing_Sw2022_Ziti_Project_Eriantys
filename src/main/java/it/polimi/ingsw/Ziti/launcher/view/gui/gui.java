@@ -4,7 +4,6 @@ import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.gui.scene.*;
@@ -130,6 +129,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void moveToTableHandler(MoveToTableDoneMessage message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
 
     }
 
@@ -217,6 +217,12 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showBoardsHandler(ShowBoardsResponse message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getBoards().toString()));
+        MoveToTableSceneController moveToTableSceneController = new MoveToTableSceneController();
+        moveToTableSceneController.addAllObservers(observers);
+        moveToTableSceneController.addBoards(message.getBoards());
+        Platform.runLater(() -> SceneController.changeRootPane(moveToTableSceneController,"move_to_table_scene.fxml"));
+
 
     }
 
