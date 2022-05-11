@@ -204,7 +204,11 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showCharacterHandler(ShowCharacterResponse message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getCharacterSummaries().toString()));
+        ChooseCharacterController ccc = new ChooseCharacterController();
+        ccc.addAllObservers(observers);
+        ccc.addCharacter(message.getCharacterSummaries());
+        Platform.runLater(() -> SceneController.changeRootPane(ccc,"ChooseCharacter_scene.fxml"));
     }
 
 

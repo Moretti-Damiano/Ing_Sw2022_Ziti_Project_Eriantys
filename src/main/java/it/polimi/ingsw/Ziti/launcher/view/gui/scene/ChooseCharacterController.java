@@ -1,9 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
-import it.polimi.ingsw.Ziti.launcher.view.gui.gui;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
@@ -25,32 +24,37 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
     @FXML
     private ImageView CharacterImg;
-    private int assId=1;
-    private List<Assistant> test;
-    private Assistant ass;
 
-    //private String assId="1";
+    private int ListIndex=0;
+    private List<CharacterSummary> AvailableCharacter;
+    private CharacterSummary ChosenCharacter;
+    private int maxIndex;
+
     @FXML
     public void initialize() {
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
+        maxIndex=AvailableCharacter.size()-1;
+        checkAndDisableButton(PreviousBtn, 0);
+        checkAndDisableButton(NextBtn, maxIndex);
 
     }
 
     @FXML
     void onConfirmClick(Event event) {
-        new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseAssistant(Integer.toString(test.get(assId).getId())))).start();
+        //new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseCha(Integer.toString(AvailableAssistants.get(ListIndex).getId())))).start();
         SceneController.changeRootPane(observers, event, "select_scene.fxml");
     }
 
     @FXML
     void onNextClick(Event event) {
-        int max= test.size();
-        if(assId<max){
-            assId++;
-            ass=test.get(assId);
-            Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(ass.getId())+").png"));
+        if(ListIndex<maxIndex){
+            ListIndex++;
+            checkAndDisableButton(NextBtn,maxIndex);
+            checkAndDisableButton(PreviousBtn,0);
+            ChosenCharacter=AvailableCharacter.get(ListIndex);
+            Image img = new Image(getClass().getResourceAsStream("/images/Character/Character ("+Integer.toString(ChosenCharacter.getId())+").jpg"));
             CharacterImg.setImage(img);
         }
 
@@ -58,15 +62,28 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
     @FXML
     void onPreviousClick(Event event) {
-        if(assId>1)
+        if(ListIndex>0)
         {
-            assId--;
-            ass=test.get(assId);
-            Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(ass.getId())+").png"));
+            ListIndex--;
+            checkAndDisableButton(NextBtn,maxIndex);
+            checkAndDisableButton(PreviousBtn,0);
+            ChosenCharacter=AvailableCharacter.get(ListIndex);
+            Image img = new Image(getClass().getResourceAsStream("/images/Character/Character ("+Integer.toString(ChosenCharacter.getId())+").jpg"));
             CharacterImg.setImage(img);
-    }}
+        }
 
-    public void addAssistant(List<Assistant> prova){
-        this.test=prova;
+    }
+
+    private boolean checkAndDisableButton(Button button, int number) {
+        if (ListIndex == number) {
+            button.setDisable(true);
+            return true;
+        }
+        button.setDisable(false);
+        return false;
+    }
+
+    public void addCharacter(List<CharacterSummary> GameCharacter){
+        this.AvailableCharacter=GameCharacter;
     }
 }
