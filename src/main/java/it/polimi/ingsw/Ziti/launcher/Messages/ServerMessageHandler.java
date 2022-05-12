@@ -39,6 +39,9 @@ public class ServerMessageHandler extends ServerObservable {
     public void numberOfPlayersHandler(NumberOfPlayersMessage message){
         notifyObserver(obs -> obs.numberOfPlayerHandler(message));
     }
+    public void showBoardsandIslandsRequestHandler(ShowBoardsandIslandsRequest message){
+        notifyObserver(obs -> obs.showBoardsandIslandsRequestHandler(message));
+    }
     public void showAssistantRequestHandler(ShowAssistantRequest message){
       notifyObserver(obs -> obs.showAssistantRequestHandler(message));
     };
@@ -81,6 +84,8 @@ public class ServerMessageHandler extends ServerObservable {
     public void chooseCharacter5Handler(Character5Message message){
         notifyObserver(obs -> obs.chooseCharacter5Handler(message));
     }
+
+
 
     public void clientDisconnection(){
         notifyObserver(ServerObserver::endGameDisconnection);

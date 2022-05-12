@@ -1,66 +1,91 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
-import javafx.scene.control.RadioButton;
-import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
-public class ChooseAssistantSceneController extends InputObservable implements GenericSceneController{
+import java.util.List;
 
+public class ChooseAssistantSceneController extends InputObservable implements GenericSceneController {
     @FXML
     private Button ConfirmBtn;
 
     @FXML
-    private RadioButton ass1;
+    private Button NextBtn;
 
     @FXML
-    private RadioButton ass10;
+    private Button PreviousBtn;
 
     @FXML
-    private RadioButton ass2;
+    private ImageView AssistantImg;
 
     @FXML
-    private RadioButton ass3;
+    private ImageView TitleImg;
 
-    @FXML
-    private RadioButton ass4;
+    private int ListIndex=0;
+    private List<Assistant> AvailableAssistants;
+    private Assistant ChosenAssistant;
+    private int maxIndex;
 
-    @FXML
-    private RadioButton ass5;
-
-    @FXML
-    private RadioButton ass6;
-
-    @FXML
-    private RadioButton ass7;
-
-    @FXML
-    private RadioButton ass8;
-
-    @FXML
-    private RadioButton ass9;
-
-    @FXML
-    private ToggleGroup toggleGroup;
     @FXML
     public void initialize() {
-
-        ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmBtnClick);
-
+        ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
+        NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
+        PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
+        maxIndex=AvailableAssistants.size()-1;
+        checkAndDisableButton(PreviousBtn, 0);
+        checkAndDisableButton(NextBtn, maxIndex);
 
     }
 
-    private void onConfirmBtnClick(Event event) {
-            ConfirmBtn.setDisable(true);
-        RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
-        String assNumber = ""+selectedRadioButton.getText().charAt(0);
-
-        new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseAssistant(assNumber))).start();
+    @FXML
+    void onConfirmClick(Event event) {
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseAssistant(Integer.toString(AvailableAssistants.get(ListIndex).getId())))).start();
         SceneController.changeRootPane(observers, event, "select_scene.fxml");
     }
 
+    @FXML
+    void onNextClick(Event event) {
+        if(ListIndex<maxIndex){
+            ListIndex++;
+            checkAndDisableButton(NextBtn,maxIndex);
+            checkAndDisableButton(PreviousBtn,0);
+            ChosenAssistant=AvailableAssistants.get(ListIndex);
+            Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(ChosenAssistant.getId())+").png"));
+            AssistantImg.setImage(img);
+        }
 
+    }
+
+    @FXML
+    void onPreviousClick(Event event) {
+        if(ListIndex>0)
+        {
+            ListIndex--;
+            checkAndDisableButton(NextBtn,maxIndex);
+            checkAndDisableButton(PreviousBtn,0);
+            ChosenAssistant=AvailableAssistants.get(ListIndex);
+            Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(ChosenAssistant.getId())+").png"));
+            AssistantImg.setImage(img);
+        }
+
+    }
+
+    private boolean checkAndDisableButton(Button button, int number) {
+        if (ListIndex == number) {
+            button.setDisable(true);
+            return true;
+        }
+        button.setDisable(false);
+        return false;
+    }
+
+    public void addAssistant(List<Assistant> PlayerAssistants){
+        this.AvailableAssistants=PlayerAssistants;
+    }
 }

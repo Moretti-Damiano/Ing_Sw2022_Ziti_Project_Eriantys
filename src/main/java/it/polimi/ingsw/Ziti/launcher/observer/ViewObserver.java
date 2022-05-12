@@ -36,6 +36,7 @@ public interface ViewObserver {
     void showIslandHandler(ShowIslandResponse message);
     void GameStartedHandler(GameStartedMessage message);
     void YourTurnNotificationHandler(YourTurnNotification message);
+    void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }
