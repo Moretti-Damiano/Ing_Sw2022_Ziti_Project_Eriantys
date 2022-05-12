@@ -196,15 +196,19 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void showAssistantHandler(ShowAssistantResponse message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getAssistants().toString()));
-        ChooseCharacterController gsc = new ChooseCharacterController();
-        gsc.addAllObservers(observers);
-        gsc.addAssistant(message.getAssistants());
-        Platform.runLater(() -> SceneController.changeRootPane(gsc,"ChooseCharacter_scene.fxml"));
+        ChooseAssistantSceneController casc = new ChooseAssistantSceneController();
+        casc.addAllObservers(observers);
+        casc.addAssistant(message.getAssistants());
+        Platform.runLater(() -> SceneController.changeRootPane(casc,"ChooseAssistant_scene.fxml"));
     }
 
     @Override
     public void showCharacterHandler(ShowCharacterResponse message) {
-
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getCharacterSummaries().toString()));
+        ChooseCharacterController ccc = new ChooseCharacterController();
+        ccc.addAllObservers(observers);
+        ccc.addCharacter(message.getCharacterSummaries());
+        Platform.runLater(() -> SceneController.changeRootPane(ccc,"ChooseCharacter_scene.fxml"));
     }
 
 
