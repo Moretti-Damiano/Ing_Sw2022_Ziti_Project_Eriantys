@@ -33,7 +33,6 @@ public class MoveMother implements Action {
 
     /**
      * This action moves the Mother of nature
-     *
      * @throws ActionException
      */
     @Override
@@ -44,6 +43,7 @@ public class MoveMother implements Action {
         move();
         if(!checkInput)
             description = description.concat("Action called by character\n");
+
         description = description.concat(game.getCurrentPlayer().GetName() + "moved the Mother to Island (id): " + mother.getIsland().getID());
         updateIsland(mother.getIsland(), getControl(mother.getIsland()));
 
@@ -89,7 +89,7 @@ public class MoveMother implements Action {
         if (island.getTowerPlayer() != player && !isNull(player)) {
             for (Tower T : island.getTowers()) {
                 if (!isNull(island.getTowerPlayer())) {
-                    island.getTowerPlayer().getBoard().addTower(T); //give back all towers to old towerplayer
+                    island.getTowerPlayer().getBoard().addTower(new Tower(island.getTowerPlayer(),island.getTowerPlayer().getBoard().getTower_colour())); //give back all towers to old towerplayer
                 }
             }
 
@@ -97,8 +97,13 @@ public class MoveMother implements Action {
             island.getTowers().clear();
             island.setTowerPlayer(player);
 
-            for (int i = 0; i < size; i++) {
+            if(size == 0){
                 island.getTowers().add(player.getBoard().removeTower());
+            }
+            else{
+                for (int i = 0; i < size; i++) {
+                    island.getTowers().add(player.getBoard().removeTower());
+                }
             }
         }
     }

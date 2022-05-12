@@ -14,18 +14,9 @@ public class CloudPhase extends Phase{
     public void update() {
         endCharacter();
 
-        if (getTurncontroller().getPlayersDone() == getTurncontroller().getPlayers().size()) {
-            getTurncontroller().getGameController().getGame().setAction(new EndTurn(getTurncontroller().getGameController().getGame()));
-            // If every player completed his turn, Game controller calls EndTurn action
-            try {
-                getTurncontroller().getGameController().getGame().doAction();
-            } catch (ActionException e) {
-                e.printStackTrace(); //non verrà mai chiamata perchè chiamo solo endturn
-            }
-            getTurncontroller().resetPlayersDone();
-            getTurncontroller().setCurrentPlayer(getTurncontroller().getOrderPlayers().get(0)); //first player for next round
-            nextPhase(); //rientro fase planning
 
+        if (getTurncontroller().getPlayersDone() == getTurncontroller().getPlayers().size()) {
+            jumpToEndTurn();
         }
         else {
             getTurncontroller().addPlayersDone();
