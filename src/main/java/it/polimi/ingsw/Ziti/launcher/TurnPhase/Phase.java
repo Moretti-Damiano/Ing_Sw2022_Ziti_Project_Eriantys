@@ -12,7 +12,7 @@ public abstract class Phase {
     private PhaseType phaseType;
     private int playersDone;
     private Character activeCharacter;
-    private int numplayer=turncontroller.getPlayers().size();
+    //private int numplayer=turncontroller.getPlayers().size();
 
     public Phase(TurnController turnController, PhaseType phaseType){
         this.turncontroller = turnController;
@@ -25,7 +25,7 @@ public abstract class Phase {
         return phaseType;
     }
 
-    public int getNumplayer(){ return numplayer;}
+   // public int getNumplayer(){ return numplayer;}
 
     public TurnController getTurncontroller(){
         return turncontroller;
