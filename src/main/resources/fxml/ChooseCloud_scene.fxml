@@ -19,27 +19,27 @@
             <children>
                <Group fx:id="Cld0">
                   <children>
-                     <ImageView fx:id="Cloud0" fitHeight="107.0" fitWidth="152.0" layoutX="42.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="Cloud0" fitHeight="107.0" fitWidth="152.0" layoutX="65.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2" scaleZ="1.5">
                         <image>
                            <Image url="@../images/Cloud.png" />
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S00" fitHeight="20.0" fitWidth="20.0" layoutX="84.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S00" fitHeight="20.0" fitWidth="20.0" layoutX="84.0" layoutY="156.6" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S03" fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S03" fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S02" fitHeight="20.0" fitWidth="20.0" layoutX="105.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S02" fitHeight="20.0" fitWidth="20.0" layoutX="98.0" layoutY="190.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S01" fitHeight="20.0" fitWidth="20.0" layoutX="119.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S01" fitHeight="20.0" fitWidth="20.0" layoutX="130.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
@@ -53,28 +53,28 @@
                </Group>
                <Group fx:id="Cld1" layoutX="242.0" layoutY="114.0">
                   <children>
-                     <RadioButton fx:id="Select1" layoutX="60.0" layoutY="110.0" mnemonicParsing="false" scaleX="0.7" scaleY="0.7" toggleGroup="$SelectIsld" />
-                     <ImageView fx:id="Cloud1" fitHeight="107.0" fitWidth="152.0" layoutX="-5.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                     <RadioButton fx:id="Select1" layoutX="60.0" layoutY="115.0" mnemonicParsing="false" scaleX="0.7" scaleY="0.7" toggleGroup="$SelectIsld" />
+                     <ImageView fx:id="Cloud1" fitHeight="107.0" fitWidth="152.0" layoutX="15.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
                         <image>
                            <Image url="@../images/Cloud.png" />
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S12" fitHeight="20.0" fitWidth="20.0" layoutX="68.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S12" fitHeight="20.0" fitWidth="20.0" layoutX="68.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S10" fitHeight="20.0" fitWidth="20.0" layoutX="31.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S10" fitHeight="20.0" fitWidth="20.0" layoutX="31.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S13" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S13" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S11" fitHeight="20.0" fitWidth="20.0" layoutX="46.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S11" fitHeight="20.0" fitWidth="20.0" layoutX="46.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
@@ -83,23 +83,23 @@
                </Group>
                <Group fx:id="Cld2" autoSizeChildren="false" layoutX="448.0" layoutY="115.0">
                   <children>
-                     <ImageView fx:id="Cloud2" fitHeight="132.0" fitWidth="152.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="Cloud2" fitHeight="132.0" fitWidth="152.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
                         <image>
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S20" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S20" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S23" fitHeight="20.0" fitWidth="20.0" layoutX="83.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S23" fitHeight="20.0" fitWidth="20.0" layoutX="83.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S21" fitHeight="20.0" fitWidth="20.0" layoutX="42.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S21" fitHeight="20.0" fitWidth="20.0" layoutX="42.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S22" fitHeight="20.0" fitWidth="20.0" layoutX="68.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                     <ImageView fx:id="S22" fitHeight="20.0" fitWidth="20.0" layoutX="68.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
                         </image>
                      </ImageView>
