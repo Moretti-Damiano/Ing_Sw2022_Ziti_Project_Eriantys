@@ -1,13 +1,133 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import java.net.URL?>
+<?import javafx.scene.Group?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            prefHeight="400.0" prefWidth="600.0">
-
-</AnchorPane>
+<StackPane prefHeight="720.0" prefWidth="1280.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+    <Group scaleX="2.0" scaleY="2.0" scaleZ="2.0" StackPane.alignment="CENTER">
+      <children>
+         <AnchorPane prefHeight="354.0" prefWidth="634.0">
+            <children>
+               <Group fx:id="Cld0">
+                  <children>
+                     <ImageView fx:id="Cloud0" fitHeight="107.0" fitWidth="152.0" layoutX="42.0" layoutY="118.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/Cloud.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S00" fitHeight="20.0" fitWidth="20.0" layoutX="84.0" layoutY="160.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S03" fitHeight="20.0" fitWidth="20.0" layoutX="140.0" layoutY="176.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S02" fitHeight="20.0" fitWidth="20.0" layoutX="105.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S01" fitHeight="20.0" fitWidth="20.0" layoutX="119.0" layoutY="156.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <RadioButton fx:id="Select0" layoutX="110.0" layoutY="230.0" mnemonicParsing="false" scaleX="0.7" scaleY="0.7">
+                        <toggleGroup>
+                           <ToggleGroup fx:id="SelectIsld" />
+                        </toggleGroup>
+                     </RadioButton>
+                  </children>
+               </Group>
+               <Group fx:id="Cld1" layoutX="242.0" layoutY="114.0">
+                  <children>
+                     <RadioButton fx:id="Select1" layoutX="60.0" layoutY="110.0" mnemonicParsing="false" scaleX="0.7" scaleY="0.7" toggleGroup="$SelectIsld" />
+                     <ImageView fx:id="Cloud1" fitHeight="107.0" fitWidth="152.0" layoutX="-5.0" layoutY="-1.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/Cloud.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S12" fitHeight="20.0" fitWidth="20.0" layoutX="68.0" layoutY="62.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S10" fitHeight="20.0" fitWidth="20.0" layoutX="31.0" layoutY="61.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S13" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S11" fitHeight="20.0" fitWidth="20.0" layoutX="46.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                  </children>
+               </Group>
+               <Group fx:id="Cld2" autoSizeChildren="false" layoutX="448.0" layoutY="115.0">
+                  <children>
+                     <ImageView fx:id="Cloud2" fitHeight="132.0" fitWidth="152.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/Cloud.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S20" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S23" fitHeight="20.0" fitWidth="20.0" layoutX="83.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S21" fitHeight="20.0" fitWidth="20.0" layoutX="42.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <ImageView fx:id="S22" fitHeight="20.0" fitWidth="20.0" layoutX="68.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/red_student.png" />
+                        </image>
+                     </ImageView>
+                     <RadioButton fx:id="Select2" layoutX="60.0" layoutY="110.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" scaleX="0.7" scaleY="0.7" toggleGroup="$SelectIsld" />
+                  </children>
+               </Group>
+               <Button fx:id="ConfirmBtn" layoutX="288.0" layoutY="277.0" mnemonicParsing="false" text="CONFIRM" />
+               <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="220.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
+                  <image>
+                     <Image url="@../images/Titolo%20pagine.png" />
+                  </image>
+               </ImageView>
+               <Text fill="#484848" layoutX="247.0" layoutY="65.0" rotate="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLOUDISLAND">
+                  <font>
+                     <Font size="22.0" />
+                  </font>
+               </Text>
+            </children>
+         </AnchorPane>
+      </children>
+    </Group>
+    <stylesheets>
+        <URL value="@../css/connect_scene.css" />
+        <URL value="@../css/global.css" />
+    </stylesheets>
+</StackPane>
