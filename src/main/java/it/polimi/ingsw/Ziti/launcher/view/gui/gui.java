@@ -232,6 +232,11 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showCloudHandler(ShowCloudResponse message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getClouds().toString()));
+        ChooseCloudSceneController ccsc = new ChooseCloudSceneController();
+        ccsc.addAllObservers(observers);
+        ccsc.setCloud(message.getClouds());
+        Platform.runLater(() -> SceneController.changeRootPane(ccsc,"ChooseCloud_scene.fxml"));
 
     }
 
@@ -248,6 +253,11 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void YourTurnNotificationHandler(YourTurnNotification message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message", message.Description));
+
+    }
+
+    @Override
+    public void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message) {
 
     }
 

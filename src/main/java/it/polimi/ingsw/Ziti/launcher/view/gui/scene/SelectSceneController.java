@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowAssistantRequest;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCharacterRequest;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCloudRequest;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -22,7 +23,7 @@ public class SelectSceneController extends InputObservable implements GenericSce
 
     @FXML
     void onChooseCloudClick(ActionEvent event) {
-
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudRequest(new ShowCloudRequest()))).start();
     }
 
     @FXML

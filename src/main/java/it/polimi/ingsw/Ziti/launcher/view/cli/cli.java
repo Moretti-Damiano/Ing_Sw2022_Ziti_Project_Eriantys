@@ -197,6 +197,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message) {
+
+    }
+
+    @Override
     public void askMoveToTable() {
         notifyObserver(obs ->
                 obs.onUpdateMoveToTable(askColour()));

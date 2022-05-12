@@ -1,12 +1,20 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.model.Board;
+import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
+import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.ToggleGroup;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+
+import java.util.ArrayList;
+import java.util.List;
 
 public class ChooseCloudSceneController extends InputObservable implements GenericSceneController{
     @FXML
@@ -77,4 +85,106 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
 
     @FXML
     private ToggleGroup SelectIsld;
+
+    private List<CloudIsland> availableCloud;
+
+    private int numCloud;
+
+    private ArrayList<ImageView> Cld0Students=new ArrayList<>();
+    private ArrayList<ImageView> Cld1Students=new ArrayList<>();
+
+
+    @FXML
+    public void initialize(){
+        ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
+        numCloud=availableCloud.size();
+        if(numCloud==3){
+            Cld0.setDisable(false);
+            Cld1.setDisable(false);
+            Cld2.setDisable(false);
+            Select0.setId("0");
+            Select1.setId("1");
+            Select2.setId("2");
+            Image img= new Image(getClass().getResourceAsStream("/images/Cloud.png"));
+            ArrayList<ImageView> Cld2Students = new ArrayList<>();
+            Cld0Students.add(S00);
+            Cld0Students.add(S01);
+            Cld0Students.add(S02);
+            Cld0Students.add(S03);
+            Cld1Students.add(S10);
+            Cld1Students.add(S11);
+            Cld1Students.add(S12);
+            Cld1Students.add(S13);
+            Cld2Students.add(S20);
+            Cld2Students.add(S21);
+            Cld2Students.add(S22);
+            Cld2Students.add(S23);
+            setStudentsCloud(Cld0Students,availableCloud.get(0));
+            setStudentsCloud(Cld1Students,availableCloud.get(1));
+            setStudentsCloud(Cld2Students,availableCloud.get(2));
+
+        }else{
+            Cld0.setDisable(false);
+            Cld1.setDisable(false);
+            Cld2.setDisable(true);
+            Select0.setId("0");
+            Select1.setId("1");
+            Cld0Students.add(S00);
+            Cld0Students.add(S01);
+            Cld0Students.add(S02);
+            S03.setDisable(true);
+            Cld1Students.add(S10);
+            Cld1Students.add(S11);
+            Cld1Students.add(S12);
+            S23.setDisable(true);
+            setStudentsCloud(Cld0Students,availableCloud.get(0));
+            setStudentsCloud(Cld1Students,availableCloud.get(1));
+
+        }
+
+    }
+    private void onConfirmClick(Event event) {
+        ConfirmBtn.setDisable(true);
+        RadioButton selectedRadioButton = (RadioButton) SelectIsld.getSelectedToggle();
+        String chosenCloudIsland = ""+selectedRadioButton.getId();
+
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudIsland(chosenCloudIsland))).start();
+    }
+
+    void setStudent(){
+
+    }
+    private void setStudentsCloud(ArrayList<ImageView> students,CloudIsland cloud){
+        Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
+        Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
+        Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
+        Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
+        Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
+
+        for(int i=0;i<cloud.getStudents().size();i++){
+
+            switch (cloud.getStudents().get(i).getColour()){
+                case BLUE:
+                    students.get(i).setImage(blue_student);
+                    break;
+                case GREEN:
+                    students.get(i).setImage(green_student);
+                    break;
+                case PINK:
+                    students.get(i).setImage(pink_student);
+                    break;
+                case RED:
+                    students.get(i).setImage(red_student);
+                    break;
+                case YELLOW:
+                    students.get(i).setImage(yellow_student);
+                    break;
+                default: break;
+            }
+        }
+
+    }
+    public void setCloud(List<CloudIsland> Clouds){
+        this.availableCloud=Clouds;
+    }
 }
