@@ -23,6 +23,10 @@ public class ChooseAssistantSceneController extends InputObservable implements G
 
     @FXML
     private ImageView AssistantImg;
+
+    @FXML
+    private ImageView TitleImg;
+
     private int ListIndex=0;
     private List<Assistant> AvailableAssistants;
     private Assistant ChosenAssistant;
