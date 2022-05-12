@@ -24,6 +24,7 @@ public class Board implements Serializable {
             towers = new ArrayList<Tower>();
             professors = new ArrayList<Professor>();
             wallet = new ArrayList<Coin>();
+
             students_waiting = new ArrayList<Student>();
             students = new ArrayList[colorrow];
             for (int i = 0; i < colorrow; i++) {
@@ -65,7 +66,7 @@ public class Board implements Serializable {
      * Remove a tower from towers and returns it
      */
     public Tower removeTower() {
-       return towers.remove(0);
+       return towers.remove(towers.size()-1);
     }
 
     /**

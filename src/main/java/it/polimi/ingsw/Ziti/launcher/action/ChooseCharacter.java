@@ -24,6 +24,7 @@ public class ChooseCharacter implements Action{
         checkCoin();
         character.setAvailable(false);
         character.increaseCost();
+        game.getCurrentPlayer().setUsedACharacter(true);
     }
 
 

@@ -22,18 +22,20 @@ public class EndTurn implements Action {
    @Override
    public void execute(){
 
-         // for each CloudIsland calls the method toFill
-         IntStream.range(0, game.getCloudIslands().size()).forEach(i -> game.getCloudIslands().get(i).toFill());
-         // for each Player set false actual Assistants
-         IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setActual(false));
-         // for each Player set true used Assistants
-         IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setAssChose(true));
-         // for each Player set actualAssistant as null
-         IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setAssChoosed(null));
+       // for each CloudIsland calls the method toFill (if the sack isn't empty)
+       if(!game.getSack().isEmpty())
+           IntStream.range(0, game.getCloudIslands().size()).forEach(i -> game.getCloudIslands().get(i).toFill());
+       // for each Player set false actual Assistants
+       IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setActual(false));
+       // for each Player set true used Assistants
+       IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setAssChose(true));
+       // for each Player set actualAssistant as null
+       IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setAssChoosed(null));
+       // for each player set usedACharacter to false
+       IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setUsedACharacter(false));
 
-         description = " The turn has ended ";
-
-      }
+       description = " The turn has ended ";
+   }
 
     @Override
     public ActionMessage toMessage() {

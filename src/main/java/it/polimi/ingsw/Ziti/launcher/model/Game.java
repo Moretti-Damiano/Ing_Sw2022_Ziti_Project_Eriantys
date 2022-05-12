@@ -205,6 +205,7 @@ public class Game extends Observable {
                     player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour()));
                 }
                 player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour())); //adds the 8th tower
+                player.getBoard().addCoin(gameWallet.getCoin());
             }
         }
 
@@ -218,6 +219,7 @@ public class Game extends Observable {
 
             //add 9 random students on each player's board and 6 towers
             for(Player player:p){
+                player.getBoard().addCoin(gameWallet.getCoin());
                 for(int i = 0; i < 9; i++){
                     player.getBoard().addStudent(sack.extract());
                 }

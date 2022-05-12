@@ -62,5 +62,13 @@ public class Sack implements Serializable {
     public void insert(Student student){
         numColour[student.getColour().getIntAbbreviation()]++;
     }
+
+    public boolean isEmpty(){
+        for(int i = 0; i < 5; i++){
+            if(numColour[i]!=0)
+                return false;
+        }
+        return true;
+    }
 }
 
