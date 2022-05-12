@@ -11,22 +11,23 @@ import java.io.Serializable;
 import java.util.List;
 
 public class Player implements Serializable {
-        private List<Assistant> assistants;
-        private Board board;
-        private String name;
-        private Assistant assChosen;
+    private List<Assistant> assistants;
+    private Board board;
+    private String name;
+    private Assistant assChosen;
+    private boolean usedACharacter;
 
+    public Player(String name) throws ParserConfigurationException, IOException, SAXException {
+        this.name=name;
+        assistants= AssistantParser.parseAssistants("Assistants.xml");
+        assChosen=null;
+        usedACharacter = false;
+    }
 
-        public Player(String name) throws ParserConfigurationException, IOException, SAXException {
-            this.name=name;
-            assistants= AssistantParser.parseAssistants("Assistants.xml");
-            assChosen=null;
-        }
-
-        /**
-         * returns the player's name
-         */
-        public String GetName(){
+    /**
+     * returns the player's name
+     */
+    public String GetName(){
             return this.name;
         }
 
@@ -48,6 +49,14 @@ public class Player implements Serializable {
 
     public void setBoard(Board board) {
         this.board = board;
+    }
+
+    public boolean hasUsedACharacter() {
+        return usedACharacter;
+    }
+
+    public void setUsedACharacter(boolean usedACharacter) {
+        this.usedACharacter = usedACharacter;
     }
 }
 

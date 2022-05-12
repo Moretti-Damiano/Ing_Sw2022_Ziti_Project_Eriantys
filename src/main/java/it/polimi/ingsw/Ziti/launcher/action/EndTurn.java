@@ -31,6 +31,8 @@ public class EndTurn implements Action {
        IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).getAssChosen().setAssChose(true));
        // for each Player set actualAssistant as null
        IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setAssChoosed(null));
+       // for each player set usedACharacter to false
+       IntStream.range(0, game.getPlayers().size()).forEach(i -> game.getPlayers().get(i).setUsedACharacter(false));
 
        description = " The turn has ended ";
    }

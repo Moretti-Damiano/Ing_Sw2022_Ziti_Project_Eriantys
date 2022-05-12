@@ -24,6 +24,7 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
+import java.util.Objects;
 
 /**
  * This class observes Game (the model) and the Server and is observed by the Server
@@ -257,7 +258,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter0Handler(Character0Message message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
             game.setAction(new ChooseCharacter(game, Character0.getInstance()));
             try {
                 game.doAction();
@@ -268,13 +269,18 @@ public class GameController extends GameControllerObservable implements ServerOb
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
-
+        }
+        else{
+            if(!checkActivePlayer(message.getSender()))
+                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
         }
     }
 
     @Override
     public void chooseCharacter1Handler(Character1Message message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
             game.setAction(new ChooseCharacter(game,Character1.getInstance()));
             try {
                 Character1.getInstance().choose(message.getIslandId());
@@ -288,13 +294,19 @@ public class GameController extends GameControllerObservable implements ServerOb
             catch (CharacterException e){
                 notifyObserver(obs-> obs.sendToOnePlayer(new InputError("You insert an invalid island"), message.getSender()));
             }
-            }
         }
+        else{
+            if(!checkActivePlayer(message.getSender()))
+                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
+        }
+    }
 
 
     @Override
     public void chooseCharacter2Handler(Character2Message message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
             game.setAction(new ChooseCharacter(game, Character2.getInstance()));
             try {
                 game.doAction();
@@ -305,11 +317,17 @@ public class GameController extends GameControllerObservable implements ServerOb
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
         }
+        else{
+            if(!checkActivePlayer(message.getSender()))
+                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
+        }
     }
 
     @Override
     public void chooseCharacter3Handler(Character3Message message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
             game.setAction(new ChooseCharacter(game, Character3.getInstance()));
             try {
                 game.doAction();
@@ -320,11 +338,17 @@ public class GameController extends GameControllerObservable implements ServerOb
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
         }
+        else{
+            if(!checkActivePlayer(message.getSender()))
+                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
+        }
     }
 
     @Override
     public void chooseCharacter4Handler(Character4Message message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
             game.setAction(new ChooseCharacter(game, Character4.getInstance()));
             try {
                 Character4.getInstance().choose(message.getColour());
@@ -338,13 +362,19 @@ public class GameController extends GameControllerObservable implements ServerOb
             catch (CharacterException e){
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You did not insert a valid colour"),message.getSender()));
             }
-            }
         }
+        else{
+            if(!checkActivePlayer(message.getSender()))
+                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
+        }
+    }
 
 
     @Override
     public void chooseCharacter5Handler(Character5Message message) {
-        if(checkActivePlayer(message.getSender())){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
             game.setAction(new ChooseCharacter(game,Character5.getInstance()));
             try {
                 Character5.getInstance().choose(message.getColour());
@@ -359,7 +389,12 @@ public class GameController extends GameControllerObservable implements ServerOb
             catch(CharacterException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You did not insert a valid colour"),message.getSender()));
             }
-
+        }
+        else{
+            if(!checkActivePlayer(message.getSender()))
+                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
+            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
         }
     }
 
