@@ -16,16 +16,23 @@ public class MovementPhase extends Phase{
     public void update() {
         endCharacter();
         moveNumber++;
-        // Check if the player has already moved 3 students (ToTable or ToIsland)
-        if(moveNumber == 3){
-            moveNumber = 0;
-            nextPhase();
-        }
-        else {
-            checkCharacter();
+        if (getNumplayer() == 3) {
+            if (moveNumber == 4) {
+                moveNumber = 0;
+                nextPhase();
+            } else {
+                checkCharacter();
+            }
+        } else {
+            // Check if the player has already moved 3 students (ToTable or ToIsland)
+            if (moveNumber == 3) {
+                moveNumber = 0;
+                nextPhase();
+            } else {
+                checkCharacter();
+            }
         }
     }
-
     @Override
     public void nextPhase() {
         getTurncontroller().setPhase(new MotherPhase(getTurncontroller()));
