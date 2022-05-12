@@ -13,9 +13,10 @@ When resolving a Conquering on an island, towers do not count towards influence
  */
 public class Character3 extends Character{
 
-    private ArrayList<Island> originalIslands;
-
     private static Character3 instance;
+
+    int[] numTowers;
+    Player[] towerPlayers;
 
     public static Character3 getInstance(){
         if (instance == null) instance = new Character3();
@@ -31,6 +32,7 @@ public class Character3 extends Character{
         getUsePhase().add(PhaseType.MOVEMENT);
         getUsePhase().add(PhaseType.MOTHER);
         setEndPhase(PhaseType.MOTHER);
+
     }
 
     public void choose() {
@@ -39,12 +41,20 @@ public class Character3 extends Character{
     @Override
     public void startEffect(){
         setUsed(true);
-        originalIslands = new ArrayList<>(getGame().getIslands());
-        for(Island island: getGame().getIslands()){
-            if(island.getTowerPlayer()!=null){
-                island.getTowers().clear();
-                island.setTowerPlayer(null);
-            }
+
+        numTowers = new int[getGame().getIslands().size()];
+        towerPlayers = new Player[getGame().getIslands().size()];
+        Island island;
+
+        for(int i = 0; i < getGame().getIslands().size(); i++ ){
+            //saves info
+            island = getGame().getIslands().get(i);
+            numTowers[i] = island.getTowers().size();
+            towerPlayers[i] = island.getTowerPlayer();
+
+            //reset towers and towerPlayer
+            island.setTowerPlayer(null);
+            island.getTowers().clear();
         }
     }
 
@@ -52,28 +62,28 @@ public class Character3 extends Character{
     public void endEffect() {
         Mother mother = Mother.motherInstance();
 
-        for(int i =0; i < originalIslands.size();i++){
+        for(int i = 0; i < numTowers.length; i++){
             if(getGame().getIslands().get(i) != mother.getIsland()){
-                //set oll towerPlayer
-                getGame().getIslands().get(i).setTowerPlayer(originalIslands.get(i).getTowerPlayer());
+                //set old towerPlayer
+                getGame().getIslands().get(i).setTowerPlayer(towerPlayers[i]);
                 //add old towers
-                for(int j = 0; j < originalIslands.get(i).getTowers().size(); j++){
-                    Player player = originalIslands.get(i).getTowerPlayer();
-                    TowerColour towerColour = player.getBoard().getTower_colour();
-                    getGame().getIslands().get(i).getTowers().add(new Tower(player,towerColour));
-                }
-            }
-            else{
-                //checks if the island near mother needs to be merged
-                MoveMother moveMother = new MoveMother(getGame(),0,false);
-                if (moveMother.checkMerge(mother.getIsland(), getGame().getNextIsland(mother.getIsland()))) {
-                    moveMother.merge(mother.getIsland(), getGame().getNextIsland(mother.getIsland()));
-                }
-                if (moveMother.checkMerge(mother.getIsland(), getGame().getPrevIsland(mother.getIsland()))) {
-                    moveMother.merge(mother.getIsland(), getGame().getPrevIsland(mother.getIsland()));
+                if(towerPlayers[i] != null){
+                    for(int j = 0; j < numTowers[i]; j++){
+                        getGame().getIslands().get(i).getTowers().add(new Tower(towerPlayers[i],towerPlayers[i].getBoard().getTower_colour()));
+                    }
                 }
             }
         }
+
+        //checks if the island near mother needs to be merged
+        MoveMother moveMother = new MoveMother(getGame(),0,false);
+        if (moveMother.checkMerge(mother.getIsland(), getGame().getNextIsland(mother.getIsland()))) {
+            moveMother.merge(mother.getIsland(), getGame().getNextIsland(mother.getIsland()));
+        }
+        if (moveMother.checkMerge(mother.getIsland(), getGame().getPrevIsland(mother.getIsland()))) {
+            moveMother.merge(mother.getIsland(), getGame().getPrevIsland(mother.getIsland()));
+        }
+
         setAvailable(true);
         setUsed(false);
     }
