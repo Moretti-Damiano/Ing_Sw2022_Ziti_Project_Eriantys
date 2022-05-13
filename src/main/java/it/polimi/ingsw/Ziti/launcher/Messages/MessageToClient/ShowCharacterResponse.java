@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
-
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 
 import java.io.Serializable;
 import java.util.ArrayList;
