@@ -413,11 +413,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
-      //  Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
-      //  Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
-     //   Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
+        Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
+        Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
+        Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
-       // Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
+        Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
    /*     for(Student student :board.getStudents_waiting()){
             students.get(student.getColour().getIntAbbreviation()).setImage(Image.); find a method to parse
         }*/
@@ -425,19 +425,19 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
             switch (board.getStudents_waiting().get(i).getColour()){
                 case BLUE:
-                   // students.get(i).setImage(blue_student);
+                    students.get(i).setImage(blue_student);
                     break;
                 case GREEN:
-                  //  students.get(i).setImage(green_student);
+                    students.get(i).setImage(green_student);
                     break;
                 case PINK:
-                   // students.get(i).setImage(pink_student);
+                    students.get(i).setImage(pink_student);
                     break;
                 case RED:
                     students.get(i).setImage(red_student);
                     break;
                 case YELLOW:
-                   // students.get(i).setImage(yellow_student);
+                    students.get(i).setImage(yellow_student);
                     break;
                 default: break;
             }
@@ -480,11 +480,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDining(){
-        //setStudentsDiningBlue(diningStudentsBlue,board);
-        //setStudentsDiningPink(diningStudentsPink,board);
+        setStudentsDiningBlue(diningStudentsBlue,board);
+        setStudentsDiningPink(diningStudentsPink,board);
         setStudentsDiningRed(diningStudentsRed,board);
-        //setStudentsDiningGreen(diningStudentsGreen,board);
-        //setStudentsDiningYellow(diningStudentsYellow,board);
+        setStudentsDiningGreen(diningStudentsGreen,board);
+        setStudentsDiningYellow(diningStudentsYellow,board);
 
     }
     private void setProfessors(ArrayList<ImageView> professors,Board board){
@@ -518,12 +518,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
     public void setTowers(ArrayList<ImageView> towers,Board board){
-       /* Image black_tower = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
+        Image black_tower = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image white_tower = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
-        Image grey_tower = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));*/
-        Image black_tower = new Image(getClass().getResourceAsStream("/images/blue_professor.png"));
+        Image grey_tower = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
+       /* Image black_tower = new Image(getClass().getResourceAsStream("/images/blue_professor.png"));
         Image white_tower = new Image(getClass().getResourceAsStream("/images/green_professor.png"));
-        Image grey_tower = new Image(getClass().getResourceAsStream("/images/pink_professor.png"));
+        Image grey_tower = new Image(getClass().getResourceAsStream("/images/pink_professor.png"));*/
         for(int i=0;i<board.getTowerSize();i++){
             switch (board.getTower_colour()){
                 case BLACK:
