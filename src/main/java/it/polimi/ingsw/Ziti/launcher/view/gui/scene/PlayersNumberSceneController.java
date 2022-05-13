@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.DisconnectionRequest;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
@@ -67,7 +68,7 @@ public class PlayersNumberSceneController extends InputObservable implements Gen
      */
     private void onBackToMenuBtnClick(Event event) {
         backToMenuBtn.setDisable(true);
-        new Thread(() -> notifyObserver(InputObserver::onUpdateDisconnection)).start();
+        new Thread(() -> notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()))).start();
         SceneController.changeRootPane(observers, event, "menu_scene.fxml");
     }
 
