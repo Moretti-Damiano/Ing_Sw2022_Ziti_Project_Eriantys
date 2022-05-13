@@ -1,4 +1,5 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
+import it.polimi.ingsw.Ziti.launcher.GameRunner;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
@@ -9,6 +10,7 @@ import it.polimi.ingsw.Ziti.launcher.action.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
+import it.polimi.ingsw.Ziti.launcher.exception.StartGameException;
 import it.polimi.ingsw.Ziti.launcher.exception.WinException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
@@ -32,14 +34,15 @@ import java.util.Objects;
 
 public class GameController extends GameControllerObservable implements ServerObserver, Observer {
 
-
+    private GameRunner gameRunner;
     private Game game;
     private TurnController turnController;
     private ArrayList<Player> players;
     private int numberOfPlayers = 4; //game for n plauers
 
-    public GameController(){
+    public GameController(GameRunner gameRunner){
         players = new ArrayList<>();
+        this.gameRunner = gameRunner;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -73,7 +76,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     }
 
     @Override
-    public void loginHandler(LoginMessage message)  {
+    public void loginHandler(LoginMessage message){
         System.out.println("Received login message");
         if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers) {
             try {
@@ -422,6 +425,8 @@ public class GameController extends GameControllerObservable implements ServerOb
         this.turnController = new TurnController(this,players);
         System.out.println("Game started!");
         notifyObserver(obs -> obs.sendToAllPlayers(new GameStartedMessage()));
+        notifyObserver(); //notifica il suo gamerunner
+
     }
 
     public void notifyNewActivePlayer(Player currentPlayer) {
