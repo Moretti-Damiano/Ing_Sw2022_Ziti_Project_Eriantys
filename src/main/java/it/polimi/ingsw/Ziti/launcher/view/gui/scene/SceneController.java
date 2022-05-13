@@ -167,33 +167,9 @@ public class SceneController extends InputObservable {
         alertSceneController.displayAlert();
     }
 
-    /**
-     * Shows a Gods Information in a popup.
-     *
-     * @param name        the name of the God.
-     * @param caption     the caption of the God.
-     * @param description the description of the God.
-     */
 
 
-    public static void showGodInformation(String name, String caption, String description) {
-        FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/god_info_scene.fxml"));
 
-        Parent parent;
-        try {
-            parent = loader.load();
-        } catch (IOException e) {
-            return;
-        }
-        GodInfoSceneController godInfoSceneController = loader.getController();
-        Scene godInfoScene = new Scene(parent);
-        godInfoSceneController.setScene(godInfoScene);
-        godInfoSceneController.setGodName(name);
-        godInfoSceneController.setGodCaption(caption);
-        godInfoSceneController.setGodDescription(description);
-        godInfoSceneController.setGodImage();
-        godInfoSceneController.displayGodInfo();
-    }
 
     /**
      * Shows the win message popup.
