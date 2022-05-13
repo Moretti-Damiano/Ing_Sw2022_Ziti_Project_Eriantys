@@ -33,7 +33,9 @@ public class ChooseAssistant implements Action {
     }
 
     /**
-     * This method is used in a particular case : when for all the 3 players, all the remaining AssistantCard are taken by other players. In this case two (or more) player can use the same AssistantCard
+     * This method is used in a particular case : when for all the 3 players,
+     * all the remaining AssistantCard are taken by other players. In this case two (or more) player
+     *can use the same AssistantCard
      * @throws ActionException
      */
     private void ThreePlayerCase ()throws ActionException{
@@ -44,7 +46,7 @@ public class ChooseAssistant implements Action {
                 }
             }
             for(Player px: game.getPlayers()){
-                if(!checkName(px) && px.getAssChosen().getId()==assistantID){
+                if(!checkName(px) && px.getAssChosen()!=null && px.getAssChosen().getId() == assistantID){
                     if(count>7){
                         for(Assistant assistant: px.getAssistants()){
                             if(!checkTaken(px,assistant.getId()) && !checkUsed(player,assistant.getId())){
@@ -57,7 +59,6 @@ public class ChooseAssistant implements Action {
                                 }
                             }
                         }
-
                     }else throw new ActionException();
                 }
             }

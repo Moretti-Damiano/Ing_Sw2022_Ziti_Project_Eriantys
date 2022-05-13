@@ -191,24 +191,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private ImageView DiningStudentYellow09;
 
     @FXML
-    private MenuItem MoveBlue;
-
-    @FXML
-    private MenuItem MoveGreen;
-
-    @FXML
-    private MenuItem MovePink;
-
-    @FXML
-    private MenuItem MoveRed;
-
-    @FXML
-    private MenuButton MoveToTableChoiceBtn;
-
-    @FXML
-    private MenuItem MoveYellow;
-
-    @FXML
     private Button NextBtn;
 
     @FXML
@@ -305,7 +287,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Label  BoardName = new Label("Board");  //maybe need to be changed
         BoardName.setText(boards.get(0).getPlayername());
 
-        MoveToTableChoiceBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveToTableChoiceBtn);
         board=boards.get(0);
 
         studentsWaiting = new ArrayList<>();
@@ -402,14 +383,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         towers.add(tower07);
         setTowers(towers,board);
 
-
-
-
-        MoveBlue.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveBlueClick);
-        MoveGreen.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveGreenClick);
-        MovePink.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMovePinkClick);
-        MoveRed.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveRedClick);
-        MoveYellow.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveYellowClick);
 
     }
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
@@ -555,7 +528,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             BoardName.setText(board.getPlayername());
             checkAndDisableButton(PreviousBtn, 0);
             checkAndDisableButton(NextBtn, boards.size()-1);
-            checkAndAbleButton( MoveToTableChoiceBtn,0);
+            //checkAndAbleButton( MoveToTableChoiceBtn,0);
 
 
 
@@ -566,11 +539,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             setProfessors(professors,board);
             setTowers(towers,board);
         }
-
-    }
-    @FXML
-    void onMoveToTableChoiceBtn(Event event){
-
 
     }
 
@@ -585,7 +553,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             BoardImage.setImage(img);
             checkAndDisableButton(PreviousBtn, 0);
             checkAndDisableButton(NextBtn, boards.size()-1);
-            checkAndAbleButton( MoveToTableChoiceBtn,0);
+           // checkAndAbleButton( MoveToTableChoiceBtn,0);
             setStudentsWaiting(studentsWaiting,board);
             setStudentsDining();
             setProfessors(professors,board);
@@ -597,27 +565,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         this.boards=pr;
     }
 
-    @FXML
-    void onMoveBlueClick(Event event){
-
-
-    }
-    @FXML
-    void onMoveGreenClick(Event event){
-
-    }
-    @FXML
-    void onMovePinkClick(Event event){
-
-    }
-    @FXML
-    void onMoveRedClick(Event event){
-
-    }
-    @FXML
-    void onMoveYellowClick(Event event){
-
-    }
     private boolean checkAndDisableButton(Button button, int number) {
         if (numBoard == number) {
             button.setDisable(true);
@@ -626,6 +573,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         button.setDisable(false);
         return false;
     }
+    /*
     private boolean checkAndAbleButton(MenuButton button, int number) {
         if (numBoard == number) {
             button.setDisable(false);
@@ -634,6 +582,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         button.setDisable(true);
         return true;
     }
-
+*/
 
 }
