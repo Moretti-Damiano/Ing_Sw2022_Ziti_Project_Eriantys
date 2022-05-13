@@ -261,4 +261,9 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     }
 
+    @Override
+    public void winHandler(WinMessage message) {
+
+    }
+
 }

@@ -486,6 +486,10 @@ public class cli extends InputObservable implements view, ViewObserver {
             case "SHOWISLANDS":
                 notifyObserver(obs->obs.onUpdateIslandRequest(new ShowIslandRequest()));
                 break;
+            case "DISCONNECT":
+                notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
+                init();
+                break;
             default:
                 System.out.println("Invalid");
                 break;
@@ -510,6 +514,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Type SHOWCHARACTERS to print the available characters");
         System.out.println("Type SHOWCLOUDS to print the available clouds");
         System.out.println("Type SHOWISLANDS to print all the islands");
+        System.out.println("Type DISCONNECT to end this game and restart an other one");
 
         inputThread = new InputReadThread(this);
         new Thread(inputThread).start();
