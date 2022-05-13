@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
+import it.polimi.ingsw.Ziti.launcher.model.Island;
 import it.polimi.ingsw.Ziti.launcher.model.Student;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.event.ActionEvent;
@@ -33,6 +34,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ImageView> professors;
         private ArrayList<ImageView> towers;
         private ArrayList<ArrayList<ImageView>> diningStudents;
+        private List<Island> islands;
     @FXML
     private ImageView BoardImage;
 
@@ -430,6 +432,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     public MoveToTableSceneController(){
         numBoard=0;
         boards= new ArrayList<>();
+        islands = new ArrayList<>();
     }
 
 
@@ -546,6 +549,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         towers.add(tower06);
         towers.add(tower07);
         setTowers(towers,board);
+
+        islands = new ArrayList<>();
 
 
     }
@@ -759,6 +764,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         button.setDisable(true);
         return true;
     }
-*/
+*/private void addIslands(List<Island> islands){this.islands=islands;}
 
 }
