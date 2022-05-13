@@ -7,7 +7,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
+
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
@@ -61,22 +61,26 @@ public class cli extends InputObservable implements view, ViewObserver {
     public void showIslands(List<Island> islands) {
         System.out.println();
         System.out.println("Available islands are ");
-        for(Island island : islands) {
+        for (Island island : islands) {
             if (island.getMother()) {
                 System.out.println(" ID : " + island.getID() + "\t\tIn this island there's MotherNature ");
             } else System.out.println(" ID : " + island.getID());
             if (island.getTowerPlayer() != null) {
-                System.out.println("In this island there is " + island.getTowerPlayer().GetName() + "'s tower");
-            }
-            if (island.getStudents().isEmpty()) System.out.println("There are no students ");
-            else {
-                String partial="";
-                for (Colour c : Colour.values()) {
-                    if (island.getColour(c) != 0) {
-                        partial = partial.concat("\t  " + island.getColour(c) +" " + c.getName()+" students " );
-                    }
+                if (island.getTowers().size() > 1) {
+                    System.out.println("In this island " + island.getTowerPlayer().GetName() + " has " + island.getTowers() + " towers");
+                } else {
+                    System.out.println("In this island there is " + island.getTowerPlayer().GetName() + "'s tower");
                 }
-                System.out.println("There are: "+partial);
+                if (island.getStudents().isEmpty()) System.out.println("There are no students ");
+                else {
+                    String partial = "";
+                    for (Colour c : Colour.values()) {
+                        if (island.getColour(c) != 0) {
+                            partial = partial.concat("\t  " + island.getColour(c) + " " + c.getName() + " students ");
+                        }
+                    }
+                    System.out.println("There are: " + partial);
+                }
             }
         }
     }
