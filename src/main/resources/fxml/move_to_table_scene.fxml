@@ -322,9 +322,9 @@
                   <Button fx:id="MTIBtn" layoutX="111.0" layoutY="202.0" mnemonicParsing="false" text="MoveToIsland" />
                   <Button fx:id="MTTBtn" layoutX="112.0" layoutY="139.0" mnemonicParsing="false" text="MoveToTable" />
                   <Button fx:id="ConfirmBtn" layoutX="88.0" layoutY="373.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="136.0" text="Confirm" />
-                  <Button layoutX="211.0" layoutY="633.0" mnemonicParsing="false" text="CLOUDS" />
-                  <Button layoutX="102.0" layoutY="633.0" mnemonicParsing="false" text="CHARACTERS" />
-                  <Button layoutY="633.0" mnemonicParsing="false" text="ASSISTANTS" />
+                  <Button fx:id="CloudsBtn" layoutX="211.0" layoutY="633.0" mnemonicParsing="false" text="CLOUDS" />
+                  <Button fx:id="CharacterBtn" layoutX="102.0" layoutY="633.0" mnemonicParsing="false" text="CHARACTERS" />
+                  <Button fx:id="AssistantBtn" layoutY="633.0" mnemonicParsing="false" text="ASSISTANTS" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/Titolo%20pagine.png" />

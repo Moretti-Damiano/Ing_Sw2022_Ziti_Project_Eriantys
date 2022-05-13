@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowAssistantRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCharacterRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCloudRequest;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
@@ -426,6 +429,15 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private Button SelectBtn;
 
+    @FXML
+    private Button AssistantBtn;
+
+    @FXML
+    private Button CharacterBtn;
+
+    @FXML
+    private Button CloudsBtn;
+
 
 
 
@@ -451,6 +463,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         MTTBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMoveToTableClick);
         MTIBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMoveToIslandClick);
         SelectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onSelectBtnClick);
+        AssistantBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onAssistantBtnClick);
+        CharacterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCharacterBtnClick);
+        CloudsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCloudBtnClick);
+        Island0.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland (Island0.getId()));
+
+
+
 
         Label  BoardName = new Label("Board");  //maybe need to be changed
         BoardName.setText(boards.get(0).getPlayername());
@@ -746,6 +765,18 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     void onSelectBtnClick(Event event){
 
     }
+    @FXML
+    void onAssistantBtnClick(Event event){
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateAssistantRequest(new ShowAssistantRequest()))).start();
+    }
+    @FXML
+    void onCharacterBtnClick(Event event){
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateCharacterRequest(new ShowCharacterRequest()))).start();
+    }
+    @FXML
+    void onCloudBtnClick(Event event){
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudRequest(new ShowCloudRequest()))).start();
+    }
 
     public void addBoards(List<Board> pr){
         this.boards=pr;
@@ -770,5 +801,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 */
     public void addIslands(List<Island> islands){this.islands=islands;}
+
+    public void showStudentsOnIsland(String IdIsland){
+
+    }
 
 }
