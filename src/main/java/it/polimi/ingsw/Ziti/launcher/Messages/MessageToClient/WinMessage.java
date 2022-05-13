@@ -5,6 +5,8 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 public class WinMessage extends MessageToClient{
 
     private String winner;
+
+    public String getWinner(){return winner;}
     
     public WinMessage(String winner){
         this.winner = winner;
@@ -12,6 +14,6 @@ public class WinMessage extends MessageToClient{
     
     @Override
     public void handle(ClientMessageHandler clientMessageHandler) {
-       // clientMessageHandler.WinMessageHandler(this);
+        clientMessageHandler.WinMessageHandle(this);
     }
 }

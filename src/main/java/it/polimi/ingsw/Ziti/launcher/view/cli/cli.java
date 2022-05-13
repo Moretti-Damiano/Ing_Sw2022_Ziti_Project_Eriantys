@@ -202,6 +202,12 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void winHandler(WinMessage message) {
+        System.out.println("\t\t Game is over!!");
+        System.out.println("The winner is:  ............................................."+message.getWinner());
+    }
+
+    @Override
     public void askMoveToTable() {
         notifyObserver(obs ->
                 obs.onUpdateMoveToTable(askColour()));
