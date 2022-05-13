@@ -33,6 +33,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ImageView> professors;
         private ArrayList<ImageView> towers;
         private ArrayList<ArrayList<ImageView>> diningStudents;
+        private String RequestPlayer="";
     @FXML
     private ImageView BoardImage;
 
@@ -675,6 +676,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
                 default: break;
             }
         }
+    }
+    public void SetRequestPlayer(String player){
+        this.RequestPlayer=player;
     }
 
     @FXML
