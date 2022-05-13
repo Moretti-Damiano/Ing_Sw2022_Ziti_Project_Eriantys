@@ -38,6 +38,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ImageView> towers;
         private ArrayList<ArrayList<ImageView>> diningStudents;
         private List<Island> islands;
+        private ArrayList<ImageView> islands_images;
         private String RequestPlayer="";
     @FXML
     private ImageView BoardImage;
@@ -570,8 +571,20 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         towers.add(tower07);
         setTowers(towers,board);
 
-        islands = new ArrayList<>();
-
+        islands_images = new ArrayList<>();
+        islands_images.add(Island0);
+        islands_images.add(Island1);
+        islands_images.add(Island2);
+        islands_images.add(Island3);
+        islands_images.add(Island4);
+        islands_images.add(Island5);
+        islands_images.add(Island6);
+        islands_images.add(Island7);
+        islands_images.add(Island8);
+        islands_images.add(Island9);
+        islands_images.add(Island10);
+        islands_images.add(Island11);
+        setIslands_images(islands_images,islands);
 
     }
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
@@ -605,6 +618,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             }
         }
 
+    }
+    private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands){
+        Image island = new Image(getClass().getResourceAsStream("/images/island.png"));
+
+        for(int i=0; i<islands.size(); i++){
+            islands_images.get(i).setImage(island);
+        }
     }
     private void setStudentsDiningBlue(ArrayList<ImageView> students,Board board) {
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
