@@ -9,7 +9,7 @@ import it.polimi.ingsw.Ziti.launcher.observer.LoginObserver;
 public class GameRunner implements Runnable, LoginObserver {
 
     private final int port;
-    private ServerApp serverApp;
+    private final ServerApp serverApp;
 
     public GameRunner(int port, ServerApp serverApp){
         this.port = port;
