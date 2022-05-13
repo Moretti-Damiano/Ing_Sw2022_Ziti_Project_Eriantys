@@ -258,6 +258,13 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getBoards().toString()));
+        MoveToTableSceneController moveToTableSceneController = new MoveToTableSceneController();
+        moveToTableSceneController.addAllObservers(observers);
+        moveToTableSceneController.addBoards(message.getBoards());
+        moveToTableSceneController.addIslands(message.getIslands());
+        moveToTableSceneController.SetRequestPlayer(message.getRequestplayer());
+        Platform.runLater(() -> SceneController.changeRootPane(moveToTableSceneController,"move_to_table_scene.fxml"));
     }
 
     @Override

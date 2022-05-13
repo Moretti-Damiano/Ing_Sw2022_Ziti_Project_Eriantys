@@ -36,6 +36,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ArrayList<ImageView>> diningStudents;
         private List<Island> islands;
         private ArrayList<ImageView> islands_images;
+        private String RequestPlayer="";
     @FXML
     private ImageView BoardImage;
 
@@ -701,6 +702,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             }
         }
     }
+    public void SetRequestPlayer(String player){
+        this.RequestPlayer=player;
+    }
 
     @FXML
     void onConfirmClick(Event event) {
@@ -784,6 +788,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         button.setDisable(true);
         return true;
     }
-*/private void addIslands(List<Island> islands){this.islands=islands;}
+*/
+    public void addIslands(List<Island> islands){this.islands=islands;}
 
 }
