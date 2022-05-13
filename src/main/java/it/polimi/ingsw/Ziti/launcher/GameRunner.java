@@ -2,7 +2,6 @@ package it.polimi.ingsw.Ziti.launcher;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.controller.GameController;
-import it.polimi.ingsw.Ziti.launcher.exception.StartGameException;
 import it.polimi.ingsw.Ziti.launcher.networking.server.Server;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 import it.polimi.ingsw.Ziti.launcher.observer.LoginObserver;
