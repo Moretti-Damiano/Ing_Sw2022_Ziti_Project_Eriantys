@@ -290,9 +290,15 @@ public class ClientController extends ClientObservable implements InputObserver 
     }
 
     @Override
-    public void onUpdateDisconnection() {
-
+    public void onUpdateDisconnection(DisconnectionRequest message) {
+        notifyObserver(obs->obs.disconnect());
     }
+
+    @Override
+    public void onUpdateShowAndIslandRequest(ShowBoardsandIslandsRequest message) {
+        notifyObserver(obs->obs.send(message));
+    }
+
 
     /**
      * Check if the String is an Integer

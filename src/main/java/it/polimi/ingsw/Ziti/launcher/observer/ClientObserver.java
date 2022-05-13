@@ -8,5 +8,6 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
 public interface ClientObserver {
 
     void send(MessagetoServer message);
+    void disconnect();
 
 }

@@ -38,4 +38,5 @@ public class ClientMessageHandler extends ViewObservable {
     public void ShowIslandsResponseHandle(ShowIslandResponse message){notifyObserver(obs-> obs.showIslandHandler(message));}
     public void GameStartedMessageHandle(GameStartedMessage message){notifyObserver(obs-> obs.GameStartedHandler(message));}
     public void ShowBoardsandIslandsResponseHandle(ShowBoardsandIslandsResponse message){notifyObserver(obs -> obs.showBoardsandIslandsHandler(message));}
+    public void WinMessageHandle(WinMessage message){notifyObserver(obs -> obs.winHandler(message));}
 }

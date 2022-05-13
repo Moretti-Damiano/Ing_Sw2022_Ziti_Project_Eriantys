@@ -258,6 +258,10 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message) {
+    }
+
+    @Override
+    public void winHandler(WinMessage message) {
 
     }
 

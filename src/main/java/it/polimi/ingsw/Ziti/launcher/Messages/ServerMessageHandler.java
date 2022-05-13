@@ -85,9 +85,9 @@ public class ServerMessageHandler extends ServerObservable {
         notifyObserver(obs -> obs.chooseCharacter5Handler(message));
     }
 
-
-
     public void clientDisconnection(){
         notifyObserver(ServerObserver::endGameDisconnection);
     }
+
+    public void disconnectionRequestHandler(DisconnectionRequest message) {}
 }
