@@ -47,7 +47,7 @@ public class TurnController {
     public void updatePhase() throws WinException {
             checkWin();     //check number of tower and islands
             phase.update();
-            checkWin();     //check if it's the 10th turn
+            checkWinAssistant();
     }
 
 
@@ -128,7 +128,6 @@ public class TurnController {
     public void checkWin() throws WinException{
         checkWinTowers();
         checkWinIslands();
-        checkWinAssistant();
     }
 
     private void checkWinIslands() throws WinException {
