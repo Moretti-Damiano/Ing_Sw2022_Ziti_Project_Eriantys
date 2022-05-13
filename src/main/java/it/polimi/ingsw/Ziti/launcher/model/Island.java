@@ -12,8 +12,10 @@ public class Island implements Serializable {
     private ArrayList<Tower> towers;
     private Player TowerPlayer;
     private boolean isMother;
+    private int size;
 
     public Island(int id){
+        this.size = 1;
         this.ID = id;
         this.students = new ArrayList<Student>();
         this.towers = new ArrayList<Tower>();
@@ -74,6 +76,12 @@ public class Island implements Serializable {
         this.TowerPlayer = player;
     }
 
+    public int getSize() {
+        return size;
+    }
 
+    public void setSize(int size) {
+        this.size = size;
+    }
 }
 

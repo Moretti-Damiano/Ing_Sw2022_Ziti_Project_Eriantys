@@ -11,12 +11,7 @@ import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 import java.util.ArrayList;
 import java.util.Random;
 
-/*
-TO DO:
-    *CURRENTPLAYER
-    *GAME INIT PER 4 GIOCATORI (SETPLAYERS)
-    *ARRAYLIST DI CHARACTER
- */
+
 public class Game extends Observable {
     private ArrayList<Island> islands;
     private ArrayList<Player> players;
@@ -224,7 +219,7 @@ public class Game extends Observable {
                     player.getBoard().addStudent(sack.extract());
                 }
                 for(int i = 0; i < 6; i++){
-                player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour())); //adds the 8th tower
+                    player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour()));
                 }
             }
         }

@@ -158,6 +158,8 @@ public class MoveMother implements Action {
         System.out.println("Merging island " + island1.getID() + " with island " + island2.getID());
         island1.getStudents().addAll(island2.getStudents());
         island1.getTowers().addAll(island2.getTowers());
+        int newSize = island1.getSize() + island2.getSize();
+        island1.setSize(newSize);
         game.getIslands().remove(island2);
     }
 
