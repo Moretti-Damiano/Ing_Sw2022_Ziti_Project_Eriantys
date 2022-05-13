@@ -12,14 +12,13 @@ import java.util.ArrayList;
 import java.util.Random;
 
 
-public class Game extends Observable {
+public abstract class Game extends Observable {
     private ArrayList<Island> islands;
     private ArrayList<Player> players;
     private ArrayList<CloudIsland> cloudIslands;
     private ArrayList<Board> boards;
     private Mother mother;
     private Sack sack;
-    //private int maxPlayer;
     private int playerNumber;   //indictes the number of player at the start of the game
     private ArrayList<Professor> professors;
     private Player currentPlayer;
@@ -33,6 +32,8 @@ public class Game extends Observable {
      * @param p arraylist containing all the players
      */
     public Game(ArrayList<Player> p){
+        this.cloudIslands=new ArrayList<>();
+        this.boards=new ArrayList<>();
 
         this.players = new ArrayList<>(p);
 
@@ -75,6 +76,7 @@ public class Game extends Observable {
 
     }
 
+
     /**
      * Places Mother on a random island, then it fills the sack with 10 students (2 per colour)
      * and adds a student from the sack to each island, except for the one with Mother on, and the opposite one.
@@ -100,13 +102,15 @@ public class Game extends Observable {
     /**
      * creates and setup all the cloudIslands
      */
-    private void setUpCloudIslands(){
-        cloudIslands = new ArrayList<>();
-        for(int i = 0; i < playerNumber; i++){
-            cloudIslands.add(new CloudIsland(i,playerNumber,sack));
-            cloudIslands.get(i).toFill();
+  public  void setUpCloudIslands(){
+            for (int i = 0; i < getPlayerNumber(); i++) {
+                getCloudIslands().add(new CloudIsland(i, getPlayerNumber(), getSack()));
+                getCloudIslands().get(i).toFill();
+            }
         }
-    }
+
+
+
 
     /**
      * Create all the professor
@@ -183,47 +187,7 @@ public class Game extends Observable {
      * adding students and towers of the automatically assigned colour
      * @param p the arraylist containing all the players
      */
-    private void setPlayers(ArrayList<Player> p){
-
-        if(p.size() == 2){
-            //set player towercolour
-            int towerColour = 0;
-            for(Player player: p){
-                player.getBoard().setTowerColour(TowerColour.valueOfAbbreviation(Integer.toString(towerColour)));
-                towerColour ++;
-            }
-
-            //add 7 random students on each player's board and 8 towers
-            for(Player player:p){
-                for(int i = 0; i < 7; i++){
-                    player.getBoard().addStudent(sack.extract());
-                    player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour()));
-                }
-                player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour())); //adds the 8th tower
-                player.getBoard().addCoin(gameWallet.getCoin());
-            }
-        }
-
-        if(p.size() == 3){
-            //set player towercolour
-            int towerColour = 0;
-            for(Player player: p){
-                player.getBoard().setTowerColour(TowerColour.valueOfAbbreviation(Integer.toString(towerColour)));
-                towerColour ++;
-            }
-
-            //add 9 random students on each player's board and 6 towers
-            for(Player player:p){
-                player.getBoard().addCoin(gameWallet.getCoin());
-                for(int i = 0; i < 9; i++){
-                    player.getBoard().addStudent(sack.extract());
-                }
-                for(int i = 0; i < 6; i++){
-                    player.getBoard().addTower(new Tower(player,player.getBoard().getTower_colour()));
-                }
-            }
-        }
-    }
+    public abstract void setPlayers(ArrayList<Player> p);
 
     /**
      *
@@ -320,5 +284,21 @@ public class Game extends Observable {
                 return c;
         }
         return null;
+    }
+
+    public Mother getMother(){
+        return this.mother;
+    }
+
+    public int getPlayerNumber() {
+        return playerNumber;
+    }
+
+    public Action getAction() {
+        return action;
+    }
+
+    public ArrayList<Character> getAllCharacters() {
+        return allCharacters;
     }
 }
