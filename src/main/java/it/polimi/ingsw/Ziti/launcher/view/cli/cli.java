@@ -182,7 +182,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Insert the number of players: ");
         //Scanner scanner=new Scanner(System.in);
         String numberOfPlayer=readLine();
-        System.out.println("Ho superato il readLine");
+        //System.out.println("Ho superato il readLine");
         notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
     }
 
@@ -358,7 +358,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void NumOfPlayerHandler(NumOfPLayersRequest message){
-        System.out.println("Sto per chiedere il numero dei player");
+       // System.out.println("Sto per chiedere il numero dei player");
         askNumberOfPlayer();
 
     }
