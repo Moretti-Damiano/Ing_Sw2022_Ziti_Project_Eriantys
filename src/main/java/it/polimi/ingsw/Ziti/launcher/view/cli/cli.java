@@ -7,7 +7,6 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.CharacterOLD;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
