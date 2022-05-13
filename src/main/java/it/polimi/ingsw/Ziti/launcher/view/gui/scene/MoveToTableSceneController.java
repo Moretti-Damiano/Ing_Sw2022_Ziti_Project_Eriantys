@@ -39,6 +39,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ArrayList<ImageView>> diningStudents;
         private List<Island> islands;
         private ArrayList<ImageView> islands_images;
+        private ArrayList<ImageView> mother_nature_images;
+    private ArrayList<ImageView> towerisland_images;
         private String RequestPlayer="";
     @FXML
     private ImageView BoardImage;
@@ -584,7 +586,36 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         islands_images.add(Island10);
         islands_images.add(Island11);
         setIslands_images(islands_images,islands);
-        String id=Island0.getId();
+
+        mother_nature_images=new ArrayList<>();
+        mother_nature_images.add(M);
+        mother_nature_images.add(M1);
+        mother_nature_images.add(M2);
+        mother_nature_images.add(M3);
+        mother_nature_images.add(M4);
+        mother_nature_images.add(M5);
+        mother_nature_images.add(M6);
+        mother_nature_images.add(M7);
+        mother_nature_images.add(M8);
+        mother_nature_images.add(M9);
+        mother_nature_images.add(M10);
+        mother_nature_images.add(M11);
+
+        towerisland_images=new ArrayList<>();
+        towerisland_images.add(T);
+        towerisland_images.add(T1);
+        towerisland_images.add(T2);
+        towerisland_images.add(T3);
+        towerisland_images.add(T4);
+        towerisland_images.add(T5);
+        towerisland_images.add(T6);
+        towerisland_images.add(T7);
+        towerisland_images.add(T8);
+        towerisland_images.add(T9);
+        towerisland_images.add(T10);
+        towerisland_images.add(T11);
+        setTowerIsland_images(towerisland_images,islands);
+
         Island0.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland0);
         Island1.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland1);
         Island2.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland2);
@@ -597,8 +628,25 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Island9.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland9);
         Island10.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland10);
         Island11.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland11);
+        setMother_nature_images(mother_nature_images,islands);
 
     }
+
+    private void setTowerIsland_images(ArrayList<ImageView> towerisland_images, List<Island> islands) {
+        Image TW = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
+        Image TB = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
+        Image TG = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
+
+        for(Island i: islands){
+            if(i.getTowers()!=null){
+                if(i.getTowers().get(0).getTowerColour()=="white")
+                towerisland_images.get(i.getID()).setImage(mother);
+            }
+
+        }
+
+    }
+
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
@@ -636,6 +684,16 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         for(int i=0; i<islands.size(); i++){
             islands_images.get(i).setImage(island);
+        }
+    }
+    private void setMother_nature_images(ArrayList<ImageView> mother_nature_images,List<Island> islands){
+        Image mother = new Image(getClass().getResourceAsStream("/images/mother.png"));
+
+        for(Island i: islands){
+            if(i.getMother()){
+                mother_nature_images.get(i.getID()).setImage(mother);
+            }
+
         }
     }
     private void setStudentsDiningBlue(ArrayList<ImageView> students,Board board) {
