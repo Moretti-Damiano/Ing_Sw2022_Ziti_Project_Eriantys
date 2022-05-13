@@ -12,7 +12,7 @@ import java.util.concurrent.ExecutionException;
 public class ClientApp {
     public static void main(String[] args) throws ExecutionException {
 
-        boolean cliParam = true; // default value
+        boolean cliParam = false; // default value
 
         for (String arg : args) {
             if (arg.equals("--cli") || arg.equals("-c")) {

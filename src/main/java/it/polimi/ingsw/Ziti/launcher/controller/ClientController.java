@@ -294,6 +294,10 @@ public class ClientController extends ClientObservable implements InputObserver 
         notifyObserver(obs->obs.disconnect());
     }
 
+    @Override
+    public void onUpdateShowAndIslandRequest(ShowBoardsandIslandsRequest message) {
+        notifyObserver(obs->obs.send(message));
+    }
 
 
     /**

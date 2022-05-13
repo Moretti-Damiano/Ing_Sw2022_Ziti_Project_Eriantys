@@ -24,4 +24,5 @@ public interface InputObserver {
     void onUpdateCloudRequest(ShowCloudRequest message);
     void onUpdateIslandRequest(ShowIslandRequest message);
     void onUpdateDisconnection(DisconnectionRequest message);
+    void onUpdateShowAndIslandRequest(ShowBoardsandIslandsRequest message);
 }
