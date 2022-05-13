@@ -8,11 +8,13 @@ import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
+import javafx.scene.Group;
 import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
+import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -262,6 +264,164 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private ImageView tower07;
 
+    @FXML
+    private Text Id0;
+
+    @FXML
+    private Text Id1;
+
+    @FXML
+    private Text Id10;
+
+    @FXML
+    private Text Id11;
+
+    @FXML
+    private Text Id2;
+
+    @FXML
+    private Text Id3;
+
+    @FXML
+    private Text Id4;
+
+    @FXML
+    private Text Id5;
+
+    @FXML
+    private Text Id6;
+
+    @FXML
+    private Text Id7;
+
+    @FXML
+    private Text Id8;
+
+    @FXML
+    private Text Id9;
+
+    @FXML
+    private ImageView Island0;
+
+    @FXML
+    private ImageView Island1;
+
+    @FXML
+    private ImageView Island10;
+
+    @FXML
+    private ImageView Island11;
+
+    @FXML
+    private ImageView Island2;
+
+    @FXML
+    private ImageView Island3;
+
+    @FXML
+    private ImageView Island4;
+
+    @FXML
+    private ImageView Island5;
+
+    @FXML
+    private ImageView Island6;
+
+    @FXML
+    private ImageView Island7;
+
+    @FXML
+    private ImageView Island8;
+
+    @FXML
+    private ImageView Island9;
+
+    @FXML
+    private Text IslandDesc;
+
+    @FXML
+    private Group IslandGroup;
+
+    @FXML
+    private ImageView M;
+
+    @FXML
+    private ImageView M1;
+
+    @FXML
+    private ImageView M10;
+
+    @FXML
+    private ImageView M11;
+
+    @FXML
+    private ImageView M2;
+
+    @FXML
+    private ImageView M3;
+
+    @FXML
+    private ImageView M4;
+
+    @FXML
+    private ImageView M5;
+
+    @FXML
+    private ImageView M6;
+
+    @FXML
+    private ImageView M7;
+
+    @FXML
+    private ImageView M8;
+
+    @FXML
+    private ImageView M9;
+
+    @FXML
+    private Button MTIBtn;
+
+    @FXML
+    private Button MTTBtn;
+
+    @FXML
+    private ImageView T;
+
+    @FXML
+    private ImageView T1;
+
+    @FXML
+    private ImageView T10;
+
+    @FXML
+    private ImageView T11;
+
+    @FXML
+    private ImageView T2;
+
+    @FXML
+    private ImageView T3;
+
+    @FXML
+    private ImageView T4;
+
+    @FXML
+    private ImageView T5;
+
+    @FXML
+    private ImageView T6;
+
+    @FXML
+    private ImageView T7;
+
+    @FXML
+    private ImageView T8;
+
+    @FXML
+    private ImageView T9;
+
+    @FXML
+    private Button SelectBtn;
 
 
 
@@ -284,6 +444,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
+        MTTBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMoveToTableClick);
+        MTIBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMoveToIslandClick);
+        SelectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onSelectBtnClick);
+
         Label  BoardName = new Label("Board");  //maybe need to be changed
         BoardName.setText(boards.get(0).getPlayername());
 
@@ -559,6 +723,19 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             setProfessors(professors,board);
             setTowers(towers,board);
         }
+    }
+
+    @FXML
+    void onMoveToTableClick(Event event){
+
+    }
+    @FXML
+    void onMoveToIslandClick(Event event){
+
+    }
+    @FXML
+    void onSelectBtnClick(Event event){
+
     }
 
     public void addBoards(List<Board> pr){
