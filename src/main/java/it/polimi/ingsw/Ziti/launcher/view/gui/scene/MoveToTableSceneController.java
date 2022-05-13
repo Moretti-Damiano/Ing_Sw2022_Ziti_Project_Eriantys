@@ -768,6 +768,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         button.setDisable(true);
         return true;
     }
-*/private void addIslands(List<Island> islands){this.islands=islands;}
+*/
+    public void addIslands(List<Island> islands){this.islands=islands;}
 
 }
