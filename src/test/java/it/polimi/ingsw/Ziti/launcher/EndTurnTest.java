@@ -22,7 +22,7 @@ public class EndTurnTest {
         players.add(new Player("Player" + 1));
         players.add(new Player("Player" + 2));
 
-        game = new Game(players);
+        //game = new Game(players);
 
     }
     // Player0 has used assistant 0 : checking if it's chosen and if others are not actual and not chosen

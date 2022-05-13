@@ -23,7 +23,7 @@ public class ChooseAssistantTest {
         for(int i = 0; i < 3; i ++){
             players.add(new Player("Player"+ i));
         }
-        game = new Game(players); //creates a new game with 3 players
+       // game = new Game(players); //creates a new game with 3 players
         game.setActivePlayer(game.getPlayers().get(2));
     }
     @Test

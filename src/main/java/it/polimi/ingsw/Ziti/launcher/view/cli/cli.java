@@ -71,17 +71,17 @@ public class cli extends InputObservable implements view, ViewObserver {
                 } else {
                     System.out.println("In this island there is " + island.getTowerPlayer().GetName() + "'s tower");
                 }
-                if (island.getStudents().isEmpty()) System.out.println("There are no students ");
-                else {
-                    String partial = "";
-                    for (Colour c : Colour.values()) {
-                        if (island.getColour(c) != 0) {
-                            partial = partial.concat("\t  " + island.getColour(c) + " " + c.getName() + " students ");
-                        }
-                    }
-                    System.out.println("There are: " + partial);
-                }
             }
+            if (island.getStudents().isEmpty())
+                System.out.println("There are no students ");
+            else {
+                String partial = "";
+                for (Colour c : Colour.values()) {
+                    if (island.getColour(c) != 0) {
+                        partial = partial.concat("\t  " + island.getColour(c) + " " + c.getName() + " students ");
+                    }
+                }
+                System.out.println("There are: " + partial);}
         }
     }
 
