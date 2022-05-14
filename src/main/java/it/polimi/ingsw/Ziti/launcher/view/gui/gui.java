@@ -185,6 +185,11 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void ModeRequestHandler(ModeRequest message) {
+
+    }
+
+    @Override
     public void TurnErrorHandler(TurnError message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
     }

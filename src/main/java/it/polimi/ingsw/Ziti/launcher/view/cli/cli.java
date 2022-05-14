@@ -110,6 +110,7 @@ public class cli extends InputObservable implements view, ViewObserver {
             System.out.println();
         }
         // show coins
+        if(board.getWallet()!= null)
         System.out.println("There are  " + board.getNumberofCoin() + " coins in wallet");
 
         // show professors
@@ -191,6 +192,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
     }
 
+
     @Override
     public void GameStartedHandler(GameStartedMessage message)  {
         gameStarter();
@@ -215,8 +217,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void askMoveToTable() {
-        notifyObserver(obs ->
-                obs.onUpdateMoveToTable(askColour()));
+        notifyObserver(obs ->   obs.onUpdateMoveToTable(askColour()));
     }
 
     @Override
@@ -369,6 +370,16 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void ModeRequestHandler(ModeRequest message) {
+            System.out.println("Which mode do you want to play?");
+            System.out.println("Type NORMAL or EXPERT");
+            String mode=readLine();
+            notifyObserver(obs -> obs.onUpdateMode(mode));
+        }
+
+
+
+    @Override
     public void TurnErrorHandler(TurnError message)  {
         System.out.println(message.getDescription());
     }
@@ -492,7 +503,7 @@ public class cli extends InputObservable implements view, ViewObserver {
             case "SHOWISLANDS":
                 notifyObserver(obs->obs.onUpdateIslandRequest(new ShowIslandRequest()));
                 break;
-            case "SHOWBOARDSANDISLANDS":
+            case "SHOWALL":
                 notifyObserver(obs->obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
                 break;
             case "DISCONNECT":
@@ -511,16 +522,16 @@ public class cli extends InputObservable implements view, ViewObserver {
      */
     public void gameStarter()  {
         System.out.println("MAIN ACTION");
-        System.out.println("Type CHOOSEASSISTANT to chose your assistant");
+        System.out.println("Type CHOOSEASSISTANT to choose your assistant");
         System.out.println("Type CHOOSECHARACTER to choose your character");
-        System.out.println("Type CHOOSECLOUD to chose your cloud");
-        System.out.println("Type MOVEMOTHER to chose the number of mother's movements");
-        System.out.println("Type MOVETOISLAND to chose the island where you want to put your students");
+        System.out.println("Type CHOOSECLOUD to choose your cloud");
+        System.out.println("Type MOVEMOTHER to choose the number of mother's movements");
+        System.out.println("Type MOVETOISLAND to choose the island where you want to put your students");
         System.out.println("Type MOVETOTABLE if you want to put your student on the table");
         System.out.println("Type SHOWASSISTANTS to print the available assistants");
         System.out.println("Type SHOWBOARD to print your board");
         System.out.println("Type SHOWBOARDS to print the board of each player");
-        System.out.println("Type SHOWBOARDSANDISLANDS to print all boards and all islands");
+        System.out.println("Type SHOWALL to print all boards and all islands");
         System.out.println("Type SHOWCHARACTERS to print the available characters");
         System.out.println("Type SHOWCLOUDS to print the available clouds");
         System.out.println("Type SHOWISLANDS to print all the islands");
