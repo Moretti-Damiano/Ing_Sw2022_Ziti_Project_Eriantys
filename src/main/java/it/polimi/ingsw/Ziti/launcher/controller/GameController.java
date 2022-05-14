@@ -419,7 +419,7 @@ public class GameController extends GameControllerObservable implements ServerOb
      */
     private void startGame(){
         System.out.println("Starting game for " + players.size() + " players");
-        this.game = new Game(players);
+        chooseGame(numberOfPlayers);
         game.addObserver(this);
         this.turnController = new TurnController(this,players);
         System.out.println("Game started!");
@@ -458,5 +458,13 @@ public class GameController extends GameControllerObservable implements ServerOb
         this.game = null;
         this.players = new ArrayList<>();
         this.turnController = null;
+    }
+
+    private void chooseGame(int playerSize){
+        if(playerSize==2){
+            this.game=new Game2(players);}
+        if(playerSize==3){
+            this.game= new Game3(players);
+        }
     }
 }
