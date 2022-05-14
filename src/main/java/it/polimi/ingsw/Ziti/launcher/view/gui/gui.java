@@ -154,7 +154,6 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void endTurnHandler(EndTurnDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
@@ -259,7 +258,6 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void YourTurnNotificationHandler(YourTurnNotification message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message", message.Description));
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
 
     }
 
