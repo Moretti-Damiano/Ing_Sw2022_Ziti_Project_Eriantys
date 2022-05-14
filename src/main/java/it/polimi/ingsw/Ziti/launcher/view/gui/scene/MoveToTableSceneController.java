@@ -667,6 +667,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
@@ -789,6 +792,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningBlue(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.BLUE); i++) {
@@ -796,6 +802,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningGreen(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.GREEN); i++) {
@@ -803,6 +812,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningPink(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.PINK); i++) {
@@ -810,6 +822,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningRed(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.RED); i++) {
@@ -817,6 +832,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningYellow(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.YELLOW); i++) {
@@ -832,6 +850,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
     private void setProfessors(ArrayList<ImageView> professors,Board board){
+        for(ImageView imm:professors){
+            imm.setImage(null);
+        }
         Image blue_professor = new Image(getClass().getResourceAsStream("/images/blue_professor.png"));
         Image green_professor = new Image(getClass().getResourceAsStream("/images/green_professor.png"));
         Image pink_professor = new Image(getClass().getResourceAsStream("/images/pink_professor.png"));
@@ -842,19 +863,19 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
             switch (board.getProfessors().get(i).getColour()){
                 case BLUE:
-                    professors.get(i).setImage(blue_professor);
+                    professors.get(0).setImage(blue_professor);
                     break;
                 case GREEN:
-                    professors.get(i).setImage(green_professor);
+                    professors.get(1).setImage(green_professor);
                     break;
                 case PINK:
-                    professors.get(i).setImage(pink_professor);
+                    professors.get(2).setImage(pink_professor);
                     break;
                 case RED:
-                    professors.get(i).setImage(red_professor);
+                    professors.get(3).setImage(red_professor);
                     break;
                 case YELLOW:
-                    professors.get(i).setImage(yellow_professor);
+                    professors.get(4).setImage(yellow_professor);
                     break;
                 default: break;
             }
