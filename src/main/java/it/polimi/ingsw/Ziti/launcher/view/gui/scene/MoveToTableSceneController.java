@@ -1,5 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowAssistantRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCharacterRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCloudRequest;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
@@ -19,6 +23,10 @@ import javafx.scene.text.Text;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
+
+import static com.sun.javafx.scene.control.skin.Utils.getResource;
+import static it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour.BLACK;
 
 public class MoveToTableSceneController extends InputObservable implements GenericSceneController {
 
@@ -36,7 +44,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ArrayList<ImageView>> diningStudents;
         private List<Island> islands;
         private ArrayList<ImageView> islands_images;
+        private ArrayList<ImageView> mother_nature_images;
+        private ArrayList<ImageView> towerisland_images;
         private String RequestPlayer="";
+        private String StudentColour="";
+        private String IslandId="";
     @FXML
     private ImageView BoardImage;
 
@@ -427,6 +439,14 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private Button SelectBtn;
 
+    @FXML
+    private Button AssistantBtn;
+
+    @FXML
+    private Button CharacterBtn;
+
+    @FXML
+    private Button CloudsBtn;
 
 
 
@@ -452,6 +472,16 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         MTTBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMoveToTableClick);
         MTIBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onMoveToIslandClick);
         SelectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onSelectBtnClick);
+        AssistantBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onAssistantBtnClick);
+        CharacterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCharacterBtnClick);
+        CloudsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCloudBtnClick);
+        MTTBtn.setDisable(true);
+        MTIBtn.setDisable(true);
+        SelectBtn.setDisable(true);
+        ConfirmBtn.setDisable(true);
+
+
+
 
         Label  BoardName = new Label("Board");  //maybe need to be changed
         BoardName.setText(boards.get(0).getPlayername());
@@ -469,6 +499,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         studentsWaiting.add(WaitingStudent7);
         studentsWaiting.add(WaitingStudent8);
         setStudentsWaiting(studentsWaiting,board);
+        AddStudentsHandler();
 
         diningStudentsBlue = new ArrayList<>();
         diningStudentsBlue.add(DiningStudentBlue0);
@@ -567,8 +598,78 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         islands_images.add(Island11);
         setIslands_images(islands_images,islands);
 
+        mother_nature_images=new ArrayList<>();
+        mother_nature_images.add(M);
+        mother_nature_images.add(M1);
+        mother_nature_images.add(M2);
+        mother_nature_images.add(M3);
+        mother_nature_images.add(M4);
+        mother_nature_images.add(M5);
+        mother_nature_images.add(M6);
+        mother_nature_images.add(M7);
+        mother_nature_images.add(M8);
+        mother_nature_images.add(M9);
+        mother_nature_images.add(M10);
+        mother_nature_images.add(M11);
+
+        towerisland_images=new ArrayList<>();
+        towerisland_images.add(T);
+        towerisland_images.add(T1);
+        towerisland_images.add(T2);
+        towerisland_images.add(T3);
+        towerisland_images.add(T4);
+        towerisland_images.add(T5);
+        towerisland_images.add(T6);
+        towerisland_images.add(T7);
+        towerisland_images.add(T8);
+        towerisland_images.add(T9);
+        towerisland_images.add(T10);
+        towerisland_images.add(T11);
+
+        Island0.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland0);
+        Island1.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland1);
+        Island2.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland2);
+        Island3.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland3);
+        Island4.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland4);
+        Island5.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland5);
+        Island6.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland6);
+        Island7.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland7);
+        Island8.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland8);
+        Island9.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland9);
+        Island10.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland10);
+        Island11.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland11);
+        setMother_nature_images(mother_nature_images,islands);
+        setTowerIsland_images(towerisland_images,islands);
+
     }
+
+    private void setTowerIsland_images(ArrayList<ImageView> towerisland_images, List<Island> islands) {
+        Image TW = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
+        Image TB = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
+        Image TG = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
+        for(int i=0;i<islands.size();i++){
+            if(islands.get(i).getTowers().size()!=0){
+                switch(islands.get(i).getTowers().get(0).getTowerColour()){
+                    case BLACK:
+                        towerisland_images.get(islands.get(i).getID()).setImage(TB);
+                        break;
+                    case GRAY:
+                        towerisland_images.get(islands.get(i).getID()).setImage(TG);
+                        break;
+                    case WHITE:
+                        towerisland_images.get(islands.get(i).getID()).setImage(TW);
+                        break;
+                    default:break;
+                }
+            }
+        }
+
+    }
+
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
@@ -578,36 +679,122 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(student.getColour().getIntAbbreviation()).setImage(Image.); find a method to parse
         }*/
         for(int i=0;i<board.getStudents_waiting().size();i++){
-
             switch (board.getStudents_waiting().get(i).getColour()){
                 case BLUE:
                     students.get(i).setImage(blue_student);
+                    students.get(i).setId("BLUE");
                     break;
                 case GREEN:
                     students.get(i).setImage(green_student);
+                    students.get(i).setId("GREEN");
                     break;
                 case PINK:
                     students.get(i).setImage(pink_student);
+                    students.get(i).setId("PINK");
                     break;
                 case RED:
                     students.get(i).setImage(red_student);
+                    students.get(i).setId("RED");
                     break;
                 case YELLOW:
                     students.get(i).setImage(yellow_student);
+                    students.get(i).setId("YELLOW");
                     break;
                 default: break;
             }
         }
 
     }
+    @FXML
+    void onStudent0Click (Event event){
+        StudentColour=WaitingStudent0.getId();
+        SelectBtn.setDisable(false);
+    }
+    @FXML
+    void onStudent1Click (Event event){
+        StudentColour=WaitingStudent1.getId();
+        SelectBtn.setDisable(false);
+    }
+    @FXML
+    void onStudent2Click (Event event){
+        StudentColour=WaitingStudent2.getId();
+        SelectBtn.setDisable(false);
+    }
+    @FXML
+    void onStudent3Click (Event event){
+        StudentColour=WaitingStudent3.getId();
+        SelectBtn.setDisable(false);
+    }
+    @FXML
+    void onStudent4Click (Event event){
+        StudentColour=WaitingStudent4.getId();
+        SelectBtn.setDisable(false);
+    }
+    @FXML
+    void onStudent5Click (Event event){
+        StudentColour=WaitingStudent5.getId();
+        SelectBtn.setDisable(false);
+    }
+    @FXML
+    void onStudent6Click (Event event){
+        StudentColour=WaitingStudent6.getId();
+        SelectBtn.setDisable(false);
+    }
+    @FXML
+    void onStudent7Click (Event event){
+        StudentColour=WaitingStudent7.getId();
+        SelectBtn.setDisable(false);
+    }
+    @FXML
+    void onStudent8Click (Event event){
+        StudentColour=WaitingStudent8.getId();
+        SelectBtn.setDisable(false);
+    }
+    void RemoveStudentsHandler(){
+        WaitingStudent0.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
+        WaitingStudent1.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
+        WaitingStudent2.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent2Click);
+        WaitingStudent3.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent3Click);
+        WaitingStudent4.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent4Click);
+        WaitingStudent5.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent5Click);
+        WaitingStudent6.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent6Click);
+        WaitingStudent7.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
+        WaitingStudent8.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
+    }
+    void AddStudentsHandler(){
+        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
+        WaitingStudent1.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
+        WaitingStudent2.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent2Click);
+        WaitingStudent3.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent3Click);
+        WaitingStudent4.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent4Click);
+        WaitingStudent5.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent5Click);
+        WaitingStudent6.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent6Click);
+        WaitingStudent7.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
+        WaitingStudent8.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
+    }
+
     private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands){
         Image island = new Image(getClass().getResourceAsStream("/images/island.png"));
 
         for(int i=0; i<islands.size(); i++){
             islands_images.get(i).setImage(island);
+            islands_images.get(i).setId(Integer.toString(islands.get(i).getID()));
+        }
+    }
+    private void setMother_nature_images(ArrayList<ImageView> mother_nature_images,List<Island> islands){
+        Image mother = new Image(getClass().getResourceAsStream("/images/mother.png"));
+
+        for(Island i: islands){
+            if(i.getMother()){
+                mother_nature_images.get(i.getID()).setImage(mother);
+            }
+
         }
     }
     private void setStudentsDiningBlue(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.BLUE); i++) {
@@ -615,6 +802,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningGreen(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.GREEN); i++) {
@@ -622,6 +812,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningPink(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.PINK); i++) {
@@ -629,6 +822,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningRed(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.RED); i++) {
@@ -636,6 +832,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
     private void setStudentsDiningYellow(ArrayList<ImageView> students,Board board) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
         Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
 
         for (int i = 0; i < board.getColorRowSize(Colour.YELLOW); i++) {
@@ -651,6 +850,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
     private void setProfessors(ArrayList<ImageView> professors,Board board){
+        for(ImageView imm:professors){
+            imm.setImage(null);
+        }
         Image blue_professor = new Image(getClass().getResourceAsStream("/images/blue_professor.png"));
         Image green_professor = new Image(getClass().getResourceAsStream("/images/green_professor.png"));
         Image pink_professor = new Image(getClass().getResourceAsStream("/images/pink_professor.png"));
@@ -661,19 +863,19 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
             switch (board.getProfessors().get(i).getColour()){
                 case BLUE:
-                    professors.get(i).setImage(blue_professor);
+                    professors.get(0).setImage(blue_professor);
                     break;
                 case GREEN:
-                    professors.get(i).setImage(green_professor);
+                    professors.get(1).setImage(green_professor);
                     break;
                 case PINK:
-                    professors.get(i).setImage(pink_professor);
+                    professors.get(2).setImage(pink_professor);
                     break;
                 case RED:
-                    professors.get(i).setImage(red_professor);
+                    professors.get(3).setImage(red_professor);
                     break;
                 case YELLOW:
-                    professors.get(i).setImage(yellow_professor);
+                    professors.get(4).setImage(yellow_professor);
                     break;
                 default: break;
             }
@@ -684,9 +886,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Image black_tower = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image white_tower = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
         Image grey_tower = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
-       /* Image black_tower = new Image(getClass().getResourceAsStream("/images/blue_professor.png"));
-        Image white_tower = new Image(getClass().getResourceAsStream("/images/green_professor.png"));
-        Image grey_tower = new Image(getClass().getResourceAsStream("/images/pink_professor.png"));*/
         for(int i=0;i<board.getTowerSize();i++){
             switch (board.getTower_colour()){
                 case BLACK:
@@ -708,8 +907,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onConfirmClick(Event event) {
-        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(board.getStudents_waiting().get(numBoard).toString()))).start();
-        SceneController.changeRootPane(observers, event, "select_scene.fxml");
+        RemoveIslandsHandler();
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour,IslandId))).start();
     }
 
     @FXML
@@ -756,15 +955,137 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onMoveToTableClick(Event event){
-
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(StudentColour))).start();
     }
     @FXML
     void onMoveToIslandClick(Event event){
+        AddIslandsHandler();
+        MTTBtn.setDisable(true);
+        ConfirmBtn.setDisable(true);
+        MTIBtn.setDisable(true);
+    }
+    void AddIslandsHandler(){
+        Island0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland0Click);
+        Island1.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland1Click);
+        Island2.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland2Click);
+        Island3.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland3Click);
+        Island4.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland4Click);
+        Island5.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland5Click);
+        Island6.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland6Click);
+        Island7.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland7Click);
+        Island8.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland8Click);
+        Island9.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland9Click);
+        Island10.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland10Click);
+        Island11.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland11Click);
+
+    }
+    void RemoveIslandsHandler(){
+        Island0.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland0Click);
+        Island1.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland1Click);
+        Island2.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland2Click);
+        Island3.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland3Click);
+        Island4.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland4Click);
+        Island5.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland5Click);
+        Island6.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland6Click);
+        Island7.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland7Click);
+        Island8.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland8Click);
+        Island9.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland9Click);
+        Island10.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland10Click);
+        Island11.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland11Click);
+
+    }
+
+    @FXML
+    void onIsland0Click(Event event){
+        IslandId=Island0.getId();
+        ConfirmBtn.setDisable(false);
+    }
+
+    @FXML
+    void onIsland1Click(Event event){
+        IslandId=Island1.getId();
+        ConfirmBtn.setDisable(false);
 
     }
     @FXML
-    void onSelectBtnClick(Event event){
+    void onIsland2Click(Event event){
+        IslandId=Island2.getId();
+        ConfirmBtn.setDisable(false);
 
+    }
+    @FXML
+    void onIsland3Click(Event event){
+        IslandId=Island3.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland4Click(Event event){
+        IslandId=Island4.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland5Click(Event event){
+        IslandId=Island5.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland6Click(Event event){
+        IslandId=Island6.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland7Click(Event event){
+        IslandId=Island7.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland8Click(Event event){
+        IslandId=Island8.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland9Click(Event event){
+        IslandId=Island9.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland10Click(Event event){
+        IslandId=Island10.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland11Click(Event event){
+        IslandId=Island11.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+
+    @FXML
+    void onSelectBtnClick(Event event){
+        RemoveStudentsHandler();
+        MTTBtn.setDisable(false);
+        MTIBtn.setDisable(false);
+        SelectBtn.setDisable(true);
+    }
+    @FXML
+    void onAssistantBtnClick(Event event){
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateAssistantRequest(new ShowAssistantRequest()))).start();
+    }
+    @FXML
+    void onCharacterBtnClick(Event event){
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateCharacterRequest(new ShowCharacterRequest()))).start();
+    }
+    @FXML
+    void onCloudBtnClick(Event event){
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudRequest(new ShowCloudRequest()))).start();
     }
 
     public void addBoards(List<Board> pr){
@@ -790,5 +1111,54 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 */
     public void addIslands(List<Island> islands){this.islands=islands;}
+    public String showIslandStudents(Island island) {
+        String partial="";
+            if (island.getStudents().isEmpty()) partial=("There are no students ");
+                else {
+                    for (Colour c : Colour.values()) {
+                        if (island.getColour(c) != 0) {
+                            partial = partial.concat("°"+ island.getColour(c) + " " + c.getName() + " students\n");
+                        }
+                    }
+                }
+                return partial;
+    }
+
+    public void showStudentsOnIsland0(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(0)));
+    }
+    public void showStudentsOnIsland1(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(1)));
+    }
+    public void showStudentsOnIsland2(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(2)));
+    }
+    public void showStudentsOnIsland3(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(3)));
+    }
+    public void showStudentsOnIsland4(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(4)));
+    }
+    public void showStudentsOnIsland5(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(5)));
+    }
+    public void showStudentsOnIsland6(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(6)));
+    }
+    public void showStudentsOnIsland7(Event event){IslandDesc.setText(showIslandStudents(islands.get(7)));}
+    public void showStudentsOnIsland8(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(8)));
+    }
+    public void showStudentsOnIsland9(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(9)));
+    }
+    public void showStudentsOnIsland10(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(10)));
+    }
+    public void showStudentsOnIsland11(Event event){
+        IslandDesc.setText(showIslandStudents(islands.get(11)));
+    }
+
+
 
 }
