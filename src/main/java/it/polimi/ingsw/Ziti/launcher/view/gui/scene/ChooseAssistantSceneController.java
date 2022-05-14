@@ -46,7 +46,6 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     @FXML
     void onConfirmClick(Event event) {
         new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseAssistant(Integer.toString(AvailableAssistants.get(ListIndex).getId())))).start();
-        SceneController.changeRootPane(observers, event, "select_scene.fxml");
     }
 
     @FXML
