@@ -49,6 +49,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String RequestPlayer="";
         private String StudentColour="";
         private String IslandId="";
+
+
     @FXML
     private ImageView BoardImage;
 
