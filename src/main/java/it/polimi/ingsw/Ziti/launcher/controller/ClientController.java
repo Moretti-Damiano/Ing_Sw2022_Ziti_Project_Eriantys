@@ -245,11 +245,11 @@ public class ClientController extends ClientObservable implements InputObserver 
     @Override
     public void onUpdateNumberOfPlayer(String numberOfPlayer) {
         if(isInt(numberOfPlayer)) {
-            System.out.println("E un numero");
+            //System.out.println("E un numero");
             NumberOfPlayersMessage m;
             m=new NumberOfPlayersMessage(Integer.parseInt(numberOfPlayer));
             notifyObserver(obs -> obs.send(m));
-            System.out.println("Ho mandato il messaggio");
+           // System.out.println("Ho mandato il messaggio");
         }
         else{
             InputError message;

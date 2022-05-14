@@ -27,7 +27,7 @@ public class MoveMotherTest {
         for(int i = 0; i < 2; i ++){
             players.add(new Player("Giocatore"+ i));
         }
-        game = new Game(players); //creates a new game with 2 players
+       // game = new Game(players); //creates a new game with 2 players
     }
 
     @ParameterizedTest
