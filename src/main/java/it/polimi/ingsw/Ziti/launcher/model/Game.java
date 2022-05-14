@@ -2,6 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
 import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
@@ -24,8 +25,8 @@ public abstract class Game extends Observable {
     private Player currentPlayer;
     private Action action;
     private GameWallet gameWallet;
-    private ArrayList<Character> allCharacters;
     private ArrayList<Character> characters;
+    private ModeType modeType;
 
     /**
      * Creates 12 islands,Mother and memorizes the players
@@ -71,8 +72,6 @@ public abstract class Game extends Observable {
         setUpCloudIslands();
 
         setUpProfessors();
-
-        setUpCharacters();
 
     }
 
@@ -122,29 +121,13 @@ public abstract class Game extends Observable {
         }
     }
 
-    private void setUpCharacters(){
 
-        allCharacters = new ArrayList<>();
-        characters = new ArrayList<>();
-        //creates all possible characters
-        allCharacters.add(Character0.getInstance());
-        allCharacters.add(Character1.getInstance());
-        allCharacters.add(Character2.getInstance());
-        allCharacters.add(Character3.getInstance());
-        allCharacters.add(Character4.getInstance());
-        allCharacters.add(Character5.getInstance());
+   public void setCharacters(ArrayList<Character> characters){
+        this.characters=characters;
+   }
+    public void setModeType(ModeType modeType){ this.modeType=modeType;}
 
-        //set 3 game's characters
-        Random rand = new Random();
-        int random;
-        for(int i = 0; i < 3; i++){
-            //create a random number
-            random =rand.nextInt(allCharacters.size());
-            allCharacters.get(random).setGame(this);
-            characters.add(allCharacters.remove(random));
-
-        }
-    }
+    public ModeType getModeType() {return this.modeType;}
 
     public GameWallet getGameWallet() { return gameWallet;}
 
@@ -298,7 +281,4 @@ public abstract class Game extends Observable {
         return action;
     }
 
-    public ArrayList<Character> getAllCharacters() {
-        return allCharacters;
-    }
 }

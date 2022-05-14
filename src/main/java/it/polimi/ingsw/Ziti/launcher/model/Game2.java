@@ -39,7 +39,7 @@ public class Game2 extends Game {
                 player.getBoard().addTower(new Tower(player, player.getBoard().getTower_colour()));
             }
             player.getBoard().addTower(new Tower(player, player.getBoard().getTower_colour())); //adds the 8th tower
-            player.getBoard().addCoin(getGameWallet().getCoin());
+
         }
 
     }

@@ -26,6 +26,7 @@ public interface ViewObserver {
     void CompleteRequestHandler(CompletedRequestMessage message);
     void LoginErrorHandler(LoginError message);
     void NumOfPlayerHandler(NumOfPLayersRequest message);
+    void ModeRequestHandler(ModeRequest message);
     void TurnErrorHandler(TurnError message);
     void TurnNotificationHandler(TurnNotification message);
     void showAssistantHandler(ShowAssistantResponse message);

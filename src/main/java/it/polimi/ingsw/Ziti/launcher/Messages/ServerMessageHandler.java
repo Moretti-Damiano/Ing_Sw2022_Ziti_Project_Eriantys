@@ -16,6 +16,8 @@ public class ServerMessageHandler extends ServerObservable {
         notifyObserver(obs -> obs.loginHandler(message));
     }
 
+    public void modeHandler(ModeResponse message){ notifyObserver(obs -> obs.modeHandler(message));}
+
     public void moveToIslandHandler(MoveToIslandMessage message) {
         notifyObserver(obs -> obs.moveToIslandHandler(message));
     }

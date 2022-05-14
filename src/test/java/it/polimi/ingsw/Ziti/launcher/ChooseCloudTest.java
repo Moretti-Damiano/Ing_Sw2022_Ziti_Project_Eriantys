@@ -32,7 +32,7 @@ public class ChooseCloudTest {
         for(int i = 0; i < numPlayers; i ++){
             players.add(new Player("Giocatore"+ i));
         }
-        game = new Game(players);
+        //game = new Game(players);
 
         //removes all students from p1 board
         Player p1 = game.getPlayers().get(0);

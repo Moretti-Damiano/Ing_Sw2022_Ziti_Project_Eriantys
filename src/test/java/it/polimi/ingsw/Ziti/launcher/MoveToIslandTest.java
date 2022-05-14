@@ -29,7 +29,7 @@ public class MoveToIslandTest {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new Player("Player" + 1));
 
-        game = new Game(players);
+       // game = new Game(players);
 
     }
 
