@@ -11,21 +11,30 @@ public class MovementPhase extends Phase{
     public MovementPhase(TurnController turnController) {
         super(turnController, PhaseType.MOVEMENT);
         moveNumber = 0;
-        numplayer=turnController.getGameController().getGame().getCloudIslands().get(0).getSize();
+        numplayer=turnController.getPlayers().size();
     }
 
     @Override
     public void update() {
         endCharacter();
         moveNumber++;
+        if (numplayer == 3) {
+            if (moveNumber == 4) {
+                moveNumber = 0;
+                nextPhase();
+            } else {
+                checkCharacter();
+            }
+        } else {
             // Check if the player has already moved 3 students (ToTable or ToIsland)
-            if (moveNumber == numplayer) {
+            if (moveNumber == 3) {
                 moveNumber = 0;
                 nextPhase();
             } else {
                 checkCharacter();
             }
         }
+    }
     @Override
     public void nextPhase() {
         getTurncontroller().setPhase(new MotherPhase(getTurncontroller()));
