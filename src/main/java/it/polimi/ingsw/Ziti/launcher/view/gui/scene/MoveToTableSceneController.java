@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowAssistantRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCharacterRequest;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCloudRequest;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
@@ -489,24 +490,16 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         studentsWaiting = new ArrayList<>();
         studentsWaiting.add(WaitingStudent0);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
         studentsWaiting.add(WaitingStudent1);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
         studentsWaiting.add(WaitingStudent2);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent2Click);
         studentsWaiting.add(WaitingStudent3);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent3Click);
         studentsWaiting.add(WaitingStudent4);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent4Click);
         studentsWaiting.add(WaitingStudent5);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent5Click);
         studentsWaiting.add(WaitingStudent6);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent6Click);
         studentsWaiting.add(WaitingStudent7);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
         studentsWaiting.add(WaitingStudent8);
-        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
         setStudentsWaiting(studentsWaiting,board);
+        AddStudentsHandler();
 
         diningStudentsBlue = new ArrayList<>();
         diningStudentsBlue.add(DiningStudentBlue0);
@@ -754,12 +747,35 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         StudentColour=WaitingStudent8.getId();
         SelectBtn.setDisable(false);
     }
+    void RemoveStudentsHandler(){
+        WaitingStudent0.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
+        WaitingStudent1.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
+        WaitingStudent2.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent2Click);
+        WaitingStudent3.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent3Click);
+        WaitingStudent4.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent4Click);
+        WaitingStudent5.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent5Click);
+        WaitingStudent6.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent6Click);
+        WaitingStudent7.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
+        WaitingStudent8.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
+    }
+    void AddStudentsHandler(){
+        WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
+        WaitingStudent1.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
+        WaitingStudent2.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent2Click);
+        WaitingStudent3.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent3Click);
+        WaitingStudent4.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent4Click);
+        WaitingStudent5.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent5Click);
+        WaitingStudent6.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent6Click);
+        WaitingStudent7.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
+        WaitingStudent8.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
+    }
 
     private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands){
         Image island = new Image(getClass().getResourceAsStream("/images/island.png"));
 
         for(int i=0; i<islands.size(); i++){
             islands_images.get(i).setImage(island);
+            islands_images.get(i).setId(Integer.toString(islands.get(i).getID()));
         }
     }
     private void setMother_nature_images(ArrayList<ImageView> mother_nature_images,List<Island> islands){
@@ -870,8 +886,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onConfirmClick(Event event) {
-        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(board.getStudents_waiting().get(numBoard).toString()))).start();
-        SceneController.changeRootPane(observers, event, "select_scene.fxml");
+        RemoveIslandsHandler();
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour,IslandId))).start();
     }
 
     @FXML
@@ -918,16 +934,125 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onMoveToTableClick(Event event){
-
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(StudentColour))).start();
     }
     @FXML
     void onMoveToIslandClick(Event event){
+        AddIslandsHandler();
+        MTTBtn.setDisable(true);
+        ConfirmBtn.setDisable(true);
+        MTIBtn.setDisable(true);
+    }
+    void AddIslandsHandler(){
+        Island0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland0Click);
+        Island1.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland1Click);
+        Island2.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland2Click);
+        Island3.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland3Click);
+        Island4.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland4Click);
+        Island5.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland5Click);
+        Island6.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland6Click);
+        Island7.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland7Click);
+        Island8.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland8Click);
+        Island9.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland9Click);
+        Island10.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland10Click);
+        Island11.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland11Click);
+
+    }
+    void RemoveIslandsHandler(){
+        Island0.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland0Click);
+        Island1.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland1Click);
+        Island2.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland2Click);
+        Island3.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland3Click);
+        Island4.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland4Click);
+        Island5.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland5Click);
+        Island6.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland6Click);
+        Island7.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland7Click);
+        Island8.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland8Click);
+        Island9.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland9Click);
+        Island10.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland10Click);
+        Island11.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland11Click);
+
+    }
+
+    @FXML
+    void onIsland0Click(Event event){
+        IslandId=Island0.getId();
+        ConfirmBtn.setDisable(false);
+    }
+
+    @FXML
+    void onIsland1Click(Event event){
+        IslandId=Island1.getId();
+        ConfirmBtn.setDisable(false);
 
     }
     @FXML
+    void onIsland2Click(Event event){
+        IslandId=Island2.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland3Click(Event event){
+        IslandId=Island3.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland4Click(Event event){
+        IslandId=Island4.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland5Click(Event event){
+        IslandId=Island5.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland6Click(Event event){
+        IslandId=Island6.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland7Click(Event event){
+        IslandId=Island7.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland8Click(Event event){
+        IslandId=Island8.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland9Click(Event event){
+        IslandId=Island9.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland10Click(Event event){
+        IslandId=Island10.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+    @FXML
+    void onIsland11Click(Event event){
+        IslandId=Island11.getId();
+        ConfirmBtn.setDisable(false);
+
+    }
+
+    @FXML
     void onSelectBtnClick(Event event){
+        RemoveStudentsHandler();
         MTTBtn.setDisable(false);
         MTIBtn.setDisable(false);
+        SelectBtn.setDisable(true);
     }
     @FXML
     void onAssistantBtnClick(Event event){

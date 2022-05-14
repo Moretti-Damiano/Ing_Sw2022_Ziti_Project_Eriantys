@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.view.gui;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
@@ -124,12 +125,12 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void moveToIslandHandler(MoveToIslandDoneMessage message) {
-
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
     public void moveToTableHandler(MoveToTableDoneMessage message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
 
     }
 
