@@ -25,7 +25,7 @@ public class MoveToTableTest {
         for(int i=0; i<2; i++){
             players.add(new Player("Giocatore"+ i));
         }
-        //game=new Game(players);
+        game=new Game(players);
     }
 
     @Test
