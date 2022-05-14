@@ -174,7 +174,7 @@
                   <Text fx:id="Id5" layoutX="477.0" layoutY="516.0" strokeType="OUTSIDE" strokeWidth="0.0" text="5" />
                   <ImageView fx:id="T1" fitHeight="36.0" fitWidth="39.0" layoutX="490.0" layoutY="-13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/white_tower.png" />
+
                      </image></ImageView>
                   <ImageView fx:id="M1" fitHeight="36.0" fitWidth="39.0" layoutX="477.0" layoutY="47.0" pickOnBounds="true" preserveRatio="true">
                      <image>
@@ -199,7 +199,7 @@
                   </ImageView>
                   <ImageView fx:id="T2" fitHeight="36.0" fitWidth="39.0" layoutX="618.0" layoutY="83.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M2" fitHeight="36.0" fitWidth="39.0" layoutX="599.0" layoutY="142.0" pickOnBounds="true" preserveRatio="true">
@@ -210,7 +210,7 @@
                   <Text fx:id="Id2" layoutX="596.0" layoutY="125.0" strokeType="OUTSIDE" strokeWidth="0.0" text="2" />
                   <ImageView fx:id="T4" fitHeight="36.0" fitWidth="39.0" layoutX="618.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M4" fitHeight="36.0" fitWidth="39.0" layoutX="618.0" layoutY="435.0" pickOnBounds="true" preserveRatio="true">
@@ -220,7 +220,7 @@
                   </ImageView>
                   <ImageView fx:id="T3" fitHeight="36.0" fitWidth="39.0" layoutX="620.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M3" fitHeight="36.0" fitWidth="39.0" layoutX="620.0" layoutY="286.0" pickOnBounds="true" preserveRatio="true">
@@ -235,7 +235,7 @@
                   </ImageView>
                   <ImageView fx:id="T5" fitHeight="36.0" fitWidth="39.0" layoutX="503.0" layoutY="480.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M6" fitHeight="36.0" fitWidth="39.0" layoutX="335.0" layoutY="602.0" pickOnBounds="true" preserveRatio="true">
@@ -245,7 +245,7 @@
                   </ImageView>
                   <ImageView fx:id="T6" fitHeight="36.0" fitWidth="39.0" layoutX="357.0" layoutY="547.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M7" fitHeight="36.0" fitWidth="39.0" layoutX="196.0" layoutY="531.0" pickOnBounds="true" preserveRatio="true">
@@ -255,7 +255,7 @@
                   </ImageView>
                   <ImageView fx:id="T7" fitHeight="36.0" fitWidth="39.0" layoutX="218.0" layoutY="476.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M8" fitHeight="36.0" fitWidth="39.0" layoutX="84.0" layoutY="432.0" pickOnBounds="true" preserveRatio="true">
@@ -265,7 +265,7 @@
                   </ImageView>
                   <ImageView fx:id="T8" fitHeight="36.0" fitWidth="39.0" layoutX="106.0" layoutY="377.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M9" fitHeight="36.0" fitWidth="39.0" layoutX="96.0" layoutY="296.0" pickOnBounds="true" preserveRatio="true">
@@ -275,7 +275,7 @@
                   </ImageView>
                   <ImageView fx:id="T9" fitHeight="36.0" fitWidth="39.0" layoutX="118.0" layoutY="241.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M10" fitHeight="36.0" fitWidth="39.0" layoutX="107.0" layoutY="145.0" pickOnBounds="true" preserveRatio="true">
@@ -285,7 +285,7 @@
                   </ImageView>
                   <ImageView fx:id="T10" fitHeight="36.0" fitWidth="39.0" layoutX="129.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                   <ImageView fx:id="M11" fitHeight="36.0" fitWidth="39.0" layoutX="229.0" layoutY="75.0" pickOnBounds="true" preserveRatio="true">
@@ -295,7 +295,7 @@
                   </ImageView>
                   <ImageView fx:id="T11" fitHeight="36.0" fitWidth="39.0" layoutX="251.0" layoutY="20.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/black_tower.png" />
+
                      </image>
                   </ImageView>
                </children></AnchorPane>
@@ -307,7 +307,7 @@
             <Text fx:id="Id0" layoutX="337.0" layoutY="-31.0" strokeType="OUTSIDE" strokeWidth="0.0" text="0" />
             <ImageView fx:id="T" fitHeight="36.0" fitWidth="39.0" layoutX="360.0" layoutY="-83.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../images/black_tower.png" />
+
                </image></ImageView>
             <ImageView fx:id="M" fitHeight="36.0" fitWidth="39.0" layoutX="360.0" layoutY="-27.0" pickOnBounds="true" preserveRatio="true">
                <image>

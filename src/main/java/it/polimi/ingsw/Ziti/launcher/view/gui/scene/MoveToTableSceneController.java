@@ -23,6 +23,8 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 
+import static it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour.BLACK;
+
 public class MoveToTableSceneController extends InputObservable implements GenericSceneController {
 
         private int numBoard;
@@ -40,7 +42,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private List<Island> islands;
         private ArrayList<ImageView> islands_images;
         private ArrayList<ImageView> mother_nature_images;
-    private ArrayList<ImageView> towerisland_images;
+        private ArrayList<ImageView> towerisland_images;
         private String RequestPlayer="";
     @FXML
     private ImageView BoardImage;
@@ -614,7 +616,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         towerisland_images.add(T9);
         towerisland_images.add(T10);
         towerisland_images.add(T11);
-        setTowerIsland_images(towerisland_images,islands);
 
         Island0.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland0);
         Island1.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland1);
@@ -629,6 +630,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Island10.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland10);
         Island11.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland11);
         setMother_nature_images(mother_nature_images,islands);
+        setTowerIsland_images(towerisland_images,islands);
 
     }
 
@@ -637,12 +639,21 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Image TB = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image TG = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
 
-        for(Island i: islands){
-            if(i.getTowers()!=null){
-                if(i.getTowers().get(0).getTowerColour()=="white")
-                towerisland_images.get(i.getID()).setImage(mother);
+        for(int i=0;i<islands.size();i++){
+            if(islands.get(i).getTowers().size()!=0){
+                switch(islands.get(i).getTowers().get(0).getTowerColour()){
+                    case BLACK:
+                        towerisland_images.get(islands.get(i).getID()).setImage(TB);
+                        break;
+                    case GRAY:
+                        towerisland_images.get(islands.get(i).getID()).setImage(TG);
+                        break;
+                    case WHITE:
+                        towerisland_images.get(islands.get(i).getID()).setImage(TW);
+                        break;
+                    default:break;
+                }
             }
-
         }
 
     }
@@ -773,9 +784,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Image black_tower = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image white_tower = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
         Image grey_tower = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
-       /* Image black_tower = new Image(getClass().getResourceAsStream("/images/blue_professor.png"));
-        Image white_tower = new Image(getClass().getResourceAsStream("/images/green_professor.png"));
-        Image grey_tower = new Image(getClass().getResourceAsStream("/images/pink_professor.png"));*/
         for(int i=0;i<board.getTowerSize();i++){
             switch (board.getTower_colour()){
                 case BLACK:
@@ -925,9 +933,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     public void showStudentsOnIsland6(Event event){
         IslandDesc.setText(showIslandStudents(islands.get(6)));
     }
-    public void showStudentsOnIsland7(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(70)));
-    }
+    public void showStudentsOnIsland7(Event event){IslandDesc.setText(showIslandStudents(islands.get(7)));}
     public void showStudentsOnIsland8(Event event){
         IslandDesc.setText(showIslandStudents(islands.get(8)));
     }
