@@ -186,7 +186,9 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void ModeRequestHandler(ModeRequest message) {
-
+        ModeRequestSceneController mrsc = new ModeRequestSceneController();
+        mrsc.addAllObservers(observers);
+        Platform.runLater(() -> SceneController.changeRootPane(mrsc, "mode_scene.fxml"));
     }
 
     @Override

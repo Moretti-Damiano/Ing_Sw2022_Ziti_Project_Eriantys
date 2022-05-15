@@ -58,7 +58,12 @@ public class PlayersNumberSceneController extends InputObservable implements Gen
         RadioButton selectedRadioButton = (RadioButton) toggleGroup.getSelectedToggle();
         String playersNumber = ""+selectedRadioButton.getText().charAt(0);
 
+
         new Thread(() -> notifyObserver(obs -> obs.onUpdateNumberOfPlayer(playersNumber))).start();
+
+        SceneController.changeRootPane(observers, event, "mode_scene.fxml");
+
+
     }
 
     /**
