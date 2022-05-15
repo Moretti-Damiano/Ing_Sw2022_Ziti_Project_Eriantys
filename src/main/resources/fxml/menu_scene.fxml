@@ -5,7 +5,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 
-<StackPane prefHeight="760.0" prefWidth="1300.0" styleClass="rootPane" stylesheets="@../css/menu_scene.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.ModeRequestSceneController">
+<StackPane prefHeight="760.0" prefWidth="1300.0" styleClass="rootPane" stylesheets="@../css/menu_scene.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.MenuSceneController">
    <children>
       <Group scaleX="1.5" scaleY="1.5">
          <children>
