@@ -39,6 +39,7 @@ public interface ViewObserver {
     void YourTurnNotificationHandler(YourTurnNotification message);
     void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message);
     void winHandler(WinMessage message);
+    void showInputErrorMessage(InputError message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }

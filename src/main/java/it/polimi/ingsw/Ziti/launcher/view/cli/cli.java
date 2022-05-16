@@ -33,6 +33,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     public cli(){
         scanner = new Scanner(System.in);
         freeInput = false;
+        inputThread = new InputReadThread(this);
+        //new Thread(inputThread).start();
     }
 
     @Override
@@ -136,6 +138,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     public void showErrorMessage(ErrorMessage message) {
         System.out.println(message.getDescription()+" from "+message.getSender());
     }
+    @Override
     public void showInputErrorMessage(InputError message) {
         System.out.println(message.getDescription()+" from server");
     }
@@ -445,6 +448,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Enter the server port ["+defaultPort+"]");
         String port=readLine();
         notifyObserver(obs->obs.onUpdateConnection(address,port));
+        inputThread.setFreeInput(true);
 
     }
 

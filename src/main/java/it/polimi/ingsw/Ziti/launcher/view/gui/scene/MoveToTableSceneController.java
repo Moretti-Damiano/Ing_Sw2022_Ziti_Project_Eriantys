@@ -50,7 +50,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String RequestPlayer="";
         private String StudentColour="";
         private String IslandId="";
-        private PhaseType phase;
+        private PhaseType phaseType;
     @FXML
     private ImageView BoardImage;
 
@@ -463,7 +463,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         numBoard=0;
         boards= new ArrayList<>();
         islands = new ArrayList<>();
-        PhaseType phase=PhaseType.NULL;
+       // PhaseType phase=PhaseType.NULL;
     }
 
 
@@ -725,6 +725,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         MTTBtn.setDisable(true);
         MTIBtn.setDisable(true);
         MoveMotherMoves.getText();
+        ConfirmBtn.setDisable(false);
 
     }
     @FXML
@@ -930,8 +931,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     void onConfirmClick(Event event) {
         RemoveIslandsHandler();
-        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour, IslandId))).start();
-
+        if(phaseType==PhaseType.MOVEMENT) new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour, IslandId))).start();
+        else if(phaseType==PhaseType.MOTHER) new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveMother(MoveMotherMoves.getText()))).start();
+        ConfirmBtn.setDisable(true);
+        MoveMotherBtn.setDisable(true);
+        MoveMotherMoves.setDisable(true);
     }
 
     @FXML
@@ -975,7 +979,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             setTowers(towers,board);
         }
     }
-    
+    public void setPhase(PhaseType phase){
+        this.phaseType=phase;
+    }
 
     @FXML
     void onMoveToTableClick(Event event){
@@ -1019,7 +1025,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
     private void setMoveMotherBtn(){
-        if(phase==PhaseType.MOTHER) MoveMotherBtn.setDisable(false);
+        if(phaseType==PhaseType.MOTHER) MoveMotherBtn.setDisable(false);
     }
 
     @FXML

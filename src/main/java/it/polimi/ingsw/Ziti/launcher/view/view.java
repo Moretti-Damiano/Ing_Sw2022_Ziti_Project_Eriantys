@@ -35,6 +35,4 @@ public interface view {
     void askChoseCharacter();
     void askChoseAssistant();
     void askNumberOfPlayer();
-    void GameStartedHandler(GameStartedMessage message);
-    void YourTurnNotificationHandler(YourTurnNotification message);
 }
