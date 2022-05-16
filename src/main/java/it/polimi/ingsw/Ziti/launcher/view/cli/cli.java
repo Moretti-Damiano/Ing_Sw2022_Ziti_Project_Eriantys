@@ -375,6 +375,7 @@ public class cli extends InputObservable implements view, ViewObserver {
             System.out.println("Type NORMAL or EXPERT");
             String mode=readLine();
             notifyObserver(obs -> obs.onUpdateMode(mode));
+            System.out.println("Waiting for other players to join...");
         }
 
 

@@ -136,7 +136,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void moveMotherHandler(MoveMotherDoneMessage message) {
-
+       // notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
@@ -161,7 +161,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message","Connesso al server"));
+        Platform.runLater(() -> SceneController.showAlert("Info Message","Connected to server"));
 
     }
 
@@ -186,7 +186,9 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void ModeRequestHandler(ModeRequest message) {
-
+        ModeRequestSceneController mrsc = new ModeRequestSceneController();
+        mrsc.addAllObservers(observers);
+        Platform.runLater(() -> SceneController.changeRootPane(mrsc, "mode_scene.fxml"));
     }
 
     @Override

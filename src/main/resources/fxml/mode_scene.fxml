@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.net.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1300.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1">
+    <children>
+        <Group scaleX="1.5" scaleY="1.5" scaleZ="1.5">
+            <children>
+                <AnchorPane layoutX="57.0" layoutY="62.0" prefHeight="452.0" prefWidth="453.0" styleClass="menuBannerAlt">
+                    <children>
+                        <ImageView fitHeight="58.0" fitWidth="333.0" layoutX="56.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
+                            <image>
+                                <Image url="@../images/blocco.png" />
+                            </image>
+                        </ImageView>
+                        <Text fill="#451616" layoutX="135.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Choose The Mode" textAlignment="CENTER" wrappingWidth="182.49612426757812">
+                            <font>
+                                <Font size="17.0" />
+                            </font>
+                        </Text>
+                  <RadioButton fx:id="normalButton" layoutX="89.0" layoutY="273.0" mnemonicParsing="false" text="NORMAL">
+                     <toggleGroup>
+                        <ToggleGroup fx:id="Choice" />
+                     </toggleGroup></RadioButton>
+                  <RadioButton fx:id="expertButton" layoutX="298.0" layoutY="274.0" mnemonicParsing="false" selected="true" text="EXPERT" toggleGroup="$Choice" />
+                  <ImageView fx:id="normalImage" fitHeight="113.0" fitWidth="107.0" layoutX="74.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+                  <ImageView fx:id="expertImage" fitHeight="113.0" fitWidth="107.0" layoutX="273.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+                  <Button fx:id="Confirm" layoutX="162.0" layoutY="326.0" mnemonicParsing="false" prefHeight="40.0" prefWidth="120.0" text="Confirm" />
+               </children>
+            </AnchorPane>
+         </children>
+      </Group>
+   </children>
+    <stylesheets>
+        <URL value="@../css/global.css" />
+        <URL value="@../css/login_scene.css" />
+    </stylesheets>
+</StackPane>
