@@ -286,6 +286,10 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void winHandler(WinMessage message) {
+        WinSceneController winSceneController = new WinSceneController();
+        winSceneController.addAllObservers(observers);
+        winSceneController.getWinner(message.getWinner());
+        Platform.runLater(() -> SceneController.changeRootPane(winSceneController,"win_scene.fxml"));
 
     }
 

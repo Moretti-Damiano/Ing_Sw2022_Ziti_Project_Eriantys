@@ -4,7 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 
 public interface InputObserver {
     void onUpdateLogin(String nickname);
-    void onUpdateConnection(String address,String port);
+    void onUpdateConnection(String address);
     void onUpdateChooseAssistant(String id);
     void onUpdateChooseCharacter0(String id);
     void onUpdateChooseCharacter1(String id, String island);

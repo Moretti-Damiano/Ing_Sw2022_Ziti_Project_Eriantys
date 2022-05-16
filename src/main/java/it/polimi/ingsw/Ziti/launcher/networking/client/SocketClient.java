@@ -31,11 +31,11 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     MessageToClient messageToClient;
     private final ExecutorService readExecutionQueue;
 
-    public SocketClient (String address, int port,ObserverClient observerClient) throws IOException{
+    public SocketClient (String address,ObserverClient observerClient) throws IOException{
             this.socket = new Socket();
             this.addObserver(observerClient);
             try {
-                this.socket.connect(new InetSocketAddress(address, port), TIMEOUT);
+                this.socket.connect(new InetSocketAddress(address,16847), TIMEOUT);
             }catch(IllegalArgumentException i){
                 errorMessage=new ErrorMessage("SocketClint","Invalid port/host");
                 notifyObserver(obs->obs.update(errorMessage));

@@ -46,6 +46,8 @@ public class ChooseCharacterController extends InputObservable implements Generi
     private TextField Colour;
     @FXML
     private TextField Island;
+    @FXML
+    private Button BackToMenu;
 
 
     private int ListIndex=0;
@@ -56,6 +58,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
     @FXML
     public void initialize() {
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
+        BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
         SelectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onSelectClick);
@@ -169,6 +172,12 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
         }
 
+    }
+    @FXML
+    void  onBackToMenuClick(Event event){
+        //SceneController.changeRootPane(observers,"move_to_table_scene.fxml");
+       // MoveToTableSceneController moveToTableSceneController ;
+       // moveToTableSceneController.initialize();
     }
 
     public void addCharacter(List<CharacterSummary> GameCharacter){

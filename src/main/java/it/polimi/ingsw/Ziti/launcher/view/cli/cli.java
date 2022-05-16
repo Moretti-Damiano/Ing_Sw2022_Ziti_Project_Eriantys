@@ -137,6 +137,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showErrorMessage(ErrorMessage message) {
         System.out.println(message.getDescription()+" from "+message.getSender());
+        System.out.println("Please insert a valid input");
     }
     @Override
     public void showInputErrorMessage(InputError message) {
@@ -291,6 +292,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
         showErrorMessage(message);
+        this.init();
+       // inputThread.setFreeInput(true); probably faster but not really tested
     }
 
     @Override
@@ -445,9 +448,9 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Please insert Server Settings. Default value is shown as [DEFAULT]");
         System.out.println("Enter the server address ["+defaultAddress+"]");
         String address=readLine();
-        System.out.println("Enter the server port ["+defaultPort+"]");
-        String port=readLine();
-        notifyObserver(obs->obs.onUpdateConnection(address,port));
+        //System.out.println("Enter the server port ["+defaultPort+"]");
+        //String port=readLine();
+        notifyObserver(obs->obs.onUpdateConnection(address));
         inputThread.setFreeInput(true);
 
     }

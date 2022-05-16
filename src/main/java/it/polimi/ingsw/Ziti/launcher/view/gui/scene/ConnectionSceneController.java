@@ -42,13 +42,13 @@ public class ConnectionSceneController extends InputObservable implements Generi
      */
     private void onConnectBtnClick(Event event) {
         String address = serverAddressField.getText();
-        String port = serverPortField.getText();
+        //String port = serverPortField.getText();
 
             backBtn.setDisable(true);
             connectBtn.setDisable(true);
 
           //  Map<String, String> serverInfo = Map.of("address", address, "port", port);
-            new Thread(() -> notifyObserver(obs -> obs.onUpdateConnection(address,port))).start();
+            new Thread(() -> notifyObserver(obs -> obs.onUpdateConnection(address))).start();
             SceneController.changeRootPane(observers, event, "login_scene.fxml");
         }
     

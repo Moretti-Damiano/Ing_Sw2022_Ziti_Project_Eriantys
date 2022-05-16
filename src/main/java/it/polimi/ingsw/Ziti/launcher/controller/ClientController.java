@@ -48,9 +48,9 @@ public class ClientController extends ClientObservable implements InputObserver 
     }
 
     @Override
-    public void onUpdateConnection(String address, String port) {
-        if(isInt(port)){
-       try{socketClient=new SocketClient(address,Integer.parseInt(port),observerClient);
+    public void onUpdateConnection(String address) {
+      //  if(isInt(port)){
+       try{socketClient=new SocketClient(address,observerClient);
            socketClient.connect();
            this.addObserver(socketClient);
            ConnectionSuccessfulMessage message;
@@ -60,12 +60,13 @@ public class ClientController extends ClientObservable implements InputObserver 
            ErrorMessage message = new ErrorMessage("ClientController", "Generic IO Error");
            update(message);}
        }
-        else{
+     /*   else{
                 InputError message;
                 message=new InputError("Not numeric value!");
                 update(message);
-            }
-        }
+            }*/
+
+
 
 
     @Override
