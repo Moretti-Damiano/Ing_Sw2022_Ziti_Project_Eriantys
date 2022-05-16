@@ -20,14 +20,17 @@ public class PlanningPhase extends Phase{
     @Override
     public void update() {
         playersDone++;
-        getTurncontroller().setNextPlayer();
-        // Every player chose an assistant
+
+        // if Every player chose an assistant
         if (playersDone == getTurncontroller().getPlayers().size()) {
             // Put in Order used to set the real order of the next player
             getTurncontroller().setOrderPlayers(putInOrder(getTurncontroller().getPlayerAssistants()));
 
             getTurncontroller().setCurrentPlayer(getTurncontroller().getOrderPlayers().get(0));
             nextPhase();
+        }
+        else{
+            getTurncontroller().setNextPlayer();
         }
     }
 
