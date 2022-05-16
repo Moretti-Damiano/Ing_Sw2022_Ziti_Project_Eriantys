@@ -16,6 +16,7 @@ import java.util.Random;
 public class ExpertMode extends GameMode {
     private ArrayList<Character> allCharacters;
     private ArrayList<Character>characters;
+    private Character activeCharacter;
     private final ModeType modeType=ModeType.EXPERT;
 
     @Override
@@ -26,6 +27,14 @@ public class ExpertMode extends GameMode {
     public ExpertMode(Game game){
         super(game);
         game.setModeType(getModeType());
+    }
+
+    public Character getActiveCharacter(){
+        return this.activeCharacter;
+    }
+
+    public void setActiveCharacter(Character character){
+        this.activeCharacter = character;
     }
 
     @Override

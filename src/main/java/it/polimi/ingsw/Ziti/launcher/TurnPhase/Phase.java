@@ -98,4 +98,8 @@ public abstract class Phase {
 
     public abstract void update();
     public abstract void nextPhase();
+
+    public void updateGameMode(PhaseType phaseType){
+        getTurncontroller().getGameController().getGame().getGameMode().onPhaseUpdate(phaseType);
+    }
 }
