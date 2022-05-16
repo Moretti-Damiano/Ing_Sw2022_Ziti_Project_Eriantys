@@ -32,8 +32,12 @@ public class ModeRequestSceneController extends InputObservable implements Gener
     @FXML
     public void initialize() {
         Confirm.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
-        Image normalModeImage = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
-        Image expertModeImage = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
+
+        normalButton.setText("NORMAL");
+        expertButton.setText("EXPERT");
+
+        Image normalModeImage = new Image(getClass().getResourceAsStream("/images/normal_mode.png"));
+        Image expertModeImage = new Image(getClass().getResourceAsStream("/images/expert_mode.png"));
         expertImage.setImage(expertModeImage);
         normalImage.setImage(normalModeImage);
 
@@ -46,10 +50,10 @@ public class ModeRequestSceneController extends InputObservable implements Gener
      */
     private void onConfirmClick(Event event) {
         RadioButton selectedRadioButton = (RadioButton) Choice.getSelectedToggle();
-        String mode = "" + selectedRadioButton.getText().charAt(0);
-
+        String mode = "" + selectedRadioButton.getText();
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateMode(mode))).start();
+        Confirm.setDisable(true);
     }
 
 
