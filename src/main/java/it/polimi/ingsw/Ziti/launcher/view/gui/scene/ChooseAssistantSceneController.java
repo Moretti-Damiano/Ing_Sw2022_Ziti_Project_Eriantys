@@ -2,6 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
+import javafx.application.Platform;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
