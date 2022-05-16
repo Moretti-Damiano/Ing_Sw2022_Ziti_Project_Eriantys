@@ -931,11 +931,19 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     void onConfirmClick(Event event) {
         RemoveIslandsHandler();
-        if(phaseType==PhaseType.MOVEMENT) new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour, IslandId))).start();
-        else if(phaseType==PhaseType.MOTHER) new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveMother(MoveMotherMoves.getText()))).start();
-        ConfirmBtn.setDisable(true);
-        MoveMotherBtn.setDisable(true);
-        MoveMotherMoves.setDisable(true);
+        if(phaseType==PhaseType.MOVEMENT) {
+            ConfirmBtn.setDisable(true);
+            MoveMotherBtn.setDisable(true);
+            MoveMotherMoves.setDisable(true);
+            new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour, IslandId))).start();
+        }
+        else if(phaseType==PhaseType.MOTHER) {
+            ConfirmBtn.setDisable(true);
+            MoveMotherBtn.setDisable(true);
+            MoveMotherMoves.setDisable(true);
+            new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveMother(MoveMotherMoves.getText()))).start();
+
+        }
     }
 
     @FXML
@@ -1026,6 +1034,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
     private void setMoveMotherBtn(){
         if(phaseType==PhaseType.MOTHER) MoveMotherBtn.setDisable(false);
+        else MoveMotherBtn.setDisable(true);
     }
 
     @FXML
