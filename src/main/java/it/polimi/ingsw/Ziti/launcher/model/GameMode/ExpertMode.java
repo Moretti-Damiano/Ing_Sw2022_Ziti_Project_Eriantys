@@ -45,20 +45,6 @@ public class ExpertMode extends GameMode {
         for(Player p : getGame().getPlayers()){
             p.getBoard().setWallet(new ArrayList<>());
             p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-            p.getBoard().getWallet().add(new Coin());
-
         }
        getGame().setCharacters(setUpCharacters());
 
