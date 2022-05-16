@@ -248,7 +248,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void showBoardsandIslandsRequestHandler(ShowBoardsandIslandsRequest message) {
-        notifyObserver(obs -> obs.sendToOnePlayer(new ShowBoardsandIslandsResponse(game.getIslands(), game.getBoards(), message.getSender()), message.getSender()));
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowBoardsandIslandsResponse(game.getIslands(), game.getBoards(), message.getSender(), turnController.getPhase().getPhaseType()), message.getSender()));
     }
 
     @Override
@@ -510,6 +510,5 @@ public class GameController extends GameControllerObservable implements ServerOb
     }
 
 
-
-    }
+}
 
