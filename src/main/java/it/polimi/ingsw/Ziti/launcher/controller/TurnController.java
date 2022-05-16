@@ -33,8 +33,7 @@ public class TurnController {
         this.players = players;
         orderPlayers = new ArrayList<>(players);
         playerAssistants = new HashMap<>();
-        currentPlayer = players.get(0);
-        gameController.notifyNewActivePlayer(currentPlayer);
+        setCurrentPlayer(players.get(0));
         this.gameController.getGame().setActivePlayer(currentPlayer);
         playersDone = 1;
         turnNumber = 0;
@@ -81,7 +80,6 @@ public class TurnController {
      */
     public void setNextPlayer(){
         setCurrentPlayer(nextPlayer(this.currentPlayer));
-        gameController.getGame().setActivePlayer(currentPlayer);
     }
 
     /**
