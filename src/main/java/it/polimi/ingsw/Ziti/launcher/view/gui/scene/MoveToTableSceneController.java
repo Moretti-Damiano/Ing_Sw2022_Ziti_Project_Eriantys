@@ -463,6 +463,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         numBoard=0;
         boards= new ArrayList<>();
         islands = new ArrayList<>();
+        PhaseType phase=PhaseType.NULL;
     }
 
 
@@ -974,6 +975,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             setTowers(towers,board);
         }
     }
+    
 
     @FXML
     void onMoveToTableClick(Event event){
@@ -1017,7 +1019,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
     private void setMoveMotherBtn(){
-
+        if(phase==PhaseType.MOTHER) MoveMotherBtn.setDisable(false);
     }
 
     @FXML

@@ -142,11 +142,13 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void chooseAssistantHandler(ChooseAssistantDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
     public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
@@ -156,6 +158,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void cloudIslandHandler(ChooseCloudDoneMessage message) {
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
 
     }
 
@@ -198,7 +201,8 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void TurnNotificationHandler(TurnNotification message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
+        //Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
@@ -255,7 +259,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void GameStartedHandler(GameStartedMessage message) {
-        SceneController.changeRootPane(observers, "select_scene.fxml");
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
