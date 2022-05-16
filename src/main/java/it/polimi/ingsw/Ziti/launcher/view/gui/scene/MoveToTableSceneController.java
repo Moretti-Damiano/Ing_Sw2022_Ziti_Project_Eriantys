@@ -5,6 +5,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslan
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCharacterRequest;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCloudRequest;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
+import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
@@ -49,8 +50,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String RequestPlayer="";
         private String StudentColour="";
         private String IslandId="";
-
-
+        private PhaseType phase;
     @FXML
     private ImageView BoardImage;
 
@@ -450,6 +450,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private Button CloudsBtn;
 
+    @FXML
+    private Button MoveMotherBtn;
+
+    @FXML
+    private TextField MoveMotherMoves;
+
 
 
 
@@ -477,18 +483,24 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         AssistantBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onAssistantBtnClick);
         CharacterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCharacterBtnClick);
         CloudsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCloudBtnClick);
+        MoveMotherBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveMotherBtnClick);
+        MoveMotherBtn.setDisable(true);
+        MoveMotherMoves.setDisable(true);
+        MoveMotherMoves.setText("");
         MTTBtn.setDisable(true);
         MTIBtn.setDisable(true);
         SelectBtn.setDisable(true);
         ConfirmBtn.setDisable(true);
+        setMoveMotherBtn();
 
 
 
 
-        Label  BoardName = new Label("Board");  //maybe need to be changed
-        BoardName.setText(boards.get(0).getPlayername());
 
-        board=boards.get(0);
+      //  Label  BoardName = new Label("Board");  //maybe need to be changed
+        BoardName.setText(RequestPlayer);
+
+        board = boards.get(0);
 
         studentsWaiting = new ArrayList<>();
         studentsWaiting.add(WaitingStudent0);
@@ -642,7 +654,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Island11.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland11);
         setMother_nature_images(mother_nature_images,islands);
         setTowerIsland_images(towerisland_images,islands);
-
     }
 
     private void setTowerIsland_images(ArrayList<ImageView> towerisland_images, List<Island> islands) {
@@ -705,6 +716,14 @@ public class MoveToTableSceneController extends InputObservable implements Gener
                 default: break;
             }
         }
+
+    }
+
+    void onMoveMotherBtnClick(Event event){
+        MoveMotherMoves.setDisable(false);
+        MTTBtn.setDisable(true);
+        MTIBtn.setDisable(true);
+        MoveMotherMoves.getText();
 
     }
     @FXML
@@ -910,7 +929,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     void onConfirmClick(Event event) {
         RemoveIslandsHandler();
-        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour,IslandId))).start();
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour, IslandId))).start();
+
     }
 
     @FXML
@@ -996,6 +1016,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Island11.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland11Click);
 
     }
+    private void setMoveMotherBtn(){
+
+    }
 
     @FXML
     void onIsland0Click(Event event){
@@ -1076,7 +1099,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         MTTBtn.setDisable(false);
         MTIBtn.setDisable(false);
         SelectBtn.setDisable(true);
+
     }
+
     @FXML
     void onAssistantBtnClick(Event event){
         new Thread(() -> notifyObserver(obs -> obs.onUpdateAssistantRequest(new ShowAssistantRequest()))).start();

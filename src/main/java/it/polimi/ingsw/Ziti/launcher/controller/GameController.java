@@ -7,6 +7,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.EndGamePhase;
 import it.polimi.ingsw.Ziti.launcher.action.*;
+import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
@@ -37,7 +38,9 @@ public class GameController extends GameControllerObservable implements ServerOb
     private Game game;
     private TurnController turnController;
     private ArrayList<Player> players;
-    private int numberOfPlayers = 4; //game for n plauers
+    private int numberOfPlayers = 4;//game for n plauers
+    private GameMode gameMode;
+    private boolean mode;
 
     public GameController(GameRunner gameRunner){
         players = new ArrayList<>();
@@ -113,7 +116,18 @@ public class GameController extends GameControllerObservable implements ServerOb
         else {
             this.numberOfPlayers = message.getNumberOfPlayers();
             this.notifyObserver(obs -> obs.sendToOnePlayer(new CompletedRequestMessage("Number of players set to "+ message.getNumberOfPlayers() ),message.getSender()));
+            this.notifyObserver(obs -> obs.sendToOnePlayer(new ModeRequest(), message.getSender()));
         }
+    }
+
+    public void modeHandler(ModeResponse message){
+     if(!(message.getMode().toUpperCase(Locale.ROOT).equals("EXPERT") || message.getMode().toUpperCase(Locale.ROOT).equals("NORMAL"))){
+         notifyObserver(obs -> obs.sendToOnePlayer(new InputError("invalid Game mode"), message.getSender()));
+         notifyObserver(obs -> obs.sendToOnePlayer(new ModeRequest(), message.getSender()));
+     }
+     else{
+         this.mode=message.getMode().toUpperCase(Locale.ROOT).equals("EXPERT");
+     }
     }
 
     @Override
@@ -249,8 +263,12 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void showCharacterRequestHandler(ShowCharacterRequest message) {
-        notifyObserver(obs -> obs.sendToOnePlayer(new ShowCharacterResponse(getCharacterSummary()), message.getSender()));
-
+        if(game.getModeType()==ModeType.EXPERT) {
+            notifyObserver(obs -> obs.sendToOnePlayer(new ShowCharacterResponse(getCharacterSummary()), message.getSender()));
+        }
+        else{
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
+        }
     }
 
     @Override
@@ -265,7 +283,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter0Handler(Character0Message message) {
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()  && game.getModeType()== ModeType.EXPERT){
             game.setAction(new ChooseCharacter(game, Character0.getInstance()));
             try {
                 game.doAction();
@@ -278,6 +296,8 @@ public class GameController extends GameControllerObservable implements ServerOb
             }
         }
         else{
+            if(game.getModeType()==ModeType.NORMAL)
+                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
             if(!checkActivePlayer(message.getSender()))
                 notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
             if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
@@ -287,7 +307,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter1Handler(Character1Message message) {
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()== ModeType.EXPERT){
             game.setAction(new ChooseCharacter(game,Character1.getInstance()));
             try {
                 Character1.getInstance().choose(message.getIslandId());
@@ -303,6 +323,8 @@ public class GameController extends GameControllerObservable implements ServerOb
             }
         }
         else{
+            if(game.getModeType()==ModeType.NORMAL)
+                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
             if(!checkActivePlayer(message.getSender()))
                 notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
             if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
@@ -313,7 +335,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter2Handler(Character2Message message) {
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
             game.setAction(new ChooseCharacter(game, Character2.getInstance()));
             try {
                 game.doAction();
@@ -325,6 +347,8 @@ public class GameController extends GameControllerObservable implements ServerOb
             }
         }
         else{
+            if(game.getModeType()==ModeType.NORMAL)
+                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
             if(!checkActivePlayer(message.getSender()))
                 notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
             if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
@@ -334,7 +358,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter3Handler(Character3Message message) {
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
             game.setAction(new ChooseCharacter(game, Character3.getInstance()));
             try {
                 game.doAction();
@@ -346,6 +370,8 @@ public class GameController extends GameControllerObservable implements ServerOb
             }
         }
         else{
+            if(game.getModeType()==ModeType.NORMAL)
+                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
             if(!checkActivePlayer(message.getSender()))
                 notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
             if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
@@ -355,7 +381,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter4Handler(Character4Message message) {
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
             game.setAction(new ChooseCharacter(game, Character4.getInstance()));
             try {
                 Character4.getInstance().choose(message.getColour());
@@ -371,6 +397,8 @@ public class GameController extends GameControllerObservable implements ServerOb
             }
         }
         else{
+            if(game.getModeType()==ModeType.NORMAL)
+                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
             if(!checkActivePlayer(message.getSender()))
                 notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
             if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
@@ -381,7 +409,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter5Handler(Character5Message message) {
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()){
+        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
             game.setAction(new ChooseCharacter(game,Character5.getInstance()));
             try {
                 Character5.getInstance().choose(message.getColour());
@@ -398,6 +426,8 @@ public class GameController extends GameControllerObservable implements ServerOb
             }
         }
         else{
+            if(game.getModeType()==ModeType.NORMAL)
+                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
             if(!checkActivePlayer(message.getSender()))
                 notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
             if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
@@ -420,6 +450,8 @@ public class GameController extends GameControllerObservable implements ServerOb
     private void startGame(){
         System.out.println("Starting game for " + players.size() + " players");
         chooseGame(numberOfPlayers);
+        chooseMode(mode);
+        this.gameMode.startmode();
         game.addObserver(this);
         this.turnController = new TurnController(this,players);
         System.out.println("Game started!");
@@ -467,4 +499,17 @@ public class GameController extends GameControllerObservable implements ServerOb
             this.game= new Game3(players);
         }
     }
-}
+
+    private void chooseMode(boolean mode){
+        if(mode){
+            this.gameMode=new ExpertMode(game);
+        }
+        else{
+           this.gameMode=new NormalMode(game);
+        }
+    }
+
+
+
+    }
+

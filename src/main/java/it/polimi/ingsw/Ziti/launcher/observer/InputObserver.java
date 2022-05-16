@@ -25,4 +25,5 @@ public interface InputObserver {
     void onUpdateIslandRequest(ShowIslandRequest message);
     void onUpdateDisconnection(DisconnectionRequest message);
     void onUpdateShowAndIslandRequest(ShowBoardsandIslandsRequest message);
+    void onUpdateMode(String mode);
 }

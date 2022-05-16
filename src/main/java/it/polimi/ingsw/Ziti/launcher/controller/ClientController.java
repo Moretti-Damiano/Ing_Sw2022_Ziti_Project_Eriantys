@@ -299,6 +299,13 @@ public class ClientController extends ClientObservable implements InputObserver 
         notifyObserver(obs->obs.send(message));
     }
 
+    @Override
+    public void onUpdateMode(String mode) {
+        ModeResponse message;
+        message=new ModeResponse(mode);
+        notifyObserver(obs->obs.send(message));
+    }
+
 
     /**
      * Check if the String is an Integer

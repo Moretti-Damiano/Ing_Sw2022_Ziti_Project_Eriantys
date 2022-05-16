@@ -23,8 +23,6 @@ public class Board implements Serializable {
             playername = player.GetName();
             towers = new ArrayList<Tower>();
             professors = new ArrayList<Professor>();
-            wallet = new ArrayList<Coin>();
-
             students_waiting = new ArrayList<Student>();
             students = new ArrayList[colorrow];
             for (int i = 0; i < colorrow; i++) {
@@ -39,6 +37,14 @@ public class Board implements Serializable {
      */
     public void addStudent(Student s){
             students_waiting.add(s);
+    }
+
+    public void setWallet(ArrayList<Coin> wallet){
+        this.wallet=wallet;
+    }
+
+    public ArrayList<Coin> getWallet(){
+        return this.wallet;
     }
 
     public String getPlayername() {
