@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 
 public abstract class GameMode {
     private ModeType modeType;
@@ -23,4 +24,7 @@ public abstract class GameMode {
     public Game getGame() {
         return game;
     }
+
+
+    public abstract Character getCharacterbyId(int id);
 }

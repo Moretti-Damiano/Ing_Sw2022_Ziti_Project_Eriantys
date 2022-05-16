@@ -47,7 +47,7 @@ public abstract class Game extends Observable {
         this.gameWallet=new GameWallet();
 
         //creates mother
-        this.mother = Mother.motherInstance();
+        this.mother = new Mother();
 
         //set islands and mother
        setUpIsland_Mother();
@@ -261,13 +261,6 @@ public abstract class Game extends Observable {
         return null;
     }
 
-    public Character getCharacterbyId(int id){
-        for(Character c: characters){
-            if(c.getId() == id)
-                return c;
-        }
-        return null;
-    }
 
     public Mother getMother(){
         return this.mother;

@@ -33,17 +33,26 @@ public class ExpertMode extends GameMode {
 
     }
 
+    @Override
+    public Character getCharacterbyId(int id){
+        for(Character c: characters){
+            if(c.getId() == id)
+                return c;
+        }
+        return null;
+    }
+
     private ArrayList<Character> setUpCharacters(){
 
         allCharacters = new ArrayList<>();
         characters = new ArrayList<>();
         //creates all possible characters
-        allCharacters.add(Character0.getInstance());
-        allCharacters.add(Character1.getInstance());
-        allCharacters.add(Character2.getInstance());
-        allCharacters.add(Character3.getInstance());
-        allCharacters.add(Character4.getInstance());
-        allCharacters.add(Character5.getInstance());
+        allCharacters.add(new Character0());
+        allCharacters.add(new Character1());
+        allCharacters.add(new Character2());
+        allCharacters.add(new Character3());
+        allCharacters.add(new Character4());
+        allCharacters.add(new Character5());
 
         //set 3 game's characters
         Random rand = new Random();

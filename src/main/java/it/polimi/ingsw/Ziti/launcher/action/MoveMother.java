@@ -27,7 +27,7 @@ public class MoveMother implements Action {
     public MoveMother(Game game, int moves,boolean checkInput) {
         this.game = game;
         this.moves = moves;
-        this.mother = Mother.motherInstance();
+        this.mother = game.getMother();
         this.checkInput = checkInput;
     }
 

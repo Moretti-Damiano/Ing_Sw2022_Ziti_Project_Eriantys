@@ -13,16 +13,16 @@ import java.net.Socket;
  * Each client has a thread where is called a keepListening method and a method to send info
  */
 public class ClientHandler implements Runnable {
-    private Socket socket;
-    private ObjectOutputStream output;
-    private ObjectInputStream input;
-    private SocketServer socketServer;
+    private final Socket socket;
+    private final ObjectOutputStream output;
+    private final ObjectInputStream input;
     private MessagetoServer message;
     private String nickName;
+    private final MatchServer server;
 
-    public ClientHandler(SocketServer socketServer,Socket socket, String temporaryName) throws IOException {
+    public ClientHandler(Socket socket, MatchServer server, String temporaryName) throws IOException {
         this.socket = socket;
-        this.socketServer = socketServer;
+        this.server = server;
         output = new ObjectOutputStream(socket.getOutputStream());
         input = new ObjectInputStream(socket.getInputStream());
         this.nickName = temporaryName;
@@ -40,10 +40,10 @@ public class ClientHandler implements Runnable {
         }
         catch (IOException e) {
             System.out.println("IOexception in clienthandler " + nickName);
-            socketServer.clientDisconnection();
+            server.clientDisconnection();
         }
         catch (ClassNotFoundException e) {
-            System.out.println("Class not found exc");
+            System.out.println("ClientHandler "+ nickName +"Class not found exc");
         }
     }
 
@@ -59,7 +59,7 @@ public class ClientHandler implements Runnable {
                 message = (MessagetoServer) input.readObject();
                 System.out.println("ClientHandler " + nickName + " received a message");
                 message.setSender(nickName);
-                socketServer.receive(message);
+                server.receive(message);
         }
     }
 
@@ -69,11 +69,11 @@ public class ClientHandler implements Runnable {
      */
     public void send(MessageToClient message)  {
         try {
-            System.out.println("Sending message "+ message.toString() +" to " + nickName);
+            System.out.println("ClientHandler "+ nickName +": Sending message "+ message.toString() +" to " + nickName);
             output.writeObject(message);
             output.reset();
         } catch (IOException e) {
-            System.out.println("Error in sending message to " + nickName);
+            System.out.println("ClientHandler "+ nickName + ": Error in sending message to " + nickName);
         }
     }
 

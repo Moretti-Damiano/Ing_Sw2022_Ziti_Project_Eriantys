@@ -13,14 +13,7 @@ During this turn, you take control of any number of professor even if you have t
 
 public class Character0 extends Character{
 
-    private static Character0 instance;
-
-    public static Character0 getInstance(){
-        if (instance == null) instance = new Character0();
-        return instance;
-    }
-
-    private Character0() {
+    public Character0() {
         super();
         setId(0);
         setCost(2);

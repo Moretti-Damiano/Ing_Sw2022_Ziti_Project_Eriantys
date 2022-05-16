@@ -5,25 +5,18 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
-public class Server implements GameControllerObserver {
+public class MatchServer implements GameControllerObserver {
 
-    private int port;
-    private SocketServer socketServer;
     private ServerMessageHandler serverMessageHandler; //observed by GameController
+    private ArrayList<ClientHandler> clientHandlers;
 
-    public Server(int port){
-
-        this.port = port;
+    public MatchServer(){
         serverMessageHandler = new ServerMessageHandler();
+        clientHandlers = new ArrayList<>();
     }
 
-    public void startServer() {
-        System.out.println("Starting server:");
-        socketServer = new SocketServer(this,port);
-        Thread serverThread = new Thread(socketServer);
-        serverThread.start();
-    }
 
     public ServerMessageHandler getServerMessageHandler() {
         return serverMessageHandler;
@@ -34,7 +27,7 @@ public class Server implements GameControllerObserver {
      * @param message the message to be sent
      */
     public void notifyAllPlayers(MessageToClient message)  {
-        for(ClientHandler c: socketServer.getClientHandlers()){
+        for(ClientHandler c: clientHandlers){
             c.send(message);
         }
     }
@@ -45,7 +38,7 @@ public class Server implements GameControllerObserver {
      * @param nickName the client who will receive the message
      */
     public void notifyPlayer(MessageToClient message, String nickName)  {
-        for(ClientHandler c: socketServer.getClientHandlers()){
+        for(ClientHandler c: clientHandlers){
             if(c.getNickName().equals(nickName)){
                 c.send(message);
                 break;
@@ -82,26 +75,30 @@ public class Server implements GameControllerObserver {
      * @param newName is the name indicated by the client during login
      */
     public void successfulLogin(MessageToClient message, String temporaryName, String newName){
-        socketServer.getClientHandlers().get(Integer.parseInt(temporaryName)).setNickName(newName);
+        clientHandlers.get(Integer.parseInt(temporaryName)).setNickName(newName);
         notifyPlayer(message,newName);
     }
 
     public void disconnectAll(){
         System.out.println("Closing all sockets");
         int i = 0;
-        for(ClientHandler clientHandler: socketServer.getClientHandlers()){
+        for(ClientHandler clientHandler: clientHandlers){
             try {
-                System.out.println("Closing socket number : "+i);
+                System.out.println("Closing socket " + clientHandler.getNickName());
                 i++;
                 clientHandler.closeSocket();
             } catch (IOException e) {
                 System.out.println("Error in closing");
             }
         }
-        socketServer.resetSocket();
     }
 
     public void clientDisconnection(){
         serverMessageHandler.clientDisconnection();
     }
+
+    public ArrayList<ClientHandler> getClientHandlers() {
+        return clientHandlers;
+    }
+
 }

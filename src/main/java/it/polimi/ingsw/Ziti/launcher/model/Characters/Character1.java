@@ -17,13 +17,6 @@ public class Character1 extends Character{
     private Island motherIsland;
     private int motherIslandPosition;
 
-    private static Character1 instance;
-
-    public static Character1 getInstance(){
-        if (instance == null) instance = new Character1();
-        return instance;
-    }
-
     public Character1() {
         super();
         setId(1);
@@ -48,8 +41,8 @@ public class Character1 extends Character{
         setUsed(true);
         int moves;
         int islandPosition = getGame().getIslands().indexOf(getGame().getIslandbyId(islandId));
-        motherIsland = getGame().getIslandbyId(Mother.motherInstance().getIsland().getID());
-        motherIslandPosition = getGame().getIslands().indexOf(Mother.motherInstance().getIsland());
+        motherIsland = getGame().getIslandbyId(getGame().getMother().getIsland().getID());
+        motherIslandPosition = getGame().getIslands().indexOf(getGame().getMother().getIsland());
 
         if(motherIslandPosition < islandPosition ){
             moves = islandPosition - motherIslandPosition;
@@ -70,9 +63,9 @@ public class Character1 extends Character{
     }
 
     private void endAction(){
-        Mother.motherInstance().getIsland().removeMother();
-        Mother.motherInstance().setIsland(motherIsland);
-        Mother.motherInstance().getIsland().addMother();
+        getGame().getMother().getIsland().removeMother();
+        getGame().getMother().setIsland(motherIsland);
+        getGame().getMother().getIsland().addMother();
     }
 
     private void checkInput(int islandId) throws CharacterException{

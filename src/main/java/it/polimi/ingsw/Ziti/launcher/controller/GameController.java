@@ -1,8 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
-import it.polimi.ingsw.Ziti.launcher.GameRunner;
+import it.polimi.ingsw.Ziti.launcher.networking.server.MainSocketServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.EndGamePhase;
@@ -34,7 +33,6 @@ import java.util.Objects;
 
 public class GameController extends GameControllerObservable implements ServerObserver, Observer {
 
-    private GameRunner gameRunner;
     private Game game;
     private TurnController turnController;
     private ArrayList<Player> players;
@@ -42,9 +40,8 @@ public class GameController extends GameControllerObservable implements ServerOb
     private GameMode gameMode;
     private boolean mode;
 
-    public GameController(GameRunner gameRunner){
+    public GameController(MainSocketServer mainSocketServer){
         players = new ArrayList<>();
-        this.gameRunner = gameRunner;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -82,7 +79,6 @@ public class GameController extends GameControllerObservable implements ServerOb
         System.out.println("Received login message");
         if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers) {
             try {
-                System.out.println("Adding player to list");
                 players.add(new Player(message.getUsername()));
 
                 notifyObserver(obs -> obs.successfulLogin(new CompletedRequestMessage("Login completed"),message.getSender(),message.getUsername()));
@@ -283,13 +279,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter0Handler(Character0Message message) {
+        Character0 character = (Character0) gameMode.getCharacterbyId(0);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()  && game.getModeType()== ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, Character0.getInstance()));
+            game.setAction(new ChooseCharacter(game, character));
             try {
                 game.doAction();
                 //notifica di choosecharacterDone è fatta da game.doAction()!!!
-                if(Character0.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character0.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -307,13 +304,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter1Handler(Character1Message message) {
+        Character1 character = (Character1) gameMode.getCharacterbyId(1);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()== ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game,Character1.getInstance()));
+            game.setAction(new ChooseCharacter(game,character));
             try {
-                Character1.getInstance().choose(message.getIslandId());
+                character.choose(message.getIslandId());
                 game.doAction();
-                if(Character1.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character1.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -335,12 +333,13 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter2Handler(Character2Message message) {
+        Character2 character = (Character2) gameMode.getCharacterbyId(2);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, Character2.getInstance()));
+            game.setAction(new ChooseCharacter(game, character));
             try {
                 game.doAction();
-                if(Character2.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character2.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -358,12 +357,13 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter3Handler(Character3Message message) {
+        Character3 character = (Character3) gameMode.getCharacterbyId(3);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, Character3.getInstance()));
+            game.setAction(new ChooseCharacter(game, character));
             try {
                 game.doAction();
-                if(Character3.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character3.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -381,13 +381,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter4Handler(Character4Message message) {
+        Character4 character = (Character4) gameMode.getCharacterbyId(4);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, Character4.getInstance()));
+            game.setAction(new ChooseCharacter(game, character));
             try {
-                Character4.getInstance().choose(message.getColour());
+                character.choose(message.getColour());
                 game.doAction();
-                if(Character4.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character4.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -409,13 +410,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter5Handler(Character5Message message) {
+        Character5 character = (Character5) gameMode.getCharacterbyId(5);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game,Character5.getInstance()));
+            game.setAction(new ChooseCharacter(game,character));
             try {
-                Character5.getInstance().choose(message.getColour());
+                character.choose(message.getColour());
                 game.doAction();
-                if(Character5.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character5.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             }
             catch (ActionException e) {
@@ -454,9 +456,11 @@ public class GameController extends GameControllerObservable implements ServerOb
         this.gameMode.startmode();
         game.addObserver(this);
         this.turnController = new TurnController(this,players);
+
+        notifyObserver(); //notifies the socketserver
+
         System.out.println("Game started!");
         notifyObserver(obs -> obs.sendToAllPlayers(new GameStartedMessage()));
-        notifyObserver(); //notifica il suo gamerunner
 
     }
 
@@ -476,21 +480,13 @@ public class GameController extends GameControllerObservable implements ServerOb
         System.out.println(winnerName + "won the game!!!");
         notifyObserver(obs->obs.sendToAllPlayers(new WinMessage(winnerName)));
         notifyObserver(GameControllerObserver::disconnectAll);
-        startNewGame();
     }
 
     public void endGameDisconnection(){
         notifyObserver(obs->obs.sendToAllPlayers(new ErrorMessage("Server","Game has ended because a player disconnected")));
         notifyObserver(GameControllerObserver::disconnectAll);
-        startNewGame();
     }
 
-    private void startNewGame(){
-        System.out.println("Starting a new game");
-        this.game = null;
-        this.players = new ArrayList<>();
-        this.turnController = null;
-    }
 
     private void chooseGame(int playerSize){
         if(playerSize==2){
@@ -508,7 +504,6 @@ public class GameController extends GameControllerObservable implements ServerOb
            this.gameMode=new NormalMode(game);
         }
     }
-
 
 }
 

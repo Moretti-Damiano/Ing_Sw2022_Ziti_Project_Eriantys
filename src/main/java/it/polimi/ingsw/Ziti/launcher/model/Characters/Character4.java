@@ -14,14 +14,7 @@ If any player has fewer than 3 students of that type, return as many students as
  */
 public class Character4 extends Character{
 
-    private static Character4 instance;
     private Colour colour;
-
-    public static Character4 getInstance(){
-        if (instance == null) instance = new Character4();
-        return instance;
-    }
-
 
     public Character4() {
         super();
