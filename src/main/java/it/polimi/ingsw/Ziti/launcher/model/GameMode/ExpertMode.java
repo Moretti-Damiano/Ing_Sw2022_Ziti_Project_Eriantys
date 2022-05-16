@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.model.GameMode;
 import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.EnabledCharactersException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Coin;
@@ -62,6 +63,7 @@ public class ExpertMode extends GameMode {
        checkCharacter(phaseType);
 
     }
+
 
     private ArrayList<Character> setUpCharacters(){
 
