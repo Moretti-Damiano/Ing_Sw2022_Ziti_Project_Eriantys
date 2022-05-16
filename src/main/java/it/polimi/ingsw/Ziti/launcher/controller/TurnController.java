@@ -47,6 +47,7 @@ public class TurnController {
             checkWin();     //check number of tower and islands
             phase.update();
             checkWinAssistant();
+            gameController.sendTurnNotification();
     }
 
 

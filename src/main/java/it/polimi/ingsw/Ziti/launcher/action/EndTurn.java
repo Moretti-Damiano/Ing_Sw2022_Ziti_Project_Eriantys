@@ -39,7 +39,7 @@ public class EndTurn implements Action {
 
     @Override
     public ActionMessage toMessage() {
-        return new EndTurnDoneMessage(description,game.getIslands(),game.getBoards(),game.getCloudIslands(),game.getCharacters(),game.getPlayers());
+        return new EndTurnDoneMessage(description,game.getIslands(),game.getBoards(),game.getCloudIslands());
     }
 
 
