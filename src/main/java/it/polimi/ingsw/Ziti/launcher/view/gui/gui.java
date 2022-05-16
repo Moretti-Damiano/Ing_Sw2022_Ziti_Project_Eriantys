@@ -136,7 +136,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void moveMotherHandler(MoveMotherDoneMessage message) {
-       // notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
@@ -154,6 +154,7 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void endTurnHandler(EndTurnDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
@@ -264,17 +265,20 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void YourTurnNotificationHandler(YourTurnNotification message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message", message.Description));
+       // Platform.runLater(() -> SceneController.showAlert("Info Message", message.Description));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+
 
     }
 
     @Override
     public void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getBoards().toString()));
+     //   Platform.runLater(() -> SceneController.showAlert("Info Message",message.getBoards().toString()));
         MoveToTableSceneController moveToTableSceneController = new MoveToTableSceneController();
         moveToTableSceneController.addAllObservers(observers);
         moveToTableSceneController.addBoards(message.getBoards());
         moveToTableSceneController.addIslands(message.getIslands());
+        moveToTableSceneController.setPhase(message.getPhaseType());
         moveToTableSceneController.SetRequestPlayer(message.getRequestplayer());
         Platform.runLater(() -> SceneController.changeRootPane(moveToTableSceneController,"move_to_table_scene.fxml"));
     }
@@ -282,6 +286,11 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void winHandler(WinMessage message) {
 
+    }
+
+    @Override
+    public void showInputErrorMessage(InputError message) {
+        Platform.runLater(() -> SceneController.showAlert("Info Message", message.getDescription()));
     }
 
 }
