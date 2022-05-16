@@ -25,7 +25,7 @@ public class Character4 extends Character{
         getUsePhase().add(PhaseType.MOVEMENT);
         getUsePhase().add(PhaseType.MOTHER);
         setAvailable(true);
-        setEndPhase(PhaseType.MOTHER);
+        setEndPhase(PhaseType.CLOUD);
     }
 
 
