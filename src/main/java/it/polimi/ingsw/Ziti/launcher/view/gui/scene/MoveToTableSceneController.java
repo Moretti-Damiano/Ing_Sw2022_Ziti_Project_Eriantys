@@ -658,6 +658,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 
     private void setTowerIsland_images(ArrayList<ImageView> towerisland_images, List<Island> islands) {
+        for(ImageView imm:towerisland_images){
+            imm.setImage(null);
+        }
         Image TW = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
         Image TB = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image TG = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
@@ -797,11 +800,14 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 
     private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands){
+        for(ImageView imm:islands_images){
+            imm.setImage(null);
+        }
         Image island = new Image(getClass().getResourceAsStream("/images/island.png"));
 
         for(int i=0; i<islands.size(); i++){
-            islands_images.get(i).setImage(island);
-            islands_images.get(i).setId(Integer.toString(islands.get(i).getID()));
+            islands_images.get(islands.get(i).getID()).setImage(island);
+            islands_images.get(islands.get(i).getID()).setId(Integer.toString(islands.get(i).getID()));
         }
     }
     private void setMother_nature_images(ArrayList<ImageView> mother_nature_images,List<Island> islands){
@@ -906,6 +912,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
     public void setTowers(ArrayList<ImageView> towers,Board board){
+        for(ImageView imm:towers){
+            imm.setImage(null);
+        }
         Image black_tower = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image white_tower = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
         Image grey_tower = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
