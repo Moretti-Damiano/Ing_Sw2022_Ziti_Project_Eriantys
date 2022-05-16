@@ -47,7 +47,7 @@ public abstract class Game extends Observable {
         this.gameWallet=new GameWallet();
 
         //creates mother
-        this.mother = Mother.motherInstance();
+        this.mother = new Mother();
 
         //set islands and mother
        setUpIsland_Mother();

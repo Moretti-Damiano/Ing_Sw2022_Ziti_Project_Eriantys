@@ -7,14 +7,7 @@ import java.io.Serializable;
  * */
 public class Mother implements Serializable {
     private Island island;
-    private static Mother instance;
 
-    private Mother(){}
-
-    public static Mother motherInstance() {
-        if (instance == null) instance = new Mother();
-        return instance;
-    }
 
     public void setIsland(Island island) {
         this.island = island;

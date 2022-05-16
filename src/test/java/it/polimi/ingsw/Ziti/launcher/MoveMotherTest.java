@@ -33,16 +33,16 @@ public class MoveMotherTest {
     @ParameterizedTest
     @ValueSource(ints = {0,5,7,10})
     public void correctPosition(int pos) throws ActionException {
-        Mother.motherInstance().setIsland(game.getIslands().get(pos));
+       game.getMother().setIsland(game.getIslands().get(pos));
         game.setAction(new MoveMother(game,4,true));
         game.doAction();
-        assertEquals((pos + 4)%(game.getIslands().size()),game.getIslands().indexOf(Mother.motherInstance().getIsland()));
+        assertEquals((pos + 4)%(game.getIslands().size()),game.getIslands().indexOf(game.getMother().getIsland()));
     }
 
     @Test
     public void InfluenceTest() throws ActionException {
         //for this test mother will move of 1 island
-        Island start = Mother.motherInstance().getIsland();
+        Island start = game.getMother().getIsland();
         game.setAction(new MoveMother(game,1,true));
         Island destination = game.getNextIsland(start);
 
@@ -71,7 +71,7 @@ public class MoveMotherTest {
     @Test
     public void InfluenceWithTowerTest() throws ActionException {
         //for this test mother will move of 1 island
-        Island start = Mother.motherInstance().getIsland();
+        Island start = game.getMother().getIsland();
         game.setAction(new MoveMother(game,1,true));
         Island destination = game.getNextIsland(start);
 
@@ -107,7 +107,7 @@ public class MoveMotherTest {
     public void mergeTest() throws ActionException {
         //for this test mother will move of 1 island
         game.setAction(new MoveMother(game,1,true));
-        Island start = Mother.motherInstance().getIsland();
+        Island start = game.getMother().getIsland();
         Island destination = game.getNextIsland(start);
 
         Player p1 = game.getPlayers().get(0);
@@ -140,7 +140,7 @@ public class MoveMotherTest {
         int previousSize = game.getIslands().size();
         game.doAction();
 
-        assert(Mother.motherInstance().getIsland().equals(destination));
+        assert(game.getMother().getIsland().equals(destination));
         assert(destination.getTowerPlayer().equals(p1));
         assert(game.getPrevIsland(destination).equals(newPrevious));
         assert(destination.getTowerPlayer().equals(p1));
