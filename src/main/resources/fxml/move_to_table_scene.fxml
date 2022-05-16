@@ -16,7 +16,7 @@
    <children>
       <Group rotate="270.0" scaleX="1.2" scaleY="1.1" translateX="-510.0" translateY="-20.0">
          <children>
-            <AnchorPane layoutX="15.0" layoutY="-50.0" prefHeight="476.0" prefWidth="1100.0" scaleX="0.7" scaleY="0.7">
+            <AnchorPane layoutX="15.0" layoutY="-50.0" prefHeight="811.0" prefWidth="1169.0" scaleX="0.7" scaleY="0.7">
                <children>
                   <ImageView fx:id="BoardImage" fitHeight="372.0" fitWidth="697.0" layoutX="218.0" layoutY="151.0">
                      <image>

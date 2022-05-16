@@ -58,6 +58,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ImageView> islands_images;
         private ArrayList<ImageView> mother_nature_images;
         private ArrayList<ImageView> towerisland_images;
+        private ArrayList<Label> towerIslandQ;
         private String RequestPlayer="";
         private String StudentColour="";
         private String IslandId="";
@@ -435,6 +436,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private Label RQ9;
 
+
+    //it's RS5
     @FXML
     private ImageView RS;
 
@@ -1052,6 +1055,21 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         towerisland_images.add(T9);
         towerisland_images.add(T10);
         towerisland_images.add(T11);
+        towerIslandQ= new ArrayList<>();
+        towerIslandQ.add(T0Q);
+        towerIslandQ.add(T1Q);
+        towerIslandQ.add(T2Q);
+        towerIslandQ.add(T3Q);
+        towerIslandQ.add(T4Q);
+        towerIslandQ.add(T5Q);
+        towerIslandQ.add(T6Q);
+        towerIslandQ.add(T7Q);
+        towerIslandQ.add(T8Q);
+        towerIslandQ.add(T9Q);
+        towerIslandQ.add(T10Q);
+        towerIslandQ.add(T11Q);
+
+        setTowerIsland(towerisland_images,islands,towerIslandQ);
 
 
          islandStudentsBlue=new ArrayList<>();
@@ -1067,12 +1085,159 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         islandStudentsBlue.add(BS9);
         islandStudentsBlue.add(BS10);
         islandStudentsBlue.add(BS11);
-        //VANNO AGGIUNTE TUTTE LE ARRAYLIST DELLE ISLANDS, 1 PER OGNI COLORE DI STUDENTI POSSIBILI
-        //VANNO AGGIUNTI TUTTE LE ARRAYLIST DELLE QUANTITA' DEGLI STUDENTI UNO PER OGNI COLORE
+        islandStudentsBlueQ=new ArrayList<>();
+        islandStudentsBlueQ.add(BQ0);
+        islandStudentsBlueQ.add(BQ1);
+        islandStudentsBlueQ.add(BQ2);
+        islandStudentsBlueQ.add(BQ3);
+        islandStudentsBlueQ.add(BQ4);
+        islandStudentsBlueQ.add(BQ5);
+        islandStudentsBlueQ.add(BQ6);
+        islandStudentsBlueQ.add(BQ7);
+        islandStudentsBlueQ.add(BQ8);
+        islandStudentsBlueQ.add(BQ9);
+        islandStudentsBlueQ.add(BQ10);
+        islandStudentsBlueQ.add(BQ11);
+        setStudentsIslandBlue(islandStudentsBlue,islands,islandStudentsBlueQ);
+
+        islandStudentsGreen=new ArrayList<>();
+        islandStudentsGreen.add(GS0);
+        islandStudentsGreen.add(GS1);
+        islandStudentsGreen.add(GS2);
+        islandStudentsGreen.add(GS3);
+        islandStudentsGreen.add(GS4);
+        islandStudentsGreen.add(GS5);
+        islandStudentsGreen.add(GS6);
+        islandStudentsGreen.add(GS7);
+        islandStudentsGreen.add(GS8);
+        islandStudentsGreen.add(GS9);
+        islandStudentsGreen.add(GS10);
+        islandStudentsGreen.add(GS11);
+        islandStudentsGreenQ=new ArrayList<>();
+        islandStudentsGreenQ.add(GQ0);
+        islandStudentsGreenQ.add(GQ1);
+        islandStudentsGreenQ.add(GQ2);
+        islandStudentsGreenQ.add(GQ3);
+        islandStudentsGreenQ.add(GQ4);
+        islandStudentsGreenQ.add(GQ5);
+        islandStudentsGreenQ.add(GQ6);
+        islandStudentsGreenQ.add(GQ7);
+        islandStudentsGreenQ.add(GQ8);
+        islandStudentsGreenQ.add(GQ9);
+        islandStudentsGreenQ.add(GQ10);
+        islandStudentsGreenQ.add(GQ11);
+        setStudentsIslandGreen(islandStudentsGreen,islands,islandStudentsGreenQ);
+
+        islandStudentsPink=new ArrayList<>();
+        islandStudentsPink.add(PS0);
+        islandStudentsPink.add(PS1);
+        islandStudentsPink.add(PS2);
+        islandStudentsPink.add(PS3);
+        islandStudentsPink.add(PS4);
+        islandStudentsPink.add(PS5);
+        islandStudentsPink.add(PS6);
+        islandStudentsPink.add(PS7);
+        islandStudentsPink.add(PS8);
+        islandStudentsPink.add(PS9);
+        islandStudentsPink.add(PS10);
+        islandStudentsPink.add(PS11);
+        islandStudentsPinkQ=new ArrayList<>();
+        islandStudentsPinkQ.add(PQ0);
+        islandStudentsPinkQ.add(PQ1);
+        islandStudentsPinkQ.add(PQ2);
+        islandStudentsPinkQ.add(PQ3);
+        islandStudentsPinkQ.add(PQ4);
+        islandStudentsPinkQ.add(PQ5);
+        islandStudentsPinkQ.add(PQ6);
+        islandStudentsPinkQ.add(PQ7);
+        islandStudentsPinkQ.add(PQ8);
+        islandStudentsPinkQ.add(PQ9);
+        islandStudentsPinkQ.add(PQ10);
+        islandStudentsPinkQ.add(PQ11);
+        setStudentsIslandPink(islandStudentsPink,islands,islandStudentsPinkQ);
+
+        islandStudentsRed=new ArrayList<>();
+        islandStudentsRed.add(RS0);
+        islandStudentsRed.add(RS01);
+        islandStudentsRed.add(RS011);
+        islandStudentsRed.add(RS3);
+        islandStudentsRed.add(RS4);
+        islandStudentsRed.add(RS);
+        islandStudentsRed.add(RS6);
+        islandStudentsRed.add(RS7);
+        islandStudentsRed.add(RS8);
+        islandStudentsRed.add(RS9);
+        islandStudentsRed.add(RS10);
+        islandStudentsRed.add(RS11);
+        islandStudentsRedQ=new ArrayList<>();
+        islandStudentsRedQ.add(RQ0);
+        islandStudentsRedQ.add(RQ01);
+        islandStudentsRedQ.add(RQ011);
+        islandStudentsRedQ.add(RQ3);
+        islandStudentsRedQ.add(RQ4);
+        islandStudentsRedQ.add(RQ5);
+        islandStudentsRedQ.add(RQ6);
+        islandStudentsRedQ.add(RQ7);
+        islandStudentsRedQ.add(RQ8);
+        islandStudentsRedQ.add(RQ9);
+        islandStudentsRedQ.add(RQ10);
+        islandStudentsRedQ.add(RQ11);
+        setStudentsIslandRed(islandStudentsRed,islands,islandStudentsRedQ);
+
+        islandStudentsYellow=new ArrayList<>();
+        islandStudentsYellow.add(YS0);
+        islandStudentsYellow.add(YS1);
+        islandStudentsYellow.add(YS2);
+        islandStudentsYellow.add(YS3);
+        islandStudentsYellow.add(YS4);
+        islandStudentsYellow.add(YS5);
+        islandStudentsYellow.add(YS6);
+        islandStudentsYellow.add(YS7);
+        islandStudentsYellow.add(YS8);
+        islandStudentsYellow.add(YS9);
+        islandStudentsYellow.add(YS10);
+        islandStudentsYellow.add(YS11);
+        islandStudentsYellowQ=new ArrayList<>();
+        islandStudentsYellowQ.add(YQ0);
+        islandStudentsYellowQ.add(YQ1);
+        islandStudentsYellowQ.add(YQ2);
+        islandStudentsYellowQ.add(YQ3);
+        islandStudentsYellowQ.add(YQ4);
+        islandStudentsYellowQ.add(YQ5);
+        islandStudentsYellowQ.add(YQ6);
+        islandStudentsYellowQ.add(YQ7);
+        islandStudentsYellowQ.add(YQ8);
+        islandStudentsYellowQ.add(YQ9);
+        islandStudentsYellowQ.add(YQ10);
+        islandStudentsYellowQ.add(YQ11);
+        setStudentsIslandYellow(islandStudentsYellow,islands,islandStudentsYellowQ);
+
+
+
+
+
+
+        // fatto VANNO AGGIUNTE TUTTE LE ARRAYLIST DELLE ISLANDS, 1 PER OGNI COLORE DI STUDENTI POSSIBILI
+        //fatto VANNO AGGIUNTI TUTTE LE ARRAYLIST DELLE QUANTITA' DEGLI STUDENTI UNO PER OGNI COLORE
+        //setStudentsIslandBlue
         //VANNO CHIAMATI I METODI CHE LI IMPLEMENTANO
         //MANCA IL METODO CHE IMPLEMENTA LA QUANTITA' DELLE TORRI
 
         islandStudentsGreen=new ArrayList<>();
+        islandStudentsGreen.add(GS0);
+        islandStudentsGreen.add(GS1);
+        islandStudentsGreen.add(GS2);
+        islandStudentsGreen.add(GS3);
+        islandStudentsGreen.add(GS4);
+        islandStudentsGreen.add(GS5);
+        islandStudentsGreen.add(GS6);
+        islandStudentsGreen.add(GS7);
+        islandStudentsGreen.add(GS8);
+        islandStudentsGreen.add(GS9);
+        islandStudentsGreen.add(GS10);
+        islandStudentsGreen.add(GS11);
+
+
         islandStudentsPink=new ArrayList<>();
          islandStudentsRed=new ArrayList<>();
          islandStudentsYellow=new ArrayList<>();
@@ -1090,10 +1255,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Island10.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland10);
         Island11.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland11);
         setMother_nature_images(mother_nature_images,islands);
-        setTowerIsland_images(towerisland_images,islands);
+        setTowerIsland(towerisland_images,islands,towerIslandQ);
     }
 
-    private void setTowerIsland_images(ArrayList<ImageView> towerisland_images, List<Island> islands) {
+    private void setTowerIsland(ArrayList<ImageView> towerisland_images, List<Island> islands,ArrayList<Label> towerIslandQ) {
         for(ImageView imm:towerisland_images){
             imm.setImage(null);
         }
@@ -1101,23 +1266,30 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Image TB = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image TG = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
         for(int i=0;i<islands.size();i++){
-            if(islands.get(i).getTowers().size()!=0){
+            if(islands.get(i).getTowers().size()==0){towerIslandQ.get(islands.get(i).getID()).setText("");
+            }
+            else{
                 switch(islands.get(i).getTowers().get(0).getTowerColour()){
                     case BLACK:
                         towerisland_images.get(islands.get(i).getID()).setImage(TB);
+                        towerIslandQ.get(islands.get(i).getID()).setText("x" + islands.get(i).getTowers().size());
                         break;
                     case GRAY:
                         towerisland_images.get(islands.get(i).getID()).setImage(TG);
+                        towerIslandQ.get(islands.get(i).getID()).setText("x" + islands.get(i).getTowers().size());
                         break;
                     case WHITE:
                         towerisland_images.get(islands.get(i).getID()).setImage(TW);
+                        towerIslandQ.get(islands.get(i).getID()).setText("x" + islands.get(i).getTowers().size());
                         break;
                     default:break;
                 }
             }
-        }
 
+        }
     }
+
+
 
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
         for(ImageView imm:students){
@@ -1308,65 +1480,79 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(i).setImage(yellow_student);
         }
     }
-    private void setStudentsIslandBlue(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+    private void setStudentsIslandBlue(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
         }
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
-            students.get(islands.get(i).getID()).setImage(blue_student);
-            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.BLUE));
-
+            if(islands.get(i).getColour(Colour.BLUE)==0){description.get(islands.get(i).getID()).setText("");}
+            else {
+                students.get(islands.get(i).getID()).setImage(blue_student);
+                description.get(islands.get(i).getID()).setText("x" + islands.get(i).getColour(Colour.BLUE));
+            }
         }
     }
-    private void setStudentsIslandGreen(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+    private void setStudentsIslandGreen(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
         }
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
-            students.get(islands.get(i).getID()).setImage(green_student);
-            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.GREEN));
+            if(islands.get(i).getColour(Colour.GREEN)==0){description.get(islands.get(i).getID()).setText("");}
+            else {
+                students.get(islands.get(i).getID()).setImage(green_student);
+                description.get(islands.get(i).getID()).setText("x" + islands.get(i).getColour(Colour.GREEN));
+            }
 
         }
     }
-    private void setStudentsIslandPink(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+    private void setStudentsIslandPink(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
         }
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
-            students.get(islands.get(i).getID()).setImage(pink_student);
-            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.PINK));
+            if(islands.get(i).getColour(Colour.PINK)==0){description.get(islands.get(i).getID()).setText("");}
+            else {
+                students.get(islands.get(i).getID()).setImage(pink_student);
+                description.get(islands.get(i).getID()).setText("x" + islands.get(i).getColour(Colour.PINK));
+            }
 
         }
     }
-    private void setStudentsIslandRed(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+    private void setStudentsIslandRed(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
         }
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
-            students.get(islands.get(i).getID()).setImage(red_student);
-            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.RED));
+            if(islands.get(i).getColour(Colour.RED)==0){description.get(islands.get(i).getID()).setText("");}
+            else {
+                students.get(islands.get(i).getID()).setImage(red_student);
+                description.get(islands.get(i).getID()).setText("x" + islands.get(i).getColour(Colour.RED));
+            }
 
         }
     }
 
 
-    private void setStudentsIslandYellow(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+    private void setStudentsIslandYellow(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
         }
         Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
-            students.get(islands.get(i).getID()).setImage(yellow_student);
-            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.YELLOW));
+            if(islands.get(i).getColour(Colour.YELLOW)==0){description.get(islands.get(i).getID()).setText("");}
+            else {
+                students.get(islands.get(i).getID()).setImage(yellow_student);
+                description.get(islands.get(i).getID()).setText("x" + islands.get(i).getColour(Colour.YELLOW));
+            }
 
         }
     }
