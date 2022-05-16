@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher.Messages;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ServerObserver;
 
@@ -90,6 +91,7 @@ public class ServerMessageHandler extends ServerObservable {
     public void clientDisconnection(){
         notifyObserver(ServerObserver::endGameDisconnection);
     }
+    
 
-    public void disconnectionRequestHandler(DisconnectionRequest message) {}
+    public void disconnectionRequestHandler(DisconnectionRequest message){}
 }

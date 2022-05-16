@@ -12,7 +12,7 @@ public class CloudPhase extends Phase{
 
     @Override
     public void update() {
-        endCharacter();
+        updateGameMode(getPhaseType());
 
 
         if (getTurncontroller().getPlayersDone() == getTurncontroller().getPlayers().size()) {

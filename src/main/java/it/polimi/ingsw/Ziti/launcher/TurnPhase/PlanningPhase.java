@@ -19,6 +19,7 @@ public class PlanningPhase extends Phase{
 
     @Override
     public void update() {
+        updateGameMode(getPhaseType());
         playersDone++;
 
         // if Every player chose an assistant

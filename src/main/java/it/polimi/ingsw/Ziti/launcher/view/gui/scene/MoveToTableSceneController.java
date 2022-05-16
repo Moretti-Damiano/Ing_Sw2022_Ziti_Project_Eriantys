@@ -40,6 +40,17 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ImageView> diningStudentsPink;
         private ArrayList<ImageView> diningStudentsRed;
         private ArrayList<ImageView> diningStudentsYellow;
+    private ArrayList<ImageView> islandStudentsBlue;
+    private ArrayList<ImageView> islandStudentsGreen;
+    private ArrayList<ImageView> islandStudentsPink;
+    private ArrayList<ImageView> islandStudentsRed;
+    private ArrayList<ImageView> islandStudentsYellow;
+    private ArrayList<Label> islandStudentsBlueQ;
+    private ArrayList<Label> islandStudentsGreenQ;
+    private ArrayList<Label> islandStudentsPinkQ;
+    private ArrayList<Label> islandStudentsRedQ;
+    private ArrayList<Label> islandStudentsYellowQ;
+
         private ArrayList<ImageView> professors;
         private ArrayList<ImageView> towers;
         private ArrayList<ArrayList<ImageView>> diningStudents;
@@ -51,8 +62,83 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String StudentColour="";
         private String IslandId="";
         private PhaseType phaseType;
+
+
+
     @FXML
     private ImageView BoardImage;
+
+    @FXML
+    private Label YQ0;
+
+    @FXML
+    private Label YQ1;
+
+    @FXML
+    private Label YQ10;
+
+    @FXML
+    private Label YQ11;
+
+    @FXML
+    private Label YQ2;
+
+    @FXML
+    private Label YQ3;
+
+    @FXML
+    private Label YQ4;
+
+    @FXML
+    private Label YQ5;
+
+    @FXML
+    private Label YQ6;
+
+    @FXML
+    private Label YQ7;
+
+    @FXML
+    private Label YQ8;
+
+    @FXML
+    private Label YQ9;
+
+    @FXML
+    private ImageView YS0;
+
+    @FXML
+    private ImageView YS1;
+
+    @FXML
+    private ImageView YS10;
+
+    @FXML
+    private ImageView YS11;
+
+    @FXML
+    private ImageView YS2;
+
+    @FXML
+    private ImageView YS3;
+
+    @FXML
+    private ImageView YS4;
+
+    @FXML
+    private ImageView YS5;
+
+    @FXML
+    private ImageView YS6;
+
+    @FXML
+    private ImageView YS7;
+
+    @FXML
+    private ImageView YS8;
+
+    @FXML
+    private ImageView YS9;
 
     @FXML
     private Label BoardName;
@@ -240,6 +326,226 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private ImageView WaitingStudent7;
 
+
+    @FXML
+    private Label PQ0;
+
+    @FXML
+    private Label PQ1;
+
+    @FXML
+    private Label PQ10;
+
+    @FXML
+    private Label PQ11;
+
+    @FXML
+    private Label PQ2;
+
+    @FXML
+    private Label PQ3;
+
+    @FXML
+    private Label PQ4;
+
+    @FXML
+    private Label PQ5;
+
+    @FXML
+    private Label PQ6;
+
+    @FXML
+    private Label PQ7;
+
+    @FXML
+    private Label PQ8;
+
+    @FXML
+    private Label PQ9;
+
+    @FXML
+    private ImageView PS0;
+
+    @FXML
+    private ImageView PS1;
+
+    @FXML
+    private ImageView PS10;
+
+    @FXML
+    private ImageView PS11;
+
+    @FXML
+    private ImageView PS2;
+
+    @FXML
+    private ImageView PS3;
+
+    @FXML
+    private ImageView PS4;
+
+    @FXML
+    private ImageView PS5;
+
+    @FXML
+    private ImageView PS6;
+
+    @FXML
+    private ImageView PS7;
+
+    @FXML
+    private ImageView PS8;
+
+    @FXML
+    private ImageView PS9;
+
+    @FXML
+    private Label RQ0;
+
+    @FXML
+    private Label RQ01;
+
+    @FXML
+    private Label RQ011;
+
+    @FXML
+    private Label RQ10;
+
+    @FXML
+    private Label RQ11;
+
+    @FXML
+    private Label RQ3;
+
+    @FXML
+    private Label RQ4;
+
+    @FXML
+    private Label RQ5;
+
+    @FXML
+    private Label RQ6;
+
+    @FXML
+    private Label RQ7;
+
+    @FXML
+    private Label RQ8;
+
+    @FXML
+    private Label RQ9;
+
+    @FXML
+    private ImageView RS;
+
+    @FXML
+    private ImageView RS0;
+
+    @FXML
+    private ImageView RS01;
+
+    @FXML
+    private ImageView RS011;
+
+    @FXML
+    private ImageView RS10;
+
+    @FXML
+    private ImageView RS11;
+
+    @FXML
+    private ImageView RS3;
+
+    @FXML
+    private ImageView RS4;
+
+    @FXML
+    private ImageView RS6;
+
+    @FXML
+    private ImageView RS7;
+
+    @FXML
+    private ImageView RS8;
+
+    @FXML
+    private ImageView RS9;
+
+    @FXML
+    private Button SelectBtn;
+
+    @FXML
+    private ImageView T;
+
+    @FXML
+    private Label T0Q;
+
+    @FXML
+    private ImageView T1;
+
+    @FXML
+    private ImageView T10;
+
+    @FXML
+    private Label T10Q;
+
+    @FXML
+    private ImageView T11;
+
+    @FXML
+    private Label T11Q;
+
+    @FXML
+    private Label T1Q;
+
+    @FXML
+    private ImageView T2;
+
+    @FXML
+    private Label T2Q;
+
+    @FXML
+    private ImageView T3;
+
+    @FXML
+    private Label T3Q;
+
+    @FXML
+    private ImageView T4;
+
+    @FXML
+    private Label T4Q;
+
+    @FXML
+    private ImageView T5;
+
+    @FXML
+    private Label T5Q;
+
+    @FXML
+    private ImageView T6;
+
+    @FXML
+    private Label T6Q;
+
+    @FXML
+    private ImageView T7;
+
+    @FXML
+    private Label T7Q;
+
+    @FXML
+    private ImageView T8;
+
+    @FXML
+    private Label T8Q;
+
+    @FXML
+    private ImageView T9;
+
+    @FXML
+    private Label T9Q;
+
     @FXML
     private ImageView WaitingStudent8;
 
@@ -340,6 +646,151 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private ImageView Island4;
 
     @FXML
+    private Label GQ0;
+
+    @FXML
+    private Label GQ1;
+
+    @FXML
+    private Label GQ10;
+
+    @FXML
+    private Label GQ11;
+
+    @FXML
+    private Label GQ2;
+
+    @FXML
+    private Label GQ3;
+
+    @FXML
+    private Label GQ4;
+
+    @FXML
+    private Label GQ5;
+
+    @FXML
+    private Label GQ6;
+
+    @FXML
+    private Label GQ7;
+
+    @FXML
+    private Label GQ8;
+
+    @FXML
+    private Label GQ9;
+
+    @FXML
+    private ImageView GS0;
+
+    @FXML
+    private ImageView GS1;
+
+    @FXML
+    private ImageView GS10;
+
+    @FXML
+    private ImageView GS11;
+
+    @FXML
+    private ImageView GS2;
+
+    @FXML
+    private ImageView GS3;
+
+    @FXML
+    private ImageView GS4;
+
+    @FXML
+    private ImageView GS5;
+
+    @FXML
+    private ImageView GS6;
+
+
+    @FXML
+    private Label BQ0;
+
+    @FXML
+    private Label BQ1;
+
+    @FXML
+    private Label BQ10;
+
+    @FXML
+    private Label BQ11;
+
+    @FXML
+    private Label BQ2;
+
+    @FXML
+    private Label BQ3;
+
+    @FXML
+    private Label BQ4;
+
+    @FXML
+    private Label BQ5;
+
+    @FXML
+    private Label BQ6;
+
+    @FXML
+    private Label BQ7;
+
+    @FXML
+    private Label BQ8;
+
+    @FXML
+    private Label BQ9;
+
+    @FXML
+    private ImageView BS0;
+
+    @FXML
+    private ImageView BS1;
+
+    @FXML
+    private ImageView BS10;
+
+    @FXML
+    private ImageView BS11;
+
+    @FXML
+    private ImageView BS2;
+
+    @FXML
+    private ImageView BS3;
+
+    @FXML
+    private ImageView BS4;
+
+    @FXML
+    private ImageView BS5;
+
+    @FXML
+    private ImageView BS6;
+
+    @FXML
+    private ImageView BS7;
+
+    @FXML
+    private ImageView BS8;
+
+    @FXML
+    private ImageView BS9;
+
+    @FXML
+    private ImageView GS7;
+
+    @FXML
+    private ImageView GS8;
+
+    @FXML
+    private ImageView GS9;
+
+    @FXML
     private ImageView Island5;
 
     @FXML
@@ -401,45 +852,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     private Button MTTBtn;
-
-    @FXML
-    private ImageView T;
-
-    @FXML
-    private ImageView T1;
-
-    @FXML
-    private ImageView T10;
-
-    @FXML
-    private ImageView T11;
-
-    @FXML
-    private ImageView T2;
-
-    @FXML
-    private ImageView T3;
-
-    @FXML
-    private ImageView T4;
-
-    @FXML
-    private ImageView T5;
-
-    @FXML
-    private ImageView T6;
-
-    @FXML
-    private ImageView T7;
-
-    @FXML
-    private ImageView T8;
-
-    @FXML
-    private ImageView T9;
-
-    @FXML
-    private Button SelectBtn;
 
     @FXML
     private Button AssistantBtn;
@@ -641,6 +1053,30 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         towerisland_images.add(T10);
         towerisland_images.add(T11);
 
+
+         islandStudentsBlue=new ArrayList<>();
+         islandStudentsBlue.add(BS0);
+        islandStudentsBlue.add(BS1);
+        islandStudentsBlue.add(BS2);
+        islandStudentsBlue.add(BS3);
+        islandStudentsBlue.add(BS4);
+        islandStudentsBlue.add(BS5);
+        islandStudentsBlue.add(BS6);
+        islandStudentsBlue.add(BS7);
+        islandStudentsBlue.add(BS8);
+        islandStudentsBlue.add(BS9);
+        islandStudentsBlue.add(BS10);
+        islandStudentsBlue.add(BS11);
+        //VANNO AGGIUNTE TUTTE LE ARRAYLIST DELLE ISLANDS, 1 PER OGNI COLORE DI STUDENTI POSSIBILI
+        //VANNO AGGIUNTI TUTTE LE ARRAYLIST DELLE QUANTITA' DEGLI STUDENTI UNO PER OGNI COLORE
+        //VANNO CHIAMATI I METODI CHE LI IMPLEMENTANO
+        //MANCA IL METODO CHE IMPLEMENTA LA QUANTITA' DELLE TORRI
+
+        islandStudentsGreen=new ArrayList<>();
+        islandStudentsPink=new ArrayList<>();
+         islandStudentsRed=new ArrayList<>();
+         islandStudentsYellow=new ArrayList<>();
+
         Island0.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland0);
         Island1.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland1);
         Island2.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland2);
@@ -658,6 +1094,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 
     private void setTowerIsland_images(ArrayList<ImageView> towerisland_images, List<Island> islands) {
+        for(ImageView imm:towerisland_images){
+            imm.setImage(null);
+        }
         Image TW = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
         Image TB = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image TG = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
@@ -797,11 +1236,14 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 
     private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands){
+        for(ImageView imm:islands_images){
+            imm.setImage(null);
+        }
         Image island = new Image(getClass().getResourceAsStream("/images/island.png"));
 
         for(int i=0; i<islands.size(); i++){
-            islands_images.get(i).setImage(island);
-            islands_images.get(i).setId(Integer.toString(islands.get(i).getID()));
+            islands_images.get(islands.get(i).getID()).setImage(island);
+            islands_images.get(islands.get(i).getID()).setId(Integer.toString(islands.get(i).getID()));
         }
     }
     private void setMother_nature_images(ArrayList<ImageView> mother_nature_images,List<Island> islands){
@@ -854,6 +1296,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(i).setImage(red_student);
         }
     }
+
+
     private void setStudentsDiningYellow(ArrayList<ImageView> students,Board board) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -862,6 +1306,68 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         for (int i = 0; i < board.getColorRowSize(Colour.YELLOW); i++) {
             students.get(i).setImage(yellow_student);
+        }
+    }
+    private void setStudentsIslandBlue(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(blue_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.BLUE));
+
+        }
+    }
+    private void setStudentsIslandGreen(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(green_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.GREEN));
+
+        }
+    }
+    private void setStudentsIslandPink(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(pink_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.PINK));
+
+        }
+    }
+    private void setStudentsIslandRed(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(red_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.RED));
+
+        }
+    }
+
+
+    private void setStudentsIslandYellow(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(yellow_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.YELLOW));
+
         }
     }
     private void setStudentsDining(){
@@ -906,6 +1412,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
     public void setTowers(ArrayList<ImageView> towers,Board board){
+        for(ImageView imm:towers){
+            imm.setImage(null);
+        }
         Image black_tower = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image white_tower = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
         Image grey_tower = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));

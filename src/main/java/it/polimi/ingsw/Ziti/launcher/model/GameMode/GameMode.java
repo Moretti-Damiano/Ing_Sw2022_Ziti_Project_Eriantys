@@ -1,7 +1,12 @@
-package it.polimi.ingsw.Ziti.launcher.model;
+package it.polimi.ingsw.Ziti.launcher.model.GameMode;
 
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
 import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
+import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.EnabledCharactersException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
+import it.polimi.ingsw.Ziti.launcher.model.Game;
 
 public abstract class GameMode {
     private ModeType modeType;
@@ -25,6 +30,10 @@ public abstract class GameMode {
         return game;
     }
 
-
     public abstract Character getCharacterbyId(int id);
+
+    public abstract void onPhaseUpdate(PhaseType phaseType);
+
+    public abstract void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException,ActionException;
+
 }

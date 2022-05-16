@@ -1,4 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
+import it.polimi.ingsw.Ziti.launcher.exception.EnabledCharactersException;
+import it.polimi.ingsw.Ziti.launcher.model.GameMode.ExpertMode;
+import it.polimi.ingsw.Ziti.launcher.model.GameMode.NormalMode;
 import it.polimi.ingsw.Ziti.launcher.networking.server.MainSocketServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
@@ -37,7 +40,6 @@ public class GameController extends GameControllerObservable implements ServerOb
     private TurnController turnController;
     private ArrayList<Player> players;
     private int numberOfPlayers = 4;//game for n plauers
-    private GameMode gameMode;
     private boolean mode;
 
     public GameController(MainSocketServer mainSocketServer){
@@ -272,161 +274,119 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter0Handler(Character0Message message) {
-        Character0 character = (Character0) gameMode.getCharacterbyId(0);
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()  && game.getModeType()== ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, character));
+        Character0 character = (Character0) game.getGameMode().getCharacterbyId(0);
+        if(checkActivePlayer(message.getSender())){
             try {
-                game.doAction();
-                //notifica di choosecharacterDone è fatta da game.doAction()!!!
-                if(character.isPhase(turnController.getPhase().getPhaseType())){
-                    character.startEffect();
-                }
+                game.getGameMode().enabledCharacters(character,turnController.getPhase());
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            } catch (EnabledCharactersException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("characters are not available for this mode"), message.getSender()));
             }
         }
         else{
-            if(game.getModeType()==ModeType.NORMAL)
-                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
-            if(!checkActivePlayer(message.getSender()))
-                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
-            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
-                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
 
     @Override
     public void chooseCharacter1Handler(Character1Message message) {
-        Character1 character = (Character1) gameMode.getCharacterbyId(1);
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()== ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game,character));
+        Character1 character = (Character1) game.getGameMode().getCharacterbyId(1);
+        if(checkActivePlayer(message.getSender()) ){
             try {
                 character.choose(message.getIslandId());
-                game.doAction();
-                if(character.isPhase(turnController.getPhase().getPhaseType())){
-                    character.startEffect();
-                }
+                game.getGameMode().enabledCharacters(character, turnController.getPhase());
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
             catch (CharacterException e){
                 notifyObserver(obs-> obs.sendToOnePlayer(new InputError("You insert an invalid island"), message.getSender()));
+            } catch (EnabledCharactersException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("characters are not available for this mode"), message.getSender()));
             }
         }
         else{
-            if(game.getModeType()==ModeType.NORMAL)
-                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
-            if(!checkActivePlayer(message.getSender()))
                 notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
-            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
-                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
         }
     }
 
 
     @Override
     public void chooseCharacter2Handler(Character2Message message) {
-        Character2 character = (Character2) gameMode.getCharacterbyId(2);
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, character));
-            try {
-                game.doAction();
-                if(character.isPhase(turnController.getPhase().getPhaseType())){
-                    character.startEffect();
-                }
+        Character2 character = (Character2) game.getGameMode().getCharacterbyId(2);
+        if(checkActivePlayer(message.getSender()) ){
+            try{
+            game.getGameMode().enabledCharacters(character, turnController.getPhase());
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
             }
+            catch (EnabledCharactersException e){
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("characters are not available for this mode"), message.getSender()));
+            }
         }
         else{
-            if(game.getModeType()==ModeType.NORMAL)
-                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
-            if(!checkActivePlayer(message.getSender()))
                 notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
-            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
-                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
         }
     }
 
     @Override
     public void chooseCharacter3Handler(Character3Message message) {
-        Character3 character = (Character3) gameMode.getCharacterbyId(3);
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, character));
+        Character3 character = (Character3) game.getGameMode().getCharacterbyId(3);
+        if(checkActivePlayer(message.getSender())){
             try {
-                game.doAction();
-                if(character.isPhase(turnController.getPhase().getPhaseType())){
-                    character.startEffect();
-                }
+                game.getGameMode().enabledCharacters(character,turnController.getPhase());
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            } catch (EnabledCharactersException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("characters are not available for this mode"), message.getSender()));
             }
         }
         else{
-            if(game.getModeType()==ModeType.NORMAL)
-                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
-            if(!checkActivePlayer(message.getSender()))
-                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
-            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
-                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
 
     @Override
     public void chooseCharacter4Handler(Character4Message message) {
-        Character4 character = (Character4) gameMode.getCharacterbyId(4);
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, character));
+        Character4 character = (Character4) game.getGameMode().getCharacterbyId(4);
+
+        if(checkActivePlayer(message.getSender())){
             try {
                 character.choose(message.getColour());
-                game.doAction();
-                if(character.isPhase(turnController.getPhase().getPhaseType())){
-                    character.startEffect();
-                }
+                game.getGameMode().enabledCharacters(character,turnController.getPhase());
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            } catch (EnabledCharactersException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("characters are not available for this mode"), message.getSender()));
             }
             catch (CharacterException e){
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You did not insert a valid colour"),message.getSender()));
             }
         }
         else{
-            if(game.getModeType()==ModeType.NORMAL)
-                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
-            if(!checkActivePlayer(message.getSender()))
-                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
-            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
-                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
 
 
     @Override
     public void chooseCharacter5Handler(Character5Message message) {
-        Character5 character = (Character5) gameMode.getCharacterbyId(5);
-        if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game,character));
+        Character5 character = (Character5) game.getGameMode().getCharacterbyId(5);
+        if(checkActivePlayer(message.getSender())){
             try {
                 character.choose(message.getColour());
-                game.doAction();
-                if(character.isPhase(turnController.getPhase().getPhaseType())){
-                    character.startEffect();
-                }
-            }
-            catch (ActionException e) {
+                game.getGameMode().enabledCharacters(character,turnController.getPhase());
+            } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
+            } catch (EnabledCharactersException e) {
+                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("characters are not available for this mode"), message.getSender()));
             }
-            catch(CharacterException e) {
+            catch (CharacterException e){
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You did not insert a valid colour"),message.getSender()));
             }
         }
         else{
-            if(game.getModeType()==ModeType.NORMAL)
-                notifyObserver(obs->obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
-            if(!checkActivePlayer(message.getSender()))
-                notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
-            if(checkActivePlayer(message.getSender()) && Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter())
-                notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You already chose a character in this turn"),message.getSender()));
+            notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("It's not your turn phase"),message.getSender()));
         }
     }
 
@@ -446,7 +406,7 @@ public class GameController extends GameControllerObservable implements ServerOb
         System.out.println("Starting game for " + players.size() + " players");
         chooseGame(numberOfPlayers);
         chooseMode(mode);
-        this.gameMode.startmode();
+        game.getGameMode().startmode();
         game.addObserver(this);
         this.turnController = new TurnController(this,players);
 
@@ -491,10 +451,10 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     private void chooseMode(boolean mode){
         if(mode){
-            this.gameMode=new ExpertMode(game);
+            game.setGameMode(new ExpertMode(game));
         }
         else{
-           this.gameMode=new NormalMode(game);
+           game.setGameMode(new NormalMode(game));
         }
     }
 

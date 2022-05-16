@@ -1,8 +1,16 @@
-package it.polimi.ingsw.Ziti.launcher.model;
+package it.polimi.ingsw.Ziti.launcher.model.GameMode;
 
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
+import it.polimi.ingsw.Ziti.launcher.action.ChooseCharacter;
 import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
+import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.EnabledCharactersException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
+import it.polimi.ingsw.Ziti.launcher.model.Coin;
+import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 
 import java.util.ArrayList;
@@ -11,6 +19,7 @@ import java.util.Random;
 public class ExpertMode extends GameMode {
     private ArrayList<Character> allCharacters;
     private ArrayList<Character>characters;
+    private Character activeCharacter;
     private final ModeType modeType=ModeType.EXPERT;
 
     @Override
@@ -21,6 +30,14 @@ public class ExpertMode extends GameMode {
     public ExpertMode(Game game){
         super(game);
         game.setModeType(getModeType());
+    }
+
+    public Character getActiveCharacter(){
+        return this.activeCharacter;
+    }
+
+    public void setActiveCharacter(Character character){
+        this.activeCharacter = character;
     }
 
     @Override
@@ -41,6 +58,14 @@ public class ExpertMode extends GameMode {
         }
         return null;
     }
+
+    @Override
+    public void onPhaseUpdate(PhaseType phaseType) {
+        endCharacter(phaseType);
+       checkCharacter(phaseType);
+
+    }
+
 
     private ArrayList<Character> setUpCharacters(){
 
@@ -66,5 +91,29 @@ public class ExpertMode extends GameMode {
         }
         return characters;
     }
+   private void checkCharacter(PhaseType phaseType) {
+            for (Character c : getGame().getCharacters()) {
+                if (!c.isAvailable() && c.isPhase(phaseType)) {
+                    try {
+                        setActiveCharacter(c);
+                        if (!c.isUsed())
+                            c.startEffect();
+                    } catch (ActionException e) {
+                        //send invalid input error (never gonna happen)
+                    }
+                }
+            }
+    }
 
+    private void endCharacter(PhaseType phaseType) {
+        if (activeCharacter != null && activeCharacter.getEndPhase().equals(phaseType)) {
+            activeCharacter.endEffect();
+            activeCharacter = null;
+        }
+    }
+
+    public void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException, ActionException {
+        getGame().setAction(new ChooseCharacter(getGame(),character, phase));
+        getGame().doAction();
+    }
 }

@@ -13,9 +13,10 @@ public class MotherPhase extends Phase{
 
     @Override
     public void update() {
+        updateGameMode(getPhaseType());
         //standard case
         if(!getTurncontroller().getGameController().getGame().getSack().isEmpty()){
-            endCharacter();
+            
             nextPhase();
         }
         else{   //no more students in the sack
