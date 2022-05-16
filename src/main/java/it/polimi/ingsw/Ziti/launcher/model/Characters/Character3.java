@@ -53,7 +53,7 @@ public class Character3 extends Character{
 
     @Override
     public void endEffect() {
-        Mother mother = Mother.motherInstance();
+        Mother mother = getGame().getMother();
 
         for(int i = 0; i < numTowers.length; i++){
             if(getGame().getIslands().get(i) != mother.getIsland()){
