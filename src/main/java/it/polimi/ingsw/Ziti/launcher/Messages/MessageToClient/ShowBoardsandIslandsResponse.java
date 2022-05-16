@@ -32,6 +32,10 @@ public class ShowBoardsandIslandsResponse extends MessageToClient{
         return boards;
     }
 
+    public PhaseType getPhaseType() {
+        return phaseType;
+    }
+
     @Override
     public void handle(ClientMessageHandler clientMessageHandler) {
         clientMessageHandler.ShowBoardsandIslandsResponseHandle(this);
