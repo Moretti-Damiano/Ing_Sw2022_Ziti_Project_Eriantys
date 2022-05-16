@@ -14,12 +14,11 @@ public class EndTurnDoneMessage extends ActionMessage {
     private ArrayList<Player> players;
 
     public EndTurnDoneMessage(String description, ArrayList<Island> islands, ArrayList<Board> boards,
-                              ArrayList<CloudIsland> cloudIslands, ArrayList<Character> characters, ArrayList<Player> players) {
+                              ArrayList<CloudIsland> cloudIslands) {
         super(description);
         this.islands = islands;
         this.boards = boards;
         this.cloudIslands = cloudIslands;
-        this.players = players;
     }
 
     public ArrayList<Island> getIslands() {
