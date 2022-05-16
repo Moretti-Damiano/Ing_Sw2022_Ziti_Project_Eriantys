@@ -115,51 +115,52 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void InputErrorHandler(InputError message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
+        Platform.runLater(() -> SceneController.showAlert("Input Error Message",message.getDescription()));
     }
 
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
+        Platform.runLater(() -> SceneController.showAlert("Error Message",message.getDescription()));
     }
 
     @Override
     public void moveToIslandHandler(MoveToIslandDoneMessage message) {
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
     public void moveToTableHandler(MoveToTableDoneMessage message) {
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
 
     }
 
     @Override
     public void moveMotherHandler(MoveMotherDoneMessage message) {
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
     public void chooseAssistantHandler(ChooseAssistantDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
     public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        //Platform.runLater(() -> SceneController.changeRootPane(observers,"move_to_table_scene.fxml"));
     }
 
     @Override
     public void endTurnHandler(EndTurnDoneMessage message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        Platform.runLater(() -> SceneController.showAlert("End Turn message",message.getDescription()));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
     public void cloudIslandHandler(ChooseCloudDoneMessage message) {
-        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
 
     }
 
@@ -202,8 +203,8 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void TurnNotificationHandler(TurnNotification message) {
-        //Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        Platform.runLater(() -> SceneController.showAlert("Notifica Turno",message.getDescription()));
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
@@ -290,7 +291,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showInputErrorMessage(InputError message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message", message.getDescription()));
+        //Platform.runLater(() -> SceneController.showAlert("Info Message", message.getDescription()));
     }
 
 }
