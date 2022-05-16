@@ -19,7 +19,7 @@ public abstract class Phase {
         this.turncontroller = turnController;
         this.phaseType = phaseType;
         playersDone = 0;
-        checkCharacter();
+        updateGameMode(getPhaseType());
     }
 
     public PhaseType getPhaseType() {

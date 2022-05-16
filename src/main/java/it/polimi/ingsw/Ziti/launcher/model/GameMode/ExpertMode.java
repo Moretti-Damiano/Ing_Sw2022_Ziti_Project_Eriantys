@@ -1,8 +1,13 @@
-package it.polimi.ingsw.Ziti.launcher.model;
+package it.polimi.ingsw.Ziti.launcher.model.GameMode;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
+import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
+import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
+import it.polimi.ingsw.Ziti.launcher.model.Coin;
+import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 
 import java.util.ArrayList;
@@ -42,6 +47,13 @@ public class ExpertMode extends GameMode {
         return null;
     }
 
+    @Override
+    public void onPhaseUpdate(PhaseType phaseType) {
+        endCharacter(phaseType);
+       checkCharacter(phaseType);
+
+    }
+
     private ArrayList<Character> setUpCharacters(){
 
         allCharacters = new ArrayList<>();
@@ -65,6 +77,26 @@ public class ExpertMode extends GameMode {
 
         }
         return characters;
+    }
+   private void checkCharacter(PhaseType phaseType) {
+            for (Character c : getGame().getCharacters()) {
+                if (!c.isAvailable() && c.isPhase(phaseType)) {
+                    try {
+                        setActiveCharacter(c);
+                        if (!c.isUsed())
+                            c.startEffect();
+                    } catch (ActionException e) {
+                        //send invalid input error (never gonna happen)
+                    }
+                }
+            }
+    }
+
+    private void endCharacter(PhaseType phaseType) {
+        if (activeCharacter != null && activeCharacter.getEndPhase().equals(phaseType)) {
+            activeCharacter.endEffect();
+            activeCharacter = null;
+        }
     }
 
 }
