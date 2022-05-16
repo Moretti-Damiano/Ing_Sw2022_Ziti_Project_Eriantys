@@ -69,7 +69,7 @@ public class cli extends InputObservable implements view, ViewObserver {
             } else System.out.println(" ID : " + island.getID());
             if (island.getTowerPlayer() != null)  {
                 if (island.getTowers().size() > 1) {
-                    System.out.println("In this island " + island.getTowerPlayer().GetName() + " has " + island.getTowers() + " towers");
+                    System.out.println("In this island " + island.getTowerPlayer().GetName() + " has " + island.getTowers().size() + " towers");
                 } else {
                     System.out.println("In this island there is " + island.getTowerPlayer().GetName() + "'s tower");
                 }
