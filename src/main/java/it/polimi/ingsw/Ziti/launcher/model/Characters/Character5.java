@@ -25,7 +25,7 @@ public class Character5 extends Character{
         setDescription("Choose a colour of student: during the influence calculation this turn,that color adds no influence");
         getUsePhase().add(PhaseType.MOTHER);
         setAvailable(true);
-        setEndPhase(PhaseType.MOTHER);
+        setEndPhase(PhaseType.CLOUD);
     }
 
 

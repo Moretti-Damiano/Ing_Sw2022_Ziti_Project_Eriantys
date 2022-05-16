@@ -3,10 +3,9 @@ package it.polimi.ingsw.Ziti.launcher.model;
 import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
-import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
-import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
+import it.polimi.ingsw.Ziti.launcher.model.GameMode.GameMode;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 
 import java.util.ArrayList;
@@ -27,6 +26,7 @@ public abstract class Game extends Observable {
     private GameWallet gameWallet;
     private ArrayList<Character> characters;
     private ModeType modeType;
+    private GameMode gameMode;
 
     /**
      * Creates 12 islands,Mother and memorizes the players
@@ -274,4 +274,11 @@ public abstract class Game extends Observable {
         return action;
     }
 
+    public GameMode getGameMode() {
+        return gameMode;
+    }
+    
+    public void setGameMode(GameMode gamemode){
+        this.gameMode=gamemode;
+    }
 }
