@@ -51,8 +51,83 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String StudentColour="";
         private String IslandId="";
         private PhaseType phaseType;
+
+
+
     @FXML
     private ImageView BoardImage;
+
+    @FXML
+    private Label YQ0;
+
+    @FXML
+    private Label YQ1;
+
+    @FXML
+    private Label YQ10;
+
+    @FXML
+    private Label YQ11;
+
+    @FXML
+    private Label YQ2;
+
+    @FXML
+    private Label YQ3;
+
+    @FXML
+    private Label YQ4;
+
+    @FXML
+    private Label YQ5;
+
+    @FXML
+    private Label YQ6;
+
+    @FXML
+    private Label YQ7;
+
+    @FXML
+    private Label YQ8;
+
+    @FXML
+    private Label YQ9;
+
+    @FXML
+    private ImageView YS0;
+
+    @FXML
+    private ImageView YS1;
+
+    @FXML
+    private ImageView YS10;
+
+    @FXML
+    private ImageView YS11;
+
+    @FXML
+    private ImageView YS2;
+
+    @FXML
+    private ImageView YS3;
+
+    @FXML
+    private ImageView YS4;
+
+    @FXML
+    private ImageView YS5;
+
+    @FXML
+    private ImageView YS6;
+
+    @FXML
+    private ImageView YS7;
+
+    @FXML
+    private ImageView YS8;
+
+    @FXML
+    private ImageView YS9;
 
     @FXML
     private Label BoardName;
@@ -240,6 +315,226 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private ImageView WaitingStudent7;
 
+
+    @FXML
+    private Label PQ0;
+
+    @FXML
+    private Label PQ1;
+
+    @FXML
+    private Label PQ10;
+
+    @FXML
+    private Label PQ11;
+
+    @FXML
+    private Label PQ2;
+
+    @FXML
+    private Label PQ3;
+
+    @FXML
+    private Label PQ4;
+
+    @FXML
+    private Label PQ5;
+
+    @FXML
+    private Label PQ6;
+
+    @FXML
+    private Label PQ7;
+
+    @FXML
+    private Label PQ8;
+
+    @FXML
+    private Label PQ9;
+
+    @FXML
+    private ImageView PS0;
+
+    @FXML
+    private ImageView PS1;
+
+    @FXML
+    private ImageView PS10;
+
+    @FXML
+    private ImageView PS11;
+
+    @FXML
+    private ImageView PS2;
+
+    @FXML
+    private ImageView PS3;
+
+    @FXML
+    private ImageView PS4;
+
+    @FXML
+    private ImageView PS5;
+
+    @FXML
+    private ImageView PS6;
+
+    @FXML
+    private ImageView PS7;
+
+    @FXML
+    private ImageView PS8;
+
+    @FXML
+    private ImageView PS9;
+
+    @FXML
+    private Label RQ0;
+
+    @FXML
+    private Label RQ01;
+
+    @FXML
+    private Label RQ011;
+
+    @FXML
+    private Label RQ10;
+
+    @FXML
+    private Label RQ11;
+
+    @FXML
+    private Label RQ3;
+
+    @FXML
+    private Label RQ4;
+
+    @FXML
+    private Label RQ5;
+
+    @FXML
+    private Label RQ6;
+
+    @FXML
+    private Label RQ7;
+
+    @FXML
+    private Label RQ8;
+
+    @FXML
+    private Label RQ9;
+
+    @FXML
+    private ImageView RS;
+
+    @FXML
+    private ImageView RS0;
+
+    @FXML
+    private ImageView RS01;
+
+    @FXML
+    private ImageView RS011;
+
+    @FXML
+    private ImageView RS10;
+
+    @FXML
+    private ImageView RS11;
+
+    @FXML
+    private ImageView RS3;
+
+    @FXML
+    private ImageView RS4;
+
+    @FXML
+    private ImageView RS6;
+
+    @FXML
+    private ImageView RS7;
+
+    @FXML
+    private ImageView RS8;
+
+    @FXML
+    private ImageView RS9;
+
+    @FXML
+    private Button SelectBtn;
+
+    @FXML
+    private ImageView T;
+
+    @FXML
+    private Label T0Q;
+
+    @FXML
+    private ImageView T1;
+
+    @FXML
+    private ImageView T10;
+
+    @FXML
+    private Label T10Q;
+
+    @FXML
+    private ImageView T11;
+
+    @FXML
+    private Label T11Q;
+
+    @FXML
+    private Label T1Q;
+
+    @FXML
+    private ImageView T2;
+
+    @FXML
+    private Label T2Q;
+
+    @FXML
+    private ImageView T3;
+
+    @FXML
+    private Label T3Q;
+
+    @FXML
+    private ImageView T4;
+
+    @FXML
+    private Label T4Q;
+
+    @FXML
+    private ImageView T5;
+
+    @FXML
+    private Label T5Q;
+
+    @FXML
+    private ImageView T6;
+
+    @FXML
+    private Label T6Q;
+
+    @FXML
+    private ImageView T7;
+
+    @FXML
+    private Label T7Q;
+
+    @FXML
+    private ImageView T8;
+
+    @FXML
+    private Label T8Q;
+
+    @FXML
+    private ImageView T9;
+
+    @FXML
+    private Label T9Q;
+
     @FXML
     private ImageView WaitingStudent8;
 
@@ -340,6 +635,151 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private ImageView Island4;
 
     @FXML
+    private Label GQ0;
+
+    @FXML
+    private Label GQ1;
+
+    @FXML
+    private Label GQ10;
+
+    @FXML
+    private Label GQ11;
+
+    @FXML
+    private Label GQ2;
+
+    @FXML
+    private Label GQ3;
+
+    @FXML
+    private Label GQ4;
+
+    @FXML
+    private Label GQ5;
+
+    @FXML
+    private Label GQ6;
+
+    @FXML
+    private Label GQ7;
+
+    @FXML
+    private Label GQ8;
+
+    @FXML
+    private Label GQ9;
+
+    @FXML
+    private ImageView GS0;
+
+    @FXML
+    private ImageView GS1;
+
+    @FXML
+    private ImageView GS10;
+
+    @FXML
+    private ImageView GS11;
+
+    @FXML
+    private ImageView GS2;
+
+    @FXML
+    private ImageView GS3;
+
+    @FXML
+    private ImageView GS4;
+
+    @FXML
+    private ImageView GS5;
+
+    @FXML
+    private ImageView GS6;
+
+
+    @FXML
+    private Label BQ0;
+
+    @FXML
+    private Label BQ1;
+
+    @FXML
+    private Label BQ10;
+
+    @FXML
+    private Label BQ11;
+
+    @FXML
+    private Label BQ2;
+
+    @FXML
+    private Label BQ3;
+
+    @FXML
+    private Label BQ4;
+
+    @FXML
+    private Label BQ5;
+
+    @FXML
+    private Label BQ6;
+
+    @FXML
+    private Label BQ7;
+
+    @FXML
+    private Label BQ8;
+
+    @FXML
+    private Label BQ9;
+
+    @FXML
+    private ImageView BS0;
+
+    @FXML
+    private ImageView BS1;
+
+    @FXML
+    private ImageView BS10;
+
+    @FXML
+    private ImageView BS11;
+
+    @FXML
+    private ImageView BS2;
+
+    @FXML
+    private ImageView BS3;
+
+    @FXML
+    private ImageView BS4;
+
+    @FXML
+    private ImageView BS5;
+
+    @FXML
+    private ImageView BS6;
+
+    @FXML
+    private ImageView BS7;
+
+    @FXML
+    private ImageView BS8;
+
+    @FXML
+    private ImageView BS9;
+
+    @FXML
+    private ImageView GS7;
+
+    @FXML
+    private ImageView GS8;
+
+    @FXML
+    private ImageView GS9;
+
+    @FXML
     private ImageView Island5;
 
     @FXML
@@ -401,45 +841,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     private Button MTTBtn;
-
-    @FXML
-    private ImageView T;
-
-    @FXML
-    private ImageView T1;
-
-    @FXML
-    private ImageView T10;
-
-    @FXML
-    private ImageView T11;
-
-    @FXML
-    private ImageView T2;
-
-    @FXML
-    private ImageView T3;
-
-    @FXML
-    private ImageView T4;
-
-    @FXML
-    private ImageView T5;
-
-    @FXML
-    private ImageView T6;
-
-    @FXML
-    private ImageView T7;
-
-    @FXML
-    private ImageView T8;
-
-    @FXML
-    private ImageView T9;
-
-    @FXML
-    private Button SelectBtn;
 
     @FXML
     private Button AssistantBtn;
