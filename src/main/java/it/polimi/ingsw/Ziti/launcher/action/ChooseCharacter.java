@@ -2,7 +2,9 @@ package it.polimi.ingsw.Ziti.launcher.action;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 
@@ -12,19 +14,23 @@ import it.polimi.ingsw.Ziti.launcher.model.Game;
 public class ChooseCharacter implements Action{
     private Character character;
     private Game game;
+    private Phase actualPhase;
 
-
-    public ChooseCharacter( Game game, Character character){
+    public ChooseCharacter(Game game, Character character, Phase phase){
         this.character=character;
         this.game=game;
-
+        this.actualPhase = phase;
     }
     public void execute() throws ActionException {
         checkCharacterInGame();
         checkCoin();
+        checkUsedACharacter();
         character.setAvailable(false);
         character.increaseCost();
         game.getCurrentPlayer().setUsedACharacter(true);
+        
+        if(character.isPhase(actualPhase.getPhaseType()))
+            character.startEffect();
     }
 
 
@@ -56,5 +62,10 @@ public class ChooseCharacter implements Action{
             if(!c.isAvailable() ){ return true; }
         }
         return false;
+    }
+    
+    private void checkUsedACharacter() throws ActionException {
+        if(game.getCurrentPlayer().hasUsedACharacter())
+            throw new ActionException();
     }
 }

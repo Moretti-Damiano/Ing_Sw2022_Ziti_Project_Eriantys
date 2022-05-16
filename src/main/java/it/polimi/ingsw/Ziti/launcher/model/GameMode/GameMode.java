@@ -34,4 +34,6 @@ public abstract class GameMode {
 
     public abstract void onPhaseUpdate(PhaseType phaseType);
 
+    public abstract void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException,ActionException;
+
 }

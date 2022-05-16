@@ -1,5 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.model.GameMode;
 
+import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
+import it.polimi.ingsw.Ziti.launcher.action.ChooseCharacter;
 import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
@@ -110,4 +112,8 @@ public class ExpertMode extends GameMode {
         }
     }
 
+    public void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException, ActionException {
+        getGame().setAction(new ChooseCharacter(getGame(),character, phase));
+        getGame().doAction();
+    }
 }
