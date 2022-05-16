@@ -1,8 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
-import it.polimi.ingsw.Ziti.launcher.GameRunner;
+import it.polimi.ingsw.Ziti.launcher.networking.server.MainSocketServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.EndGamePhase;
@@ -34,7 +33,6 @@ import java.util.Objects;
 
 public class GameController extends GameControllerObservable implements ServerObserver, Observer {
 
-    private GameRunner gameRunner;
     private Game game;
     private TurnController turnController;
     private ArrayList<Player> players;
@@ -42,9 +40,8 @@ public class GameController extends GameControllerObservable implements ServerOb
     private GameMode gameMode;
     private boolean mode;
 
-    public GameController(GameRunner gameRunner){
+    public GameController(MainSocketServer mainSocketServer){
         players = new ArrayList<>();
-        this.gameRunner = gameRunner;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -82,7 +79,6 @@ public class GameController extends GameControllerObservable implements ServerOb
         System.out.println("Received login message");
         if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers) {
             try {
-                System.out.println("Adding player to list");
                 players.add(new Player(message.getUsername()));
 
                 notifyObserver(obs -> obs.successfulLogin(new CompletedRequestMessage("Login completed"),message.getSender(),message.getUsername()));
@@ -454,9 +450,11 @@ public class GameController extends GameControllerObservable implements ServerOb
         this.gameMode.startmode();
         game.addObserver(this);
         this.turnController = new TurnController(this,players);
+
+        notifyObserver(); //notifies the socketserver
+
         System.out.println("Game started!");
         notifyObserver(obs -> obs.sendToAllPlayers(new GameStartedMessage()));
-        notifyObserver(); //notifica il suo gamerunner
 
     }
 
@@ -476,21 +474,13 @@ public class GameController extends GameControllerObservable implements ServerOb
         System.out.println(winnerName + "won the game!!!");
         notifyObserver(obs->obs.sendToAllPlayers(new WinMessage(winnerName)));
         notifyObserver(GameControllerObserver::disconnectAll);
-        startNewGame();
     }
 
     public void endGameDisconnection(){
         notifyObserver(obs->obs.sendToAllPlayers(new ErrorMessage("Server","Game has ended because a player disconnected")));
         notifyObserver(GameControllerObserver::disconnectAll);
-        startNewGame();
     }
 
-    private void startNewGame(){
-        System.out.println("Starting a new game");
-        this.game = null;
-        this.players = new ArrayList<>();
-        this.turnController = null;
-    }
 
     private void chooseGame(int playerSize){
         if(playerSize==2){
@@ -508,7 +498,6 @@ public class GameController extends GameControllerObservable implements ServerOb
            this.gameMode=new NormalMode(game);
         }
     }
-
 
 }
 
