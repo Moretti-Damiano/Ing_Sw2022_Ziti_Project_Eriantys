@@ -18,13 +18,6 @@ public class Character5 extends Character{
     private Player profPlayer;
     private Professor professor;
 
-    private static Character5 instance;
-
-    public static Character5 getInstance(){
-        if (instance == null) instance = new Character5();
-        return instance;
-    }
-
     public Character5() {
         super();
         setId(5);

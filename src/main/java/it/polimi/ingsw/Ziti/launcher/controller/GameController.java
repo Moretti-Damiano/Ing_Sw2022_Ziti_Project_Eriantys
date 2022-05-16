@@ -279,13 +279,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter0Handler(Character0Message message) {
+        Character0 character = (Character0) gameMode.getCharacterbyId(0);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter()  && game.getModeType()== ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, Character0.getInstance()));
+            game.setAction(new ChooseCharacter(game, character));
             try {
                 game.doAction();
                 //notifica di choosecharacterDone è fatta da game.doAction()!!!
-                if(Character0.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character0.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -303,13 +304,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter1Handler(Character1Message message) {
+        Character1 character = (Character1) gameMode.getCharacterbyId(1);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()== ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game,Character1.getInstance()));
+            game.setAction(new ChooseCharacter(game,character));
             try {
-                Character1.getInstance().choose(message.getIslandId());
+                character.choose(message.getIslandId());
                 game.doAction();
-                if(Character1.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character1.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -331,12 +333,13 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter2Handler(Character2Message message) {
+        Character2 character = (Character2) gameMode.getCharacterbyId(2);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, Character2.getInstance()));
+            game.setAction(new ChooseCharacter(game, character));
             try {
                 game.doAction();
-                if(Character2.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character2.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -354,12 +357,13 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter3Handler(Character3Message message) {
+        Character3 character = (Character3) gameMode.getCharacterbyId(3);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, Character3.getInstance()));
+            game.setAction(new ChooseCharacter(game, character));
             try {
                 game.doAction();
-                if(Character3.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character3.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -377,13 +381,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter4Handler(Character4Message message) {
+        Character4 character = (Character4) gameMode.getCharacterbyId(4);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game, Character4.getInstance()));
+            game.setAction(new ChooseCharacter(game, character));
             try {
-                Character4.getInstance().choose(message.getColour());
+                character.choose(message.getColour());
                 game.doAction();
-                if(Character4.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character4.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             } catch (ActionException e) {
                 notifyObserver(obs -> obs.sendToOnePlayer(new InputError("You can't choose this character"),message.getSender()));
@@ -405,13 +410,14 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void chooseCharacter5Handler(Character5Message message) {
+        Character5 character = (Character5) gameMode.getCharacterbyId(5);
         if(checkActivePlayer(message.getSender()) && !Objects.requireNonNull(getPlayerByName(message.getSender())).hasUsedACharacter() && game.getModeType()==ModeType.EXPERT){
-            game.setAction(new ChooseCharacter(game,Character5.getInstance()));
+            game.setAction(new ChooseCharacter(game,character));
             try {
-                Character5.getInstance().choose(message.getColour());
+                character.choose(message.getColour());
                 game.doAction();
-                if(Character5.getInstance().isPhase(turnController.getPhase().getPhaseType())){
-                    Character5.getInstance().startEffect();
+                if(character.isPhase(turnController.getPhase().getPhaseType())){
+                    character.startEffect();
                 }
             }
             catch (ActionException e) {

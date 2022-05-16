@@ -13,15 +13,8 @@ When resolving a Conquering on an island, towers do not count towards influence
  */
 public class Character3 extends Character{
 
-    private static Character3 instance;
-
     int[] numTowers;
     Player[] towerPlayers;
-
-    public static Character3 getInstance(){
-        if (instance == null) instance = new Character3();
-        return instance;
-    }
 
     public Character3() {
         super();

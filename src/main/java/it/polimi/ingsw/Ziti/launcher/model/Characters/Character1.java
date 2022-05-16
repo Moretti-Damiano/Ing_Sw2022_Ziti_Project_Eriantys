@@ -17,13 +17,6 @@ public class Character1 extends Character{
     private Island motherIsland;
     private int motherIslandPosition;
 
-    private static Character1 instance;
-
-    public static Character1 getInstance(){
-        if (instance == null) instance = new Character1();
-        return instance;
-    }
-
     public Character1() {
         super();
         setId(1);

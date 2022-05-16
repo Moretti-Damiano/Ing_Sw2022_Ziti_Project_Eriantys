@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
+import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 
 public class NormalMode extends GameMode{
     private final ModeType modeType=ModeType.NORMAL;
@@ -18,4 +19,11 @@ public class NormalMode extends GameMode{
     public void startmode() {
 
     }
+
+    @Override
+    public Character getCharacterbyId(int id) {
+        return null;
+    }
+
+
 }

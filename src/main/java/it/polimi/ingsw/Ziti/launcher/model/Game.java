@@ -261,13 +261,6 @@ public abstract class Game extends Observable {
         return null;
     }
 
-    public Character getCharacterbyId(int id){
-        for(Character c: characters){
-            if(c.getId() == id)
-                return c;
-        }
-        return null;
-    }
 
     public Mother getMother(){
         return this.mother;
