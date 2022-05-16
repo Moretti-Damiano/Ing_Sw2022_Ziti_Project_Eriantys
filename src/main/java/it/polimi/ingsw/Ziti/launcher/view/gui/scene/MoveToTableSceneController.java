@@ -40,6 +40,17 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ImageView> diningStudentsPink;
         private ArrayList<ImageView> diningStudentsRed;
         private ArrayList<ImageView> diningStudentsYellow;
+    private ArrayList<ImageView> islandStudentsBlue;
+    private ArrayList<ImageView> islandStudentsGreen;
+    private ArrayList<ImageView> islandStudentsPink;
+    private ArrayList<ImageView> islandStudentsRed;
+    private ArrayList<ImageView> islandStudentsYellow;
+    private ArrayList<Label> islandStudentsBlueQ;
+    private ArrayList<Label> islandStudentsGreenQ;
+    private ArrayList<Label> islandStudentsPinkQ;
+    private ArrayList<Label> islandStudentsRedQ;
+    private ArrayList<Label> islandStudentsYellowQ;
+
         private ArrayList<ImageView> professors;
         private ArrayList<ImageView> towers;
         private ArrayList<ArrayList<ImageView>> diningStudents;
@@ -1042,6 +1053,30 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         towerisland_images.add(T10);
         towerisland_images.add(T11);
 
+
+         islandStudentsBlue=new ArrayList<>();
+         islandStudentsBlue.add(BS0);
+        islandStudentsBlue.add(BS1);
+        islandStudentsBlue.add(BS2);
+        islandStudentsBlue.add(BS3);
+        islandStudentsBlue.add(BS4);
+        islandStudentsBlue.add(BS5);
+        islandStudentsBlue.add(BS6);
+        islandStudentsBlue.add(BS7);
+        islandStudentsBlue.add(BS8);
+        islandStudentsBlue.add(BS9);
+        islandStudentsBlue.add(BS10);
+        islandStudentsBlue.add(BS11);
+        //VANNO AGGIUNTE TUTTE LE ARRAYLIST DELLE ISLANDS, 1 PER OGNI COLORE DI STUDENTI POSSIBILI
+        //VANNO AGGIUNTI TUTTE LE ARRAYLIST DELLE QUANTITA' DEGLI STUDENTI UNO PER OGNI COLORE
+        //VANNO CHIAMATI I METODI CHE LI IMPLEMENTANO
+        //MANCA IL METODO CHE IMPLEMENTA LA QUANTITA' DELLE TORRI
+
+        islandStudentsGreen=new ArrayList<>();
+        islandStudentsPink=new ArrayList<>();
+         islandStudentsRed=new ArrayList<>();
+         islandStudentsYellow=new ArrayList<>();
+
         Island0.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland0);
         Island1.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland1);
         Island2.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland2);
@@ -1261,6 +1296,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(i).setImage(red_student);
         }
     }
+
+
     private void setStudentsDiningYellow(ArrayList<ImageView> students,Board board) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1269,6 +1306,68 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         for (int i = 0; i < board.getColorRowSize(Colour.YELLOW); i++) {
             students.get(i).setImage(yellow_student);
+        }
+    }
+    private void setStudentsIslandBlue(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(blue_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.BLUE));
+
+        }
+    }
+    private void setStudentsIslandGreen(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(green_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.GREEN));
+
+        }
+    }
+    private void setStudentsIslandPink(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(pink_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.PINK));
+
+        }
+    }
+    private void setStudentsIslandRed(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(red_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.RED));
+
+        }
+    }
+
+
+    private void setStudentsIslandYellow(ArrayList<ImageView> students,ArrayList<Island> islands,ArrayList<Label> description) {
+        for(ImageView imm:students){
+            imm.setImage(null);
+        }
+        Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
+
+        for (int i = 0; i < islands.size(); i++) {
+            students.get(islands.get(i).getID()).setImage(yellow_student);
+            description.get(islands.get(i).getID()).setText("x"+islands.get(i).getColour(Colour.YELLOW));
+
         }
     }
     private void setStudentsDining(){
