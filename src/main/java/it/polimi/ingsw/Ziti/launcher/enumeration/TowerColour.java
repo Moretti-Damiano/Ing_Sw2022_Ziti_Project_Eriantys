@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.enumeration;
 
+import java.io.Serializable;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -7,7 +8,7 @@ import java.util.Map;
  * This enum contains all possible Colours of a Pawn.
  *
  * */
-public enum TowerColour {
+public enum TowerColour implements Serializable {
     BLACK("0"),
     WHITE("1"),
     GRAY("2");
