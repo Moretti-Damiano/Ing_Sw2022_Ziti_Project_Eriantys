@@ -1484,6 +1484,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         for(ImageView imm:students){
             imm.setImage(null);
         }
+        for(Label desc : description){
+            desc.setText("");
+        }
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
@@ -1498,6 +1501,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         for(ImageView imm:students){
             imm.setImage(null);
         }
+        for(Label desc : description){
+            desc.setText("");
+        }
+
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
@@ -1513,6 +1520,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         for(ImageView imm:students){
             imm.setImage(null);
         }
+        for(Label desc : description){
+            desc.setText("");
+        }
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
@@ -1527,6 +1537,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private void setStudentsIslandRed(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
+        }
+        for(Label desc : description){
+            desc.setText("");
         }
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
 
@@ -1544,6 +1557,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private void setStudentsIslandYellow(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
+        }
+        for(Label desc : description){
+            desc.setText("");
         }
         Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
 
