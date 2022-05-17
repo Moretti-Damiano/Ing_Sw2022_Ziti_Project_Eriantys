@@ -130,9 +130,9 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             Cld2Students.add(S21);
             Cld2Students.add(S22);
             Cld2Students.add(S23);
-            setStudentsCloud(Cld0Students,availableCloud);
-            setStudentsCloud(Cld1Students,availableCloud);
-            setStudentsCloud(Cld2Students,availableCloud);
+            setStudentsCloud(Cld0Students,availableCloud.get(0));
+            setStudentsCloud(Cld1Students,availableCloud.get(1));
+            setStudentsCloud(Cld2Students,availableCloud.get(2));
             setCloudIslandImages(groups,availableCloud);
 
 
@@ -152,8 +152,8 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             Cld1Students.add(S11);
             Cld1Students.add(S12);
             S23.setDisable(true);
-            setStudentsCloud(Cld0Students,availableCloud);
-            setStudentsCloud(Cld1Students,availableCloud);
+            setStudentsCloud(Cld0Students,availableCloud.get(0));
+            setStudentsCloud(Cld1Students,availableCloud.get(1));
             setCloudIslandImages(groups,availableCloud);
 
         }
@@ -168,16 +168,15 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
     }
 
 
-    private void setStudentsCloud(ArrayList<ImageView> students,List<CloudIsland> cloudIslands){
+    private void setStudentsCloud(ArrayList<ImageView> students,CloudIsland cloudIsland){
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
         Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
-        for(int j=0; j<cloudIslands.size();j++) {
-            for (int i = 0; i < cloudIslands.get(j).getStudents().size(); i++) {
+            for (int i = 0; i < cloudIsland.getStudents().size(); i++) {
 
-                switch (cloudIslands.get(j).getStudents().get(i).getColour()) {
+                switch (cloudIsland.getStudents().get(i).getColour()) {
                     case BLUE:
                         students.get(i).setImage(blue_student);
                         break;
@@ -199,7 +198,7 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
                 }
             }
         }
-    }
+
     private void setCloudIslandImages(ArrayList<Group> groups,List<CloudIsland> cloudIslands){
         for(CloudIsland c : cloudIslands){
             if(c.getStudents().size()==0)

@@ -11,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseAssistantSceneController extends InputObservable implements GenericSceneController {
@@ -33,12 +34,18 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     private Button BackToMenu;
 
     private int ListIndex=0;
+    private List<Assistant> Assistants;
     private List<Assistant> AvailableAssistants;
     private Assistant ChosenAssistant;
     private int maxIndex;
 
+
+    public ChooseAssistantSceneController() {
+        Assistants=new ArrayList<>();
+    }
     @FXML
     public void initialize() {
+        setAvailableAssistants(Assistants);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
@@ -88,6 +95,15 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         }
         button.setDisable(false);
         return false;
+    }
+
+    private List<Assistant> setAvailableAssistants(List<Assistant> assistants){
+
+        for(Assistant a:assistants){
+            if(!a.isAssChose()) AvailableAssistants.add(a);
+
+        }
+        return AvailableAssistants;
     }
 
     @FXML

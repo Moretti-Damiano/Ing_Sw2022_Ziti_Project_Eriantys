@@ -40,17 +40,17 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ImageView> diningStudentsPink;
         private ArrayList<ImageView> diningStudentsRed;
         private ArrayList<ImageView> diningStudentsYellow;
-    private ArrayList<ImageView> islandStudentsBlue;
-    private ArrayList<ImageView> islandStudentsGreen;
-    private ArrayList<ImageView> islandStudentsPink;
-    private ArrayList<ImageView> islandStudentsRed;
-    private ArrayList<ImageView> islandStudentsYellow;
-    private ArrayList<Label> islandStudentsBlueQ;
-    private ArrayList<Label> islandStudentsGreenQ;
-    private ArrayList<Label> islandStudentsPinkQ;
-    private ArrayList<Label> islandStudentsRedQ;
-    private ArrayList<Label> islandStudentsYellowQ;
-    private ArrayList<Text> islands_id_values;
+        private ArrayList<ImageView> islandStudentsBlue;
+        private ArrayList<ImageView> islandStudentsGreen;
+        private ArrayList<ImageView> islandStudentsPink;
+        private ArrayList<ImageView> islandStudentsRed;
+        private ArrayList<ImageView> islandStudentsYellow;
+        private ArrayList<Label> islandStudentsBlueQ;
+        private ArrayList<Label> islandStudentsGreenQ;
+        private ArrayList<Label> islandStudentsPinkQ;
+        private ArrayList<Label> islandStudentsRedQ;
+        private ArrayList<Label> islandStudentsYellowQ;
+        private ArrayList<Text> islands_id_values;
 
         private ArrayList<ImageView> professors;
         private ArrayList<ImageView> towers;
@@ -1276,6 +1276,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private void setTowerIsland(ArrayList<ImageView> towerisland_images, List<Island> islands,ArrayList<Label> towerIslandQ) {
         for(ImageView imm:towerisland_images){
             imm.setImage(null);
+        }
+        for(Label desc : towerIslandQ) {
+            desc.setText("");
         }
         Image TW = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
         Image TB = new Image(getClass().getResourceAsStream("/images/black_tower.png"));

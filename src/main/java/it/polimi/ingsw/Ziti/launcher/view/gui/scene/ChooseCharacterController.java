@@ -67,6 +67,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
     @FXML
     public void initialize() {
+        ConfirmBtn.setDisable(true);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
@@ -133,6 +134,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
         SelectBtn.setDisable(true);
         NextBtn.setDisable(true);
         PreviousBtn.setDisable(true);
+        ConfirmBtn.setDisable(false);
     }
 
     @FXML
