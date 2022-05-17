@@ -1273,6 +1273,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         setTowerIsland(towerisland_images,islands,towerIslandQ);
     }
 
+    /**
+     *
+     * @param towerisland_images contains all island ImageView
+     * @param islands contains all the actual island
+     * @param towerIslandQ contains all tower quantity on the single islands
+     */
     private void setTowerIsland(ArrayList<ImageView> towerisland_images, List<Island> islands,ArrayList<Label> towerIslandQ) {
         for(ImageView imm:towerisland_images){
             imm.setImage(null);
@@ -1304,6 +1310,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
 
+    /**
+     *
+     * @param students contains StudentsWaiting student
+     * @param board actual player board
+     */
 
 
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
@@ -1345,6 +1356,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
 
     }
+
+    /**
+     *
+     * @param event click on MoveMotherBtn
+     */
 
     void onMoveMotherBtnClick(Event event){
         MoveMotherMoves.setDisable(false);
@@ -1399,6 +1415,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         StudentColour=WaitingStudent8.getId();
         SelectBtn.setDisable(false);
     }
+
+    /**
+     * Remove the possibility to click on Students waiting student
+     */
     void RemoveStudentsHandler(){
         WaitingStudent0.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
         WaitingStudent1.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
@@ -1410,6 +1430,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         WaitingStudent7.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
         WaitingStudent8.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
     }
+
+    /**
+     * Add the possibilitu to click on Student waiting student
+     */
     void AddStudentsHandler(){
         WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
         WaitingStudent1.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
@@ -1421,6 +1445,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         WaitingStudent7.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
         WaitingStudent8.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
     }
+
+    /**
+     *
+     * @param islands_images contains island images
+     * @param islands actual island
+     * @param IslandId contains all island Text (where is written islandId)
+     */
 
     private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands,ArrayList<Text> IslandId){
         for(ImageView imm:islands_images){
@@ -1437,6 +1468,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             IslandId.get(islands.get(i).getID()).setText(Integer.toString(islands.get(i).getID()));
         }
     }
+
     private void setMother_nature_images(ArrayList<ImageView> mother_nature_images,List<Island> islands){
         Image mother = new Image(getClass().getResourceAsStream("/images/mother.png"));
 
