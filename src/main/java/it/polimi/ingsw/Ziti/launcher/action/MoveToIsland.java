@@ -44,6 +44,12 @@ public class MoveToIsland implements Action{
         return new MoveToIslandDoneMessage(this.description, game.getIslands(), game.getCurrentPlayer().getBoard(),game.getCurrentPlayer().GetName());
     }
 
+    @Override
+    public void addDescription(String s) {
+
+    }
+
+
     /**
      * checks if the given island id is valid
      * @return boolean

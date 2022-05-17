@@ -3,7 +3,6 @@ package it.polimi.ingsw.Ziti.launcher.action;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.MoveToTableDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
-import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
@@ -37,6 +36,11 @@ public class MoveToTable implements Action{
         return new MoveToTableDoneMessage(this.description,game.getCurrentPlayer().getBoard(),game.getCurrentPlayer().GetName());
     }
 
+
+    public void addDescription(String s) {
+       description=description.concat(s);
+    }
+
     /**
      * add a student to the row with the same colour and check if the new student is on a 'coin generator' position
      * @param student_colour the colour of the student to add
@@ -44,11 +48,10 @@ public class MoveToTable implements Action{
     private void goLunch(Colour student_colour) {
         game.getCurrentPlayer().getBoard().addStudenttoColourRow(game.getCurrentPlayer().getBoard().removeStudent(student_colour));
         description=description.concat(game.getCurrentPlayer().GetName() + " moved a "+ chosencolour + " student from his waiting room to his dining room ");
-        if(game.getCurrentPlayer().getBoard().checkCoin(student_colour) && game.getModeType()== ModeType.EXPERT){
-            game.getCurrentPlayer().getBoard().addCoin(game.getGameWallet().getCoin());
-            description=description.concat("\nnew coin added to " + game.getCurrentPlayer().GetName() + " wallet\n");
+        game.getGameMode().onCoin(student_colour,this);
         }
-    }
+
+
 
     /**
      * check if the player has the highest value of influence for the chosen colour, in this case adds the professor with the same colour to his board
@@ -108,6 +111,8 @@ public class MoveToTable implements Action{
         }
         return false;
     }
+
+
     }
 
 

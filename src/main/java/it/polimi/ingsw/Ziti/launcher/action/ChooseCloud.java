@@ -42,6 +42,12 @@ public class ChooseCloud implements Action{
         return new ChooseCloudDoneMessage(description,game.getCloudIslands());
     }
 
+    @Override
+    public void addDescription(String s) {
+
+    }
+
+
     /**
      * Check that input is correct
      * @throws ActionException

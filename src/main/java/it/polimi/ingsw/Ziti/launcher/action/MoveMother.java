@@ -67,6 +67,11 @@ public class MoveMother implements Action {
         return new MoveMotherDoneMessage(this.description, game.getIslands());
     }
 
+    @Override
+    public void addDescription(String s) {
+
+    }
+
 
     /**
      * Calculate mother current position and assign mother her new island
