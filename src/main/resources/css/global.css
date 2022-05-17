@@ -23,7 +23,7 @@
     -fx-font-size: 18;
     -fx-text-fill: #451616;
     -fx-alignment: top-center;
-    -fx-background-image: url("../images/big_button.png");
+    -fx-background-image: url("../images/name-removebg-preview.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
 
@@ -44,7 +44,7 @@
     -fx-font-family: 'LillyBelle';
     -fx-font-size: 16;
     -fx-text-fill: #451616;
-    -fx-background-image: url("../images/small_button.png");
+    -fx-background-image: url("../images/smallbtn.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-label-padding: -3px 0 0 0;
@@ -87,7 +87,7 @@
 
     -fx-text-fill: #451616;
     -fx-alignment: top-center;
-    -fx-background-image: url("../images/small_button.png");
+    -fx-background-image: url("../images/name-removebg-preview.png");
     -fx-background-size: cover;
     -fx-background-repeat: no-repeat;
     -fx-opacity: 0.7;
@@ -102,13 +102,13 @@
 }
 
 .menuBanner {
-    -fx-background-image: url("../images/menu_banner.png");
+    -fx-background-image: url("../images/banner-removebg-preview.png");
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
 }
 
 .menuBannerAlt {
-    -fx-background-image: url("../images/menu_banner_alt.png");
+    -fx-background-image: url("../images/banner-removebg-preview.png");
     -fx-background-size: stretch;
     -fx-background-repeat: no-repeat;
 }

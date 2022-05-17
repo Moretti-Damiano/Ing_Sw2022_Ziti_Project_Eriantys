@@ -18,9 +18,9 @@
             <children>
                 <AnchorPane layoutX="27.0" layoutY="21.0" prefHeight="464.0" prefWidth="475.0" styleClass="menuBanner" stylesheets="@../css/connect_scene.css">
                     <children>
-                        <ImageView fitHeight="61.0" fitWidth="370.0" layoutX="62.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="96.0" fitWidth="395.0" layoutX="83.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/joinserver.png" />
+                                <Image url="@../images/joinservernew.png" />
                             </image>
                         </ImageView>
                         <Separator layoutX="45.0" layoutY="159.0" prefHeight="3.0" prefWidth="387.0" />
@@ -33,13 +33,16 @@
                                 <String fx:value="menuField" />
                             </styleClass>
                         </TextField>
-                        <ImageView fitHeight="57.0" fitWidth="297.0" layoutX="90.0" layoutY="182.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="64.0" fitWidth="211.0" layoutX="135.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/serveradd.png" />
+                                <Image url="@../images/serveraddress.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="backBtn" layoutX="37.0" layoutY="391.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="187.0" styleClass="smallButton" text="Back" />
-                        <Button fx:id="connectBtn" layoutX="251.0" layoutY="391.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="187.0" styleClass="smallButton" text="Connect" />
+                        <Button fx:id="backBtn" layoutX="37.0" layoutY="354.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="187.0" styleClass="smallButton" text="BACK">
+                     <font>
+                        <Font name="Georgia Pro Black Italic" size="25.0" />
+                     </font></Button>
+                        <Button fx:id="connectBtn" layoutX="239.0" layoutY="354.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="187.0" styleClass="smallButton" text="CONNECT" />
                     </children>
                 </AnchorPane>
             </children>
