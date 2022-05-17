@@ -2,7 +2,6 @@ package it.polimi.ingsw.Ziti.launcher.TurnPhase;
 
 import it.polimi.ingsw.Ziti.launcher.action.EndTurn;
 import it.polimi.ingsw.Ziti.launcher.controller.TurnController;
-import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
@@ -49,32 +48,10 @@ public abstract class Phase {
      * Check if in the game there's an active character whose effect starts in this phase,
      * if it exists, the method starts the character effect if it hasn't started already
      */
-    public void checkCharacter() {
-        if (turncontroller.getGameController().getGame().getModeType() == ModeType.EXPERT) {
-            for (Character c : getTurncontroller().getGameController().getGame().getCharacters()) {
-                if (!c.isAvailable() && c.isPhase(this.getPhaseType())) {
-                    try {
-                        setActiveCharacter(c);
-                        if (!c.isUsed())
-                            c.startEffect();
-                    } catch (ActionException e) {
-                        //send invalid input error (never gonna happen)
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * Run the end_effect of the active character started in this phase
      */
-    public void endCharacter() {
-        if (turncontroller.getGameController().getGame().getModeType() == ModeType.EXPERT) {
-            if (activeCharacter != null && activeCharacter.getEndPhase().equals(phaseType)) {
-                activeCharacter.endEffect();
-            }
-        }
-    }
 
     public void setActiveCharacter(Character activeCharacter) {
         this.activeCharacter = activeCharacter;

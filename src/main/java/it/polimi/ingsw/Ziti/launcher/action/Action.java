@@ -18,4 +18,6 @@ public interface Action {
      * @return an ActionMessage
      */
     public ActionMessage toMessage();
+
+   public void addDescription(String s);
 }

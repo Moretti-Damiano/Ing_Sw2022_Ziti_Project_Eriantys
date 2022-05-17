@@ -111,6 +111,12 @@ public class ChooseAssistant implements Action {
         return new ChooseAssistantDoneMessage(this.description, player.getAssistants(),game.getCurrentPlayer().GetName() );
     }
 
+    @Override
+    public void addDescription(String s) {
+
+    }
+
+
     /**
      *
      * @return if the choice is valid

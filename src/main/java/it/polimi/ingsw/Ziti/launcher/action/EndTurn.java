@@ -42,6 +42,13 @@ public class EndTurn implements Action {
         return new EndTurnDoneMessage(description,game.getIslands(),game.getBoards(),game.getCloudIslands());
     }
 
+    @Override
+    public void addDescription(String s) {
+
+    }
+
+
+
 
     /*private void checkEmptyIslands() throws ActionException {
       // check if the Cloud Islands are empty

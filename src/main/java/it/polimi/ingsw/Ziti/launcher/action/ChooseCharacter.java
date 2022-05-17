@@ -39,6 +39,12 @@ public class ChooseCharacter implements Action{
         return new ChooseCharacterDoneMessage(game.getCurrentPlayer().GetName() + " has chosen character " + character.getId()+"\nEffect: "+character.getDescription());
     }
 
+    @Override
+    public void addDescription(String s) {
+
+    }
+
+
     private void checkCharacterInGame() throws ActionException {
         boolean in = false;
         for(Character c: game.getCharacters()){

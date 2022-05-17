@@ -9,7 +9,6 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.EndGamePhase;
 import it.polimi.ingsw.Ziti.launcher.action.*;
-import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
@@ -28,7 +27,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
-import java.util.Objects;
 
 /**
  * This class observes Game (the model) and the Server and is observed by the Server
@@ -254,10 +252,12 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void showCharacterRequestHandler(ShowCharacterRequest message) {
-        if(game.getModeType()==ModeType.EXPERT) {
+        try {
+            game.getGameMode().onShowCharacters();
             notifyObserver(obs -> obs.sendToOnePlayer(new ShowCharacterResponse(getCharacterSummary()), message.getSender()));
         }
-        else{
+        catch (EnabledCharactersException e) {
+
             notifyObserver(obs -> obs.sendToOnePlayer(new TurnError("characters are not available for this mode"), message.getSender()));
         }
     }

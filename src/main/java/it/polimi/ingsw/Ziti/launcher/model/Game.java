@@ -2,7 +2,6 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
-import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.GameMode;
@@ -25,7 +24,6 @@ public abstract class Game extends Observable {
     private Action action;
     private GameWallet gameWallet;
     private ArrayList<Character> characters;
-    private ModeType modeType;
     private GameMode gameMode;
 
     /**
@@ -125,9 +123,6 @@ public abstract class Game extends Observable {
    public void setCharacters(ArrayList<Character> characters){
         this.characters=characters;
    }
-    public void setModeType(ModeType modeType){ this.modeType=modeType;}
-
-    public ModeType getModeType() {return this.modeType;}
 
     public GameWallet getGameWallet() { return gameWallet;}
 

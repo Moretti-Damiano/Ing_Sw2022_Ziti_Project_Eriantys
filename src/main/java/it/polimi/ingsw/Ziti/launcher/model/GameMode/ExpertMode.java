@@ -1,8 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.model.GameMode;
 
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
+import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.action.ChooseCharacter;
-import it.polimi.ingsw.Ziti.launcher.enumeration.ModeType;
+import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.exception.EnabledCharactersException;
@@ -18,42 +19,40 @@ import java.util.Random;
 
 public class ExpertMode extends GameMode {
     private ArrayList<Character> allCharacters;
-    private ArrayList<Character>characters;
+    private ArrayList<Character> characters;
     private Character activeCharacter;
-    private final ModeType modeType=ModeType.EXPERT;
 
-    @Override
-    public ModeType getModeType() {
-        return modeType;
-    }
 
-    public ExpertMode(Game game){
+
+
+
+    public ExpertMode(Game game) {
         super(game);
-        game.setModeType(getModeType());
+
     }
 
-    public Character getActiveCharacter(){
+    public Character getActiveCharacter() {
         return this.activeCharacter;
     }
 
-    public void setActiveCharacter(Character character){
+    public void setActiveCharacter(Character character) {
         this.activeCharacter = character;
     }
 
     @Override
     public void startmode() {
-        for(Player p : getGame().getPlayers()){
+        for (Player p : getGame().getPlayers()) {
             p.getBoard().setWallet(new ArrayList<>());
             p.getBoard().getWallet().add(new Coin());
         }
-       getGame().setCharacters(setUpCharacters());
+        getGame().setCharacters(setUpCharacters());
 
     }
 
     @Override
-    public Character getCharacterbyId(int id){
-        for(Character c: characters){
-            if(c.getId() == id)
+    public Character getCharacterbyId(int id) {
+        for (Character c : characters) {
+            if (c.getId() == id)
                 return c;
         }
         return null;
@@ -62,12 +61,12 @@ public class ExpertMode extends GameMode {
     @Override
     public void onPhaseUpdate(PhaseType phaseType) {
         endCharacter(phaseType);
-       checkCharacter(phaseType);
+        checkCharacter(phaseType);
 
     }
 
 
-    private ArrayList<Character> setUpCharacters(){
+    private ArrayList<Character> setUpCharacters() {
 
         allCharacters = new ArrayList<>();
         characters = new ArrayList<>();
@@ -82,27 +81,28 @@ public class ExpertMode extends GameMode {
         //set 3 game's characters
         Random rand = new Random();
         int random;
-        for(int i = 0; i < 3; i++){
+        for (int i = 0; i < 3; i++) {
             //create a random number
-            random =rand.nextInt(allCharacters.size());
+            random = rand.nextInt(allCharacters.size());
             allCharacters.get(random).setGame(getGame());
             characters.add(allCharacters.remove(random));
 
         }
         return characters;
     }
-   private void checkCharacter(PhaseType phaseType) {
-            for (Character c : getGame().getCharacters()) {
-                if (!c.isAvailable() && c.isPhase(phaseType)) {
-                    try {
-                        setActiveCharacter(c);
-                        if (!c.isUsed())
-                            c.startEffect();
-                    } catch (ActionException e) {
-                        //send invalid input error (never gonna happen)
-                    }
+
+    private void checkCharacter(PhaseType phaseType) {
+        for (Character c : getGame().getCharacters()) {
+            if (!c.isAvailable() && c.isPhase(phaseType)) {
+                try {
+                    setActiveCharacter(c);
+                    if (!c.isUsed())
+                        c.startEffect();
+                } catch (ActionException e) {
+                    //send invalid input error (never gonna happen)
                 }
             }
+        }
     }
 
     private void endCharacter(PhaseType phaseType) {
@@ -113,7 +113,21 @@ public class ExpertMode extends GameMode {
     }
 
     public void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException, ActionException {
-        getGame().setAction(new ChooseCharacter(getGame(),character, phase));
+        getGame().setAction(new ChooseCharacter(getGame(), character, phase));
         getGame().doAction();
+    }
+
+    @Override
+    public void onCoin(Colour colour,Action movetotable) {
+        if (getGame().getCurrentPlayer().getBoard().checkCoin(colour)) {
+            getGame().getCurrentPlayer().getBoard().addCoin(getGame().getGameWallet().getCoin());
+            movetotable.addDescription("\nnew coin added to " + getGame().getCurrentPlayer().GetName() + " wallet\n");
+        }
+
+    }
+
+    @Override
+    public void onShowCharacters() throws EnabledCharactersException {
+
     }
 }
