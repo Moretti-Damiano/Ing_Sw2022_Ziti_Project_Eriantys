@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.application.Platform;
@@ -28,6 +29,9 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     @FXML
     private ImageView TitleImg;
 
+    @FXML
+    private Button BackToMenu;
+
     private int ListIndex=0;
     private List<Assistant> AvailableAssistants;
     private Assistant ChosenAssistant;
@@ -38,6 +42,7 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
+        BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);
         maxIndex=AvailableAssistants.size()-1;
         checkAndDisableButton(PreviousBtn, 0);
         checkAndDisableButton(NextBtn, maxIndex);
@@ -83,6 +88,12 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         }
         button.setDisable(false);
         return false;
+    }
+
+    @FXML
+    void  onBackToMenuClick(Event event) {
+
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
     }
 
     public void addAssistant(List<Assistant> PlayerAssistants){

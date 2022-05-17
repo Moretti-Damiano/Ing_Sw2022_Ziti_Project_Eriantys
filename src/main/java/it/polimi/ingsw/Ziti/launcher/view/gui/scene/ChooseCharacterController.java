@@ -1,6 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.event.ActionEvent;
@@ -63,11 +64,6 @@ public class ChooseCharacterController extends InputObservable implements Generi
     private int maxIndex;
 
 
-
-    // used in onBackToMenu button
-    private Stage stage;
-    private Scene scene;
-    private Parent root;
 
     @FXML
     public void initialize() {
@@ -189,20 +185,8 @@ public class ChooseCharacterController extends InputObservable implements Generi
     }
     @FXML
     void  onBackToMenuClick(Event event) {
-        // not working
-        
-       // SceneController.changeRootPane(observers,"move_to_table_scene.fxml");
-       // MoveToTableSceneController moveToTableSceneController ;
-       // moveToTableSceneController.initialize();
-        try {
-            root = FXMLLoader.load(getClass().getResource("move_to_table_scene.fxml"));
-            stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-            scene = new Scene(root);
-            stage.setScene(scene);
-            stage.show();
-        }catch (IOException e){
-            System.out.println("Error opening move_to_table_scene");
-        }
+
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
     }
 
     public void addCharacter(List<CharacterSummary> GameCharacter){

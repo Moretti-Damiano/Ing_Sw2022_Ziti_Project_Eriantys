@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
 import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
@@ -86,27 +87,37 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
     @FXML
     private ToggleGroup SelectIsld;
 
+    @FXML
+    private Button BackToMenu;
+
     private List<CloudIsland> availableCloud;
 
-    private int numCloud;
-
+    private ArrayList<Group> groups = new ArrayList<>();
     private ArrayList<ImageView> Cld0Students=new ArrayList<>();
     private ArrayList<ImageView> Cld1Students=new ArrayList<>();
+    private ArrayList<ImageView> Cld2Students=new ArrayList<>();
 
 
     @FXML
     public void initialize(){
+        ConfirmBtn.setDisable(true);
+        Select0.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onSelectClick);
+        Select1.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onSelectClick);
+        Select2.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onSelectClick);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
-        numCloud=availableCloud.size();
-        if(numCloud==3){
+        BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);
+        groups.add(Cld0);
+        groups.add(Cld1);
+        groups.add(Cld2);
+        if(availableCloud.size()==3){
             Cld0.setDisable(false);
             Cld1.setDisable(false);
             Cld2.setDisable(false);
             Select0.setId("0");
             Select1.setId("1");
             Select2.setId("2");
-            Image img= new Image(getClass().getResourceAsStream("/images/Cloud.png"));
-            ArrayList<ImageView> Cld2Students = new ArrayList<>();
+            //Image img= new Image(getClass().getResourceAsStream("/images/Cloud.png"));
+           // ArrayList<ImageView> Cld2Students = new ArrayList<>();
             Cld0Students.add(S00);
             Cld0Students.add(S01);
             Cld0Students.add(S02);
@@ -119,14 +130,18 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             Cld2Students.add(S21);
             Cld2Students.add(S22);
             Cld2Students.add(S23);
-            setStudentsCloud(Cld0Students,availableCloud.get(0));
-            setStudentsCloud(Cld1Students,availableCloud.get(1));
-            setStudentsCloud(Cld2Students,availableCloud.get(2));
+            setStudentsCloud(Cld0Students,availableCloud);
+            setStudentsCloud(Cld1Students,availableCloud);
+            setStudentsCloud(Cld2Students,availableCloud);
+            setCloudIslandImages(groups,availableCloud);
+
 
         }else{
             Cld0.setDisable(false);
             Cld1.setDisable(false);
             Cld2.setDisable(true);
+            Cloud2.setVisible(false);
+
             Select0.setId("0");
             Select1.setId("1");
             Cld0Students.add(S00);
@@ -137,8 +152,9 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             Cld1Students.add(S11);
             Cld1Students.add(S12);
             S23.setDisable(true);
-            setStudentsCloud(Cld0Students,availableCloud.get(0));
-            setStudentsCloud(Cld1Students,availableCloud.get(1));
+            setStudentsCloud(Cld0Students,availableCloud);
+            setStudentsCloud(Cld1Students,availableCloud);
+            setCloudIslandImages(groups,availableCloud);
 
         }
 
@@ -151,39 +167,63 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
         new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudIsland(chosenCloudIsland))).start();
     }
 
-    void setStudent(){
 
-    }
-    private void setStudentsCloud(ArrayList<ImageView> students,CloudIsland cloud){
+    private void setStudentsCloud(ArrayList<ImageView> students,List<CloudIsland> cloudIslands){
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
         Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
+        for(int j=0; j<cloudIslands.size();j++) {
+            for (int i = 0; i < cloudIslands.get(j).getStudents().size(); i++) {
 
-        for(int i=0;i<cloud.getStudents().size();i++){
+                switch (cloudIslands.get(j).getStudents().get(i).getColour()) {
+                    case BLUE:
+                        students.get(i).setImage(blue_student);
+                        break;
+                    case GREEN:
+                        students.get(i).setImage(green_student);
+                        break;
+                    case PINK:
+                        students.get(i).setImage(pink_student);
+                        break;
+                    case RED:
+                        students.get(i).setImage(red_student);
+                        break;
+                    case YELLOW:
+                        students.get(i).setImage(yellow_student);
+                        break;
+                    default:
+                        break;
 
-            switch (cloud.getStudents().get(i).getColour()){
-                case BLUE:
-                    students.get(i).setImage(blue_student);
-                    break;
-                case GREEN:
-                    students.get(i).setImage(green_student);
-                    break;
-                case PINK:
-                    students.get(i).setImage(pink_student);
-                    break;
-                case RED:
-                    students.get(i).setImage(red_student);
-                    break;
-                case YELLOW:
-                    students.get(i).setImage(yellow_student);
-                    break;
-                default: break;
+                }
             }
         }
-
     }
+    private void setCloudIslandImages(ArrayList<Group> groups,List<CloudIsland> cloudIslands){
+        for(CloudIsland c : cloudIslands){
+            if(c.getStudents().size()==0)
+                switch (c.getID()){
+                    case 0:
+                        groups.get(0).setVisible(false);
+                    case 1:
+                        groups.get(1).setVisible(false);
+                    case 2:
+                        groups.get(2).setVisible(false);
+                    default:break;
+                }else{}
+        }
+    }
+    private void onSelectClick(Event event){
+        ConfirmBtn.setDisable(false);
+    }
+
+    @FXML
+    void  onBackToMenuClick(Event event) {
+
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
+    }
+
     public void setCloud(List<CloudIsland> Clouds){
         this.availableCloud=Clouds;
     }
