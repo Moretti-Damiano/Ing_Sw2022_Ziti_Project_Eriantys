@@ -50,6 +50,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private ArrayList<Label> islandStudentsPinkQ;
     private ArrayList<Label> islandStudentsRedQ;
     private ArrayList<Label> islandStudentsYellowQ;
+    private ArrayList<Text> islands_id_values;
 
         private ArrayList<ImageView> professors;
         private ArrayList<ImageView> towers;
@@ -1026,7 +1027,21 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         islands_images.add(Island9);
         islands_images.add(Island10);
         islands_images.add(Island11);
-        setIslands_images(islands_images,islands);
+        islands_id_values=new ArrayList<>();
+        islands_id_values.add(Id0);
+        islands_id_values.add(Id1);
+        islands_id_values.add(Id2);
+        islands_id_values.add(Id3);
+        islands_id_values.add(Id4);
+        islands_id_values.add(Id5);
+        islands_id_values.add(Id6);
+        islands_id_values.add(Id7);
+        islands_id_values.add(Id8);
+        islands_id_values.add(Id9);
+        islands_id_values.add(Id10);
+        islands_id_values.add(Id11);
+
+        setIslands_images(islands_images,islands,islands_id_values);
 
         mother_nature_images=new ArrayList<>();
         mother_nature_images.add(M);
@@ -1407,15 +1422,19 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         WaitingStudent8.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
     }
 
-    private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands){
+    private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands,ArrayList<Text> IslandId){
         for(ImageView imm:islands_images){
             imm.setImage(null);
+        }
+        for(Text id:IslandId){
+            id.setText("");
         }
         Image island = new Image(getClass().getResourceAsStream("/images/island.png"));
 
         for(int i=0; i<islands.size(); i++){
             islands_images.get(islands.get(i).getID()).setImage(island);
             islands_images.get(islands.get(i).getID()).setId(Integer.toString(islands.get(i).getID()));
+            IslandId.get(islands.get(i).getID()).setText(Integer.toString(islands.get(i).getID()));
         }
     }
     private void setMother_nature_images(ArrayList<ImageView> mother_nature_images,List<Island> islands){
@@ -1484,6 +1503,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         for(ImageView imm:students){
             imm.setImage(null);
         }
+        for(Label desc : description){
+            desc.setText("");
+        }
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
@@ -1498,6 +1520,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         for(ImageView imm:students){
             imm.setImage(null);
         }
+        for(Label desc : description){
+            desc.setText("");
+        }
+
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
@@ -1513,6 +1539,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         for(ImageView imm:students){
             imm.setImage(null);
         }
+        for(Label desc : description){
+            desc.setText("");
+        }
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
 
         for (int i = 0; i < islands.size(); i++) {
@@ -1527,6 +1556,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private void setStudentsIslandRed(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
+        }
+        for(Label desc : description){
+            desc.setText("");
         }
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
 
@@ -1544,6 +1576,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     private void setStudentsIslandYellow(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
+        }
+        for(Label desc : description){
+            desc.setText("");
         }
         Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
 
