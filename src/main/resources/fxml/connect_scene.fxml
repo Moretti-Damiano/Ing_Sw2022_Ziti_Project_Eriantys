@@ -38,11 +38,8 @@
                                 <Image url="@../images/serveraddress.png" />
                             </image>
                         </ImageView>
-                        <Button fx:id="backBtn" layoutX="37.0" layoutY="354.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="187.0" styleClass="smallButton" text="BACK">
-                     <font>
-                        <Font name="Georgia Pro Black Italic" size="25.0" />
-                     </font></Button>
-                        <Button fx:id="connectBtn" layoutX="239.0" layoutY="354.0" mnemonicParsing="false" prefHeight="42.0" prefWidth="187.0" styleClass="smallButton" text="CONNECT" />
+                        <Button fx:id="backBtn" layoutX="78.0" layoutY="367.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="BACK" />
+                        <Button fx:id="connectBtn" layoutX="276.0" layoutY="366.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="CONNECT" />
                     </children>
                 </AnchorPane>
             </children>

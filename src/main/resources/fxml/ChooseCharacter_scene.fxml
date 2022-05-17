@@ -14,20 +14,25 @@
 <StackPane prefHeight="720.0" prefWidth="1280.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <Group scaleX="2.0" scaleY="2.0" scaleZ="2.0" StackPane.alignment="CENTER">
       <AnchorPane layoutX="910.0" layoutY="-270.0" prefHeight="351.0" prefWidth="561.0">
-         <ImageView fx:id="CharacterImg" fitHeight="150.0" fitWidth="200.0" layoutX="76.0" layoutY="89.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fitHeight="193.0" fitWidth="130.0" layoutX="61.0" layoutY="74.0" pickOnBounds="true">
+            <image>
+               <Image url="@../images/banner-removebg-preview.png" />
+            </image>
+         </ImageView>
+         <ImageView fx:id="CharacterImg" fitHeight="150.0" fitWidth="200.0" layoutX="76.0" layoutY="91.0" pickOnBounds="true" preserveRatio="true" rotate="-2.0">
             <image>
                <Image url="@../images/Character/Character (0).jpg" />
             </image>
          </ImageView>
-         <Button fx:id="NextBtn" layoutX="183.0" layoutY="161.0" mnemonicParsing="false" text="Next" />
-         <Button fx:id="PreviousBtn" layoutX="6.0" layoutY="160.0" mnemonicParsing="false" text="Previous" />
-         <Button fx:id="SelectBtn" layoutX="103.0" layoutY="254.0" mnemonicParsing="false" text="Select" />
-         <ImageView fx:id="TitleImg" fitHeight="86.0" fitWidth="251.0" layoutX="203.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <Button fx:id="NextBtn" layoutX="169.0" layoutY="161.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" scaleX="0.5" scaleY="0.7" styleClass="bigButton" text="Next" />
+         <Button fx:id="PreviousBtn" layoutX="-16.0" layoutY="160.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="98.0" scaleX="0.5" scaleY="0.7" styleClass="bigButton" text="Previous" />
+         <Button fx:id="SelectBtn" layoutX="78.0" layoutY="272.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Select" />
+         <ImageView fx:id="TitleImg" fitHeight="86.0" fitWidth="251.0" layoutX="218.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../images/Titolo pagine.png" />
             </image>
          </ImageView>
-         <Text fill="#383838" fontSmoothingType="LCD" layoutX="229.0" layoutY="57.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="CHARACTER" textAlignment="CENTER">
+         <Text fill="#383838" fontSmoothingType="LCD" layoutX="244.0" layoutY="57.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="CHARACTER" textAlignment="CENTER">
             <font>
                <Font size="24.0" />
             </font>
@@ -53,8 +58,8 @@
                <TextField fx:id="Island" prefHeight="25.0" prefWidth="113.0" />
             </children>
          </Group>
-         <Button fx:id="ConfirmBtn" layoutX="436.0" layoutY="247.0" mnemonicParsing="false" text="Confirm" />
-         <Button fx:id="BackToMenu" layoutX="81.0" layoutY="49.0" mnemonicParsing="false" text="Back to Menu" />
+         <Button fx:id="ConfirmBtn" layoutX="416.0" layoutY="247.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Confirm" />
+         <Button fx:id="BackToMenu" layoutX="76.0" layoutY="49.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Back to Menu" />
       </AnchorPane>
    </Group>
    <stylesheets>

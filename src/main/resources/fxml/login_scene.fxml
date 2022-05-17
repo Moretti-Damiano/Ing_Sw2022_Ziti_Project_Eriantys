@@ -17,16 +17,8 @@
             <children>
                 <AnchorPane layoutX="57.0" layoutY="62.0" prefHeight="439.0" prefWidth="434.0" styleClass="menuBannerAlt">
                     <children>
-                        <Button fx:id="backToMenuBtn" layoutX="110.0" layoutY="320.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="233.0" styleClass="smallButton" text="BACK TO MENU">
-                            <font>
-                                <Font name="Bauhaus 93" size="14.0" />
-                            </font>
-                        </Button>
-                        <Button fx:id="joinBtn" layoutX="110.0" layoutY="240.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="233.0" styleClass="smallButton" text="JOIN">
-                            <font>
-                                <Font size="14.0" />
-                            </font>
-                        </Button>
+                        <Button fx:id="backToMenuBtn" layoutX="168.0" layoutY="320.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="110.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="BACK TO MENU" />
+                        <Button fx:id="joinBtn" layoutX="175.0" layoutY="249.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="JOIN" />
                         <ImageView fitHeight="67.0" fitWidth="202.0" layoutX="123.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/button-removebg-preview.png" />

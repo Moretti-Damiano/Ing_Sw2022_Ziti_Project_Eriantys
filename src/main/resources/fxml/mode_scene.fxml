@@ -35,7 +35,7 @@
                   <RadioButton fx:id="expertButton" layoutX="298.0" layoutY="274.0" mnemonicParsing="false" selected="true" text="EXPERT" toggleGroup="$Choice" />
                   <ImageView fx:id="normalImage" fitHeight="113.0" fitWidth="107.0" layoutX="74.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
                   <ImageView fx:id="expertImage" fitHeight="113.0" fitWidth="107.0" layoutX="273.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
-                  <Button fx:id="Confirm" layoutX="132.0" layoutY="326.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="194.0" scaleX="0.8" scaleY="0.8" styleClass="bigButton" text="Confirm" />
+                  <Button fx:id="Confirm" layoutX="188.0" layoutY="338.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="Confirm" />
                </children>
             </AnchorPane>
          </children>
