@@ -15,16 +15,14 @@ import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Random;
 
 public class ExpertMode extends GameMode {
-    private ArrayList<Character> allCharacters;
-    private ArrayList<Character> characters;
+    //private ArrayList<Character> allCharacters;
+    //private ArrayList<Character> characters;
     private Character activeCharacter;
-
-
-
-
 
     public ExpertMode(Game game) {
         super(game);
@@ -51,7 +49,7 @@ public class ExpertMode extends GameMode {
 
     @Override
     public Character getCharacterbyId(int id) {
-        for (Character c : characters) {
+        for (Character c : getGame().getCharacters()) {
             if (c.getId() == id)
                 return c;
         }
@@ -62,35 +60,39 @@ public class ExpertMode extends GameMode {
     public void onPhaseUpdate(PhaseType phaseType) {
         endCharacter(phaseType);
         checkCharacter(phaseType);
-
     }
 
-
+    /**
+     * Creates via factory method an ArrayList of 3 different characters
+     * @return an ArrayList containing 3 different characters
+     */
     private ArrayList<Character> setUpCharacters() {
-
-        allCharacters = new ArrayList<>();
-        characters = new ArrayList<>();
-        //creates all possible characters
-        allCharacters.add(new Character0());
-        allCharacters.add(new Character1());
-        allCharacters.add(new Character2());
-        allCharacters.add(new Character3());
-        allCharacters.add(new Character4());
-        allCharacters.add(new Character5());
-
-        //set 3 game's characters
-        Random rand = new Random();
-        int random;
-        for (int i = 0; i < 3; i++) {
-            //create a random number
-            random = rand.nextInt(allCharacters.size());
-            allCharacters.get(random).setGame(getGame());
-            characters.add(allCharacters.remove(random));
-
+        ArrayList<Character> gameCharacters = new ArrayList<>();
+        CharacterFactory characterFactory = new CharacterFactory(getGame());
+        ArrayList<Integer> ids = new ArrayList<>();
+        for(int i = 0; i < 6; i++){
+            ids.add(i);
         }
-        return characters;
+
+
+        Random rand = new Random();
+        int number;
+
+        while (gameCharacters.size() < 3) {
+            number = rand.nextInt(ids.size());
+            if(ids.contains(number)) {
+                gameCharacters.add(characterFactory.getCharacter(number));
+                ids.remove((Integer)number);
+            }
+        }
+        return gameCharacters;
     }
 
+    /**
+     * check if there is an active character; then it checks if the current phase match the starting phase of the character,
+     * if so, it activates the character effect.
+     * @param phaseType the actual phase
+     */
     private void checkCharacter(PhaseType phaseType) {
         for (Character c : getGame().getCharacters()) {
             if (!c.isAvailable() && c.isPhase(phaseType)) {
@@ -105,12 +107,17 @@ public class ExpertMode extends GameMode {
         }
     }
 
+    /**
+     * check if the actual phase matches the activeCharacter endPhase, if so it calls Character.endEffect().
+     * @param phaseType the actual phase.
+     */
     private void endCharacter(PhaseType phaseType) {
         if (activeCharacter != null && activeCharacter.getEndPhase().equals(phaseType)) {
             activeCharacter.endEffect();
             activeCharacter = null;
         }
     }
+
 
     public void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException, ActionException {
         getGame().setAction(new ChooseCharacter(getGame(), character, phase));
