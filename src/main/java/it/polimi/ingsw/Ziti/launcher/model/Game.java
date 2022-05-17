@@ -18,7 +18,7 @@ public abstract class Game extends Observable {
     private ArrayList<Board> boards;
     private Mother mother;
     private Sack sack;
-    private int playerNumber;   //indictes the number of player at the start of the game
+    private int playerNumber;   //indicates the number of player at the start of the game
     private ArrayList<Professor> professors;
     private Player currentPlayer;
     private Action action;

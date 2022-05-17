@@ -11,7 +11,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Game;
 
 public abstract class GameMode {
 
-    private Game game;
+    private final Game game;
 
     public GameMode( Game game){
         this.game=game;
@@ -27,11 +27,27 @@ public abstract class GameMode {
 
     public abstract Character getCharacterbyId(int id);
 
+    /**
+     * Call all the necessary methods for updating the phase
+     * @param phaseType the actual phase
+     */
     public abstract void onPhaseUpdate(PhaseType phaseType);
 
+    /**
+     * checks if the chose GameMode supports character.
+     * @param character the character to use
+     * @param phase the actual phase
+     * @throws EnabledCharactersException if characters are not enabled
+     * @throws ActionException if ChooseCharacter gives any action errors
+     */
     public abstract void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException,ActionException;
 
-    public abstract void onCoin(Colour colour,Action moveToTable);
+    /**
+     * Methods called using coins during moveToTable
+     * @param colour the colour to check
+     * @param action the action calling this method
+     */
+    public abstract void onCoin(Colour colour,Action action);
 
     public abstract void onShowCharacters() throws EnabledCharactersException;
 

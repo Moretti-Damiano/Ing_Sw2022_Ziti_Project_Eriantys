@@ -10,14 +10,11 @@ import it.polimi.ingsw.Ziti.launcher.model.Game;
 
 public  class NormalMode extends GameMode {
 
-
-
-
-
     public NormalMode(Game game){
         super(game);
 
     }
+
     @Override
     public void startmode() {
         //nothing to do
