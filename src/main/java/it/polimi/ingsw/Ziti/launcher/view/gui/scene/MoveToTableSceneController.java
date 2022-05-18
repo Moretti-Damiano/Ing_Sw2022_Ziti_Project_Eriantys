@@ -1363,11 +1363,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
      */
 
     void onMoveMotherBtnClick(Event event){
-        MoveMotherMoves.setDisable(false);
-        MTTBtn.setDisable(true);
-        MTIBtn.setDisable(true);
-        MoveMotherMoves.getText();
-        ConfirmBtn.setDisable(false);
+        if(phaseType==PhaseType.MOTHER) {
+            MoveMotherMoves.setDisable(false);
+            MTTBtn.setDisable(true);
+            MTIBtn.setDisable(true);
+            MoveMotherMoves.getText();
+            ConfirmBtn.setDisable(false);
+        }
 
     }
     @FXML
@@ -1790,9 +1792,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour, IslandId))).start();
         }
         else if(phaseType==PhaseType.MOTHER) {
-            ConfirmBtn.setDisable(true);
+        //    ConfirmBtn.setDisable(true);
             MoveMotherBtn.setDisable(true);
-            MoveMotherMoves.setDisable(true);
+         //   MoveMotherMoves.setDisable(true);
             new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveMother(MoveMotherMoves.getText()))).start();
 
         }
@@ -1812,7 +1814,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             checkAndDisableButton(PreviousBtn, 0);
             checkAndDisableButton(NextBtn, boards.size()-1);
             //checkAndAbleButton( MoveToTableChoiceBtn,0);
-
+            setMoveMotherBtn();
 
 
             Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
@@ -1843,6 +1845,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
            // checkAndAbleButton( MoveToTableChoiceBtn,0);
             setStudentsWaiting(studentsWaiting,board);
             setStudentsDining();
+            setMoveMotherBtn();
             setProfessors(professors,board);
             setTowers(towers,board);
         }

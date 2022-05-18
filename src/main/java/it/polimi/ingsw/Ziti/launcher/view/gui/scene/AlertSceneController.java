@@ -14,7 +14,10 @@ import javafx.stage.StageStyle;
 /**
  * This class implements the controller of a generic Alert Scene.
  */
-public class AlertSceneController extends InputObservable implements GenericSceneController {
+public class AlertSceneController
+    //    extends InputObservable
+    //    implements GenericSceneController
+{
 
     private final Stage stage;
 
