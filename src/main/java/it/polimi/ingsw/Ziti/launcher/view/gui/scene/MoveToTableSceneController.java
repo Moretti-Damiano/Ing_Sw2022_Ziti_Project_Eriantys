@@ -921,7 +921,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
 
       //  Label  BoardName = new Label("Board");  //maybe need to be changed
-        BoardName.setText(RequestPlayer);
+        BoardName.setText(boards.get(0).getPlayername());
 
         board = boards.get(0);
 

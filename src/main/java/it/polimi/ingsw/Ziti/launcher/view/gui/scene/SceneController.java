@@ -1,6 +1,5 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
-import com.sun.security.ntlm.Client;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 import java.util.logging.Logger;
