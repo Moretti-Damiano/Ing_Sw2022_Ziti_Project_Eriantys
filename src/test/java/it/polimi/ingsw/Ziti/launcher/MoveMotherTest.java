@@ -31,8 +31,7 @@ public class MoveMotherTest {
         game = new Game2(players); //creates a new game with 2 players
         game.setActivePlayer(players.get(0));
         Assistant assistant =new Assistant.Builder(8).build();
-        assistant.addMoves(8);  //adding to activplayer an assistant with 8 moves
-        players.get(0).setAssChoosed(assistant);
+        players.get(0).setAssChoosed(players.get(0).getAssistants().get(8));
     }
 
     @ParameterizedTest

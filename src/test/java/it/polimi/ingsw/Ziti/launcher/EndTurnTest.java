@@ -4,6 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.action.EndTurn;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
@@ -23,7 +24,7 @@ public class EndTurnTest {
         players.add(new Player("Player" + 1));
         players.add(new Player("Player" + 2));
 
-        //game = new Game(players);
+        game = new Game2(players);
 
     }
     // Player0 has used assistant 0 : checking if it's chosen and if others are not actual and not chosen
@@ -34,12 +35,18 @@ public class EndTurnTest {
         p0.setAssChoosed(p0.getAssistants().get(0));
         p0.getAssistants().get(0).setAssChose(true);
 
+        Player p1 = game.getPlayers().get(1);
+        // p1 chooses assistant 1
+        p1.setAssChoosed(p1.getAssistants().get(5));
+        p1.getAssistants().get(5).setAssChose(true);
+
+        // checking if the assistant chosen is really the one who's been chosen
+        assertEquals(p0.getAssChosen(), p0.getAssistants().get(0));
 
         game.setAction(new EndTurn(game));
         game.doAction();
 
-        // checking if the assistant chosen is really the one who's been chosen
-        assertEquals(p0.getAssChosen(), p0.getAssistants().get(0));
+
         // checking if the assistant chosen is actual
         assertFalse(p0.getAssistants().get(0).isActual());
         // checking if the assistant chosen has been used
@@ -64,12 +71,13 @@ public class EndTurnTest {
             p1.getAssistants().get(5).setAssChose(true);
             p1.getAssistants().get(9).setAssChose(true);
 
-            game.setAction( new EndTurn(game));
-            game.doAction();
-
             // checking if the assistant chosen is really the one who's been chosen
             assertEquals(p0.getAssChosen(),p0.getAssistants().get(2));
             assertEquals(p1.getAssChosen(),p1.getAssistants().get(5));
+
+            game.setAction( new EndTurn(game));
+            game.doAction();
+
             // checking if the assistant chosen is actual
             assertFalse(p0.getAssistants().get(2).isActual());
             assertFalse(p1.getAssistants().get(5).isActual());
