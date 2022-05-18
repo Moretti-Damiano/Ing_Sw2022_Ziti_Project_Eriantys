@@ -68,7 +68,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String ActivePlayer="";
 
 
+    @FXML
+    private ImageView assChoseImage;
 
+    @FXML
+    private Label phaseDesc;
     @FXML
     private ImageView BoardImage;
 
@@ -917,10 +921,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
 
       //  Label  BoardName = new Label("Board");  //maybe need to be changed
-        BoardName.setText(boards.get(0).getPlayername());
-        //  BoardName.setText(getRIghtBoard(boards).getPlayername()); NOT REALLY WORKING
-
-     //   board = getRIghtBoard(boards); NOT REALLY WORKING
+        BoardName.setText(RequestPlayer);
 
         board = boards.get(0);
 
@@ -1262,20 +1263,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
          islandStudentsRed=new ArrayList<>();
          islandStudentsYellow=new ArrayList<>();
 
-        Island0.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland0);
-        Island1.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland1);
-        Island2.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland2);
-        Island3.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland3);
-        Island4.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland4);
-        Island5.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland5);
-        Island6.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland6);
-        Island7.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland7);
-        Island8.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland8);
-        Island9.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland9);
-        Island10.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland10);
-        Island11.addEventHandler(MouseEvent.MOUSE_ENTERED,this::showStudentsOnIsland11);
+
         setMother_nature_images(mother_nature_images,islands);
         setTowerIsland(towerisland_images,islands,towerIslandQ);
+
+        phaseDesc.setText("it's "+phaseType+"phase");
     }
 
     /**
@@ -1871,7 +1863,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onMoveToTableClick(Event event){
-       // MTTBtn.setDisable(true); NOT NECESSARY
         new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(StudentColour))).start();
     }
 
@@ -2075,58 +2066,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
      */
     public void addIslands(List<Island> islands){this.islands=islands;}
 
-    public String showIslandStudents(Island island) {
-        String partial="";
-            if (island.getStudents().isEmpty()) partial=("There are no students ");
-                else {
-                    for (Colour c : Colour.values()) {
-                        if (island.getColour(c) != 0) {
-                            partial = partial.concat("°"+ island.getColour(c) + " " + c.getName() + " students\n");
-                        }
-                    }
-                }
-                return partial;
-    }
 
-    public void showStudentsOnIsland0(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(0)));
-    }
-    public void showStudentsOnIsland1(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(1)));
-    }
-    public void showStudentsOnIsland2(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(2)));
-    }
-    public void showStudentsOnIsland3(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(3)));
-    }
-    public void showStudentsOnIsland4(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(4)));
-    }
-    public void showStudentsOnIsland5(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(5)));
-    }
-    public void showStudentsOnIsland6(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(6)));
-    }
-    public void showStudentsOnIsland7(Event event){IslandDesc.setText(showIslandStudents(islands.get(7)));}
-    public void showStudentsOnIsland8(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(8)));
-    }
-    public void showStudentsOnIsland9(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(9)));
-    }
-    public void showStudentsOnIsland10(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(10)));
-    }
-    public void showStudentsOnIsland11(Event event){
-        IslandDesc.setText(showIslandStudents(islands.get(11)));
-    }
-// NOT USED, MAYBE USED IF I WANT TO START WITH MY BOARD
-    private Board getRIghtBoard(List<Board> boards){
-        for(Board b:boards){
-            if(Objects.equals(b.getPlayername(), RequestPlayer)) return b;
-        }return null;
-    }
+
 
 }
