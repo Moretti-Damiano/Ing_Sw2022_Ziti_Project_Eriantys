@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import static it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour.BLACK;
@@ -64,6 +65,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String StudentColour="";
         private String IslandId="";
         private PhaseType phaseType;
+        private String ActivePlayer="";
 
 
 
@@ -915,7 +917,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
 
       //  Label  BoardName = new Label("Board");  //maybe need to be changed
-        BoardName.setText(RequestPlayer);
+        BoardName.setText(boards.get(0).getPlayername());
+        //  BoardName.setText(getRIghtBoard(boards).getPlayername()); NOT REALLY WORKING
+
+     //   board = getRIghtBoard(boards); NOT REALLY WORKING
 
         board = boards.get(0);
 
@@ -1376,47 +1381,47 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     void onStudent0Click (Event event){
         StudentColour=WaitingStudent0.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent1Click (Event event){
         StudentColour=WaitingStudent1.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent2Click (Event event){
         StudentColour=WaitingStudent2.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent3Click (Event event){
         StudentColour=WaitingStudent3.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent4Click (Event event){
         StudentColour=WaitingStudent4.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent5Click (Event event){
         StudentColour=WaitingStudent5.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent6Click (Event event){
         StudentColour=WaitingStudent6.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent7Click (Event event){
         StudentColour=WaitingStudent7.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent8Click (Event event){
         StudentColour=WaitingStudent8.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
 
     /**
@@ -1775,6 +1780,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         this.RequestPlayer=player;
     }
 
+    public void setActivePlayer(String player){
+        this.ActivePlayer=player;
+    }
+
     /**
      * If MovementPhase send a MoveToIslandMessage, if MotherPhase send a MoveMotherMessage
      * @param event Mouse Click on ConfirmBtn
@@ -1862,6 +1871,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onMoveToTableClick(Event event){
+       // MTTBtn.setDisable(true); NOT NECESSARY
         new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(StudentColour))).start();
     }
 
@@ -2008,6 +2018,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         SelectBtn.setDisable(true);
 
     }
+    private void setSelectBtn(){
+        if(board.getPlayername()==ActivePlayer && board.getPlayername()==RequestPlayer) SelectBtn.setDisable(false);
+        else SelectBtn.setDisable(true);
+    }
 
     /**
      * Allow to Select and View Assistant in the next scene
@@ -2108,7 +2122,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     public void showStudentsOnIsland11(Event event){
         IslandDesc.setText(showIslandStudents(islands.get(11)));
     }
-
-
+// NOT USED, MAYBE USED IF I WANT TO START WITH MY BOARD
+    private Board getRIghtBoard(List<Board> boards){
+        for(Board b:boards){
+            if(Objects.equals(b.getPlayername(), RequestPlayer)) return b;
+        }return null;
+    }
 
 }

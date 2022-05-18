@@ -281,6 +281,7 @@ public class gui extends InputObservable implements view, ViewObserver {
         moveToTableSceneController.addIslands(message.getIslands());
         moveToTableSceneController.setPhase(message.getPhaseType());
         moveToTableSceneController.SetRequestPlayer(message.getRequestplayer());
+        moveToTableSceneController.setActivePlayer(message.getActiveplayer());
         Platform.runLater(() -> SceneController.changeRootPane(moveToTableSceneController,"move_to_table_scene.fxml"));
     }
 

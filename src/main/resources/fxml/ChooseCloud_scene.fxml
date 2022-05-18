@@ -83,10 +83,6 @@
                </Group>
                <Group fx:id="Cld2" autoSizeChildren="false" layoutX="448.0" layoutY="115.0">
                   <children>
-                     <ImageView fx:id="Cloud2" fitHeight="132.0" fitWidth="152.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
-                        <image>
-                        </image>
-                     </ImageView>
                      <ImageView fx:id="S20" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
                         </image>

@@ -290,8 +290,9 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Do you want to play again?\n Type [Y] for Yes or [N] for No");
         String response=readLine();
         inputThread.setFreeInput(true);
+        //not reading an input (probably because of threads)
         if(Objects.equals(response, "Y"))init();
-        else notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
+        else System.exit(0);
     }
 
 
