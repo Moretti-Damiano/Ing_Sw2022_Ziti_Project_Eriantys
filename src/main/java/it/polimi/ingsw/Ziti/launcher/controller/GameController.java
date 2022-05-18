@@ -430,7 +430,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     }
 
     public void endGame(String winnerName){
-        System.out.println(winnerName + "won the game!!!");
+        System.out.println(winnerName + " won the game!!!");
         notifyObserver(obs->obs.sendToAllPlayers(new WinMessage(winnerName)));
         notifyObserver(GameControllerObserver::disconnectAll);
     }

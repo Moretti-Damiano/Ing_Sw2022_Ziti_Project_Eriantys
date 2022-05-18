@@ -81,11 +81,9 @@ public class MatchServer implements GameControllerObserver {
 
     public void disconnectAll(){
         System.out.println("Closing all sockets");
-        int i = 0;
         for(ClientHandler clientHandler: clientHandlers){
             try {
                 System.out.println("Closing socket " + clientHandler.getNickName());
-                i++;
                 clientHandler.closeSocket();
             } catch (IOException e) {
                 System.out.println("Error in closing");

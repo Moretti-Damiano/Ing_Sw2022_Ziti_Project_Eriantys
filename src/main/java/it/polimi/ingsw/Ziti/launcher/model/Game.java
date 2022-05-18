@@ -167,11 +167,7 @@ public abstract class Game extends Observable {
      */
     public abstract void setPlayers(ArrayList<Player> p);
 
-    /**
-     *
-     * @param id
-     * @return
-     */
+
     public Island getIslandbyId(int id){
         for(Island i : islands){
             if(i.getID()==id )
