@@ -1,8 +1,9 @@
-package it.polimi.ingsw.Ziti.launcher.model;
+package it.polimi.ingsw.Ziti.launcher.model.Game;
 
 import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.GameMode;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;

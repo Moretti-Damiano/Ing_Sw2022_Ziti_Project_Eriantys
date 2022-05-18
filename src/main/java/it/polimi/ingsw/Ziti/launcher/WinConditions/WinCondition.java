@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.WinConditions;
 
 import it.polimi.ingsw.Ziti.launcher.controller.TurnController;
 import it.polimi.ingsw.Ziti.launcher.exception.WinException;
-import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 public abstract class WinCondition {

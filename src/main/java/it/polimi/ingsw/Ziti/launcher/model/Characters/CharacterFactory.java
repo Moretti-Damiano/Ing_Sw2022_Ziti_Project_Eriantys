@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.model.Characters;
 
-import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 
 public class CharacterFactory {
 

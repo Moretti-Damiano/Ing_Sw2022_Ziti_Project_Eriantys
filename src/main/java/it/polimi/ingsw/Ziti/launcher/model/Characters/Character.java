@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
-import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 
 import java.io.Serializable;
 import java.util.ArrayList;

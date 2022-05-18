@@ -4,6 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.Acti
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCloudDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 
 /**
  * This action is used to Choose a Cloud Island in the game

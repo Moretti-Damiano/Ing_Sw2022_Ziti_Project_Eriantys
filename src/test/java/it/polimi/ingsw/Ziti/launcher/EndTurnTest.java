@@ -3,6 +3,7 @@ package it.polimi.ingsw.Ziti.launcher;
 import it.polimi.ingsw.Ziti.launcher.action.EndTurn;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;

@@ -1,5 +1,8 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 import it.polimi.ingsw.Ziti.launcher.exception.EnabledCharactersException;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game3;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.ExpertMode;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.NormalMode;
 import it.polimi.ingsw.Ziti.launcher.networking.server.MainSocketServer;
@@ -13,7 +16,6 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
 import it.polimi.ingsw.Ziti.launcher.exception.WinException;
-import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
