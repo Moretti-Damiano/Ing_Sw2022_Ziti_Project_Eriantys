@@ -40,12 +40,9 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     private int maxIndex;
 
 
-    public ChooseAssistantSceneController() {
-        Assistants=new ArrayList<>();
-    }
     @FXML
     public void initialize() {
-        setAvailableAssistants(Assistants);
+        AvailableAssistants= setAvailableAssistants(AvailableAssistants);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
@@ -98,12 +95,13 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     }
 
     private List<Assistant> setAvailableAssistants(List<Assistant> assistants){
-
+        List<Assistant> pico=new ArrayList<>();
+        pico.removeAll(pico);
         for(Assistant a:assistants){
-            if(!a.isAssChose()) AvailableAssistants.add(a);
+            if(!a.isAssChose())  pico.add(a);
 
         }
-        return AvailableAssistants;
+        return pico;
     }
 
     @FXML

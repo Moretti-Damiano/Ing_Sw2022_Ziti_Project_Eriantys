@@ -13,10 +13,7 @@ import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.view;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Scanner;
+import java.util.*;
 
 /**
  * This class observes ClientMessageHandler and is observed by ClientController
@@ -217,6 +214,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     public void winHandler(WinMessage message) {
         System.out.println("\t\t Game is over!!");
         System.out.println("The winner is:  ............................................."+message.getWinner());
+        this.playAgain();
+
     }
 
     @Override
@@ -287,13 +286,22 @@ public class cli extends InputObservable implements view, ViewObserver {
         showInputErrorMessage(message);
 
     }
+    private void playAgain(){
+        System.out.println("Do you want to play again?\n Type [Y] for Yes or [N] for No");
+        String response=readLine();
+        inputThread.setFreeInput(true);
+        if(Objects.equals(response, "Y"))init();
+        else notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
+    }
 
 
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
         showErrorMessage(message);
-        this.init();
+       // this.init();
        // inputThread.setFreeInput(true); probably faster but not really tested
+
+        this.playAgain();
     }
 
     @Override
@@ -516,7 +524,7 @@ public class cli extends InputObservable implements view, ViewObserver {
                 break;
             case "DISCONNECT":
                 notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
-                init();
+               // init();
                 break;
             default:
                 System.out.println("Invalid");
