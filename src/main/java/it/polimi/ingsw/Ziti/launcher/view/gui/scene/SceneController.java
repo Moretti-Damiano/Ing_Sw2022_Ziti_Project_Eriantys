@@ -1,8 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import com.sun.security.ntlm.Client;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
-
+import java.util.logging.Logger;
 
 import javafx.event.Event;
 import javafx.fxml.FXMLLoader;
@@ -166,8 +167,23 @@ public class SceneController extends InputObservable {
         alertSceneController.setAlertMessage(message);
         alertSceneController.displayAlert();
     }
+/* needs to be implemented
+    public static void showPlayAgain() {
+        FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/playAgain_scene.fxml"));
 
-
+        Parent parent;
+        try {
+            parent = loader.load();
+        } catch (IOException e) {
+            return;
+        }
+        PlayAgainSceneController playAgainSceneController = loader.getController();
+        Scene playAgain = new Scene(parent);
+        playAgainSceneController.setScene(playAgain);
+        playAgainSceneController.setAlertTitle(title);
+        playAgainSceneController.setAlertMessage(message);
+        playAgainSceneController.displayAlert();
+    }
 
 
 
@@ -177,7 +193,7 @@ public class SceneController extends InputObservable {
      * @param nickname the nickname of the winning player.
      */
 
-    /*
+/*needs to be implemented
     public static void showWin(String nickname) {
         FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/win_scene.fxml"));
 
@@ -185,7 +201,7 @@ public class SceneController extends InputObservable {
         try {
             parent = loader.load();
         } catch (IOException e) {
-            Client.LOGGER.severe(e.getMessage());
+            Logger.getLogger(Client.class.getName()).severe(e.getMessage());
             return;
         }
         WinSceneController winSceneController = loader.getController();
@@ -194,5 +210,5 @@ public class SceneController extends InputObservable {
         winSceneController.setWinnerNickname(nickname);
         winSceneController.displayWinScene();
     }
-    */
+*/
 }
