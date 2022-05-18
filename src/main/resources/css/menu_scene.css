@@ -4,7 +4,7 @@
 }
 
 .playBtn {
-    -fx-background-image: url("../images/playbutton2.png");
+    -fx-background-image: url("../images/playbtn.png");
 
     -fx-border-color: transparent;
     -fx-border-width: 0;
@@ -18,7 +18,7 @@
 }
 
 .quitBtn {
-    -fx-background-image: url("../images/Exitbutton2.png");
+    -fx-background-image: url("../images/exitbtn.png");
 
     -fx-border-color: transparent;
     -fx-border-width: 0;

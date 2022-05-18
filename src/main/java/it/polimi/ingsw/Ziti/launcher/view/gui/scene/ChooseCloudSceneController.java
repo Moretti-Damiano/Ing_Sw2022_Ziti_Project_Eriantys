@@ -163,7 +163,6 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
         ConfirmBtn.setDisable(true);
         RadioButton selectedRadioButton = (RadioButton) SelectIsld.getSelectedToggle();
         String chosenCloudIsland = ""+selectedRadioButton.getId();
-
         new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudIsland(chosenCloudIsland))).start();
     }
 
@@ -175,7 +174,6 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
         Image red_student = new Image(getClass().getResourceAsStream("/images/red_student.png"));
         Image yellow_student = new Image(getClass().getResourceAsStream("/images/yellow_student.png"));
             for (int i = 0; i < cloudIsland.getStudents().size(); i++) {
-
                 switch (cloudIsland.getStudents().get(i).getColour()) {
                     case BLUE:
                         students.get(i).setImage(blue_student);
@@ -210,16 +208,20 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
                     case 2:
                         groups.get(2).setVisible(false);
                     default:break;
-                }else{}
+                }else{
+                groups.get(0).setVisible(true);
+                groups.get(1).setVisible(true);
+                groups.get(2).setVisible(true);
+                }
+            }
         }
-    }
+
     private void onSelectClick(Event event){
         ConfirmBtn.setDisable(false);
     }
 
     @FXML
     void  onBackToMenuClick(Event event) {
-
         new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
     }
 

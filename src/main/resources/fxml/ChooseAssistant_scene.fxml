@@ -11,22 +11,27 @@
 <?import javafx.scene.text.Text?>
 
 <StackPane prefHeight="720.0" prefWidth="1280.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+   <ImageView fitHeight="384.0" fitWidth="264.0" pickOnBounds="true">
+      <image>
+         <Image url="@../images/banner-removebg-preview.png" />
+      </image>
+   </ImageView>
    <Group scaleX="2.0" scaleY="2.0" scaleZ="2.0" StackPane.alignment="CENTER">
       <AnchorPane layoutX="910.0" layoutY="-270.0" prefHeight="351.0" prefWidth="561.0">
-         <ImageView fx:id="AssistantImg" fitHeight="150.0" fitWidth="200.0" layoutX="227.0" layoutY="94.0" pickOnBounds="true" preserveRatio="true">
+         <ImageView fx:id="AssistantImg" fitHeight="150.0" fitWidth="200.0" layoutX="228.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" rotate="-3.0">
             <image>
                <Image url="@../images/Assistente (0).png" />
             </image>
          </ImageView>
-         <Button fx:id="NextBtn" layoutX="351.0" layoutY="163.0" mnemonicParsing="false" text="Next" />
-         <Button fx:id="PreviousBtn" layoutX="143.0" layoutY="163.0" mnemonicParsing="false" text="Previous" />
-         <Button fx:id="ConfirmBtn" layoutX="252.0" layoutY="265.0" mnemonicParsing="false" text="Confirm" />
-         <ImageView fx:id="TitleImg" fitHeight="86.0" fitWidth="251.0" layoutX="203.0" layoutY="7.0" pickOnBounds="true" preserveRatio="true">
+         <Button fx:id="NextBtn" layoutX="351.0" layoutY="163.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Next" />
+         <Button fx:id="PreviousBtn" layoutX="115.0" layoutY="163.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Previous" />
+         <Button fx:id="ConfirmBtn" layoutX="234.0" layoutY="279.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Confirm" />
+         <ImageView fx:id="TitleImg" fitHeight="86.0" fitWidth="251.0" layoutX="175.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
             <image>
                <Image url="@../images/Titolo pagine.png" />
             </image>
          </ImageView>
-         <Text fill="#383838" fontSmoothingType="LCD" layoutX="229.0" layoutY="57.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ASSISTANTS" textAlignment="CENTER">
+         <Text fill="#383838" fontSmoothingType="LCD" layoutX="201.0" layoutY="56.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ASSISTANTS" textAlignment="CENTER">
             <font>
                <Font size="24.0" />
             </font>

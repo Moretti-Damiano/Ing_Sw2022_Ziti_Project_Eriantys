@@ -98,12 +98,11 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     public void disconnect() {
 
         try {
-            if(!socket.isClosed()){
+         //   if(!socket.isClosed()){
                 readExecutionQueue.shutdownNow();
                 socket.close();
-            }
-        } catch (IOException e) {
-            errorMessage = new ErrorMessage ("SocketClient","Could not disconnect");
+            } catch (IOException ioException) {
+          //  errorMessage = new ErrorMessage ("SocketClient","Could not disconnect");
             notifyObserver(obs->obs.update(errorMessage));
         }
     }

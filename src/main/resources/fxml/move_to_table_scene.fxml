@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import java.net.URL?>
+<?import javafx.geometry.Point3D?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
@@ -12,19 +13,24 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<StackPane prefHeight="720.0" prefWidth="1280.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1300.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
-      <Group rotate="270.0" scaleX="1.2" scaleY="1.1" translateX="-510.0" translateY="-20.0">
+      <Group rotate="270.0" scaleX="0.9" scaleY="0.9" translateX="-460.0" translateY="-10.0">
          <children>
-            <AnchorPane layoutX="15.0" layoutY="-50.0" prefHeight="811.0" prefWidth="1169.0" scaleX="0.7" scaleY="0.7">
+            <AnchorPane layoutX="15.0" layoutY="-50.0" prefHeight="811.0" prefWidth="1169.0">
                <children>
+                  <ImageView fitHeight="800.0" fitWidth="401.0" layoutX="398.0" layoutY="-65.0" pickOnBounds="true" rotate="90.0">
+                     <image>
+                        <Image url="@../images/alert-removebg-preview.png" />
+                     </image>
+                  </ImageView>
                   <ImageView fx:id="BoardImage" fitHeight="372.0" fitWidth="697.0" layoutX="218.0" layoutY="151.0">
                      <image>
                         <Image url="@../images/Plancia_DEF2.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="NextBtn" layoutX="131.0" layoutY="451.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" rotate="90.0" scaleX="0.8" scaleY="0.8" text="Next Board" />
-                  <Button fx:id="PreviousBtn" layoutX="130.0" layoutY="175.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="120.0" rotate="90.0" scaleX="0.8" scaleY="0.8" text="Previous Board" />
+                  <Button fx:id="NextBtn" layoutX="123.0" layoutY="464.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" styleClass="bigButton" text="Next Board" />
+                  <Button fx:id="PreviousBtn" layoutX="122.0" layoutY="188.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" styleClass="bigButton" text="Previous" />
                   <ImageView fx:id="WaitingStudent0" fitHeight="40.0" fitWidth="40.0" layoutX="277.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="WaitingStudent1" fitHeight="40.0" fitWidth="40.0" layoutX="277.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="WaitingStudent2" fitHeight="40.0" fitWidth="40.0" layoutX="236.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
@@ -39,16 +45,16 @@
                   <ImageView fx:id="DiningStudentYellow0" fitHeight="35.0" fitWidth="35.0" layoutX="343.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentPink0" fitHeight="35.0" fitWidth="35.0" layoutX="344.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentBlue0" fitHeight="35.0" fitWidth="35.0" layoutX="343.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
-                  <Label fx:id="BoardName" alignment="CENTER" layoutX="765.0" layoutY="300.0" prefHeight="64.0" prefWidth="412.0" rotate="90.0" text="BoardName" textFill="#d2e352" translateX="-30.0" translateY="10.0">
+                  <Label fx:id="BoardName" alignment="CENTER" layoutX="882.0" layoutY="298.0" prefHeight="46.0" prefWidth="200.0" rotate="90.0" text="BoardName" textFill="#1c1c1c" translateX="-30.0" translateY="10.0">
                      <font>
-                        <Font size="37.0" />
+                        <Font size="30.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="DiningStudentGreen01" fitHeight="35.0" fitWidth="35.0" layoutX="378.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentGreen02" fitHeight="35.0" fitWidth="35.0" layoutX="413.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentGreen03" fitHeight="35.0" fitWidth="35.0" layoutX="444.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentGreen04" fitHeight="35.0" fitWidth="35.0" layoutX="477.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
-                  <ImageView fx:id="DiningStudentGreen05" fitHeight="35.0" fitWidth="35.0" layoutX="512.0" layoutY="200.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
+                  <ImageView fx:id="DiningStudentGreen05" fitHeight="35.0" fitWidth="35.0" layoutX="512.0" layoutY="198.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentGreen06" fitHeight="35.0" fitWidth="35.0" layoutX="545.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentGreen07" fitHeight="35.0" fitWidth="35.0" layoutX="578.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentGreen08" fitHeight="35.0" fitWidth="35.0" layoutX="611.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
@@ -74,7 +80,7 @@
                   <ImageView fx:id="DiningStudentPink01" fitHeight="35.0" fitWidth="35.0" layoutX="378.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentPink02" fitHeight="35.0" fitWidth="35.0" layoutX="413.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentPink03" fitHeight="35.0" fitWidth="35.0" layoutX="444.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
-                  <ImageView fx:id="DiningStudentPink04" fitHeight="35.0" fitWidth="35.0" layoutX="477.0" layoutY="379.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
+                  <ImageView fx:id="DiningStudentPink04" fitHeight="35.0" fitWidth="35.0" layoutX="450.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentPink05" fitHeight="35.0" fitWidth="35.0" layoutX="512.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentPink06" fitHeight="35.0" fitWidth="35.0" layoutX="545.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentPink07" fitHeight="35.0" fitWidth="35.0" layoutX="578.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
@@ -102,13 +108,23 @@
                   <ImageView fx:id="tower05" fitHeight="45.0" fitWidth="45.0" layoutX="834.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="tower06" fitHeight="45.0" fitWidth="45.0" layoutX="779.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="tower07" fitHeight="45.0" fitWidth="45.0" layoutX="834.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
-                  <Button fx:id="SelectBtn" layoutX="143.0" layoutY="328.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="103.0" rotate="90.0" text="SELECT" />
+                  <Button fx:id="SelectBtn" layoutX="127.0" layoutY="327.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="SELECT" />
                </children>
             </AnchorPane>
          </children>
       </Group>
-      <Group fx:id="IslandGroup">
+      <Group fx:id="IslandGroup" scaleX="1.05" translateX="30.0">
          <children>
+            <ImageView fitHeight="239.0" fitWidth="163.0" layoutX="200.0" layoutY="150.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/alert-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="assChoseImage" fitHeight="164.0" fitWidth="127.0" layoutX="220.0" layoutY="200.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/Assistente%20(0).png" />
+               </image>
+            </ImageView>
             <AnchorPane prefHeight="658.0" prefWidth="660.0" translateX="10.0">
                <children>
                   <ImageView fx:id="Island1" fitHeight="150.0" fitWidth="200.0" layoutX="393.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
@@ -151,20 +167,6 @@
                         <Image url="@../images/island.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="363.0" fitWidth="417.0" layoutX="196.0" layoutY="90.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/description.png" />
-                     </image>
-                  </ImageView>
-                  <AnchorPane layoutX="237.0" layoutY="118.0" prefHeight="282.0" prefWidth="216.0">
-                     <children>
-                        <Text fx:id="IslandDesc" fill="#3e3e3e" layoutX="4.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLICK ON THE ISLAND TO SEE THE STUDENTS LOCATED IN" textAlignment="CENTER" translateY="50.0" wrappingWidth="208.8529052734375">
-                           <font>
-                              <Font size="24.0" />
-                           </font>
-                        </Text>
-                     </children>
-                  </AnchorPane>
                   <Text fx:id="Id1" layoutX="474.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="1" />
                   <Text fx:id="Id11" layoutX="220.0" layoutY="46.0" strokeType="OUTSIDE" strokeWidth="0.0" text="11" />
                   <Text fx:id="Id10" layoutX="95.0" layoutY="122.0" strokeType="OUTSIDE" strokeWidth="0.0" text="10" />
@@ -413,6 +415,19 @@
                      </image>
                   </ImageView>
                   <Label fx:id="PQ11" layoutX="211.0" layoutY="60.0" text="Label" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="81.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="236.0" layoutY="152.0" prefHeight="36.0" prefWidth="71.0" text="Player assistant" textAlignment="CENTER" wrapText="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="343.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/wizard.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="118.0" fitWidth="151.0" layoutX="369.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/fumetto.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="phaseDesc" layoutX="386.0" layoutY="231.0" text="it's MOTHER phase" />
                </children></AnchorPane>
             <ImageView fx:id="Island0" fitHeight="150.0" fitWidth="200.0" layoutX="277.0" layoutY="-110.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -688,28 +703,31 @@
             <Label fx:id="PQ10" layoutX="108.0" layoutY="53.0" text="Label" />
          </children>
       </Group>
-      <Group translateX="490.0">
+      <Group translateX="550.0">
          <children>
-            <AnchorPane layoutX="-140.0" layoutY="-6.0" prefHeight="696.0" prefWidth="277.0">
+            <AnchorPane layoutX="-127.0" layoutY="-6.0" prefHeight="739.0" prefWidth="311.0">
                <children>
-                  <Button fx:id="MTIBtn" layoutX="111.0" layoutY="202.0" mnemonicParsing="false" text="MoveToIsland" />
-                  <Button fx:id="MTTBtn" layoutX="112.0" layoutY="139.0" mnemonicParsing="false" text="MoveToTable" />
-                  <Button fx:id="ConfirmBtn" layoutX="88.0" layoutY="373.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="136.0" text="Confirm" />
-                  <Button fx:id="CloudsBtn" layoutX="211.0" layoutY="633.0" mnemonicParsing="false" text="CLOUDS" />
-                  <Button fx:id="CharacterBtn" layoutX="102.0" layoutY="633.0" mnemonicParsing="false" text="CHARACTERS" />
-                  <Button fx:id="AssistantBtn" layoutY="633.0" mnemonicParsing="false" text="ASSISTANTS" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+                  <Button fx:id="MTIBtn" layoutX="96.0" layoutY="203.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveToIsland" />
+                  <Button fx:id="MTTBtn" layoutX="97.0" layoutY="140.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveToTable" />
+                  <Button fx:id="ConfirmBtn" layoutX="92.0" layoutY="337.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="105.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="Confirm" />
+                  <ImageView fitHeight="250.0" fitWidth="198.0" layoutX="39.0" layoutY="487.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/Titolo pagine.png" />
+                        <Image url="@../images/alert-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="103.0" layoutY="572.0" rotate="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU" textAlignment="CENTER" translateY="-5.0">
+                  <Text layoutX="103.0" layoutY="526.0" rotate="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU" textAlignment="CENTER" translateY="-5.0">
                      <font>
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Text>
-                  <Button fx:id="MoveMotherBtn" layoutX="114.0" layoutY="80.0" mnemonicParsing="false" text="MoveMother" />
-                  <TextField fx:id="MoveMotherMoves" layoutX="211.0" layoutY="80.0" prefHeight="25.0" prefWidth="39.0" />
+                  <Button fx:id="CloudsBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="90.0" layoutY="650.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CLOUDS" textAlignment="RIGHT">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Button>
+                  <Button fx:id="CharacterBtn" layoutX="89.0" layoutY="557.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CHARACTERS" />
+                  <Button fx:id="AssistantBtn" layoutX="90.0" layoutY="604.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="ASSISTANTS" />
+                  <Button fx:id="MoveMotherBtn" layoutX="98.0" layoutY="75.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveMother" />
+                  <TextField fx:id="MoveMotherMoves" layoutX="211.0" layoutY="72.0" prefHeight="25.0" prefWidth="39.0" />
                </children>
             </AnchorPane>
          </children>
