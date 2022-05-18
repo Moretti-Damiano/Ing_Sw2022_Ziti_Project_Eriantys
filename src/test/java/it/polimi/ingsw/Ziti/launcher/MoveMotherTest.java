@@ -5,6 +5,7 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
@@ -27,16 +28,20 @@ public class MoveMotherTest {
         for(int i = 0; i < 2; i ++){
             players.add(new Player("Giocatore"+ i));
         }
-       // game = new Game(players); //creates a new game with 2 players
+        game = new Game2(players); //creates a new game with 2 players
+        game.setActivePlayer(players.get(0));
+        Assistant assistant =new Assistant.Builder(8).build();
+        assistant.addMoves(8);  //adding to activplayer an assistant with 8 moves
+        players.get(0).setAssChoosed(assistant);
     }
 
     @ParameterizedTest
     @ValueSource(ints = {0,5,7,10})
     public void correctPosition(int pos) throws ActionException {
-       game.getMother().setIsland(game.getIslands().get(pos));
-        game.setAction(new MoveMother(game,4,true));
+        game.getMother().setIsland(game.getIslands().get(pos));
+        game.setAction(new MoveMother(game,3,true));
         game.doAction();
-        assertEquals((pos + 4)%(game.getIslands().size()),game.getIslands().indexOf(game.getMother().getIsland()));
+        assertEquals((pos + 3)%(game.getIslands().size()),game.getIslands().indexOf(game.getMother().getIsland()));
     }
 
     @Test
