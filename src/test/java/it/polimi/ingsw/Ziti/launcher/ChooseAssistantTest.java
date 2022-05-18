@@ -2,7 +2,7 @@ package it.polimi.ingsw.Ziti.launcher;
 
 import it.polimi.ingsw.Ziti.launcher.action.ChooseAssistant;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
-import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

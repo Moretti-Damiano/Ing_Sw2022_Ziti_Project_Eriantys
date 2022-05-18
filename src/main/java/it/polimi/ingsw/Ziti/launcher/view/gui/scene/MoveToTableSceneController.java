@@ -25,6 +25,7 @@ import javafx.scene.text.Text;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
+import java.util.Objects;
 
 import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import static it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour.BLACK;
@@ -40,17 +41,17 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private ArrayList<ImageView> diningStudentsPink;
         private ArrayList<ImageView> diningStudentsRed;
         private ArrayList<ImageView> diningStudentsYellow;
-    private ArrayList<ImageView> islandStudentsBlue;
-    private ArrayList<ImageView> islandStudentsGreen;
-    private ArrayList<ImageView> islandStudentsPink;
-    private ArrayList<ImageView> islandStudentsRed;
-    private ArrayList<ImageView> islandStudentsYellow;
-    private ArrayList<Label> islandStudentsBlueQ;
-    private ArrayList<Label> islandStudentsGreenQ;
-    private ArrayList<Label> islandStudentsPinkQ;
-    private ArrayList<Label> islandStudentsRedQ;
-    private ArrayList<Label> islandStudentsYellowQ;
-    private ArrayList<Text> islands_id_values;
+        private ArrayList<ImageView> islandStudentsBlue;
+        private ArrayList<ImageView> islandStudentsGreen;
+        private ArrayList<ImageView> islandStudentsPink;
+        private ArrayList<ImageView> islandStudentsRed;
+        private ArrayList<ImageView> islandStudentsYellow;
+        private ArrayList<Label> islandStudentsBlueQ;
+        private ArrayList<Label> islandStudentsGreenQ;
+        private ArrayList<Label> islandStudentsPinkQ;
+        private ArrayList<Label> islandStudentsRedQ;
+        private ArrayList<Label> islandStudentsYellowQ;
+        private ArrayList<Text> islands_id_values;
 
         private ArrayList<ImageView> professors;
         private ArrayList<ImageView> towers;
@@ -64,6 +65,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String StudentColour="";
         private String IslandId="";
         private PhaseType phaseType;
+        private String ActivePlayer="";
 
 
     @FXML
@@ -1278,6 +1280,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         for(ImageView imm:towerisland_images){
             imm.setImage(null);
         }
+        for(Label desc : towerIslandQ) {
+            desc.setText("");
+        }
         Image TW = new Image(getClass().getResourceAsStream("/images/white_tower.png"));
         Image TB = new Image(getClass().getResourceAsStream("/images/black_tower.png"));
         Image TG = new Image(getClass().getResourceAsStream("/images/grey_tower.png"));
@@ -1368,47 +1373,47 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     void onStudent0Click (Event event){
         StudentColour=WaitingStudent0.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent1Click (Event event){
         StudentColour=WaitingStudent1.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent2Click (Event event){
         StudentColour=WaitingStudent2.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent3Click (Event event){
         StudentColour=WaitingStudent3.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent4Click (Event event){
         StudentColour=WaitingStudent4.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent5Click (Event event){
         StudentColour=WaitingStudent5.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent6Click (Event event){
         StudentColour=WaitingStudent6.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent7Click (Event event){
         StudentColour=WaitingStudent7.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
     @FXML
     void onStudent8Click (Event event){
         StudentColour=WaitingStudent8.getId();
-        SelectBtn.setDisable(false);
+        setSelectBtn();
     }
 
     /**
@@ -1767,6 +1772,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         this.RequestPlayer=player;
     }
 
+    public void setActivePlayer(String player){
+        this.ActivePlayer=player;
+    }
+
     /**
      * If MovementPhase send a MoveToIslandMessage, if MotherPhase send a MoveMotherMessage
      * @param event Mouse Click on ConfirmBtn
@@ -1999,6 +2008,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         MTIBtn.setDisable(false);
         SelectBtn.setDisable(true);
 
+    }
+    private void setSelectBtn(){
+        if(board.getPlayername()==ActivePlayer && board.getPlayername()==RequestPlayer) SelectBtn.setDisable(false);
+        else SelectBtn.setDisable(true);
     }
 
     /**

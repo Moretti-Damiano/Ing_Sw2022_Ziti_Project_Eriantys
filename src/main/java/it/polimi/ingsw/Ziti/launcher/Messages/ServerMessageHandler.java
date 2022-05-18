@@ -91,7 +91,6 @@ public class ServerMessageHandler extends ServerObservable {
     public void clientDisconnection(){
         notifyObserver(ServerObserver::endGameDisconnection);
     }
-    
 
     public void disconnectionRequestHandler(DisconnectionRequest message){}
 }

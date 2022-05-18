@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.application.Platform;
@@ -10,6 +11,7 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ChooseAssistantSceneController extends InputObservable implements GenericSceneController {
@@ -28,16 +30,23 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     @FXML
     private ImageView TitleImg;
 
+    @FXML
+    private Button BackToMenu;
+
     private int ListIndex=0;
+    private List<Assistant> Assistants;
     private List<Assistant> AvailableAssistants;
     private Assistant ChosenAssistant;
     private int maxIndex;
 
+
     @FXML
     public void initialize() {
+        AvailableAssistants= setAvailableAssistants(AvailableAssistants);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
+        BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);
         maxIndex=AvailableAssistants.size()-1;
         checkAndDisableButton(PreviousBtn, 0);
         checkAndDisableButton(NextBtn, maxIndex);
@@ -83,6 +92,22 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         }
         button.setDisable(false);
         return false;
+    }
+
+    private List<Assistant> setAvailableAssistants(List<Assistant> assistants){
+        List<Assistant> pico=new ArrayList<>();
+        pico.removeAll(pico);
+        for(Assistant a:assistants){
+            if(!a.isAssChose())  pico.add(a);
+
+        }
+        return pico;
+    }
+
+    @FXML
+    void  onBackToMenuClick(Event event) {
+
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
     }
 
     public void addAssistant(List<Assistant> PlayerAssistants){

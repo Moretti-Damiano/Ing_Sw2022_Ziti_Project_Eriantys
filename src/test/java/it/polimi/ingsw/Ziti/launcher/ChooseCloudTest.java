@@ -1,14 +1,13 @@
 package it.polimi.ingsw.Ziti.launcher;
 
 import it.polimi.ingsw.Ziti.launcher.action.ChooseCloud;
-import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
-import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game3;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 import it.polimi.ingsw.Ziti.launcher.model.Student;
-import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
 import org.xml.sax.SAXException;
@@ -24,7 +23,7 @@ public class ChooseCloudTest {
 
     private static Game game;
     @ParameterizedTest
-    @ValueSource(ints = {2,3,4})
+    @ValueSource(ints = {2,3})
     public void CloudIslandTest(int numPlayers) throws ParserConfigurationException, IOException, SAXException, ActionException {
 
         //set up a game for n players
@@ -32,7 +31,11 @@ public class ChooseCloudTest {
         for(int i = 0; i < numPlayers; i ++){
             players.add(new Player("Giocatore"+ i));
         }
-        //game = new Game(players);
+        if(numPlayers==2){
+            game = new Game2(players);
+        }
+        else
+            game = new Game3(players);
 
         //removes all students from p1 board
         Player p1 = game.getPlayers().get(0);

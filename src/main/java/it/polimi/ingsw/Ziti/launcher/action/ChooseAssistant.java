@@ -4,7 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.Acti
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseAssistantDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
-import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 /**
  * This action is used to Choose an Assistant in the game

@@ -83,10 +83,6 @@
                </Group>
                <Group fx:id="Cld2" autoSizeChildren="false" layoutX="448.0" layoutY="115.0">
                   <children>
-                     <ImageView fx:id="Cloud2" fitHeight="132.0" fitWidth="152.0" layoutX="-7.0" layoutY="-7.0" pickOnBounds="true" preserveRatio="true" scaleX="1.2" scaleY="1.2">
-                        <image>
-                        </image>
-                     </ImageView>
                      <ImageView fx:id="S20" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
                         </image>
@@ -103,6 +99,11 @@
                         <image>
                         </image>
                      </ImageView>
+                     <ImageView fx:id="Cloud2" fitHeight="121.0" fitWidth="125.0" layoutX="4.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/Cloud.png" />
+                        </image>
+                     </ImageView>
                      <RadioButton fx:id="Select2" layoutX="60.0" layoutY="110.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" scaleX="0.7" scaleY="0.7" toggleGroup="$SelectIsld" />
                   </children>
                </Group>
@@ -117,6 +118,7 @@
                      <Font size="22.0" />
                   </font>
                </Text>
+               <Button fx:id="BackToMenu" layoutX="11.0" layoutY="321.0" mnemonicParsing="false" text="Back to Menu" />
             </children>
          </AnchorPane>
       </children>

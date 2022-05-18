@@ -40,11 +40,14 @@ public class ClientHandler implements Runnable {
         }
         catch (IOException e) {
             System.out.println("IOexception in clienthandler " + nickName);
+            server.getClientHandlers().remove(this);
+            //devo fare socket.close?
             server.clientDisconnection();
         }
         catch (ClassNotFoundException e) {
             System.out.println("ClientHandler "+ nickName +"Class not found exc");
         }
+
     }
 
     /**

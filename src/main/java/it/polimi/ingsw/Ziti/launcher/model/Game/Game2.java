@@ -1,5 +1,8 @@
-package it.polimi.ingsw.Ziti.launcher.model;
+package it.polimi.ingsw.Ziti.launcher.model.Game;
 import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
+import it.polimi.ingsw.Ziti.launcher.model.Player;
+import it.polimi.ingsw.Ziti.launcher.model.Tower;
+
 import java.util.ArrayList;
 
 

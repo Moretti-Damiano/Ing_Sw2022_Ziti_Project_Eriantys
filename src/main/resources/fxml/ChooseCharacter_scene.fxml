@@ -61,6 +61,7 @@
          <Button fx:id="ConfirmBtn" layoutX="416.0" layoutY="247.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Confirm" />
          <Button fx:id="BackToMenu" layoutX="76.0" layoutY="49.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Back to Menu" />
       </AnchorPane>
+      <Button fx:id="BackToMenu" layoutX="851.0" layoutY="50.0" mnemonicParsing="false" text="Back to Menu" />
    </Group>
    <stylesheets>
       <URL value="@../css/connect_scene.css" />
