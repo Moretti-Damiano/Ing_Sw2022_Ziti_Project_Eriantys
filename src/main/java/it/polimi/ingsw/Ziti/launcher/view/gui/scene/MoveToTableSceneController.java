@@ -1273,6 +1273,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         setTowerIsland(towerisland_images,islands,towerIslandQ);
     }
 
+    /**
+     *
+     * @param towerisland_images contains all island ImageView
+     * @param islands contains all the actual island
+     * @param towerIslandQ contains all tower quantity on the single islands
+     */
     private void setTowerIsland(ArrayList<ImageView> towerisland_images, List<Island> islands,ArrayList<Label> towerIslandQ) {
         for(ImageView imm:towerisland_images){
             imm.setImage(null);
@@ -1307,6 +1313,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
 
+    /**
+     *
+     * @param students contains StudentsWaiting student
+     * @param board actual player board
+     */
 
 
     private void setStudentsWaiting(ArrayList<ImageView> students,Board board){
@@ -1348,6 +1359,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
 
     }
+
+    /**
+     *
+     * @param event click on MoveMotherBtn
+     */
 
     void onMoveMotherBtnClick(Event event){
         MoveMotherMoves.setDisable(false);
@@ -1402,6 +1418,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         StudentColour=WaitingStudent8.getId();
         SelectBtn.setDisable(false);
     }
+
+    /**
+     * Remove the possibility to click on Students waiting student
+     */
     void RemoveStudentsHandler(){
         WaitingStudent0.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
         WaitingStudent1.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
@@ -1413,6 +1433,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         WaitingStudent7.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
         WaitingStudent8.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
     }
+
+    /**
+     * Add the possibilitu to click on Student waiting student
+     */
     void AddStudentsHandler(){
         WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
         WaitingStudent1.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent1Click);
@@ -1424,6 +1448,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         WaitingStudent7.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent7Click);
         WaitingStudent8.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent8Click);
     }
+
+    /**
+     *
+     * @param islands_images contains island images
+     * @param islands actual island
+     * @param IslandId contains all island Text (where is written islandId)
+     */
 
     private void setIslands_images(ArrayList<ImageView> islands_images,List<Island> islands,ArrayList<Text> IslandId){
         for(ImageView imm:islands_images){
@@ -1440,6 +1471,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             IslandId.get(islands.get(i).getID()).setText(Integer.toString(islands.get(i).getID()));
         }
     }
+
+    /**
+     *
+     * @param mother_nature_images contains images for all possible mother nature position
+     * @param islands contains all the islands
+     */
     private void setMother_nature_images(ArrayList<ImageView> mother_nature_images,List<Island> islands){
         Image mother = new Image(getClass().getResourceAsStream("/images/mother.png"));
 
@@ -1450,6 +1487,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         }
     }
+
+    /**
+     *
+     * @param students contains images for blue students on the table
+     * @param board actual player board
+     */
     private void setStudentsDiningBlue(ArrayList<ImageView> students,Board board) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1460,6 +1503,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(i).setImage(blue_student);
         }
     }
+    /**
+     *
+     * @param students contains images for green students on the table
+     * @param board actual player board
+     */
     private void setStudentsDiningGreen(ArrayList<ImageView> students,Board board) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1470,6 +1518,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(i).setImage(green_student);
         }
     }
+    /**
+     *
+     * @param students contains images for pink students on the table
+     * @param board actual player board
+     */
     private void setStudentsDiningPink(ArrayList<ImageView> students,Board board) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1480,6 +1533,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(i).setImage(pink_student);
         }
     }
+    /**
+     *
+     * @param students contains images for red students on the table
+     * @param board actual player board
+     */
     private void setStudentsDiningRed(ArrayList<ImageView> students,Board board) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1490,7 +1548,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(i).setImage(red_student);
         }
     }
-
+    /**
+     *
+     * @param students contains images for Yellow students on the table
+     * @param board actual player board
+     */
 
     private void setStudentsDiningYellow(ArrayList<ImageView> students,Board board) {
         for(ImageView imm:students){
@@ -1502,6 +1564,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             students.get(i).setImage(yellow_student);
         }
     }
+
+    /**
+     *
+     * @param students contains all blue students imageView (one for each island)
+     * @param islands contains all islands
+     * @param description contains the amount of blue students, one label for each islands
+     */
     private void setStudentsIslandBlue(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1519,6 +1588,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             }
         }
     }
+    /**
+     *
+     * @param students contains all green students imageView (one for each island)
+     * @param islands contains all islands
+     * @param description contains the amount of blue students, one label for each islands
+     */
+
     private void setStudentsIslandGreen(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1538,6 +1614,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         }
     }
+    /**
+     *
+     * @param students contains all pink students imageView (one for each island)
+     * @param islands contains all islands
+     * @param description contains the amount of blue students, one label for each islands
+     */
     private void setStudentsIslandPink(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1556,6 +1638,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         }
     }
+    /**
+     *
+     * @param students contains all red students imageView (one for each island)
+     * @param islands contains all islands
+     * @param description contains the amount of blue students, one label for each islands
+     */
     private void setStudentsIslandRed(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
             imm.setImage(null);
@@ -1574,7 +1662,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         }
     }
-
+    /**
+     *
+     * @param students contains all yellow students imageView (one for each island)
+     * @param islands contains all islands
+     * @param description contains the amount of blue students, one label for each islands
+     */
 
     private void setStudentsIslandYellow(ArrayList<ImageView> students,List<Island> islands,ArrayList<Label> description) {
         for(ImageView imm:students){
@@ -1594,6 +1687,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         }
     }
+
+    /**
+     * these methods set the images of students sit on table
+     */
     private void setStudentsDining(){
         setStudentsDiningBlue(diningStudentsBlue,board);
         setStudentsDiningPink(diningStudentsPink,board);
@@ -1602,6 +1699,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         setStudentsDiningYellow(diningStudentsYellow,board);
 
     }
+
+    /**
+     *
+     * @param professors contains all ImageView of board professors
+     * @param board actual board
+     */
     private void setProfessors(ArrayList<ImageView> professors,Board board){
         for(ImageView imm:professors){
             imm.setImage(null);
@@ -1635,6 +1738,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
 
     }
+
+    /**
+     *
+     * @param towers contains all the ImageView of The Tower on board
+     * @param board actual board
+     */
     public void setTowers(ArrayList<ImageView> towers,Board board){
         for(ImageView imm:towers){
             imm.setImage(null);
@@ -1657,10 +1766,19 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             }
         }
     }
+
+    /**
+     *
+     * @param player the player who made the request to see his board
+     */
     public void SetRequestPlayer(String player){
         this.RequestPlayer=player;
     }
 
+    /**
+     * If MovementPhase send a MoveToIslandMessage, if MotherPhase send a MoveMotherMessage
+     * @param event Mouse Click on ConfirmBtn
+     */
     @FXML
     void onConfirmClick(Event event) {
         RemoveIslandsHandler();
@@ -1679,6 +1797,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
 
+    /**
+     * Show the next Board
+     * @param event MouseClick on NextButton
+     */
     @FXML
     void onNextClick(Event event) {
         int max= boards.size();
@@ -1702,6 +1824,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
 
+    /**
+     * Show the previous Board
+     * @param event MouseClick on PreviousButton
+     */
     @FXML
     void onPreviousClick(Event event) {
         if(numBoard>0){
@@ -1720,14 +1846,29 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             setTowers(towers,board);
         }
     }
+
+    /**
+     *
+     * @param phase the actual GamePhase
+     */
     public void setPhase(PhaseType phase){
         this.phaseType=phase;
     }
+
+    /**
+     * Send a MoveToTableMessage
+     * @param event MouseClick on MoveToTableBtn
+     */
 
     @FXML
     void onMoveToTableClick(Event event){
         new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(StudentColour))).start();
     }
+
+    /**
+     * Allow to select Island, deactivate MoveToTableBtn
+     * @param event Click on MoveToIsland
+     */
     @FXML
     void onMoveToIslandClick(Event event){
         AddIslandsHandler();
@@ -1735,6 +1876,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         ConfirmBtn.setDisable(true);
         MTIBtn.setDisable(true);
     }
+
+    /**
+     * Allow to click on islands
+     */
     void AddIslandsHandler(){
         Island0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland0Click);
         Island1.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland1Click);
@@ -1750,6 +1895,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Island11.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland11Click);
 
     }
+
+    /**
+     * Removes the possibility to click on islands
+     */
     void RemoveIslandsHandler(){
         Island0.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland0Click);
         Island1.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland1Click);
@@ -1765,6 +1914,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         Island11.removeEventHandler(MouseEvent.MOUSE_CLICKED,this::onIsland11Click);
 
     }
+
+    /**
+     * Activate MoveMotherBtn only if is MotherPhase
+     */
     private void setMoveMotherBtn(){
         if(phaseType==PhaseType.MOTHER) MoveMotherBtn.setDisable(false);
         else MoveMotherBtn.setDisable(true);
@@ -1843,6 +1996,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
 
+    /**
+     * Remove the possibility to click on Students, allow the next possible moves (MoveToTable or MoveToIsland)
+     * @param event Click on SelectBtn
+     */
     @FXML
     void onSelectBtnClick(Event event){
         RemoveStudentsHandler();
@@ -1852,14 +2009,28 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     }
 
+    /**
+     * Allow to Select and View Assistant in the next scene
+     * @param event Click on AssistantBtn
+     */
     @FXML
     void onAssistantBtnClick(Event event){
         new Thread(() -> notifyObserver(obs -> obs.onUpdateAssistantRequest(new ShowAssistantRequest()))).start();
     }
+
+    /**
+     * Allow to Select and View Character in the next scene
+     * @param event Click on CharacterBtn
+     */
     @FXML
     void onCharacterBtnClick(Event event){
         new Thread(() -> notifyObserver(obs -> obs.onUpdateCharacterRequest(new ShowCharacterRequest()))).start();
     }
+
+    /**
+     * Allow to Select and View Cloud in the next scene
+     * @param event Click on CloudBtn
+     */
     @FXML
     void onCloudBtnClick(Event event){
         new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudRequest(new ShowCloudRequest()))).start();
@@ -1869,6 +2040,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         this.boards=pr;
     }
 
+    /**
+     *
+     * @param button Actual Button
+     * @param number
+     * @return
+     */
     private boolean checkAndDisableButton(Button button, int number) {
         if (numBoard == number) {
             button.setDisable(true);
@@ -1877,17 +2054,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         button.setDisable(false);
         return false;
     }
-    /*
-    private boolean checkAndAbleButton(MenuButton button, int number) {
-        if (numBoard == number) {
-            button.setDisable(false);
-            return false;
-        }
-        button.setDisable(true);
-        return true;
-    }
-*/
+
+    /**
+     *
+     * @param islands actual islands
+     */
     public void addIslands(List<Island> islands){this.islands=islands;}
+
     public String showIslandStudents(Island island) {
         String partial="";
             if (island.getStudents().isEmpty()) partial=("There are no students ");

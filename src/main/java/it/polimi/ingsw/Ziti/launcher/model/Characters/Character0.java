@@ -3,8 +3,6 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 import it.polimi.ingsw.Ziti.launcher.action.MoveToTable;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
-import it.polimi.ingsw.Ziti.launcher.model.Game;
-import it.polimi.ingsw.Ziti.launcher.model.Mother;
 import it.polimi.ingsw.Ziti.launcher.model.Student;
 /*
 During this turn, you take control of any number of professor even if you have the same number of student as the player who controls them

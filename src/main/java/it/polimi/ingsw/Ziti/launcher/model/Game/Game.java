@@ -1,8 +1,9 @@
-package it.polimi.ingsw.Ziti.launcher.model;
+package it.polimi.ingsw.Ziti.launcher.model.Game;
 
 import it.polimi.ingsw.Ziti.launcher.action.Action;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
+import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.GameMode;
 import it.polimi.ingsw.Ziti.launcher.observer.Observable;
@@ -18,7 +19,7 @@ public abstract class Game extends Observable {
     private ArrayList<Board> boards;
     private Mother mother;
     private Sack sack;
-    private int playerNumber;   //indictes the number of player at the start of the game
+    private int playerNumber;   //indicates the number of player at the start of the game
     private ArrayList<Professor> professors;
     private Player currentPlayer;
     private Action action;
@@ -167,11 +168,7 @@ public abstract class Game extends Observable {
      */
     public abstract void setPlayers(ArrayList<Player> p);
 
-    /**
-     *
-     * @param id
-     * @return
-     */
+
     public Island getIslandbyId(int id){
         for(Island i : islands){
             if(i.getID()==id )

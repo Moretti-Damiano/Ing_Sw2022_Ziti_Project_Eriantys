@@ -4,7 +4,7 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.Acti
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.MoveToTableDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
-import it.polimi.ingsw.Ziti.launcher.model.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 
 import java.util.Locale;

@@ -1,11 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.YourTurnNotification;
-import it.polimi.ingsw.Ziti.launcher.TurnPhase.EndGamePhase;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
 import it.polimi.ingsw.Ziti.launcher.TurnPhase.PlanningPhase;
-import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
+import it.polimi.ingsw.Ziti.launcher.WinConditions.AssistantsWinCondition;
+import it.polimi.ingsw.Ziti.launcher.WinConditions.IslandsWinCondition;
+import it.polimi.ingsw.Ziti.launcher.WinConditions.TowersWinCondition;
+import it.polimi.ingsw.Ziti.launcher.WinConditions.WinCondition;
 import it.polimi.ingsw.Ziti.launcher.exception.WinException;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 
@@ -24,6 +24,7 @@ public class TurnController {
     private int playersDone;
     private Map<Integer,Player> playerAssistants;
     private int turnNumber;
+    private ArrayList<WinCondition> winConditions;
 
     private Phase phase;
 
@@ -37,6 +38,7 @@ public class TurnController {
         this.gameController.getGame().setActivePlayer(currentPlayer);
         playersDone = 1;
         turnNumber = 0;
+        setWinConditions();
     }
 
     public void setPhase(Phase phase){
@@ -44,10 +46,9 @@ public class TurnController {
     }
 
     public void updatePhase() throws WinException {
-            checkWin();     //check number of tower and islands
-            phase.update();
-            checkWinAssistant();
-            gameController.sendTurnNotification();
+        phase.update();
+        checkWinConditions();
+        gameController.sendTurnNotification();
     }
 
 
@@ -124,52 +125,16 @@ public class TurnController {
         return phase;
     }
 
-    public void checkWin() throws WinException{
-        checkWinTowers();
-        checkWinIslands();
+    private void setWinConditions(){
+        winConditions = new ArrayList<>();
+        winConditions.add(new TowersWinCondition(this));
+        winConditions.add(new IslandsWinCondition(this));
+        winConditions.add(new AssistantsWinCondition(this));
     }
 
-    private void checkWinIslands() throws WinException {
-
-        if(gameController.getGame().getIslands().size() == 3){
-            chooseWinnerByTowers();
+    private void checkWinConditions() throws WinException {
+        for(WinCondition winCondition: winConditions){
+            winCondition.check();
         }
     }
-
-    private void checkWinTowers() throws WinException{
-     if(getCurrentPlayer().getBoard().getTowerSize() == 0){
-         throw new WinException(getCurrentPlayer().GetName());
-     }
-    }
-
-    private void checkWinAssistant() throws WinException {
-        if(turnNumber == 10)    //updated by CloudPhase at the end of the turn of the last player
-            chooseWinnerByTowers();
-    }
-
-    /**
-     * This method gets called only if one of the winConditions is verified.
-     * It calculates the winning player, then throws a winexception containing the winner's name
-     * @throws WinException containing the winner's name
-     */
-    private void chooseWinnerByTowers() throws WinException {
-
-        Player winner = gameController.getPlayers().get(0);
-        int towers = winner.getBoard().getTowerSize();
-
-        for(Player p: players){
-            if(p.getBoard().getTowerSize() < towers){
-                winner = p;
-                towers = p.getBoard().getTowerSize();
-
-            }
-            if(p.getBoard().getTowerSize() == towers){
-                if(p.getBoard().getProfessors().size() > winner.getBoard().getProfessors().size()){
-                    winner = p;
-                }
-            }
-        }
-        throw new WinException(winner.GetName());
-    }
-
 }
