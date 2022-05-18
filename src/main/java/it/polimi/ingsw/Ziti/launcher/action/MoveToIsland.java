@@ -73,14 +73,9 @@ public class MoveToIsland implements Action{
         if(!Colour.checkStringToColour(studentColour))
             throw new ActionException();
 
-
         // check if the studentColour is in the Board
         if( ! game.getCurrentPlayer().getBoard().checkpresence(Colour.valueOfName(studentColour.toLowerCase(Locale.ROOT))))
             throw new ActionException();
 
-
-        // also if(chosenIsland.getID() != game.getIslands().indexOf(chosenIsland))
-        //if(chosenIsland.getID() < game.getIslands().get(0).getID()  || chosenIsland.getID() > game.getIslands().size())
-        //  throw new ActionException();
     }
 }
