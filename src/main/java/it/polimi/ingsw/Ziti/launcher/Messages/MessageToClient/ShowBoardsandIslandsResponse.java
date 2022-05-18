@@ -6,6 +6,7 @@ import it.polimi.ingsw.Ziti.launcher.model.Board;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
 
 import java.util.ArrayList;
+import java.util.Map;
 
 public class ShowBoardsandIslandsResponse extends MessageToClient{
     private ArrayList<Island> islands;
@@ -13,13 +14,17 @@ public class ShowBoardsandIslandsResponse extends MessageToClient{
     private String requestplayer;
     private String activeplayer;
     private PhaseType phaseType;
+    private Map<Integer,String> assistantMap;
 
-    public ShowBoardsandIslandsResponse(ArrayList<Island> islands, ArrayList<Board> boards,String requestPlayer,String activeplayer, PhaseType phaseType){
+    public ShowBoardsandIslandsResponse(ArrayList<Island> islands, ArrayList<Board> boards,
+                                        String requestPlayer,String activeplayer, PhaseType phaseType,
+                                        Map<Integer,String> assistantMap){
         this.boards=boards;
         this.islands=islands;
         this.requestplayer=requestPlayer;
         this.phaseType = phaseType;
         this.activeplayer=activeplayer;
+        this.assistantMap=assistantMap;
     }
 
     public String getRequestplayer() {

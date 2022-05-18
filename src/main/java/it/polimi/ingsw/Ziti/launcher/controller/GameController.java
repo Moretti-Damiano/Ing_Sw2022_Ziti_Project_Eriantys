@@ -28,7 +28,9 @@ import org.xml.sax.SAXException;
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Locale;
+import java.util.Map;
 
 /**
  * This class observes Game (the model) and the Server and is observed by the Server
@@ -239,7 +241,9 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void showBoardsandIslandsRequestHandler(ShowBoardsandIslandsRequest message) {
-        notifyObserver(obs -> obs.sendToOnePlayer(new ShowBoardsandIslandsResponse(game.getIslands(), game.getBoards(), message.getSender(),game.getCurrentPlayer().GetName(), turnController.getPhase().getPhaseType()), message.getSender()));
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowBoardsandIslandsResponse(game.getIslands(), game.getBoards(),
+                message.getSender(), game.getCurrentPlayer().GetName(),
+                turnController.getPhase().getPhaseType(),getAssistantMap()), message.getSender()));
     }
 
     @Override
@@ -464,6 +468,21 @@ public class GameController extends GameControllerObservable implements ServerOb
         notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " +
                 game.getCurrentPlayer().GetName() + " turn and it's " +
                 turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+    }
+
+    /**
+     * @return a Map containing every player with the id of the chosen assistant,
+     * if the player hasn't already chosen an assistant, the id is set to null
+     */
+    private Map<Integer,String> getAssistantMap(){
+        Map<Integer,String> assistantMap = new HashMap<>();
+        for(Player player: players){
+            if(player.getAssChosen() == null)
+                assistantMap.put(null,player.GetName());
+            else
+                assistantMap.put(player.getAssChosen().getId(),player.GetName());
+        }
+        return assistantMap;
     }
 }
 
