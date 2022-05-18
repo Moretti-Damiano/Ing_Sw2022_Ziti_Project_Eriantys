@@ -115,6 +115,16 @@
       </Group>
       <Group fx:id="IslandGroup" scaleX="1.05" translateX="30.0">
          <children>
+            <ImageView fitHeight="239.0" fitWidth="163.0" layoutX="200.0" layoutY="150.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/alert-removebg-preview.png" />
+               </image>
+            </ImageView>
+            <ImageView fx:id="assChoseImage" fitHeight="164.0" fitWidth="127.0" layoutX="220.0" layoutY="200.0" pickOnBounds="true">
+               <image>
+                  <Image url="@../images/Assistente%20(0).png" />
+               </image>
+            </ImageView>
             <AnchorPane prefHeight="658.0" prefWidth="660.0" translateX="10.0">
                <children>
                   <ImageView fx:id="Island1" fitHeight="150.0" fitWidth="200.0" layoutX="393.0" layoutY="-32.0" pickOnBounds="true" preserveRatio="true">
@@ -405,6 +415,19 @@
                      </image>
                   </ImageView>
                   <Label fx:id="PQ11" layoutX="211.0" layoutY="60.0" text="Label" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="81.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
+                  <Label layoutX="236.0" layoutY="152.0" prefHeight="36.0" prefWidth="71.0" text="Player assistant" textAlignment="CENTER" wrapText="true" />
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="343.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/wizard.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="118.0" fitWidth="151.0" layoutX="369.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/fumetto.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="phaseDesc" layoutX="386.0" layoutY="231.0" text="it's MOTHER phase" />
                </children></AnchorPane>
             <ImageView fx:id="Island0" fitHeight="150.0" fitWidth="200.0" layoutX="277.0" layoutY="-110.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -687,22 +710,22 @@
                   <Button fx:id="MTIBtn" layoutX="96.0" layoutY="203.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveToIsland" />
                   <Button fx:id="MTTBtn" layoutX="97.0" layoutY="140.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveToTable" />
                   <Button fx:id="ConfirmBtn" layoutX="92.0" layoutY="337.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="105.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="Confirm" />
-                  <Button fx:id="CloudsBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="98.0" layoutY="674.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CLOUDS" textAlignment="RIGHT">
-                     <rotationAxis>
-                        <Point3D />
-                     </rotationAxis></Button>
-                  <Button fx:id="CharacterBtn" layoutX="153.0" layoutY="624.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CHARACTERS" />
-                  <Button fx:id="AssistantBtn" layoutX="26.0" layoutY="624.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="ASSISTANTS" />
-                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="39.0" layoutY="517.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="250.0" fitWidth="198.0" layoutX="39.0" layoutY="487.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/Titolo pagine.png" />
+                        <Image url="@../images/alert-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="103.0" layoutY="572.0" rotate="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU" textAlignment="CENTER" translateY="-5.0">
+                  <Text layoutX="103.0" layoutY="526.0" rotate="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU" textAlignment="CENTER" translateY="-5.0">
                      <font>
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Text>
+                  <Button fx:id="CloudsBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="90.0" layoutY="650.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CLOUDS" textAlignment="RIGHT">
+                     <rotationAxis>
+                        <Point3D />
+                     </rotationAxis></Button>
+                  <Button fx:id="CharacterBtn" layoutX="89.0" layoutY="557.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CHARACTERS" />
+                  <Button fx:id="AssistantBtn" layoutX="90.0" layoutY="604.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="ASSISTANTS" />
                   <Button fx:id="MoveMotherBtn" layoutX="98.0" layoutY="75.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveMother" />
                   <TextField fx:id="MoveMotherMoves" layoutX="211.0" layoutY="72.0" prefHeight="25.0" prefWidth="39.0" />
                </children>

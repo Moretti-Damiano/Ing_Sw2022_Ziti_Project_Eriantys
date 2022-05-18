@@ -66,7 +66,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private PhaseType phaseType;
 
 
+    @FXML
+    private ImageView assChoseImage;
 
+    @FXML
+    private Label phaseDesc;
     @FXML
     private ImageView BoardImage;
 
@@ -1260,6 +1264,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         setMother_nature_images(mother_nature_images,islands);
         setTowerIsland(towerisland_images,islands,towerIslandQ);
+
+        phaseDesc.setText("it's "+phaseType+"phase");
     }
 
     /**
