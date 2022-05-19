@@ -19,9 +19,9 @@
          <children>
             <AnchorPane layoutX="57.0" layoutY="62.0" prefHeight="452.0" prefWidth="453.0" styleClass="menuBannerAlt">
                <children>
-                  <RadioButton fx:id="radioBtn1" layoutX="174.0" layoutY="155.0" mnemonicParsing="false" selected="true" text="2 Players">
+                  <RadioButton fx:id="radioBtn1" layoutX="115.0" layoutY="191.0" mnemonicParsing="false" selected="true" text="2 Players">
                      <font>
-                        <Font size="16.0" />
+                        <Font size="25.0" />
                      </font>
                      <toggleGroup>
                         <ToggleGroup fx:id="toggleGroup" />
@@ -31,7 +31,7 @@
                         <String fx:value="radioButton" />
                      </styleClass>
                   </RadioButton>
-                  <RadioButton fx:id="radioBtn2" layoutX="176.0" layoutY="193.0" mnemonicParsing="false" text="3 Players" toggleGroup="$toggleGroup">
+                  <RadioButton fx:id="radioBtn2" layoutX="281.0" layoutY="192.0" mnemonicParsing="false" text="3 Players" toggleGroup="$toggleGroup">
                      <font>
                         <Font size="16.0" />
                      </font>
@@ -40,24 +40,16 @@
                         <String fx:value="radioButton" />
                      </styleClass>
                   </RadioButton>
-                  <Button fx:id="backToMenuBtn" layoutX="110.0" layoutY="320.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="233.0" styleClass="smallButton" text="Back To Menu">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="confirmBtn" layoutX="110.0" layoutY="240.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="233.0" styleClass="smallButton" text="Confirm">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
+                  <Button fx:id="backToMenuBtn" layoutX="185.0" layoutY="330.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="1.8" scaleY="1.8" styleClass="bigButton" text="Back To Menu" />
+                  <Button fx:id="confirmBtn" layoutX="184.0" layoutY="262.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="Confirm" />
                   <ImageView fitHeight="78.0" fitWidth="277.0" layoutX="87.0" layoutY="61.0" pickOnBounds="true">
                      <image>
                         <Image url="@../images/button-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Text fill="#451616" layoutX="109.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Choose the number of players" wrappingWidth="233.16278076171875">
+                  <Text fill="#451616" layoutX="109.0" layoutY="108.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Number of Players" textAlignment="CENTER" wrappingWidth="233.16278076171875">
                      <font>
-                        <Font size="17.0" />
+                        <Font size="40.0" />
                      </font>
                   </Text>
                </children>

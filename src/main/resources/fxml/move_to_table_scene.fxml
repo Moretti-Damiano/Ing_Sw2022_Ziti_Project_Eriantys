@@ -45,9 +45,9 @@
                   <ImageView fx:id="DiningStudentYellow0" fitHeight="35.0" fitWidth="35.0" layoutX="343.0" layoutY="320.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentPink0" fitHeight="35.0" fitWidth="35.0" layoutX="344.0" layoutY="380.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="DiningStudentBlue0" fitHeight="35.0" fitWidth="35.0" layoutX="343.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
-                  <Label fx:id="BoardName" alignment="CENTER" layoutX="882.0" layoutY="298.0" prefHeight="46.0" prefWidth="200.0" rotate="90.0" text="BoardName" textFill="#1c1c1c" translateX="-30.0" translateY="10.0">
+                  <Label fx:id="BoardName" alignment="CENTER" layoutX="882.0" layoutY="298.0" prefHeight="46.0" prefWidth="200.0" rotate="90.0" styleClass="customText" text="BoardName" textFill="#1c1c1c" translateX="-30.0" translateY="10.0">
                      <font>
-                        <Font size="30.0" />
+                        <Font size="35.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="DiningStudentGreen01" fitHeight="35.0" fitWidth="35.0" layoutX="378.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
@@ -109,7 +109,7 @@
                   <ImageView fx:id="tower06" fitHeight="45.0" fitWidth="45.0" layoutX="779.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="tower07" fitHeight="45.0" fitWidth="45.0" layoutX="834.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <Button fx:id="SelectBtn" layoutX="127.0" layoutY="325.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="SELECT" />
-                  <Label fx:id="CoinLabel" layoutX="856.0" layoutY="292.0" prefHeight="36.0" prefWidth="85.0" rotate="90.0" text="Label">
+                  <Label fx:id="CoinLabel" layoutX="856.0" layoutY="292.0" prefHeight="36.0" prefWidth="85.0" rotate="90.0" styleClass="customText" text="Label">
                      <font>
                         <Font name="System Bold" size="20.0" />
                      </font>
@@ -422,7 +422,10 @@
                   </ImageView>
                   <Label fx:id="PQ11" layoutX="211.0" layoutY="60.0" text="Label" />
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="81.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" />
-                  <Label layoutX="236.0" layoutY="152.0" prefHeight="36.0" prefWidth="71.0" text="Player assistant" textAlignment="CENTER" wrapText="true" />
+                  <Label graphicTextGap="1.0" layoutX="239.0" layoutY="142.0" prefHeight="58.0" prefWidth="77.0" scaleShape="false" styleClass="customText" text="ASSISTANT" textAlignment="RIGHT" wrapText="true">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font></Label>
                   <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="343.0" layoutY="236.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/wizard.png" />
@@ -433,7 +436,7 @@
                         <Image url="@../images/fumetto.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="phaseDesc" layoutX="386.0" layoutY="231.0" text="it's MOTHER phase" />
+                  <Label fx:id="phaseDesc" layoutX="382.0" layoutY="230.0" prefHeight="26.0" prefWidth="117.0" styleClass="customText" text="it's alessandro MOTHER phase" />
                </children></AnchorPane>
             <ImageView fx:id="Island0" fitHeight="150.0" fitWidth="200.0" layoutX="277.0" layoutY="-110.0" pickOnBounds="true" preserveRatio="true">
                <image>
@@ -721,7 +724,7 @@
                         <Image url="@../images/alert-removebg-preview.png" />
                      </image>
                   </ImageView>
-                  <Text layoutX="103.0" layoutY="526.0" rotate="1.5" strokeType="OUTSIDE" strokeWidth="0.0" text="MENU" textAlignment="CENTER" translateY="-5.0">
+                  <Text layoutX="103.0" layoutY="526.0" rotate="1.5" strokeType="OUTSIDE" strokeWidth="0.0" textAlignment="CENTER" translateY="-5.0">
                      <font>
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
@@ -735,6 +738,11 @@
                   <Button fx:id="MoveMotherBtn" layoutX="98.0" layoutY="75.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveMother" />
                   <TextField fx:id="MoveMotherMoves" layoutX="211.0" layoutY="72.0" prefHeight="25.0" prefWidth="39.0" />
                   <Button fx:id="disconnectBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="91.0" layoutY="689.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="DISCONNECT" textAlignment="RIGHT" />
+                  <Text fontSmoothingType="LCD" layoutX="107.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Menu">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </children>

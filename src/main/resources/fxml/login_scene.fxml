@@ -17,21 +17,21 @@
             <children>
                 <AnchorPane layoutX="57.0" layoutY="62.0" prefHeight="439.0" prefWidth="434.0" styleClass="menuBannerAlt">
                     <children>
-                        <Button fx:id="backToMenuBtn" layoutX="168.0" layoutY="320.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="110.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="BACK TO MENU" />
+                        <Button fx:id="backToMenuBtn" layoutX="175.0" layoutY="318.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="BACK TO MENU" />
                         <Button fx:id="joinBtn" layoutX="175.0" layoutY="249.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="JOIN" />
-                        <ImageView fitHeight="67.0" fitWidth="202.0" layoutX="123.0" layoutY="65.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="84.0" fitWidth="283.0" layoutX="95.0" layoutY="51.0" pickOnBounds="true" preserveRatio="true">
                             <image>
                                 <Image url="@../images/button-removebg-preview.png" />
                             </image>
                         </ImageView>
-                        <Text fill="#451616" layoutX="135.0" layoutY="102.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Choose Your Nickname" wrappingWidth="182.49612426757812">
+                        <Text fill="#451616" layoutX="173.0" layoutY="95.0" scaleX="2.0" scaleY="2.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Choose Your Nickname" wrappingWidth="112.09609985351562">
                             <font>
                                 <Font size="17.0" />
                             </font>
                         </Text>
                         <TextField id="nicknameField" fx:id="nicknameField" alignment="CENTER" layoutX="84.0" layoutY="166.0" prefHeight="51.0" prefWidth="285.0" promptText="Username" styleClass="customText">
                             <font>
-                                <Font size="16.0" />
+                                <Font size="22.0" />
                             </font>
                         </TextField>
                </children>

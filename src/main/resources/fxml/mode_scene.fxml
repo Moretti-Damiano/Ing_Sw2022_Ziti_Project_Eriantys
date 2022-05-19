@@ -9,23 +9,25 @@
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1300.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
     <children>
         <Group scaleX="1.5" scaleY="1.5" scaleZ="1.5">
             <children>
-                <AnchorPane layoutX="57.0" layoutY="62.0" prefHeight="452.0" prefWidth="453.0" styleClass="menuBannerAlt">
+                <AnchorPane layoutX="52.0" layoutY="63.0" prefHeight="452.0" prefWidth="453.0" styleClass="menuBannerAlt">
                     <children>
-                        <ImageView fitHeight="58.0" fitWidth="233.0" layoutX="103.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+                        <ImageView fitHeight="79.0" fitWidth="229.0" layoutX="108.0" layoutY="67.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/mode.png" />
+                                <Image url="@../images/button-removebg-preview.png" />
                             </image>
                         </ImageView>
-                  <RadioButton fx:id="normalButton" layoutX="89.0" layoutY="273.0" mnemonicParsing="false" text="NORMAL">
+                  <RadioButton fx:id="normalButton" layoutX="116.0" layoutY="269.0" mnemonicParsing="false" styleClass="customText">
                      <toggleGroup>
                         <ToggleGroup fx:id="Choice" />
                      </toggleGroup></RadioButton>
-                  <RadioButton fx:id="expertButton" layoutX="298.0" layoutY="274.0" mnemonicParsing="false" selected="true" text="EXPERT" toggleGroup="$Choice" />
+                  <RadioButton fx:id="expertButton" layoutX="317.0" layoutY="265.0" mnemonicParsing="false" selected="true" styleClass="customText" toggleGroup="$Choice" />
                   <ImageView fx:id="normalImage" fitHeight="113.0" fitWidth="107.0" layoutX="76.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/mediummode.png" />
@@ -35,6 +37,11 @@
                         <Image url="@../images/hardmode.png" />
                      </image></ImageView>
                   <Button fx:id="Confirm" layoutX="188.0" layoutY="338.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="Confirm" />
+                  <Text layoutX="133.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="GAME MODE" textAlignment="CENTER" wrappingWidth="182.2652931213379">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
                </children>
             </AnchorPane>
          </children>

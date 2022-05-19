@@ -35,12 +35,6 @@ public class ModeRequestSceneController extends InputObservable implements Gener
 
         normalButton.setText("NORMAL");
         expertButton.setText("EXPERT");
-
-        Image normalModeImage = new Image(getClass().getResourceAsStream("/images/normal_mode.png"));
-        Image expertModeImage = new Image(getClass().getResourceAsStream("/images/expert_mode.png"));
-        expertImage.setImage(expertModeImage);
-        normalImage.setImage(normalModeImage);
-
     }
 
     /**

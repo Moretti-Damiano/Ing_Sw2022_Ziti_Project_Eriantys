@@ -1,15 +1,15 @@
 @font-face {
-    font-family: 'LillyBelle';
-    src: url("../fonts/NEWBOROU.TTF");
+    font-family: 'Gronzy';
+    src: url("../fonts/GRONZY.TTF");
 }
 
 .customText {
-    -fx-font-family: 'LillyBelle';
+    -fx-font-family: 'Gronzy';
     -fx-text-fill: #451616;
 }
 
 .customTextAlt {
-    -fx-font-family: 'LillyBelle';
+    -fx-font-family: 'Gronzy';
     -fx-text-fill: #f2e0d6;
 }
 
@@ -19,7 +19,7 @@
 }
 
 .bigButton {
-    -fx-font-family: 'LillyBelle';
+    -fx-font-family: 'Gronzy';
     -fx-text-fill: #451616;
     -fx-alignment: top-center;
     -fx-background-image: url("../images/name-removebg-preview.png");
@@ -40,7 +40,7 @@
 }
 
 .smallButton {
-    -fx-font-family: 'LillyBelle';
+    -fx-font-family: 'Gronzy';
     -fx-text-fill: #451616;
     -fx-background-image: url("../images/smallbtn.png");
     -fx-background-size: cover;
@@ -75,7 +75,7 @@
 }
 
 .smallButton:disabled {
-    -fx-font-family: 'LillyBelle';
+    -fx-font-family: 'Gronzy';
     -fx-font-size: 16;
     -fx-label-padding: 0px 0 0 0;
 

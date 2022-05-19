@@ -11,6 +11,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
 
 <StackPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1300.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.ConnectionSceneController">
     <children>
@@ -20,7 +21,7 @@
                     <children>
                         <ImageView fitHeight="96.0" fitWidth="395.0" layoutX="83.0" layoutY="53.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/joinservernew.png" />
+                                <Image url="@../images/button-removebg-preview.png" />
                             </image>
                         </ImageView>
                         <Separator layoutX="45.0" layoutY="159.0" prefHeight="3.0" prefWidth="387.0" />
@@ -35,11 +36,21 @@
                         </TextField>
                         <ImageView fitHeight="64.0" fitWidth="211.0" layoutX="135.0" layoutY="183.0" pickOnBounds="true" preserveRatio="true">
                             <image>
-                                <Image url="@../images/serveraddress.png" />
+                                <Image url="@../images/button-removebg-preview.png" />
                             </image>
                         </ImageView>
                         <Button fx:id="backBtn" layoutX="78.0" layoutY="367.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="BACK" />
                         <Button fx:id="connectBtn" layoutX="276.0" layoutY="366.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="CONNECT" />
+                  <Text layoutX="130.0" layoutY="109.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="JOIN A SERVER">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+                  <Text layoutX="187.0" layoutY="223.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="ADDRESS">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Text>
                     </children>
                 </AnchorPane>
             </children>
