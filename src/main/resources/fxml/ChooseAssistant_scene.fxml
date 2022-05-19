@@ -31,9 +31,9 @@
                <Image url="@../images/Titolo pagine.png" />
             </image>
          </ImageView>
-         <Text fill="#383838" fontSmoothingType="LCD" layoutX="201.0" layoutY="56.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ASSISTANTS" textAlignment="CENTER">
+         <Text fill="#383838" fontSmoothingType="LCD" layoutX="201.0" layoutY="56.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Assistants" textAlignment="CENTER">
             <font>
-               <Font size="24.0" />
+               <Font size="40.0" />
             </font>
          </Text>
          <Button fx:id="BackToMenu" layoutX="10.0" layoutY="300.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Back to Menu" />

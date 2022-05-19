@@ -32,12 +32,12 @@
                <Image url="@../images/Titolo pagine.png" />
             </image>
          </ImageView>
-         <Text fill="#383838" fontSmoothingType="LCD" layoutX="244.0" layoutY="57.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="CHARACTER" textAlignment="CENTER">
+         <Text fill="#383838" fontSmoothingType="LCD" layoutX="244.0" layoutY="57.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="CHARACTER" textAlignment="CENTER">
             <font>
-               <Font size="24.0" />
+               <Font size="35.0" />
             </font>
          </Text>
-         <ImageView fitHeight="224.0" fitWidth="162.0" layoutX="228.0" layoutY="79.0" pickOnBounds="true">
+         <ImageView fitHeight="224.0" fitWidth="162.0" layoutX="228.0" layoutY="79.0" pickOnBounds="true" styleClass="customText">
             <image>
                <Image url="@../images/description.png" />
             </image>
@@ -59,9 +59,9 @@
             </children>
          </Group>
          <Button fx:id="ConfirmBtn" layoutX="416.0" layoutY="247.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Confirm" />
-         <Button fx:id="BackToMenu" layoutX="76.0" layoutY="49.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Back to Menu" />
+         <Button fx:id="BackToMenu" layoutX="76.0" layoutY="49.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Back to Menu" textAlignment="CENTER" />
       </AnchorPane>
-      <Button fx:id="BackToMenu" layoutX="851.0" layoutY="50.0" mnemonicParsing="false" text="Back to Menu" />
+      <Button fx:id="BackToMenu" layoutX="851.0" layoutY="50.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Back to Menu" />
    </Group>
    <stylesheets>
       <URL value="@../css/connect_scene.css" />

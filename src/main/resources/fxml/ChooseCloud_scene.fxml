@@ -113,9 +113,9 @@
                      <Image url="@../images/Titolo pagine.png" />
                   </image>
                </ImageView>
-               <Text fill="#484848" layoutX="247.0" layoutY="65.0" rotate="3.0" strokeType="OUTSIDE" strokeWidth="0.0" text="CLOUDISLAND">
+               <Text fill="#484848" layoutX="250.0" layoutY="67.0" rotate="3.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="CloudIsland">
                   <font>
-                     <Font size="22.0" />
+                     <Font size="45.0" />
                   </font>
                </Text>
                <Button fx:id="BackToMenu" alignment="TOP_CENTER" layoutX="11.0" layoutY="321.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Back to Menu" textAlignment="CENTER" />
