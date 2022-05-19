@@ -107,7 +107,7 @@
                      <RadioButton fx:id="Select2" layoutX="60.0" layoutY="110.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" scaleX="0.7" scaleY="0.7" toggleGroup="$SelectIsld" />
                   </children>
                </Group>
-               <Button fx:id="ConfirmBtn" layoutX="288.0" layoutY="277.0" mnemonicParsing="false" text="CONFIRM" />
+               <Button fx:id="ConfirmBtn" layoutX="288.0" layoutY="277.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CONFIRM" />
                <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="220.0" layoutY="14.0" pickOnBounds="true" preserveRatio="true">
                   <image>
                      <Image url="@../images/Titolo pagine.png" />
@@ -118,7 +118,7 @@
                      <Font size="22.0" />
                   </font>
                </Text>
-               <Button fx:id="BackToMenu" layoutX="11.0" layoutY="321.0" mnemonicParsing="false" text="Back to Menu" />
+               <Button fx:id="BackToMenu" alignment="TOP_CENTER" layoutX="11.0" layoutY="321.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Back to Menu" textAlignment="CENTER" />
             </children>
          </AnchorPane>
       </children>

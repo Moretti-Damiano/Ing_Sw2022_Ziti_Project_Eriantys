@@ -29,8 +29,8 @@
                         <Image url="@../images/Plancia_DEF2.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="NextBtn" layoutX="123.0" layoutY="464.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" styleClass="bigButton" text="Next Board" />
-                  <Button fx:id="PreviousBtn" layoutX="122.0" layoutY="188.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" styleClass="bigButton" text="Previous" />
+                  <Button fx:id="NextBtn" layoutX="128.0" layoutY="480.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="Next Board" />
+                  <Button fx:id="PreviousBtn" layoutX="128.0" layoutY="176.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="Previous" />
                   <ImageView fx:id="WaitingStudent0" fitHeight="40.0" fitWidth="40.0" layoutX="277.0" layoutY="196.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="WaitingStudent1" fitHeight="40.0" fitWidth="40.0" layoutX="277.0" layoutY="254.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="WaitingStudent2" fitHeight="40.0" fitWidth="40.0" layoutX="236.0" layoutY="258.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
@@ -108,7 +108,7 @@
                   <ImageView fx:id="tower05" fitHeight="45.0" fitWidth="45.0" layoutX="834.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="tower06" fitHeight="45.0" fitWidth="45.0" layoutX="779.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="tower07" fitHeight="45.0" fitWidth="45.0" layoutX="834.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
-                  <Button fx:id="SelectBtn" layoutX="127.0" layoutY="327.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="SELECT" />
+                  <Button fx:id="SelectBtn" layoutX="127.0" layoutY="325.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="SELECT" />
                   <Label fx:id="CoinLabel" layoutX="856.0" layoutY="292.0" prefHeight="36.0" prefWidth="85.0" rotate="90.0" text="Label">
                      <font>
                         <Font name="System Bold" size="20.0" />

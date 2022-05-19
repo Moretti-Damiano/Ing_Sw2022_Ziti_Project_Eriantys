@@ -36,8 +36,8 @@
                <Font size="24.0" />
             </font>
          </Text>
+         <Button fx:id="BackToMenu" layoutX="10.0" layoutY="300.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Back to Menu" />
       </AnchorPane>
-      <Button fx:id="BackToMenu" layoutX="855.0" layoutY="48.0" mnemonicParsing="false" text="Back to Menu" />
    </Group>
    <stylesheets>
       <URL value="@../css/connect_scene.css" />
