@@ -168,6 +168,8 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
 
 
     private void setStudentsCloud(ArrayList<ImageView> students,CloudIsland cloudIsland){
+      //  if(cloudIsland.getStudents().size()==0) groups.get(cloudIsland.getID()).setVisible(false);  NOT WORKING
+      //  else{
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
@@ -192,10 +194,10 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
                         break;
                     default:
                         break;
-
+                    }
                 }
             }
-        }
+     //   }
 
     private void setCloudIslandImages(ArrayList<Group> groups,List<CloudIsland> cloudIslands){
         for(CloudIsland c : cloudIslands){

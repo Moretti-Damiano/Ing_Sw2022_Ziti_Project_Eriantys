@@ -5,6 +5,7 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.xml.sax.SAXException;
@@ -23,15 +24,16 @@ import static org.junit.jupiter.api.Assertions.*;
 public class MoveToIslandTest {
     private Game game;
 
-    // setUp create a game for 1 player
+    // setUp create a game for 2 player
     @Test
     @BeforeEach
     public void setUp() throws IOException, ParserConfigurationException, SAXException {
         ArrayList<Player> players = new ArrayList<>();
         players.add(new Player("Player" + 1));
+        players.add(new Player("Player" + 2));
 
-        //game = new Game(players);
-
+        game = new Game2(players);
+        game.setActivePlayer(game.getPlayers().get(0));
     }
 
     //test a normal MoveToIsland action
@@ -46,14 +48,15 @@ public class MoveToIslandTest {
 
         Player p0 = game.getPlayers().get(0);
         // the player now has 5 students: one for each colour
-        p0.getBoard().addStudent(redStudent);
-        p0.getBoard().addStudent(blueStudent);
-        p0.getBoard().addStudent(yellowStudent);
-        p0.getBoard().addStudent(greenStudent);
-        p0.getBoard().addStudent(pinkStudent);
+        p0.getBoard().addStudent(new Student(Colour.RED));
+        p0.getBoard().addStudent(new Student(Colour.BLUE));
+        p0.getBoard().addStudent(new Student(Colour.YELLOW));
+        p0.getBoard().addStudent(new Student(Colour.GREEN));
+        p0.getBoard().addStudent(new Student(Colour.PINK));
 
+        int oldsize = p0.getBoard().getStudents_waiting().size();
         game.getIslands().get(1).getStudents().clear();
-        game.setAction( new MoveToIsland(game, game.getIslands().get(1).getID(), Colour.BLUE.getName() ));
+        game.setAction( new MoveToIsland(game, game.getIslands().get(1).getID(), Colour.BLUE.getName()));
         game.doAction();
 
         // verify colours in the chosen Island
@@ -69,37 +72,33 @@ public class MoveToIslandTest {
         assertTrue(p0.getBoard().checkpresence(redStudent.getColour()));
         assertTrue(p0.getBoard().checkpresence(yellowStudent.getColour()));
         // verify that the number of students waiting after the action is correct
-        assertEquals(p0.getBoard().getStudents_waiting().size()-3,game.getIslands().get(1).getColour(blueStudent.getColour()));
+        assertEquals(oldsize,p0.getBoard().getStudents_waiting().size());
 
     }
 
     // test if there isn't the chosenColour
     @Test
     public void NoColour() throws ActionException{
-        Student blueStudent = new Student(Colour.BLUE);
-        Student greenStudent = new Student(Colour.GREEN);
-        Student redStudent = new Student(Colour.RED);
-        Student yellowStudent = new Student(Colour.YELLOW);
-        Student pinkStudent = new Student(Colour.PINK);
-
         Player p0 = game.getPlayers().get(0);
+        p0.getBoard().getStudents_waiting().clear();
         // the player now has 5 students: 1 blue, 1 green, 1 red, 0 pink, 2 yellow
-        p0.getBoard().addStudent(redStudent);
-        p0.getBoard().addStudent(blueStudent);
-        p0.getBoard().addStudent(blueStudent);
-        p0.getBoard().addStudent(yellowStudent);
-        p0.getBoard().addStudent(yellowStudent);
-        p0.getBoard().addStudent(greenStudent);
+        p0.getBoard().addStudent(new Student(Colour.RED));
+        p0.getBoard().addStudent(new Student(Colour.BLUE));
+        p0.getBoard().addStudent(new Student(Colour.BLUE));
+        p0.getBoard().addStudent(new Student(Colour.YELLOW));
+        p0.getBoard().addStudent(new Student(Colour.YELLOW));
+        p0.getBoard().addStudent(new Student(Colour.GREEN));
+        p0.getBoard().addStudent(new Student(Colour.PINK));
 
         game.getIslands().get(0).getStudents().clear();
-        game.setAction( new MoveToIsland(game, game.getIslands().get(0).getID(), Colour.PINK.getName() ));
+        game.setAction( new MoveToIsland(game, game.getIslands().get(0).getID(), Colour.PINK.getName()));
         game.doAction();
 
         // verify colours in the chosen Island
-        assertTrue(game.getIslands().get(0).getStudents().isEmpty());
+        assertEquals(1, game.getIslands().get(0).getStudents().size());
         // verify colours in the board
-        assertFalse(p0.getBoard().checkpresence(pinkStudent.getColour()));
-        assertTrue(p0.getBoard().checkpresence(greenStudent.getColour()));
+        assertFalse(p0.getBoard().checkpresence(Colour.PINK));
+        assertTrue(p0.getBoard().checkpresence(Colour.GREEN));
         assertEquals(2,p0.getBoard().countStudentColor(Colour.BLUE));
         assertTrue(p0.getBoard().checkpresence(Colour.RED));
         assertEquals(2,p0.getBoard().countStudentColor(Colour.YELLOW));
@@ -110,21 +109,23 @@ public class MoveToIslandTest {
     @Test
     public void EmptyWaitingRoom() throws ActionException{
 
+        Player p0 = game.getPlayers().get(0);
+        p0.getBoard().getStudents_waiting().clear();
+
         Student blueStudent = new Student(Colour.BLUE);
         Student greenStudent = new Student(Colour.GREEN);
         Student redStudent = new Student(Colour.RED);
         Student yellowStudent = new Student(Colour.YELLOW);
         Student pinkStudent = new Student(Colour.PINK);
 
-        Player p0 = game.getPlayers().get(0);
-        //the player has no students in his board
+        p0.getBoard().getStudents_waiting().add(new Student(Colour.BLUE));
 
         game.getIslands().get(2).getStudents().clear();
-        game.setAction( new MoveToIsland(game, game.getIslands().get(2).getID(), blueStudent.getColour().getName() ));
+        game.setAction( new MoveToIsland(game, game.getIslands().get(2).getID(), "BLUE"));
         game.doAction();
 
-        // verify colours in the chosen Island
-        assertTrue(game.getIslands().get(2).getStudents().isEmpty());
+        // verify colours is in the chosen Island
+        assertEquals(1, game.getIslands().get(2).getStudents().size());
         // verify colours in the board
         assertTrue(p0.getBoard().getStudents_waiting().isEmpty());
     }

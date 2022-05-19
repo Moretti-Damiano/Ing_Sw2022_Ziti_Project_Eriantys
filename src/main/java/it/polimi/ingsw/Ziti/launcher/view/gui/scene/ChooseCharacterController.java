@@ -67,6 +67,9 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
     @FXML
     public void initialize() {
+        ChosenCharacter=AvailableCharacter.get(ListIndex);
+        Image img = new Image(getClass().getResourceAsStream("/images/Character/Character ("+Integer.toString(ChosenCharacter.getId())+").jpg"));
+        CharacterImg.setImage(img);
         ConfirmBtn.setDisable(true);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);

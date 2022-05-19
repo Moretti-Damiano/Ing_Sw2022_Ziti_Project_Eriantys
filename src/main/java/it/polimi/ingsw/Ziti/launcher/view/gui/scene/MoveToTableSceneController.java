@@ -878,6 +878,16 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private TextField MoveMotherMoves;
 
+    @FXML
+    private Button disconnectBtn;
+
+    @FXML
+    private Label CoinLabel;
+
+    @FXML
+    private ImageView CoinImg;
+
+
 
 
 
@@ -907,6 +917,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         CharacterBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCharacterBtnClick);
         CloudsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCloudBtnClick);
         MoveMotherBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveMotherBtnClick);
+        disconnectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onDisconnectBtnClick);
         MoveMotherBtn.setDisable(true);
         MoveMotherMoves.setDisable(true);
         MoveMotherMoves.setText("");
@@ -914,6 +925,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         MTIBtn.setDisable(true);
         SelectBtn.setDisable(true);
         ConfirmBtn.setDisable(true);
+        //CoinLabel.setText("");
         setMoveMotherBtn();
 
 
@@ -921,10 +933,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
 
       //  Label  BoardName = new Label("Board");  //maybe need to be changed
-        BoardName.setText(RequestPlayer);
+        BoardName.setText(boards.get(0).getPlayername());
 
         board = boards.get(0);
 
+        setCoins();
         studentsWaiting = new ArrayList<>();
         studentsWaiting.add(WaitingStudent0);
         studentsWaiting.add(WaitingStudent1);
@@ -1267,7 +1280,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         setMother_nature_images(mother_nature_images,islands);
         setTowerIsland(towerisland_images,islands,towerIslandQ);
 
-        phaseDesc.setText("it's "+phaseType+"phase");
+        phaseDesc.setText("it's "+ActivePlayer+" "+phaseType+" phase");
     }
 
     /**
@@ -1363,11 +1376,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
      */
 
     void onMoveMotherBtnClick(Event event){
-        MoveMotherMoves.setDisable(false);
-        MTTBtn.setDisable(true);
-        MTIBtn.setDisable(true);
-        MoveMotherMoves.getText();
-        ConfirmBtn.setDisable(false);
+        if(phaseType==PhaseType.MOTHER) {
+            MoveMotherMoves.setDisable(false);
+            MTTBtn.setDisable(true);
+            MTIBtn.setDisable(true);
+            MoveMotherMoves.getText();
+            ConfirmBtn.setDisable(false);
+        }
 
     }
     @FXML
@@ -1790,9 +1805,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToIsland(StudentColour, IslandId))).start();
         }
         else if(phaseType==PhaseType.MOTHER) {
-            ConfirmBtn.setDisable(true);
+        //    ConfirmBtn.setDisable(true);
             MoveMotherBtn.setDisable(true);
-            MoveMotherMoves.setDisable(true);
+         //   MoveMotherMoves.setDisable(true);
             new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveMother(MoveMotherMoves.getText()))).start();
 
         }
@@ -1812,7 +1827,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             checkAndDisableButton(PreviousBtn, 0);
             checkAndDisableButton(NextBtn, boards.size()-1);
             //checkAndAbleButton( MoveToTableChoiceBtn,0);
-
+            setMoveMotherBtn();
 
 
             Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
@@ -1821,6 +1836,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             setStudentsDining();
             setProfessors(professors,board);
             setTowers(towers,board);
+            setCoins();
         }
 
     }
@@ -1843,8 +1859,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
            // checkAndAbleButton( MoveToTableChoiceBtn,0);
             setStudentsWaiting(studentsWaiting,board);
             setStudentsDining();
+            setMoveMotherBtn();
             setProfessors(professors,board);
             setTowers(towers,board);
+            setCoins();
         }
     }
 
@@ -2066,7 +2084,26 @@ public class MoveToTableSceneController extends InputObservable implements Gener
      */
     public void addIslands(List<Island> islands){this.islands=islands;}
 
+    @FXML
+    void onDisconnectBtnClick(Event event){
+        //ask confirm (needs to implement a scene)
+        //System.exit(0); BRUTAL
+        //MAYBE BETTER
+        disconnectBtn.setDisable(true);
+        SceneController.changeRootPane(observers, event, "menu_scene.fxml");
 
 
+    }
 
+    @FXML
+    private void setCoins(){
+        if( board.getWallet()!=null){
+            Image img = new Image(getClass().getResourceAsStream("/images/coin_modified.png"));
+            CoinImg.setImage(img);
+            CoinLabel.setText("Coins  x"+(board.getNumberofCoin()));
+        }
+        else {
+            CoinLabel.setText("");
+        }
+    }
 }

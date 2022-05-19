@@ -1,5 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
+import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.fxml.FXML;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -13,7 +14,10 @@ import javafx.stage.StageStyle;
 /**
  * This class implements the controller of a generic Alert Scene.
  */
-public class AlertSceneController implements GenericSceneController {
+public class AlertSceneController
+    //    extends InputObservable
+    //    implements GenericSceneController
+{
 
     private final Stage stage;
 

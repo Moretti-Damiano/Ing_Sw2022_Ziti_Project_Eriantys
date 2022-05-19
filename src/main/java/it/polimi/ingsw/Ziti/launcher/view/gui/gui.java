@@ -51,6 +51,8 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showErrorMessage(ErrorMessage message) {
+        Platform.runLater(() -> SceneController.showAlert("Error Message",message.getDescription()));
+       // Platform.runLater(() -> SceneController.showPlayAgain());
 
     }
 
