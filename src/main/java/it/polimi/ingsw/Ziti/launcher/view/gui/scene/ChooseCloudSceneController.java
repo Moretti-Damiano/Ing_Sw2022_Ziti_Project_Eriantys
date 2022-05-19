@@ -130,10 +130,10 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             Cld2Students.add(S21);
             Cld2Students.add(S22);
             Cld2Students.add(S23);
+            setCloudIslandImages(groups,availableCloud);
             setStudentsCloud(Cld0Students,availableCloud.get(0));
             setStudentsCloud(Cld1Students,availableCloud.get(1));
             setStudentsCloud(Cld2Students,availableCloud.get(2));
-            setCloudIslandImages(groups,availableCloud);
 
 
         }else{
@@ -152,9 +152,9 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             Cld1Students.add(S11);
             Cld1Students.add(S12);
             S23.setDisable(true);
+            setCloudIslandImages(groups,availableCloud);
             setStudentsCloud(Cld0Students,availableCloud.get(0));
             setStudentsCloud(Cld1Students,availableCloud.get(1));
-            setCloudIslandImages(groups,availableCloud);
 
         }
 
@@ -201,7 +201,7 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
 
     private void setCloudIslandImages(ArrayList<Group> groups,List<CloudIsland> cloudIslands){
         for(CloudIsland c : cloudIslands){
-            if(c.getStudents().size()==0)
+            if(c.getStudents().size()==0){
                 switch (c.getID()){
                     case 0:
                         groups.get(0).setVisible(false);
@@ -210,13 +210,14 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
                     case 2:
                         groups.get(2).setVisible(false);
                     default:break;
-                }else{
-                groups.get(0).setVisible(true);
-                groups.get(1).setVisible(true);
-                groups.get(2).setVisible(true);
-                }
+                }}else{
+                    groups.get(0).setVisible(true);
+                    groups.get(1).setVisible(true);
+                    groups.get(2).setVisible(true);
+
             }
         }
+    }
 
     private void onSelectClick(Event event){
         ConfirmBtn.setDisable(false);
