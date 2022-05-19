@@ -199,26 +199,37 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             }
      //   }
 
-    private void setCloudIslandImages(ArrayList<Group> groups,List<CloudIsland> cloudIslands){
-        for(CloudIsland c : cloudIslands){
-            if(c.getStudents().size()==0){
-                switch (c.getID()){
+    private void setCloudIslandImages(ArrayList<Group> groups,List<CloudIsland> cloudIslands) {
+        for (CloudIsland c : cloudIslands) {
+            if (c.getStudents().size() == 0) {
+                switch (c.getID()) {
                     case 0:
                         groups.get(0).setVisible(false);
                     case 1:
                         groups.get(1).setVisible(false);
                     case 2:
                         groups.get(2).setVisible(false);
-                    default:break;
-                }}else{
-                    groups.get(0).setVisible(true);
-                    groups.get(1).setVisible(true);
-                    groups.get(2).setVisible(true);
-
+                    default:
+                        break;
+                }
+            } else {
+                for (CloudIsland cloudIsland : cloudIslands) {
+                    if (cloudIsland.getStudents().size() != 0) {
+                        switch (cloudIsland.getID()) {
+                            case 0:
+                                groups.get(0).setVisible(true);
+                            case 1:
+                                groups.get(1).setVisible(true);
+                            case 2:
+                                groups.get(2).setVisible(true);
+                            default:
+                                break;
+                        }
+                    }
+                }
             }
         }
     }
-
     private void onSelectClick(Event event){
         ConfirmBtn.setDisable(false);
     }

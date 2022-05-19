@@ -69,42 +69,16 @@
 
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S13" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="36.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
+                     <ImageView fx:id="S13" fitHeight="20.0" fitWidth="20.0" layoutX="80.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
                      </ImageView>
-                     <ImageView fx:id="S11" fitHeight="20.0" fitWidth="20.0" layoutX="46.0" layoutY="33.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
+                     <ImageView fx:id="S11" fitHeight="20.0" fitWidth="20.0" layoutX="37.0" layoutY="27.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
                         <image>
 
                         </image>
                      </ImageView>
-                  </children>
-               </Group>
-               <Group fx:id="Cld2" autoSizeChildren="false" layoutX="448.0" layoutY="115.0">
-                  <children>
-                     <ImageView fx:id="S20" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
-                        <image>
-                        </image>
-                     </ImageView>
-                     <ImageView fx:id="S23" fitHeight="20.0" fitWidth="20.0" layoutX="83.0" layoutY="35.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
-                        <image>
-                        </image>
-                     </ImageView>
-                     <ImageView fx:id="S21" fitHeight="20.0" fitWidth="20.0" layoutX="42.0" layoutY="30.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
-                        <image>
-                        </image>
-                     </ImageView>
-                     <ImageView fx:id="S22" fitHeight="20.0" fitWidth="20.0" layoutX="68.0" layoutY="58.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75">
-                        <image>
-                        </image>
-                     </ImageView>
-                     <ImageView fx:id="Cloud2" fitHeight="121.0" fitWidth="125.0" layoutX="4.0" layoutY="-15.0" pickOnBounds="true" preserveRatio="true">
-                        <image>
-                           <Image url="@../images/Cloud.png" />
-                        </image>
-                     </ImageView>
-                     <RadioButton fx:id="Select2" layoutX="60.0" layoutY="110.0" mnemonicParsing="false" prefHeight="5.0" prefWidth="5.0" scaleX="0.7" scaleY="0.7" toggleGroup="$SelectIsld" />
                   </children>
                </Group>
                <Button fx:id="ConfirmBtn" layoutX="288.0" layoutY="277.0" mnemonicParsing="false" text="CONFIRM" />
@@ -118,6 +92,24 @@
                      <Font size="22.0" />
                   </font>
                </Text>
+               <Group fx:id="Cld2" layoutX="433.0" layoutY="109.0">
+                  <children>
+                     <ImageView fx:id="Cloud2" fitHeight="132.0" fitWidth="129.0" pickOnBounds="true" preserveRatio="true">
+                        <image>
+                           <Image url="@../images/Cloud.png" />
+                        </image>
+                     </ImageView>
+                     <RadioButton fx:id="Select2" layoutX="55.0" layoutY="119.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0">
+                        <toggleGroup>
+                           <ToggleGroup fx:id="SelectIsld1" />
+                        </toggleGroup>
+                     </RadioButton>
+                     <ImageView fx:id="S21" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75" />
+                     <ImageView fx:id="S20" fitHeight="20.0" fitWidth="20.0" layoutX="71.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75" />
+                     <ImageView fx:id="S22" fitHeight="20.0" fitWidth="20.0" layoutX="76.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75" />
+                     <ImageView fx:id="S23" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75" />
+                  </children>
+               </Group>
                <Button fx:id="BackToMenu" layoutX="11.0" layoutY="321.0" mnemonicParsing="false" text="Back to Menu" />
             </children>
          </AnchorPane>
