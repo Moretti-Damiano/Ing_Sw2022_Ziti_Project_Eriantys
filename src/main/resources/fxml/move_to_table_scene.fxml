@@ -109,6 +109,12 @@
                   <ImageView fx:id="tower06" fitHeight="45.0" fitWidth="45.0" layoutX="779.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="tower07" fitHeight="45.0" fitWidth="45.0" layoutX="834.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <Button fx:id="SelectBtn" layoutX="127.0" layoutY="327.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="SELECT" />
+                  <Label fx:id="CoinLabel" layoutX="856.0" layoutY="292.0" prefHeight="36.0" prefWidth="85.0" rotate="90.0" text="Label">
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <ImageView fx:id="CoinImg" fitHeight="40.0" fitWidth="40.0" layoutX="878.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                </children>
             </AnchorPane>
          </children>
@@ -728,6 +734,7 @@
                   <Button fx:id="AssistantBtn" layoutX="90.0" layoutY="604.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="ASSISTANTS" />
                   <Button fx:id="MoveMotherBtn" layoutX="98.0" layoutY="75.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveMother" />
                   <TextField fx:id="MoveMotherMoves" layoutX="211.0" layoutY="72.0" prefHeight="25.0" prefWidth="39.0" />
+                  <Button fx:id="disconnectBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="91.0" layoutY="689.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="DISCONNECT" textAlignment="RIGHT" />
                </children>
             </AnchorPane>
          </children>
