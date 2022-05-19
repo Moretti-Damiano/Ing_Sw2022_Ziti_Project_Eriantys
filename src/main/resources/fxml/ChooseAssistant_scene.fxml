@@ -17,7 +17,7 @@
       </image>
    </ImageView>
    <Group scaleX="2.0" scaleY="2.0" scaleZ="2.0" StackPane.alignment="CENTER">
-      <AnchorPane layoutX="910.0" layoutY="-270.0" prefHeight="351.0" prefWidth="561.0">
+      <AnchorPane layoutX="895.0" layoutY="-319.0" prefHeight="351.0" prefWidth="561.0">
          <ImageView fx:id="AssistantImg" fitHeight="150.0" fitWidth="200.0" layoutX="228.0" layoutY="95.0" pickOnBounds="true" preserveRatio="true" rotate="-3.0">
             <image>
                <Image url="@../images/Assistente (0).png" />
@@ -31,9 +31,9 @@
                <Image url="@../images/Titolo pagine.png" />
             </image>
          </ImageView>
-         <Text fill="#383838" fontSmoothingType="LCD" layoutX="201.0" layoutY="56.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Assistants" textAlignment="CENTER">
+         <Text fill="#383838" layoutX="197.0" layoutY="56.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ASSISTANTS">
             <font>
-               <Font size="40.0" />
+               <Font size="27.0" />
             </font>
          </Text>
          <Button fx:id="BackToMenu" layoutX="10.0" layoutY="300.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Back to Menu" />

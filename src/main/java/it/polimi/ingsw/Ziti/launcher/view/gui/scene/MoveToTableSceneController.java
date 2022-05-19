@@ -22,10 +22,7 @@ import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Locale;
-import java.util.Objects;
+import java.util.*;
 
 import static com.sun.javafx.scene.control.skin.Utils.getResource;
 import static it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour.BLACK;
@@ -66,13 +63,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String IslandId="";
         private PhaseType phaseType;
         private String ActivePlayer="";
+        private Map<Integer,String> assplayer;
 
-
-    @FXML
-    private ImageView assChoseImage;
 
     @FXML
     private Label phaseDesc;
+
     @FXML
     private ImageView BoardImage;
 
@@ -887,6 +883,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private ImageView CoinImg;
 
+    @FXML
+    private ImageView assChoseImage;
+
+
+
 
 
 
@@ -895,6 +896,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         numBoard=0;
         boards= new ArrayList<>();
         islands = new ArrayList<>();
+        assplayer= new HashMap<>();
        // PhaseType phase=PhaseType.NULL;
     }
 
@@ -904,6 +906,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     public void initialize() {
+
         checkAndDisableButton(PreviousBtn, 0);
         checkAndDisableButton(NextBtn, boards.size()-1);
 
@@ -1281,6 +1284,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         setTowerIsland(towerisland_images,islands,towerIslandQ);
 
         phaseDesc.setText("it's "+ActivePlayer+" "+phaseType+" phase");
+
+        if(assplayer.get(boards.get(0).getPlayername())!=null)
+        {
+        Image img=new Image(getClass().getResourceAsStream("/images/Assistente ("+assplayer.get(boards.get(0).getPlayername())+").png"));
+        assChoseImage.setImage(img);
+        }else assChoseImage.setImage(null);
     }
 
     /**
@@ -1829,6 +1838,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             //checkAndAbleButton( MoveToTableChoiceBtn,0);
             setMoveMotherBtn();
 
+            assChoseImage.setImage(null);
+            if(assplayer.get(boards.get(0).getPlayername())!=null)
+            {
+                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+assplayer.get(boards.get(0).getPlayername())+").png"));
+                assChoseImage.setImage(img1);
+            }else assChoseImage.setImage(null);
 
             Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
             BoardImage.setImage(img);
@@ -1854,6 +1869,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             board=boards.get(numBoard);
             Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
             BoardImage.setImage(img);
+            if(assplayer.get(boards.get(0).getPlayername())!=null)
+            {
+                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+assplayer.get(boards.get(0).getPlayername())+").png"));
+                assChoseImage.setImage(img1);
+            }else assChoseImage.setImage(null);
+
             checkAndDisableButton(PreviousBtn, 0);
             checkAndDisableButton(NextBtn, boards.size()-1);
            // checkAndAbleButton( MoveToTableChoiceBtn,0);
@@ -2105,5 +2126,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         else {
             CoinLabel.setText("");
         }
+    }
+
+    public void setAssplayer(Map<Integer,String> assplayer){
+        this.assplayer=assplayer;
     }
 }

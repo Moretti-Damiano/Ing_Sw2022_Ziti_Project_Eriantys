@@ -45,6 +45,8 @@ public class ShowBoardsandIslandsResponse extends MessageToClient{
         return phaseType;
     }
 
+    public Map<Integer,String> getAssistantMap(){return assistantMap;}
+
     @Override
     public void handle(ClientMessageHandler clientMessageHandler) {
         clientMessageHandler.ShowBoardsandIslandsResponseHandle(this);

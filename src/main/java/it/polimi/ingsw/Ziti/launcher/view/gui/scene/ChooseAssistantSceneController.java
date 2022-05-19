@@ -35,27 +35,30 @@ public class ChooseAssistantSceneController extends InputObservable implements G
 
     private int ListIndex=0;
     private List<Assistant> Assistants;
-    private List<Assistant> AvailableAssistants;
+    //private List<Assistant> AvailableAssistants;
     private Assistant ChosenAssistant;
     private int maxIndex;
 
 
     @FXML
     public void initialize() {
-        AvailableAssistants= setAvailableAssistants(AvailableAssistants);
+        //Assistants= setAvailableAssistants(AvailableAssistants);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
         BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);
-        maxIndex=AvailableAssistants.size()-1;
+        maxIndex=Assistants.size()-1;
         checkAndDisableButton(PreviousBtn, 0);
         checkAndDisableButton(NextBtn, maxIndex);
+        ChosenAssistant=Assistants.get(0);
+        Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(ChosenAssistant.getId())+").png"));
+        AssistantImg.setImage(img);
 
     }
 
     @FXML
     void onConfirmClick(Event event) {
-        new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseAssistant(Integer.toString(AvailableAssistants.get(ListIndex).getId())))).start();
+        new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseAssistant(Integer.toString(Assistants.get(ListIndex).getId())))).start();
     }
 
     @FXML
@@ -64,7 +67,7 @@ public class ChooseAssistantSceneController extends InputObservable implements G
             ListIndex++;
             checkAndDisableButton(NextBtn,maxIndex);
             checkAndDisableButton(PreviousBtn,0);
-            ChosenAssistant=AvailableAssistants.get(ListIndex);
+            ChosenAssistant=Assistants.get(ListIndex);
             Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(ChosenAssistant.getId())+").png"));
             AssistantImg.setImage(img);
         }
@@ -78,7 +81,7 @@ public class ChooseAssistantSceneController extends InputObservable implements G
             ListIndex--;
             checkAndDisableButton(NextBtn,maxIndex);
             checkAndDisableButton(PreviousBtn,0);
-            ChosenAssistant=AvailableAssistants.get(ListIndex);
+            ChosenAssistant=Assistants.get(ListIndex);
             Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(ChosenAssistant.getId())+").png"));
             AssistantImg.setImage(img);
         }
@@ -93,17 +96,16 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         button.setDisable(false);
         return false;
     }
-
+/*
     private List<Assistant> setAvailableAssistants(List<Assistant> assistants){
         List<Assistant> pico=new ArrayList<>();
-        pico.removeAll(pico);
         for(Assistant a:assistants){
             if(!a.isAssChose())  pico.add(a);
 
         }
         return pico;
     }
-
+*/
     @FXML
     void  onBackToMenuClick(Event event) {
 
@@ -111,6 +113,6 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     }
 
     public void addAssistant(List<Assistant> PlayerAssistants){
-        this.AvailableAssistants=PlayerAssistants;
+        this.Assistants=PlayerAssistants;
     }
 }

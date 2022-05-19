@@ -32,9 +32,9 @@
                <Image url="@../images/Titolo pagine.png" />
             </image>
          </ImageView>
-         <Text fill="#383838" fontSmoothingType="LCD" layoutX="244.0" layoutY="57.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="CHARACTER" textAlignment="CENTER">
+         <Text fill="#383838" fontSmoothingType="LCD" layoutX="234.0" layoutY="57.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="CHARACTER" textAlignment="CENTER" wrappingWidth="144.1419677734375">
             <font>
-               <Font size="35.0" />
+               <Font size="25.0" />
             </font>
          </Text>
          <ImageView fitHeight="224.0" fitWidth="162.0" layoutX="228.0" layoutY="79.0" pickOnBounds="true" styleClass="customText">
