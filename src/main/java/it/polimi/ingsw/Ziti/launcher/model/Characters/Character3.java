@@ -54,27 +54,29 @@ public class Character3 extends Character{
     @Override
     public void endEffect() {
         Mother mother = getGame().getMother();
+        Island island;
 
         for(int i = 0; i < numTowers.length; i++){
-            if(getGame().getIslands().get(i) != mother.getIsland()){
+            island = getGame().getIslands().get(i);
+            if( island != mother.getIsland()){
                 //set old towerPlayer
-                getGame().getIslands().get(i).setTowerPlayer(towerPlayers[i]);
+                island.setTowerPlayer(towerPlayers[i]);
                 //add old towers
                 if(towerPlayers[i] != null){
                     for(int j = 0; j < numTowers[i]; j++){
-                        getGame().getIslands().get(i).getTowers().add(new Tower(towerPlayers[i],towerPlayers[i].getBoard().getTower_colour()));
+                        island.getTowers().add(new Tower(towerPlayers[i],towerPlayers[i].getBoard().getTower_colour()));
                     }
                 }
             }
-            else{
-                if(!getGame().getIslands().get(i).getTowerPlayer().equals(towerPlayers[i]) && towerPlayers[i]!=null){  //se il towerplayer è cambiato
+            else if (towerPlayers[i]!=null && island.getTowerPlayer()!= null){
+                if(!island.getTowerPlayer().equals(towerPlayers[i])){  //se il towerplayer è cambiato
                     for(int j = 0; j < numTowers[i]; j++){
                     towerPlayers[i].getBoard().addTower(new Tower(towerPlayers[i],towerPlayers[i].getBoard().getTower_colour()));
                     if(getGame().getIslands().get(i).getTowers().size() < numTowers[i])
                         getGame().getIslands().get(i).getTowers().add(getGame().getIslands().get(i).getTowerPlayer().getBoard().removeTower());
                     }
                 }
-                else if(getGame().getIslands().get(i).getTowerPlayer().equals(towerPlayers[i]) && towerPlayers[i]!=null){   //se ,lo stesso player ha "ricnoquistato l'isola
+                else{   //se lo stesso player ha riconquistato l'isola
                     getGame().getIslands().get(i).getTowers().clear();
                     for(int j = 0; j < numTowers[i]; j++){  //resets old towers
                         getGame().getIslands().get(i).getTowers().add(new Tower(towerPlayers[i],towerPlayers[i].getBoard().getTower_colour()));
