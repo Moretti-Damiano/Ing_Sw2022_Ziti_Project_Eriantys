@@ -67,9 +67,11 @@ public class Character3 extends Character{
                 }
             }
             else{
-                if(getGame().getIslands().get(i).getTowerPlayer() != towerPlayers[i] && towerPlayers[i]!=null){  //se il towerplayer è cambiato
+                if(!getGame().getIslands().get(i).getTowerPlayer().equals(towerPlayers[i]) && towerPlayers[i]!=null){  //se il towerplayer è cambiato
                     for(int j = 0; j < numTowers[i]; j++){
                     towerPlayers[i].getBoard().addTower(new Tower(towerPlayers[i],towerPlayers[i].getBoard().getTower_colour()));
+                    if(getGame().getIslands().get(i).getTowers().size() < numTowers[i])
+                        getGame().getIslands().get(i).getTowers().add(getGame().getIslands().get(i).getTowerPlayer().getBoard().removeTower());
                     }
                 }
                 else if(getGame().getIslands().get(i).getTowerPlayer().equals(towerPlayers[i]) && towerPlayers[i]!=null){   //se ,lo stesso player ha "ricnoquistato l'isola
