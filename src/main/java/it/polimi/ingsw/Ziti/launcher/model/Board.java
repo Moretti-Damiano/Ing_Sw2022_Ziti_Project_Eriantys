@@ -85,10 +85,12 @@ public class Board implements Serializable {
 
     /**
      * remove a student from the row that contains the student with the same colour
-     * @param s student to add
+     * @param  colour of the student to remove
      */
-    public void removeStudentfromColourRow( Student s){
-        students[s.getColour().getIntAbbreviation()].remove(s);
+    public void removeStudentfromColourRow(Colour colour){
+        int size;
+        size=students[colour.getIntAbbreviation()].size();
+        students[colour.getIntAbbreviation()].remove(size -1 );
     }
 
     /**
