@@ -47,7 +47,7 @@
                   <ImageView fx:id="DiningStudentBlue0" fitHeight="35.0" fitWidth="35.0" layoutX="343.0" layoutY="441.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <Label fx:id="BoardName" alignment="CENTER" layoutX="882.0" layoutY="298.0" prefHeight="46.0" prefWidth="200.0" rotate="90.0" styleClass="customText" text="BoardName" textFill="#1c1c1c" translateX="-30.0" translateY="10.0">
                      <font>
-                        <Font size="35.0" />
+                        <Font size="50.0" />
                      </font>
                   </Label>
                   <ImageView fx:id="DiningStudentGreen01" fitHeight="35.0" fitWidth="35.0" layoutX="378.0" layoutY="199.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
@@ -438,12 +438,15 @@
                         <Image url="@../images/wizard.png" />
                      </image>
                   </ImageView>
-                  <ImageView fitHeight="118.0" fitWidth="151.0" layoutX="369.0" layoutY="210.0" pickOnBounds="true" preserveRatio="true">
+                  <ImageView fitHeight="112.0" fitWidth="233.0" layoutX="369.0" layoutY="184.0" pickOnBounds="true" preserveRatio="true">
                      <image>
                         <Image url="@../images/fumetto.png" />
                      </image>
                   </ImageView>
-                  <Label fx:id="phaseDesc" layoutX="382.0" layoutY="230.0" prefHeight="26.0" prefWidth="117.0" styleClass="customText" text="it's alessandro MOTHER phase" />
+                  <Label fx:id="phaseDesc" layoutX="372.0" layoutY="181.0" prefHeight="82.0" prefWidth="190.0" rotate="-4.0" styleClass="customText" text="it's alessandro MOTHER phase">
+                     <font>
+                        <Font size="20.0" />
+                     </font></Label>
                </children></AnchorPane>
             <ImageView fx:id="Island0" fitHeight="150.0" fitWidth="200.0" layoutX="277.0" layoutY="-110.0" pickOnBounds="true" preserveRatio="true">
                <image>
