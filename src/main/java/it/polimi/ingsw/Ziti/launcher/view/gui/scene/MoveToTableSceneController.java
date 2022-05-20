@@ -63,7 +63,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         private String IslandId="";
         private PhaseType phaseType;
         private String ActivePlayer="";
-        private Map<Integer,String> assplayer;
+        private Map<String,Integer> assplayer;
 
 
     @FXML
@@ -1287,7 +1287,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         if(assplayer.get(boards.get(0).getPlayername())!=null)
         {
-        Image img=new Image(getClass().getResourceAsStream("/images/Assistente ("+assplayer.get(boards.get(0).getPlayername())+").png"));
+        Image img=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(boards.get(0).getPlayername()))+").png"));
         assChoseImage.setImage(img);
         }else assChoseImage.setImage(null);
     }
@@ -1841,7 +1841,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             assChoseImage.setImage(null);
             if(assplayer.get(boards.get(0).getPlayername())!=null)
             {
-                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+assplayer.get(boards.get(0).getPlayername())+").png"));
+                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(boards.get(0).getPlayername()))+").png"));
                 assChoseImage.setImage(img1);
             }else assChoseImage.setImage(null);
 
@@ -1871,7 +1871,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             BoardImage.setImage(img);
             if(assplayer.get(boards.get(0).getPlayername())!=null)
             {
-                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+assplayer.get(boards.get(0).getPlayername())+").png"));
+                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(boards.get(0).getPlayername()))+").png"));
                 assChoseImage.setImage(img1);
             }else assChoseImage.setImage(null);
 
@@ -2128,7 +2128,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
 
-    public void setAssplayer(Map<Integer,String> assplayer){
+    public void setAssplayer(Map<String,Integer> assplayer){
         this.assplayer=assplayer;
     }
 }
