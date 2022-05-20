@@ -474,13 +474,13 @@ public class GameController extends GameControllerObservable implements ServerOb
      * @return a Map containing every player with the id of the chosen assistant,
      * if the player hasn't already chosen an assistant, the id is set to null
      */
-    private Map<Integer,String> getAssistantMap(){
-        Map<Integer,String> assistantMap = new HashMap<>();
+    private Map<String,Integer> getAssistantMap(){
+        Map<String,Integer> assistantMap = new HashMap<>();
         for(Player player: players){
             if(player.getAssChosen() == null)
-                assistantMap.put(null,player.GetName());
+                assistantMap.put(player.GetName(),null);
             else
-                assistantMap.put(player.getAssChosen().getId(),player.GetName());
+                assistantMap.put(player.GetName(),player.getAssChosen().getId());
         }
         return assistantMap;
     }

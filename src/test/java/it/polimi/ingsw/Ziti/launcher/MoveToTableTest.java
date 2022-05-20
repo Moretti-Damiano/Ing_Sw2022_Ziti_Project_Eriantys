@@ -5,12 +5,16 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
+import it.polimi.ingsw.Ziti.launcher.model.GameMode.ExpertMode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Map;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;
 import static org.junit.jupiter.api.Assertions.assertTrue;
@@ -26,9 +30,14 @@ public class MoveToTableTest {
         for(int i=0; i<2; i++){
             players.add(new Player("Giocatore"+ i));
         }
-        //game=new Game(players);
-    }
+        game=new Game2(players);
+        for(Player p: players){
+            p.getBoard().setWallet(new ArrayList<>());
+        }
+        game.setGameMode(new ExpertMode(game));
 
+
+    }
     @Test
     public void moveToTableTest() throws ActionException {
         ArrayList<Colour>colors= new ArrayList<>();
