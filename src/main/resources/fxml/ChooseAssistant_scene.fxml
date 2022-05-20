@@ -36,7 +36,7 @@
                <Font size="27.0" />
             </font>
          </Text>
-         <Button fx:id="BackToMenu" layoutX="10.0" layoutY="300.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Back to Menu" />
+         <Button fx:id="BackToMenu" layoutX="13.0" layoutY="300.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Back to Menu" />
       </AnchorPane>
    </Group>
    <stylesheets>

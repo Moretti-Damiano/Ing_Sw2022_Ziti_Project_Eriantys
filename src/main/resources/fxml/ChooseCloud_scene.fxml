@@ -111,7 +111,6 @@
                      <ImageView fx:id="S23" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="28.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75" />
                   </children>
                </Group>
-               <Button fx:id="BackToMenu" layoutX="11.0" layoutY="321.0" mnemonicParsing="false" text="Back to Menu" />
             </children>
          </AnchorPane>
       </children>
