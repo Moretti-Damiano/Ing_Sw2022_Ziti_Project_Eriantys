@@ -9,38 +9,39 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
 
-<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1300.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.WinSceneController">
+<StackPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="760.0" prefWidth="1300.0" styleClass="menuBackground" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1">
    <children>
       <Group scaleX="1.5" scaleY="1.5" scaleZ="1.5">
          <children>
             <AnchorPane layoutX="57.0" layoutY="62.0" prefHeight="452.0" prefWidth="453.0" styleClass="menuBannerAlt">
                <children>
-                  <Button fx:id="disconnectBtn" layoutX="110.0" layoutY="320.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="233.0" styleClass="smallButton" text="Disconnect &amp; Exit">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <Button fx:id="ReconnectBtn" layoutX="110.0" layoutY="240.0" mnemonicParsing="false" prefHeight="52.0" prefWidth="233.0" styleClass="smallButton" text="Reconnect">
-                     <font>
-                        <Font size="14.0" />
-                     </font>
-                  </Button>
-                  <ImageView fitHeight="58.0" fitWidth="333.0" layoutX="56.0" layoutY="69.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../images/blocco.png" />
-                     </image>
-                  </ImageView>
-                  <Text fill="#451616" layoutX="109.0" layoutY="103.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="THE WINNER IS" textAlignment="CENTER" wrappingWidth="233.16278076171875">
-                     <font>
-                        <Font size="17.0" />
-                     </font>
-                  </Text>
-                  <Label fx:id="winnerText" alignment="CENTER" contentDisplay="CENTER" layoutX="123.0" layoutY="149.0" prefHeight="78.0" prefWidth="202.0" text="Winner" textFill="#ff0202" underline="true">
+                  <Button fx:id="disconnectBtn" layoutX="189.0" layoutY="371.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="1.7" scaleY="1.7" styleClass="bigButton" text="Exit" />
+                  <Button fx:id="ReconnectBtn" layoutX="184.0" layoutY="303.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="New Game" />
+                  <Label fx:id="winnerText" alignment="CENTER" contentDisplay="CENTER" layoutX="133.0" layoutY="224.0" prefHeight="78.0" prefWidth="202.0" styleClass="customText" text="Winner" textFill="#ff0202" underline="true">
                      <font>
                         <Font name="System Bold" size="24.0" />
                      </font></Label>
+                  <ImageView fitHeight="175.0" fitWidth="172.0" layoutX="17.0" layoutY="37.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/wizard.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="61.0" layoutY="34.0" pickOnBounds="true" preserveRatio="true" rotate="10.0">
+                     <image>
+                        <Image url="@../images/fumetto.png" />
+                     </image>
+                  </ImageView>
+                  <Label layoutX="81.0" layoutY="54.0" styleClass="customText" text="And the winner is...">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <ImageView fitHeight="128.0" fitWidth="94.0" layoutX="180.0" layoutY="121.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../images/champ-removebg-preview.png" />
+                     </image>
+                  </ImageView>
                </children>
             </AnchorPane>
          </children>

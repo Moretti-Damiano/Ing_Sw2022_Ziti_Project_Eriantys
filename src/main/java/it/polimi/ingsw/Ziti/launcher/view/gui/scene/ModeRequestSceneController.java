@@ -33,8 +33,10 @@ public class ModeRequestSceneController extends InputObservable implements Gener
     public void initialize() {
         Confirm.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
 
-        normalButton.setText("NORMAL");
-        expertButton.setText("EXPERT");
+        normalButton.setText("");
+        normalButton.setId("NORMAL");
+        expertButton.setText("");
+        expertButton.setId("EXPERT");
     }
 
     /**
@@ -44,7 +46,7 @@ public class ModeRequestSceneController extends InputObservable implements Gener
      */
     private void onConfirmClick(Event event) {
         RadioButton selectedRadioButton = (RadioButton) Choice.getSelectedToggle();
-        String mode = "" + selectedRadioButton.getText();
+        String mode = "" + selectedRadioButton.getId();
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateMode(mode))).start();
         Confirm.setDisable(true);

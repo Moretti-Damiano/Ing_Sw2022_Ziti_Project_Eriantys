@@ -36,7 +36,7 @@ public class Character5 extends Character{
     public void startEffect()  {
         setUsed(true);
         //tolgo il prof di quel colore
-        Player profPlayer = getGame().checkProfessor(colour);
+        profPlayer = getGame().checkProfessor(colour);
         if(profPlayer != null)
             professor = profPlayer.getBoard().removeProfessorByColour(colour);
     }

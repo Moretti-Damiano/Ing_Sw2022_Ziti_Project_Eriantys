@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -60,6 +61,12 @@
          </Group>
          <Button fx:id="ConfirmBtn" layoutX="416.0" layoutY="247.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="96.0" styleClass="bigButton" text="Confirm" />
          <Button fx:id="BackToMenu" layoutY="320.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="0.7" scaleY="0.7" styleClass="bigButton" text="Back to Menu" />
+         <ImageView fitHeight="27.0" fitWidth="27.0" layoutX="77.0" layoutY="96.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+               <Image url="@../images/coin_modified.png" />
+            </image>
+         </ImageView>
+         <Label fx:id="actualCost" layoutX="81.0" layoutY="101.0" styleClass="customText" text="Label" />
       </AnchorPane>
    </Group>
    <stylesheets>

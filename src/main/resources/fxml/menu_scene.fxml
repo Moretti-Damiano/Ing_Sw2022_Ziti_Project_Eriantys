@@ -1,9 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.net.URL?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.StackPane?>
+<?import javafx.scene.text.Font?>
 
 <StackPane prefHeight="760.0" prefWidth="1300.0" styleClass="rootPane" stylesheets="@../css/menu_scene.css" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.MenuSceneController">
    <children>
@@ -11,11 +14,20 @@
          <children>
             <AnchorPane fx:id="rootPane" layoutX="229.0" layoutY="-110.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="387.0" prefWidth="821.0">
                <children>
-                  <Button fx:id="playBtn" layoutX="150.0" layoutY="296.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="209.0" styleClass="playBtn" stylesheets="@../css/menu_scene.css" />
-                  <Button fx:id="quitBtn" layoutX="450.0" layoutY="294.0" mnemonicParsing="false" prefHeight="68.0" prefWidth="209.0" styleClass="quitBtn" stylesheets="@../css/menu_scene.css" />
+                  <Button fx:id="playBtn" layoutX="224.0" layoutY="296.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="Start" />
+                  <Button fx:id="quitBtn" layoutX="550.0" layoutY="296.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="Quit" />
+                  <Label layoutX="475.0" layoutY="79.0" styleClass="customText" text="*A Ziti Project *" textFill="#d9d9d9">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>
       </Group>
    </children>
+   <stylesheets>
+      <URL value="@../css/global.css" />
+      <URL value="@../css/login_scene.css" />
+   </stylesheets>
 </StackPane>

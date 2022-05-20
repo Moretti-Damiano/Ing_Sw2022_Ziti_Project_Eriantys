@@ -13,6 +13,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -56,6 +57,8 @@ public class ChooseCharacterController extends InputObservable implements Generi
     private TextField Island;
     @FXML
     private Button BackToMenu;
+    @FXML
+    private Label actualCost;
 
 
     private int ListIndex=0;
@@ -70,6 +73,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
         ChosenCharacter=AvailableCharacter.get(ListIndex);
         Image img = new Image(getClass().getResourceAsStream("/images/Character/Character ("+Integer.toString(ChosenCharacter.getId())+").jpg"));
         CharacterImg.setImage(img);
+        actualCost.setText(Integer.toString(ChosenCharacter.getCost()));
         ConfirmBtn.setDisable(true);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);
@@ -127,6 +131,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
             ChosenCharacter=AvailableCharacter.get(ListIndex);
             Image img = new Image(getClass().getResourceAsStream("/images/Character/Character ("+Integer.toString(ChosenCharacter.getId())+").jpg"));
             CharacterImg.setImage(img);
+            actualCost.setText(Integer.toString(ChosenCharacter.getCost()));
             Desc.setText(ChosenCharacter.getDescription());
             Insertion(ChosenCharacter);
         }
@@ -150,6 +155,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
             ChosenCharacter=AvailableCharacter.get(ListIndex);
             Image img = new Image(getClass().getResourceAsStream("/images/Character/Character ("+Integer.toString(ChosenCharacter.getId())+").jpg"));
             CharacterImg.setImage(img);
+            actualCost.setText(Integer.toString(ChosenCharacter.getCost()));
             Desc.setText(ChosenCharacter.getDescription());
             Insertion(ChosenCharacter);
         }

@@ -3,6 +3,7 @@
 <?import java.net.URL?>
 <?import javafx.scene.Group?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
 <?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
@@ -23,18 +24,28 @@
                                 <Image url="@../images/button-removebg-preview.png" />
                             </image>
                         </ImageView>
-                  <RadioButton fx:id="normalButton" layoutX="116.0" layoutY="269.0" mnemonicParsing="false" styleClass="customText">
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="129.0" layoutY="269.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/toggle-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="311.0" layoutY="269.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/toggle-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <RadioButton fx:id="normalButton" layoutX="133.0" layoutY="272.0" mnemonicParsing="false" styleClass="customText">
                      <toggleGroup>
                         <ToggleGroup fx:id="Choice" />
                      </toggleGroup></RadioButton>
-                  <RadioButton fx:id="expertButton" layoutX="317.0" layoutY="265.0" mnemonicParsing="false" selected="true" styleClass="customText" toggleGroup="$Choice" />
-                  <ImageView fx:id="normalImage" fitHeight="113.0" fitWidth="107.0" layoutX="76.0" layoutY="229.0" pickOnBounds="true" preserveRatio="true">
+                  <RadioButton fx:id="expertButton" layoutX="315.0" layoutY="272.0" mnemonicParsing="false" selected="true" styleClass="customText" toggleGroup="$Choice" />
+                  <ImageView fx:id="normalImage" fitHeight="44.0" fitWidth="132.0" layoutX="76.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../images/mediummode.png" />
+                        <Image url="@../images/bottoneverde-removebg-preview.png" />
                      </image></ImageView>
-                  <ImageView fx:id="expertImage" fitHeight="113.0" fitWidth="107.0" layoutX="272.0" layoutY="230.0" pickOnBounds="true" preserveRatio="true" smooth="false">
+                  <ImageView fx:id="expertImage" fitHeight="144.0" fitWidth="132.0" layoutX="258.0" layoutY="218.0" pickOnBounds="true" preserveRatio="true" smooth="false">
                      <image>
-                        <Image url="@../images/hardmode.png" />
+                        <Image url="@../images/bottonerosso-removebg-preview.png" />
                      </image></ImageView>
                   <Button fx:id="Confirm" layoutX="188.0" layoutY="338.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="Confirm" />
                   <Text layoutX="133.0" layoutY="113.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="GAME MODE" textAlignment="CENTER" wrappingWidth="182.2652931213379">
@@ -42,6 +53,16 @@
                         <Font size="40.0" />
                      </font>
                   </Text>
+                  <Label layoutX="113.0" layoutY="217.0" styleClass="customText" text="Normal">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
+                  <Label layoutX="290.0" layoutY="215.0" styleClass="customText" text="Expert">
+                     <font>
+                        <Font size="30.0" />
+                     </font>
+                  </Label>
                </children>
             </AnchorPane>
          </children>

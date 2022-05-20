@@ -17,7 +17,6 @@ public class Character0 extends Character{
         setCost(2);
         setDescription(" During this turn, you take control of any number of professor even if you have the same number of student as the player who controls them\n ");
         setAvailable(true);
-        getUsePhase().add(PhaseType.MOVEMENT);
         getUsePhase().add(PhaseType.MOTHER);
         setEndPhase(PhaseType.CLOUD);
     }
@@ -43,7 +42,7 @@ public class Character0 extends Character{
     public void endEffect() {
         for(Colour colour:Colour.values()){
             if(getGame().getCurrentPlayer().getBoard().getColorRowSize(colour) > 0){
-            getGame().getCurrentPlayer().getBoard().removeStudentfromColourRow(new Student(colour));
+            getGame().getCurrentPlayer().getBoard().removeStudentfromColourRow(colour);
             MoveToTable movetotable = new MoveToTable(getGame(), colour.getName());
             movetotable.controlProfessor(colour);
             }

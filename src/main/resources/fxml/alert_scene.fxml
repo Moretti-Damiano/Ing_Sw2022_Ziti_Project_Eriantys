@@ -7,21 +7,21 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="278.0" prefWidth="545.0" styleClass="rootPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.AlertSceneController">
+<BorderPane fx:id="rootPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" pickOnBounds="false" prefHeight="278.0" prefWidth="545.0" styleClass="rootPane" xmlns="http://javafx.com/javafx/18" xmlns:fx="http://javafx.com/fxml/1" fx:controller="it.polimi.ingsw.Ziti.launcher.view.gui.scene.AlertSceneController">
     <top>
-        <AnchorPane prefHeight="288.0" prefWidth="544.0" styleClass="rootPane">
+        <AnchorPane prefHeight="283.0" prefWidth="553.0" styleClass="rootPane">
             <children>
-                <Label fx:id="titleLbl" alignment="CENTER" layoutX="179.0" layoutY="14.0" prefHeight="22.0" prefWidth="180.0" styleClass="customText" text="ERROR">
+                <Label fx:id="titleLbl" alignment="CENTER" layoutX="179.0" prefHeight="22.0" prefWidth="180.0" styleClass="customText" text="ERROR">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="30.0" />
                     </font>
                 </Label>
                 <Label fx:id="messageLbl" alignment="CENTER" layoutX="84.0" layoutY="83.0" prefHeight="85.0" prefWidth="370.0" styleClass="alertText" text="Something went wrong :(" wrapText="true">
                     <font>
-                        <Font size="14.0" />
+                        <Font size="25.0" />
                     </font>
                 </Label>
-                <Button fx:id="okBtn" layoutX="167.0" layoutY="189.0" mnemonicParsing="false" prefHeight="47.0" prefWidth="204.0" styleClass="smallButton" text="OK" />
+                <Button fx:id="okBtn" layoutX="225.0" layoutY="200.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="OK" />
             </children>
         </AnchorPane>
     </top>
