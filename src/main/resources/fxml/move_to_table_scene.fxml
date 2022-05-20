@@ -109,12 +109,20 @@
                   <ImageView fx:id="tower06" fitHeight="45.0" fitWidth="45.0" layoutX="779.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <ImageView fx:id="tower07" fitHeight="45.0" fitWidth="45.0" layoutX="834.0" layoutY="404.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
                   <Button fx:id="SelectBtn" layoutX="127.0" layoutY="325.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="SELECT" />
-                  <Label fx:id="CoinLabel" layoutX="856.0" layoutY="292.0" prefHeight="36.0" prefWidth="85.0" rotate="90.0" styleClass="customText" text="Label">
+                  <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="186.0" layoutY="508.0" pickOnBounds="true" preserveRatio="true" scaleX="0.7" scaleY="0.7">
+                     <image>
+                        <Image url="@../images/banner-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Label fx:id="CoinLabel" layoutX="250.0" layoutY="567.0" prefHeight="36.0" prefWidth="85.0" rotate="90.0" styleClass="customText" text="Label" textAlignment="CENTER">
                      <font>
-                        <Font name="System Bold" size="20.0" />
+                        <Font name="System Bold" size="22.0" />
                      </font>
                   </Label>
-                  <ImageView fx:id="CoinImg" fitHeight="40.0" fitWidth="40.0" layoutX="878.0" layoutY="350.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" />
+                  <ImageView fx:id="CoinImg" fitHeight="40.0" fitWidth="40.0" layoutX="225.0" layoutY="560.0" pickOnBounds="true" preserveRatio="true" rotate="90.0" scaleX="1.5" scaleY="1.5">
+                     <image>
+                        <Image url="@../images/coin_modified.png" />
+                     </image></ImageView>
                </children>
             </AnchorPane>
          </children>
