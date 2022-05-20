@@ -150,7 +150,7 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+        notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
         //Platform.runLater(() -> SceneController.changeRootPane(observers,"move_to_table_scene.fxml"));
     }
 

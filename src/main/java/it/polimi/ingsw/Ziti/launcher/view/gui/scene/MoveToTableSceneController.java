@@ -893,7 +893,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
 
     public MoveToTableSceneController(){
-        numBoard=0;
         boards= new ArrayList<>();
         islands = new ArrayList<>();
         assplayer= new HashMap<>();
@@ -906,6 +905,14 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     public void initialize() {
+
+        for(int i=0;i<boards.size();i++){
+            if(boards.get(i).getPlayername()==RequestPlayer){
+                board=boards.get(i);
+                numBoard=i;
+            }
+        }
+        BoardName.setText(RequestPlayer);
 
         checkAndDisableButton(PreviousBtn, 0);
         checkAndDisableButton(NextBtn, boards.size()-1);
@@ -934,11 +941,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
 
 
-
       //  Label  BoardName = new Label("Board");  //maybe need to be changed
-        BoardName.setText(boards.get(0).getPlayername());
+      //  BoardName.setText(boards.get(0).getPlayername());
 
-        board = boards.get(0);
+
 
         setCoins();
         studentsWaiting = new ArrayList<>();
@@ -1828,8 +1834,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
      */
     @FXML
     void onNextClick(Event event) {
-        int max= boards.size();
-        if(numBoard<=max){
+        int max= boards.size()-1;
+        if(numBoard<max){
             numBoard++;
             board=boards.get(numBoard);
             BoardName.setText(board.getPlayername());
