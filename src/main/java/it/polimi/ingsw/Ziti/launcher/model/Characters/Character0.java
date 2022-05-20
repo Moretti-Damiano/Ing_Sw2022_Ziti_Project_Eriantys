@@ -43,7 +43,7 @@ public class Character0 extends Character{
     public void endEffect() {
         for(Colour colour:Colour.values()){
             if(getGame().getCurrentPlayer().getBoard().getColorRowSize(colour) > 0){
-            getGame().getCurrentPlayer().getBoard().removeStudentfromColourRow(new Student(colour));
+            getGame().getCurrentPlayer().getBoard().removeStudentfromColourRow(colour);
             MoveToTable movetotable = new MoveToTable(getGame(), colour.getName());
             movetotable.controlProfessor(colour);
             }
