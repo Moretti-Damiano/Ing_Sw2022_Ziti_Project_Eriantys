@@ -1839,9 +1839,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             setMoveMotherBtn();
 
             assChoseImage.setImage(null);
-            if(assplayer.get(boards.get(0).getPlayername())!=null)
+            if(assplayer.get(board.getPlayername())!=null)
             {
-                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(boards.get(0).getPlayername()))+").png"));
+                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(board.getPlayername()))+").png"));
                 assChoseImage.setImage(img1);
             }else assChoseImage.setImage(null);
 
@@ -1869,9 +1869,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             board=boards.get(numBoard);
             Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
             BoardImage.setImage(img);
-            if(assplayer.get(boards.get(0).getPlayername())!=null)
+            if(assplayer.get(board.getPlayername())!=null)
             {
-                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(boards.get(0).getPlayername()))+").png"));
+                Image img1=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(board.getPlayername()))+").png"));
                 assChoseImage.setImage(img1);
             }else assChoseImage.setImage(null);
 

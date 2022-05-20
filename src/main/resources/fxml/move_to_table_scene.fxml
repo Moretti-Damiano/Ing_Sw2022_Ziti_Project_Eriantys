@@ -128,7 +128,6 @@
             </ImageView>
             <ImageView fx:id="assChoseImage" fitHeight="164.0" fitWidth="127.0" layoutX="220.0" layoutY="200.0" pickOnBounds="true">
                <image>
-                  <Image url="@../images/Assistente (0).png" />
                </image>
             </ImageView>
             <AnchorPane prefHeight="658.0" prefWidth="660.0" translateX="10.0">
