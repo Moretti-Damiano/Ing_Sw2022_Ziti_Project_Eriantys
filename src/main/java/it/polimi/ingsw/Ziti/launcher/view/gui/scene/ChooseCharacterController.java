@@ -115,6 +115,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
                 break;
             default:break;
         }
+        SceneController.changeRootPane(observers, event, "move_to_table_scene.fxml");
     }
 
     @FXML

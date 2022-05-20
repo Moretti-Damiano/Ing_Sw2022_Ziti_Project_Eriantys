@@ -287,18 +287,29 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
     private void playAgain(){
-        System.out.println("Do you want to play again?\n Type [Y] for Yes or [N] for No");
-        String response=readLine();
+        scanner.reset();
+        //scanner.remove();
+        System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
+       // new cli();
+        scanner = new Scanner(System.in);
+        freeInput = false;
+        inputThread = new InputReadThread(this);
+        inputThread.setFreeInput(false);
         inputThread.setFreeInput(true);
+        String response=scanner.nextLine();
+
         //not reading an input (probably because of threads)
+        //scanner.skip("");
         if(Objects.equals(response, "Y"))init();
         else System.exit(0);
+
     }
 
 
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
         showErrorMessage(message);
+        //inputThread.setFreeInput(true);
        // this.init();
        // inputThread.setFreeInput(true); probably faster but not really tested
 
@@ -524,8 +535,9 @@ public class cli extends InputObservable implements view, ViewObserver {
                 notifyObserver(obs->obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
                 break;
             case "DISCONNECT":
-                notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
+               // notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
                // init();
+                System.exit(0);
                 break;
             default:
                 System.out.println("Invalid");

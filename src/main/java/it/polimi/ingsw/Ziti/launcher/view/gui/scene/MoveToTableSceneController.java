@@ -2114,10 +2114,11 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     void onDisconnectBtnClick(Event event){
         //ask confirm (needs to implement a scene)
-        //System.exit(0); BRUTAL
         //MAYBE BETTER
         disconnectBtn.setDisable(true);
-        SceneController.changeRootPane(observers, event, "menu_scene.fxml");
+        System.exit(0);
+
+        // SceneController.changeRootPane(observers, event, "menu_scene.fxml");
 
 
     }
