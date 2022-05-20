@@ -4,13 +4,15 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.controller.ClientController;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.view.cli.cli;
+import it.polimi.ingsw.Ziti.launcher.view.gui.JavaFXgui;
+import javafx.application.Application;
 
 import java.util.concurrent.ExecutionException;
 
 public class ClientApp2 {
     public static void main(String[] args) throws ExecutionException {
 
-        boolean cliParam = true; // default value
+        boolean cliParam = false; // default value
 
         for (String arg : args) {
             if (arg.equals("--cli") || arg.equals("-c")) {
@@ -26,6 +28,8 @@ public class ClientApp2 {
             view.addObserver(clientcontroller);
             clientMessageHandler.addObserver(view);
             view.init();
-        }
+        }else{
+        Application.launch(JavaFXgui.class);
+         }
     }
 }

@@ -42,7 +42,9 @@ public class ChooseAssistantSceneController extends InputObservable implements G
 
     @FXML
     public void initialize() {
-        AvailableAssistants= setAvailableAssistants(AvailableAssistants);
+        AvailableAssistants= setAvailableAssistants(Assistants);
+        Image img = new Image(getClass().getResourceAsStream("/images/Assistente ("+AvailableAssistants.get(0).getId()+").png"));
+        AssistantImg.setImage(img);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         NextBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onNextClick);
         PreviousBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onPreviousClick);
@@ -111,6 +113,6 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     }
 
     public void addAssistant(List<Assistant> PlayerAssistants){
-        this.AvailableAssistants=PlayerAssistants;
+        this.Assistants=PlayerAssistants;
     }
 }

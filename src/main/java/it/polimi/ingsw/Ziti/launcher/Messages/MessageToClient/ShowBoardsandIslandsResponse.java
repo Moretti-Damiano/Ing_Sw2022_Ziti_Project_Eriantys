@@ -14,11 +14,11 @@ public class ShowBoardsandIslandsResponse extends MessageToClient{
     private String requestplayer;
     private String activeplayer;
     private PhaseType phaseType;
-    private Map<Integer,String> assistantMap;
+    private Map<String,Integer> assistantMap;
 
     public ShowBoardsandIslandsResponse(ArrayList<Island> islands, ArrayList<Board> boards,
                                         String requestPlayer,String activeplayer, PhaseType phaseType,
-                                        Map<Integer,String> assistantMap){
+                                        Map<String,Integer> assistantMap){
         this.boards=boards;
         this.islands=islands;
         this.requestplayer=requestPlayer;
