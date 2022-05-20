@@ -47,6 +47,7 @@ public class MoveToIslandTest {
         Student yellowStudent = new Student(Colour.YELLOW);
 
         Player p0 = game.getPlayers().get(0);
+        p0.getBoard().getStudents_waiting().clear();
         // the player now has 5 students: one for each colour
         p0.getBoard().addStudent(new Student(Colour.RED));
         p0.getBoard().addStudent(new Student(Colour.BLUE));
@@ -66,13 +67,13 @@ public class MoveToIslandTest {
         assertEquals(0,game.getIslands().get(1).getColour(Colour.RED));
         assertEquals(0,game.getIslands().get(1).getColour(Colour.YELLOW));
         // verify colours in the board
-        assertFalse(p0.getBoard().checkpresence(blueStudent.getColour()));
-        assertTrue(p0.getBoard().checkpresence(greenStudent.getColour()));
-        assertTrue(p0.getBoard().checkpresence(pinkStudent.getColour()));
-        assertTrue(p0.getBoard().checkpresence(redStudent.getColour()));
-        assertTrue(p0.getBoard().checkpresence(yellowStudent.getColour()));
+        assertFalse(p0.getBoard().checkpresence(Colour.BLUE));
+        assertTrue(p0.getBoard().checkpresence(Colour.GREEN));
+        assertTrue(p0.getBoard().checkpresence(Colour.PINK));
+        assertTrue(p0.getBoard().checkpresence(Colour.RED));
+        assertTrue(p0.getBoard().checkpresence(Colour.YELLOW));
         // verify that the number of students waiting after the action is correct
-        assertEquals(oldsize,p0.getBoard().getStudents_waiting().size());
+        assertEquals(oldsize-1,p0.getBoard().getStudents_waiting().size());
 
     }
 
