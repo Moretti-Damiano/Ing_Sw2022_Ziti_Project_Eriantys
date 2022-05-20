@@ -100,11 +100,7 @@
                            <Image url="@../images/Cloud.png" />
                         </image>
                      </ImageView>
-                     <RadioButton fx:id="Select2" layoutX="55.0" layoutY="119.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0">
-                        <toggleGroup>
-                           <ToggleGroup fx:id="SelectIsld1" />
-                        </toggleGroup>
-                     </RadioButton>
+                     <RadioButton fx:id="Select2" layoutX="55.0" layoutY="119.0" mnemonicParsing="false" prefHeight="10.0" prefWidth="10.0" toggleGroup="$SelectIsld" />
                      <ImageView fx:id="S21" fitHeight="20.0" fitWidth="20.0" layoutX="28.0" layoutY="76.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75" />
                      <ImageView fx:id="S20" fitHeight="20.0" fitWidth="20.0" layoutX="71.0" layoutY="80.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75" />
                      <ImageView fx:id="S22" fitHeight="20.0" fitWidth="20.0" layoutX="76.0" layoutY="32.0" pickOnBounds="true" preserveRatio="true" scaleX="1.75" scaleY="1.75" />

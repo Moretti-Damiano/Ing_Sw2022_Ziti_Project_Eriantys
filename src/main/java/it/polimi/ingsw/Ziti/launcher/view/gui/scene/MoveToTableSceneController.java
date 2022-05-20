@@ -1293,7 +1293,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
         if(assplayer.get(boards.get(0).getPlayername())!=null)
         {
-        Image img=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(boards.get(0).getPlayername()))+").png"));
+        Image img=new Image(getClass().getResourceAsStream("/images/Assistente ("+Integer.toString(assplayer.get(board.getPlayername()))+").png"));
         assChoseImage.setImage(img);
         }else assChoseImage.setImage(null);
     }
