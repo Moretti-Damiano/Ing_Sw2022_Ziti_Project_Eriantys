@@ -2126,12 +2126,14 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private void setCoins(){
         if( board.getWallet()!=null){
+
             Image img = new Image(getClass().getResourceAsStream("/images/coin_modified.png"));
             CoinImg.setImage(img);
             CoinLabel.setText("Coins  x"+(board.getNumberofCoin()));
         }
         else {
-            CoinLabel.setText("");
+
+            CoinLabel.setText("Coins x0");
         }
     }
 
