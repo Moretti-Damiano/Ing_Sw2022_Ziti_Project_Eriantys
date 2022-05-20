@@ -723,10 +723,15 @@
          <children>
             <AnchorPane layoutX="-127.0" layoutY="-6.0" prefHeight="739.0" prefWidth="311.0">
                <children>
-                  <Button fx:id="MTIBtn" layoutX="96.0" layoutY="203.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveToIsland" />
-                  <Button fx:id="MTTBtn" layoutX="97.0" layoutY="140.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveToTable" />
-                  <Button fx:id="ConfirmBtn" layoutX="92.0" layoutY="337.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="105.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="Confirm" />
-                  <ImageView fitHeight="250.0" fitWidth="198.0" layoutX="39.0" layoutY="487.0" pickOnBounds="true">
+                  <ImageView fitHeight="319.0" fitWidth="233.0" layoutX="7.0" layoutY="7.0" pickOnBounds="true">
+                     <image>
+                        <Image url="@../images/alert-removebg-preview.png" />
+                     </image>
+                  </ImageView>
+                  <Button fx:id="MTIBtn" layoutX="59.0" layoutY="199.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="MoveToIsland" />
+                  <Button fx:id="MTTBtn" layoutX="59.0" layoutY="143.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="MoveToTable" />
+                  <Button fx:id="ConfirmBtn" layoutX="85.0" layoutY="263.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="105.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="Confirm" />
+                  <ImageView fitHeight="250.0" fitWidth="225.0" layoutX="11.0" layoutY="432.0" pickOnBounds="true" scaleY="1.3">
                      <image>
                         <Image url="@../images/alert-removebg-preview.png" />
                      </image>
@@ -736,16 +741,21 @@
                         <Font name="System Bold Italic" size="24.0" />
                      </font>
                   </Text>
-                  <Button fx:id="CloudsBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="90.0" layoutY="650.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CLOUDS" textAlignment="RIGHT">
+                  <Button fx:id="CloudsBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="76.0" layoutY="576.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="CLOUDS" textAlignment="RIGHT">
                      <rotationAxis>
                         <Point3D />
                      </rotationAxis></Button>
-                  <Button fx:id="CharacterBtn" layoutX="89.0" layoutY="557.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="CHARACTERS" />
-                  <Button fx:id="AssistantBtn" layoutX="90.0" layoutY="604.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="ASSISTANTS" />
-                  <Button fx:id="MoveMotherBtn" layoutX="98.0" layoutY="75.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="MoveMother" />
-                  <TextField fx:id="MoveMotherMoves" layoutX="211.0" layoutY="72.0" prefHeight="25.0" prefWidth="39.0" />
-                  <Button fx:id="disconnectBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="91.0" layoutY="689.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="DISCONNECT" textAlignment="RIGHT" />
-                  <Text fontSmoothingType="LCD" layoutX="107.0" layoutY="519.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Menu">
+                  <Button fx:id="CharacterBtn" layoutX="76.0" layoutY="471.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="CHARACTERS" />
+                  <Button fx:id="AssistantBtn" layoutX="76.0" layoutY="527.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="ASSISTANTS" />
+                  <Button fx:id="MoveMotherBtn" layoutX="59.0" layoutY="86.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="MoveMother" />
+                  <TextField fx:id="MoveMotherMoves" layoutX="186.0" layoutY="85.0" prefHeight="25.0" prefWidth="39.0" />
+                  <Button fx:id="disconnectBtn" alignment="TOP_CENTER" graphicTextGap="1.0" layoutX="76.0" layoutY="631.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" scaleX="2.0" scaleY="2.0" styleClass="bigButton" text="DISCONNECT" textAlignment="RIGHT" />
+                  <Text fontSmoothingType="LCD" layoutX="93.0" layoutY="434.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Menu">
+                     <font>
+                        <Font size="40.0" />
+                     </font>
+                  </Text>
+                  <Text fontSmoothingType="LCD" layoutX="92.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" styleClass="customText" text="Moves">
                      <font>
                         <Font size="40.0" />
                      </font>
