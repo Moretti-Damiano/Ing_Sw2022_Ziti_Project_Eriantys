@@ -886,6 +886,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private ImageView assChoseImage;
 
+    @FXML
+    private Button BackToGameBtn;
+
+    @FXML
+    private Button ReallyDisconnectBtn;
+
+
 
 
 
@@ -928,6 +935,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         CloudsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCloudBtnClick);
         MoveMotherBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveMotherBtnClick);
         disconnectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onDisconnectBtnClick);
+        BackToGameBtn.setVisible(false);
+        ReallyDisconnectBtn.setVisible(false);
+        BackToGameBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onBackToGameBtnClick);
+        ReallyDisconnectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onReallyDisconnectBtnClick);
         MoveMotherBtn.setDisable(true);
         MoveMotherMoves.setDisable(true);
         MoveMotherMoves.setText("");
@@ -1911,6 +1922,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(StudentColour))).start();
     }
 
+    void onBackToGameBtnClick(Event event){
+       notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+    }
+    void onReallyDisconnectBtnClick(Event event){
+        System.exit(0);
+    }
+
     /**
      * Allow to select Island, deactivate MoveToTableBtn
      * @param event Click on MoveToIsland
@@ -2115,8 +2133,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     void onDisconnectBtnClick(Event event){
         //ask confirm (needs to implement a scene)
         //MAYBE BETTER
-        disconnectBtn.setDisable(true);
-        System.exit(0);
+        BackToGameBtn.setVisible(true);
+        ReallyDisconnectBtn.setVisible(true);
 
         // SceneController.changeRootPane(observers, event, "menu_scene.fxml");
 
