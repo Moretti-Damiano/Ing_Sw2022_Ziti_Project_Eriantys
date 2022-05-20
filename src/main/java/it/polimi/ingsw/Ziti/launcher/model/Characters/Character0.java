@@ -17,7 +17,6 @@ public class Character0 extends Character{
         setCost(2);
         setDescription(" During this turn, you take control of any number of professor even if you have the same number of student as the player who controls them\n ");
         setAvailable(true);
-        getUsePhase().add(PhaseType.MOVEMENT);
         getUsePhase().add(PhaseType.MOTHER);
         setEndPhase(PhaseType.CLOUD);
     }
