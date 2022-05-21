@@ -4,17 +4,18 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 public class MatchServer implements GameControllerObserver {
 
-    private ServerMessageHandler serverMessageHandler; //observed by GameController
-    private ArrayList<ClientHandler> clientHandlers;
+    private final ServerMessageHandler serverMessageHandler; //observed by GameController
+    private final ArrayList<ClientHandler> clientHandlers;
+    private boolean gameEnded;
 
     public MatchServer(){
         serverMessageHandler = new ServerMessageHandler();
         clientHandlers = new ArrayList<>();
+        gameEnded = false;
     }
 
 
@@ -79,24 +80,33 @@ public class MatchServer implements GameControllerObserver {
         notifyPlayer(message,newName);
     }
 
+    /**
+     * Closes every socket and set gameEnded to true
+     */
     public void disconnectAll(){
-        System.out.println("Closing all sockets");
-        for(ClientHandler clientHandler: clientHandlers){
-            try {
-                System.out.println("Closing socket " + clientHandler.getNickName());
+        if(!gameEnded) {
+            gameEnded = true;
+            System.out.println("Closing all sockets");
+            for (ClientHandler clientHandler : clientHandlers) {
                 clientHandler.closeSocket();
-            } catch (IOException e) {
-                System.out.println("Error in closing");
             }
+            System.out.println("All sockets closed");
         }
     }
 
+    /**
+     * calls the serverMessageHandler the method to end the game and warn and disconnect every client
+     */
     public void clientDisconnection(){
-        serverMessageHandler.clientDisconnection();
+        if(!gameEnded)
+            serverMessageHandler.clientDisconnection();
     }
 
     public ArrayList<ClientHandler> getClientHandlers() {
         return clientHandlers;
     }
 
+    public boolean isGameEnded() {
+        return gameEnded;
+    }
 }
