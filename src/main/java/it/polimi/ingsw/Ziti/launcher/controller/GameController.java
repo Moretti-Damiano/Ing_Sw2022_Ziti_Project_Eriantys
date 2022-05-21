@@ -43,9 +43,11 @@ public class GameController extends GameControllerObservable implements ServerOb
     private ArrayList<Player> players;
     private int numberOfPlayers = 4;//game for n plauers
     private boolean mode;
+    private boolean doingFirstLogin;
 
     public GameController(MainSocketServer mainSocketServer){
         players = new ArrayList<>();
+        doingFirstLogin = false;
     }
 
     public ArrayList<Player> getPlayers() {
@@ -81,8 +83,10 @@ public class GameController extends GameControllerObservable implements ServerOb
     @Override
     public void loginHandler(LoginMessage message){
         System.out.println("Received login message");
-        if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers) {
+        if(getPlayerByName(message.getUsername()) == null && players.size() < numberOfPlayers && !doingFirstLogin) {
             try {
+                if(players.size()==0)
+                    doingFirstLogin = true;
                 players.add(new Player(message.getUsername()));
 
                 notifyObserver(obs -> obs.successfulLogin(new CompletedRequestMessage("Login completed"),message.getSender(),message.getUsername()));
@@ -96,8 +100,14 @@ public class GameController extends GameControllerObservable implements ServerOb
             }
         }
         else{
-            notifyObserver(obs -> obs.sendToOnePlayer(new LoginError("Name already used, try again"), message.getSender()));
-            return;
+            if(getPlayerByName(message.getUsername()) != null){
+                notifyObserver(obs -> obs.sendToOnePlayer(new LoginError("Name already used, try again"), message.getSender()));
+                return;
+            }
+            if(doingFirstLogin){
+                notifyObserver(obs -> obs.sendToOnePlayer(new LoginError("Wait until first player set the game"), message.getSender()));
+                return;
+            }
         }
         if(players.size() == numberOfPlayers){
             startGame();
@@ -109,7 +119,7 @@ public class GameController extends GameControllerObservable implements ServerOb
      * @param message is a Message To Server
      */
     public void numberOfPlayerHandler(NumberOfPlayersMessage message){
-        if(message.getNumberOfPlayers() < 2 || message.getNumberOfPlayers() > 4){
+        if(message.getNumberOfPlayers() < 2 || message.getNumberOfPlayers() > 3){
             notifyObserver(obs -> obs.sendToOnePlayer(new InputError("Invalid number of players"),message.getSender()));
             notifyObserver(obs -> obs.sendToOnePlayer(new NumOfPLayersRequest(),message.getSender()));
         }
@@ -127,6 +137,7 @@ public class GameController extends GameControllerObservable implements ServerOb
      }
      else{
          this.mode=message.getMode().toUpperCase(Locale.ROOT).equals("EXPERT");
+         doingFirstLogin = false;
      }
     }
 
