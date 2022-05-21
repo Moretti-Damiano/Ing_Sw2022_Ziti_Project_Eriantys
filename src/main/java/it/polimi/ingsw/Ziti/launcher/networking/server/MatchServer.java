@@ -6,6 +6,9 @@ import it.polimi.ingsw.Ziti.launcher.observer.GameControllerObserver;
 
 import java.util.ArrayList;
 
+/**
+ * This class contains all the method needed to communicate between the players and the gameControllers
+ */
 public class MatchServer implements GameControllerObserver {
 
     private final ServerMessageHandler serverMessageHandler; //observed by GameController
@@ -65,7 +68,6 @@ public class MatchServer implements GameControllerObserver {
         notifyAllPlayers(message);
 
     }
-
 
     /**
      * Handles the final part of the login of a client:
