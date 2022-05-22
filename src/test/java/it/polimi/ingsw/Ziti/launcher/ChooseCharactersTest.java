@@ -190,8 +190,30 @@ public class ChooseCharactersTest {
         assertTrue(player1.getBoard().hasProfessor(Colour.BLUE));
     }
     @Test
-    public void Character5(){
-
+    public void Character5() throws ActionException, CharacterException {
+        for(Island s: game.getIslands()){
+            if(s.getMother()){
+                s.removeMother();
+            }
+        }
+        game.getMother().setIsland(game.getIslandbyId(7));
+        game.getIslands().get(7).addMother();
+        player1.getBoard().addProfessor(game.getProfessorbyColour(Colour.PINK));
+        game.setAction(new MoveToIsland(game,8,"PINK"));
+        game.doAction();
+        assertNull(game.getIslands().get(8).getTowerPlayer());
+        activeplayer.getBoard().addProfessor(game.getProfessorbyColour(Colour.YELLOW));
+        game.setAction(new MoveToIsland(game,8,"YELLOW"));
+        game.doAction();
+        Character5 character = new Character5();
+        character.setGame(game);
+        character.choose("PINK");
+        character.startEffect();
+        game.setAction(new MoveMother(game,1,false));
+        game.doAction();
+        assertEquals(activeplayer,game.getIslands().get(8).getTowerPlayer());
+        character.endEffect();
     }
+
 
 }
