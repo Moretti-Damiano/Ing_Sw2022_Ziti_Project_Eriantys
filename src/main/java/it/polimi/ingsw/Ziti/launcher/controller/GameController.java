@@ -5,7 +5,6 @@ import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game3;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.ExpertMode;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.NormalMode;
-import it.polimi.ingsw.Ziti.launcher.networking.server.MainSocketServer;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
@@ -27,25 +26,25 @@ import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Locale;
-import java.util.Map;
+import java.util.*;
 
 /**
- * This class observes Game (the model) and the Server and is observed by the Server
+ * This class observes Game (the model) and the Server and is observed by the matchServer.
+ * When the server receives a message, it notifies the GameController (via ServerMessageHandler) by calling
+ * the correct handler for the message.
+ * When the game is updated, the GameController class notifies the netWorking passing the message tos end to the players
  */
 
 public class GameController extends GameControllerObservable implements ServerObserver, Observer {
 
     private Game game;
     private TurnController turnController;
-    private ArrayList<Player> players;
-    private int numberOfPlayers = 4;//game for n plauers
+    private final ArrayList<Player> players;
+    private int numberOfPlayers = 4;//game for n players
     private boolean mode;
     private boolean doingFirstLogin;
 
-    public GameController(MainSocketServer mainSocketServer){
+    public GameController(){
         players = new ArrayList<>();
         doingFirstLogin = false;
     }
@@ -80,6 +79,14 @@ public class GameController extends GameControllerObservable implements ServerOb
         return turnController.getCurrentPlayer().equals(getPlayerByName(player));
     }
 
+    /**
+     * This method handles the login operation by:
+     *      -Checking for player with the same name
+     *      -Checking if the first player is currently setting the game
+     *      -Checking if the game has already started
+     * if any of those conditions aren't respected, sends back a loginError
+     * @param message the message containing the player's name
+     */
     @Override
     public void loginHandler(LoginMessage message){
         System.out.println("Received login message");
@@ -130,6 +137,10 @@ public class GameController extends GameControllerObservable implements ServerOb
         }
     }
 
+    /**
+     * Allows the first logged player to choose the game mode
+     * @param message contains the chosen mode
+     */
     public void modeHandler(ModeResponse message){
      if(!(message.getMode().toUpperCase(Locale.ROOT).equals("EXPERT") || message.getMode().toUpperCase(Locale.ROOT).equals("NORMAL"))){
          notifyObserver(obs -> obs.sendToOnePlayer(new InputError("invalid Game mode"), message.getSender()));
@@ -247,7 +258,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     }
     @Override
     public void showAssistantRequestHandler(ShowAssistantRequest message){
-        notifyObserver(obs -> obs.sendToOnePlayer(new ShowAssistantResponse(getPlayerByName(message.getSender()).getAssistants()), message.getSender()));
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowAssistantResponse(Objects.requireNonNull(getPlayerByName(message.getSender())).getAssistants()), message.getSender()));
     }
 
     @Override
@@ -264,7 +275,7 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     @Override
     public void showBoardRequestHandler(ShowBoardRequest message) {
-        notifyObserver(obs -> obs.sendToOnePlayer(new ShowBoardResponse(getPlayerByName(message.getSender()).getBoard()), message.getSender()));
+        notifyObserver(obs -> obs.sendToOnePlayer(new ShowBoardResponse(Objects.requireNonNull(getPlayerByName(message.getSender())).getBoard()), message.getSender()));
     }
 
     @Override
@@ -415,6 +426,16 @@ public class GameController extends GameControllerObservable implements ServerOb
         notifyObserver(obs -> obs.sendToAllPlayers(message));
     }
 
+    public void notifyNewActivePlayer(Player currentPlayer) {
+        notifyObserver(obs-> obs.sendToOnePlayer(new YourTurnNotification(),currentPlayer.GetName()));
+    }
+
+    public void sendTurnNotification() {
+        notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " +
+                game.getCurrentPlayer().GetName() + " turn and it's " +
+                turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+    }
+
     /**
      * Sets up a game (observed by GameController)
      * Creates TurnController
@@ -432,18 +453,6 @@ public class GameController extends GameControllerObservable implements ServerOb
         System.out.println("Game started!");
         notifyObserver(obs -> obs.sendToAllPlayers(new GameStartedMessage()));
 
-    }
-
-    public void notifyNewActivePlayer(Player currentPlayer) {
-        notifyObserver(obs-> obs.sendToOnePlayer(new YourTurnNotification(),currentPlayer.GetName()));
-    }
-
-    private ArrayList<CharacterSummary> getCharacterSummary(){
-        ArrayList<CharacterSummary> summary = new ArrayList<>();
-        for(Character c: game.getCharacters()){
-            summary.add(new CharacterSummary(c.getId(),c.getCost(),c.getDescription()));
-        }
-        return  summary;
     }
 
     public void endGame(String winnerName){
@@ -475,10 +484,12 @@ public class GameController extends GameControllerObservable implements ServerOb
         }
     }
 
-    public void sendTurnNotification() {
-        notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " +
-                game.getCurrentPlayer().GetName() + " turn and it's " +
-                turnController.getPhase().getPhaseType().getAbbreviation() + " Phase")));
+    private ArrayList<CharacterSummary> getCharacterSummary(){
+        ArrayList<CharacterSummary> summary = new ArrayList<>();
+        for(Character c: game.getCharacters()){
+            summary.add(new CharacterSummary(c.getId(),c.getCost(),c.getDescription()));
+        }
+        return  summary;
     }
 
     /**
