@@ -35,7 +35,6 @@ public class LoginSceneController extends InputObservable implements GenericScen
      * @param event the mouse click event.
      */
     private void onJoinBtnClick(Event event) {
-        joinBtn.setDisable(true);
 
         String nickname = nicknameField.getText();
 
