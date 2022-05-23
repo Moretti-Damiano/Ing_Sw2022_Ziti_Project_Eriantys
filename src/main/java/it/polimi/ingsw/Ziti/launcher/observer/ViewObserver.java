@@ -12,7 +12,6 @@ import java.util.concurrent.ExecutionException;
  */
 public interface ViewObserver {
 
-
     void InputErrorHandler(InputError message);
     void ErrorMessageHandler(ErrorMessage message);
     void moveToIslandHandler(MoveToIslandDoneMessage message);
@@ -40,6 +39,7 @@ public interface ViewObserver {
     void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message);
     void winHandler(WinMessage message);
     void showInputErrorMessage(InputError message);
+    void GameEndedHandler(GameEndedMessage message);
 
     //Handler per ogni show (con i messaggi che contengono i dati)
 }
