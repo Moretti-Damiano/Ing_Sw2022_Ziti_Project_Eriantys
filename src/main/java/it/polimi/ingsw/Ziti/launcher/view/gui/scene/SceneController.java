@@ -166,48 +166,5 @@ public class SceneController extends InputObservable {
         alertSceneController.setAlertMessage(message);
         alertSceneController.displayAlert();
     }
-/* needs to be implemented
-    public static void showPlayAgain() {
-        FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/playAgain_scene.fxml"));
 
-        Parent parent;
-        try {
-            parent = loader.load();
-        } catch (IOException e) {
-            return;
-        }
-        PlayAgainSceneController playAgainSceneController = loader.getController();
-        Scene playAgain = new Scene(parent);
-        playAgainSceneController.setScene(playAgain);
-        playAgainSceneController.setAlertTitle(title);
-        playAgainSceneController.setAlertMessage(message);
-        playAgainSceneController.displayAlert();
-    }
-
-
-
-    /**
-     * Shows the win message popup.
-     *
-     * @param nickname the nickname of the winning player.
-     */
-
-/*needs to be implemented
-    public static void showWin(String nickname) {
-        FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/win_scene.fxml"));
-
-        Parent parent;
-        try {
-            parent = loader.load();
-        } catch (IOException e) {
-            Logger.getLogger(Client.class.getName()).severe(e.getMessage());
-            return;
-        }
-        WinSceneController winSceneController = loader.getController();
-        Scene winScene = new Scene(parent);
-        winSceneController.setScene(winScene);
-        winSceneController.setWinnerNickname(nickname);
-        winSceneController.displayWinScene();
-    }
-*/
 }

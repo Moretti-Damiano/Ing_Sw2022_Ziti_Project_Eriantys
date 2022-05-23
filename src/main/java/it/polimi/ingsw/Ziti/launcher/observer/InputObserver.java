@@ -2,6 +2,10 @@ package it.polimi.ingsw.Ziti.launcher.observer;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 
+/**
+ * Its methods are called after a request
+ * This class is used to create messages that will be sent to server
+ */
 public interface InputObserver {
     void onUpdateLogin(String nickname);
     void onUpdateConnection(String address);

@@ -190,11 +190,14 @@ public class cli extends InputObservable implements view, ViewObserver {
         return colour;
 
     }
+
+    /**
+     * Used to ask the number of players
+     * Notify observer with that update
+     */
     public void askNumberOfPlayer()  {
         System.out.println("Insert the number of players: ");
-        //Scanner scanner=new Scanner(System.in);
         String numberOfPlayer=readLine();
-        //System.out.println("Ho superato il readLine");
         notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
     }
 
@@ -480,18 +483,22 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    /**
-     * Method used to start a reading thread to catch client's input
-     * @return input read
-     * @
-     */
 
+    /**
+     * Used to read from Client
+     * Calls the relative Update
+     * @return scanner method
+     */
     public String readLine(){
         return scanner.nextLine();
     }
 
 
-
+    /**
+     * Used to switch every input possible
+     * Set "Invalid" on default
+     * @param input is the read String
+     */
     public void command(String input){
         switch(input){
             case "CHOOSEASSISTANT":
@@ -551,8 +558,9 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     /**
-     * Method used to ask what a client wants to do
-     * @
+     * Second method called
+     * Shows every possibility that Client has
+     * Starts a new InputThread
      */
     public void gameStarter()  {
         System.out.println("MAIN ACTION");

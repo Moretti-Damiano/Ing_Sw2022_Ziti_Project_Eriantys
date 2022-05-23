@@ -11,7 +11,7 @@ import javafx.scene.input.InputEvent;
 import javafx.scene.input.MouseEvent;
 
 /**
- * This class implements the scene where users choose their nicknames.
+ * This class implements the scene where users choose their nicknames
  */
 public class LoginSceneController extends InputObservable implements GenericSceneController {
 
@@ -30,19 +30,17 @@ public class LoginSceneController extends InputObservable implements GenericScen
     }
 
     /**
-     * Handle click on Join button.
+     * Handles click on Join button.
      *
      * @param event the mouse click event.
      */
     private void onJoinBtnClick(Event event) {
-
         String nickname = nicknameField.getText();
-
         new Thread(() -> notifyObserver(obs -> obs.onUpdateLogin(nickname))).start();
     }
 
     /**
-     * Handle click on back to menu button.
+     * Handles click on back to menu button.
      *
      * @param event the mouse click event.
      */

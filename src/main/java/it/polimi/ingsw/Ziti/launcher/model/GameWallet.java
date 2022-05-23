@@ -8,17 +8,6 @@ public class GameWallet implements Serializable {
     private static int MaxNumCoin=20;
     private static int AvailableCoin=20;
 
-
-
-    public int getAvailableCoin() {
-        return AvailableCoin;
-    }
-
-
-    public int getMaxNumCoin() {
-        return MaxNumCoin;
-    }
-
     /**
      * decrease the max number of coin
      */

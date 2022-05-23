@@ -71,8 +71,10 @@ public class ChooseCharacterController extends InputObservable implements Generi
     @FXML
     public void initialize() {
         ChosenCharacter=AvailableCharacter.get(ListIndex);
+        // Set the first image of characters
         Image img = new Image(getClass().getResourceAsStream("/images/Character/Character ("+Integer.toString(ChosenCharacter.getId())+").jpg"));
         CharacterImg.setImage(img);
+        // Set the cost
         actualCost.setText(Integer.toString(ChosenCharacter.getCost()));
         ConfirmBtn.setDisable(true);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
@@ -161,7 +163,12 @@ public class ChooseCharacterController extends InputObservable implements Generi
         }
 
     }
-
+    /**
+     * Disable a button if a index equals a number
+     * @param button used button
+     * @param number used to set a limit
+     * @return if button needs to be disabled or not
+     */
     private boolean checkAndDisableButton(Button button, int number) {
         if (ListIndex == number) {
             button.setDisable(true);
@@ -171,6 +178,10 @@ public class ChooseCharacterController extends InputObservable implements Generi
         return false;
     }
 
+    /**
+     * Used to not disable a Label if the character requires that fields
+     * @param Character
+     */
     private void Insertion(CharacterSummary Character){
         switch(Character.getId()){
             case 0:
@@ -199,7 +210,10 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
     }
-
+    /**
+     * Used to set the  list of Characters
+     * @param GameCharacter is the current list of Characters in this game
+     */
     public void addCharacter(List<CharacterSummary> GameCharacter){
         this.AvailableCharacter=GameCharacter;
     }

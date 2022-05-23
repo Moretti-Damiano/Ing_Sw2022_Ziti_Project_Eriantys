@@ -40,7 +40,7 @@ public class ModeRequestSceneController extends InputObservable implements Gener
     }
 
     /**
-     * Handle click on Confirm button.
+     * Handles click on Confirm button.
      *
      * @param event the mouse click event.
      */
