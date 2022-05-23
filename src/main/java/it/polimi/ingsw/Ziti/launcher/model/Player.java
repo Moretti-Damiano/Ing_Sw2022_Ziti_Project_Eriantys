@@ -30,7 +30,6 @@ public class Player implements Serializable {
     public String GetName(){
             return this.name;
         }
-
         public Board getBoard() {
         return board;
         }

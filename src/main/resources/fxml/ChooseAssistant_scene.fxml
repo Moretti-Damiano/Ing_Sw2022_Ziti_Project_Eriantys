@@ -28,7 +28,7 @@
          <Button fx:id="ConfirmBtn" layoutX="234.0" layoutY="279.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" styleClass="bigButton" text="Confirm" />
          <ImageView fx:id="TitleImg" fitHeight="86.0" fitWidth="251.0" layoutX="175.0" layoutY="6.0" pickOnBounds="true" preserveRatio="true">
             <image>
-               <Image url="@../images/Titolo pagine.png" />
+               <Image url="@../images/TitleBanner.png" />
             </image>
          </ImageView>
          <Text fill="#383838" layoutX="197.0" layoutY="56.0" rotate="1.5" stroke="BLACK" strokeType="OUTSIDE" strokeWidth="0.0" text="ASSISTANTS">

@@ -38,59 +38,6 @@
     -fx-cursor: hand;
 }
 
-.smallButton {
-    -fx-font-family: 'Gronzy';
-    -fx-text-fill: #451616;
-    -fx-background-image: url("../images/smallbtn.png");
-    -fx-background-size: cover;
-    -fx-alignment: top-center;
-    -fx-background-repeat: no-repeat;
-    -fx-label-padding: -3px 0 0 0;
-
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;
-
-    -fx-cursor: hand;
-    -fx-opacity: 1;
-}
-
-.smallButton:hover {
-    -fx-effect: dropshadow(gaussian, #f2e0d6, 20, 0.3, 0, 0);
-    -fx-font-size: 14;
-    -fx-label-padding: 0px 0 0 0;
-
-    -fx-background-size: cover;
-    -fx-background-repeat: no-repeat;
-
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;
-
-    -fx-cursor: hand;
-    -fx-opacity: 1;
-}
-
-.smallButton:disabled {
-    -fx-font-family: 'Gronzy';
-    -fx-font-size: 16;
-    -fx-label-padding: 0px 0 0 0;
-
-    -fx-border-color: transparent;
-    -fx-border-width: 0;
-    -fx-background-radius: 0;
-    -fx-background-color: transparent;
-
-    -fx-text-fill: #451616;
-    -fx-alignment: top-center;
-    -fx-background-image: url("../images/name-removebg-preview.png");
-    -fx-background-size: cover;
-    -fx-background-repeat: no-repeat;
-    -fx-opacity: 0.7;
-}
-
 .radioButton {
     -fx-font-size: 16;
 }
@@ -120,11 +67,7 @@
 .menuField {
     -fx-font-size: 16;
 }
-/*
-.menuField:error {
-    -fx-border-color: red;
-}
-*/
+
 .blueGlow:hover {
     -fx-effect: dropshadow(gaussian, #3333ff, 20, 0.3, 0, 0);
 }

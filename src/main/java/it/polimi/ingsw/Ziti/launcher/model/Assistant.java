@@ -73,10 +73,18 @@ public class Assistant implements Serializable {
         this.assChose = assChose;
     }
 
+    /**
+     * Method used for Character 2
+     * @param movesMother
+     */
     public void addMoves(int movesMother) {
         this.movesMother += movesMother;
     }
 
+    /**
+     * Method used for Character 2
+     * @param movesMother
+     */
     public void reduceMoves(int movesMother) {
         this.movesMother -= movesMother;
     }

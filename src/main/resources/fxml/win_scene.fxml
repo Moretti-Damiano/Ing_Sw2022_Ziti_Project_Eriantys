@@ -49,6 +49,5 @@
    </children>
    <stylesheets>
       <URL value="@../css/global.css" />
-      <URL value="@../css/players_number_scene.css" />
    </stylesheets>
 </StackPane>

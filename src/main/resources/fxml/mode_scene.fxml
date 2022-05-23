@@ -26,12 +26,12 @@
                         </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="129.0" layoutY="269.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/toggle-removebg-preview.png" />
+                        <Image url="@../images/toggleBtn.png" />
                      </image>
                   </ImageView>
                   <ImageView fitHeight="25.0" fitWidth="25.0" layoutX="311.0" layoutY="269.0" pickOnBounds="true">
                      <image>
-                        <Image url="@../images/toggle-removebg-preview.png" />
+                        <Image url="@../images/toggleBtn.png" />
                      </image>
                   </ImageView>
                   <RadioButton fx:id="normalButton" layoutX="133.0" layoutY="272.0" mnemonicParsing="false" styleClass="customText">

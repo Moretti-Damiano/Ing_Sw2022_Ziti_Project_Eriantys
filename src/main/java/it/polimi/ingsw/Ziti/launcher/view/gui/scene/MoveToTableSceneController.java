@@ -1,17 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowAssistantRequest;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCharacterRequest;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCloudRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
-import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
-import it.polimi.ingsw.Ziti.launcher.model.Student;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -19,13 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 import java.util.*;
-
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
-import static it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour.BLACK;
 
 public class MoveToTableSceneController extends InputObservable implements GenericSceneController {
 
@@ -903,12 +893,15 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         boards= new ArrayList<>();
         islands = new ArrayList<>();
         assplayer= new HashMap<>();
-       // PhaseType phase=PhaseType.NULL;
     }
 
 
-
-
+    /**
+     * Set board images,student images,professor images and tower images depending on numOfPlayer
+     * Set as first board the board of the player who sent the request message
+     * Set the actual assistant of each player
+     * Set island images with motherNature image, student images and tower images
+     */
 
     @FXML
     public void initialize() {
@@ -946,14 +939,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         MTIBtn.setDisable(true);
         SelectBtn.setDisable(true);
         ConfirmBtn.setDisable(true);
-        //CoinLabel.setText("");
         setMoveMotherBtn();
 
-
-
-
-      //  Label  BoardName = new Label("Board");  //maybe need to be changed
-      //  BoardName.setText(boards.get(0).getPlayername());
 
 
 
@@ -1266,17 +1253,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         islandStudentsYellowQ.add(YQ11);
         setStudentsIslandYellow(islandStudentsYellow,islands,islandStudentsYellowQ);
 
-
-
-
-
-
-        // fatto VANNO AGGIUNTE TUTTE LE ARRAYLIST DELLE ISLANDS, 1 PER OGNI COLORE DI STUDENTI POSSIBILI
-        //fatto VANNO AGGIUNTI TUTTE LE ARRAYLIST DELLE QUANTITA' DEGLI STUDENTI UNO PER OGNI COLORE
-        //setStudentsIslandBlue
-        //VANNO CHIAMATI I METODI CHE LI IMPLEMENTANO
-        //MANCA IL METODO CHE IMPLEMENTA LA QUANTITA' DELLE TORRI
-
         islandStudentsGreen=new ArrayList<>();
         islandStudentsGreen.add(GS0);
         islandStudentsGreen.add(GS1);
@@ -1411,46 +1387,83 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
 
     }
+
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent0Click (Event event){
         StudentColour=WaitingStudent0.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent1Click (Event event){
         StudentColour=WaitingStudent1.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent2Click (Event event){
         StudentColour=WaitingStudent2.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent3Click (Event event){
         StudentColour=WaitingStudent3.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent4Click (Event event){
         StudentColour=WaitingStudent4.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent5Click (Event event){
         StudentColour=WaitingStudent5.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent6Click (Event event){
         StudentColour=WaitingStudent6.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent7Click (Event event){
         StudentColour=WaitingStudent7.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent8Click (Event event){
         StudentColour=WaitingStudent8.getId();
@@ -1473,7 +1486,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 
     /**
-     * Add the possibilitu to click on Student waiting student
+     * Add the possibility to click on Student waiting student
      */
     void AddStudentsHandler(){
         WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
@@ -1813,6 +1826,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         this.RequestPlayer=player;
     }
 
+    /**
+     * Set the active Player
+     * @param player is the current ActivePlayer who can do actions
+     */
     public void setActivePlayer(String player){
         this.ActivePlayer=player;
     }
@@ -1862,7 +1879,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
                 assChoseImage.setImage(img1);
             }else assChoseImage.setImage(null);
 
-            Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
+            Image img = new Image(getClass().getResourceAsStream("/images/board.png"));
             BoardImage.setImage(img);
             setStudentsWaiting(studentsWaiting,board);
             setStudentsDining();
@@ -1884,7 +1901,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             BoardName.setText(boards.get(numBoard).getPlayername());
 
             board=boards.get(numBoard);
-            Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
+            Image img = new Image(getClass().getResourceAsStream("/images/board.png"));
             BoardImage.setImage(img);
             if(assplayer.get(board.getPlayername())!=null)
             {
@@ -1894,7 +1911,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
             checkAndDisableButton(PreviousBtn, 0);
             checkAndDisableButton(NextBtn, boards.size()-1);
-           // checkAndAbleButton( MoveToTableChoiceBtn,0);
             setStudentsWaiting(studentsWaiting,board);
             setStudentsDining();
             setMoveMotherBtn();
@@ -1987,11 +2003,20 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         else MoveMotherBtn.setDisable(true);
     }
 
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
+
     @FXML
     void onIsland0Click(Event event){
         IslandId=Island0.getId();
         ConfirmBtn.setDisable(false);
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
 
     @FXML
     void onIsland1Click(Event event){
@@ -1999,60 +2024,100 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland2Click(Event event){
         IslandId=Island2.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland3Click(Event event){
         IslandId=Island3.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland4Click(Event event){
         IslandId=Island4.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland5Click(Event event){
         IslandId=Island5.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland6Click(Event event){
         IslandId=Island6.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland7Click(Event event){
         IslandId=Island7.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland8Click(Event event){
         IslandId=Island8.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland9Click(Event event){
         IslandId=Island9.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland10Click(Event event){
         IslandId=Island10.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland11Click(Event event){
         IslandId=Island11.getId();
@@ -2072,6 +2137,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         SelectBtn.setDisable(true);
 
     }
+
+    /**
+     * Select button needs to be able only if it's the right player with its board
+     */
     private void setSelectBtn(){
         if(board.getPlayername()==ActivePlayer && board.getPlayername()==RequestPlayer) SelectBtn.setDisable(false);
         else SelectBtn.setDisable(true);
@@ -2104,6 +2173,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudRequest(new ShowCloudRequest()))).start();
     }
 
+    /**
+     * Used to set the list of Boards
+     * @param pr is the list of Boards in this game
+     */
     public void addBoards(List<Board> pr){
         this.boards=pr;
     }
@@ -2131,20 +2204,19 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onDisconnectBtnClick(Event event){
-        //ask confirm (needs to implement a scene)
-        //MAYBE BETTER
         BackToGameBtn.setVisible(true);
         ReallyDisconnectBtn.setVisible(true);
-
-        // SceneController.changeRootPane(observers, event, "menu_scene.fxml");
 
 
     }
 
+    /**
+     * display the currentPlayer coins
+     */
+
     @FXML
     private void setCoins(){
         if( board.getWallet()!=null){
-
             Image img = new Image(getClass().getResourceAsStream("/images/coin_modified.png"));
             CoinImg.setImage(img);
             CoinLabel.setText("Coins  x"+(board.getNumberofCoin()));
@@ -2155,6 +2227,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
     }
 
+    /**
+     *
+     * @param assplayer used to combine each used assistant with each player
+     */
     public void setAssplayer(Map<String,Integer> assplayer){
         this.assplayer=assplayer;
     }

@@ -19,8 +19,6 @@ import java.util.concurrent.ScheduledExecutorService;
  * This class observes Client Controller and is observed by Observer Client
  * Used to interface with client
  */
-
-
 public class SocketClient extends SocketClientObservable implements ClientObserver{
 
     private final Socket socket;
@@ -46,6 +44,10 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
             this.inputStm = new ObjectInputStream(socket.getInputStream());
 
     }
+
+    /**
+     * Used to connect and implements run
+     */
     public void connect() {
 
         final Thread outThread = new Thread(){

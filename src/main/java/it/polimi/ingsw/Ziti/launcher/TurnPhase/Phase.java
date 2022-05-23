@@ -25,8 +25,6 @@ public abstract class Phase {
         return phaseType;
     }
 
-   // public int getNumplayer(){ return numplayer;}
-
     public TurnController getTurncontroller(){
         return turncontroller;
     }

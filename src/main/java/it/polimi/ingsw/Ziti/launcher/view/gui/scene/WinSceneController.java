@@ -24,9 +24,9 @@ public class WinSceneController extends InputObservable implements GenericSceneC
     @FXML
     private Label winnerText;
 
-
-
-
+    /**
+     * display the winner player
+     */
 
     @FXML
     public void initialize() {
@@ -35,16 +35,23 @@ public class WinSceneController extends InputObservable implements GenericSceneC
 
         winnerText.setText(winner);
     }
+
+    /**
+     * allow the player to join a new game
+     * @param event mouseClick
+     */
     void onReconnectBtnClick(Event event){
-        new Thread(() ->  notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()))).start();
         SceneController.changeRootPane(observers, event, "menu.fxml"); // probably not working
 
     }
 
-    void onBackBtnClick(Event event){
-        new Thread(() ->  notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()))).start();
-        System.exit(0);
+    /**
+     * disconnect and close the application
+     * @param event mouseClick
+     */
 
+    void onBackBtnClick(Event event){
+        System.exit(0);
     }
 
     public void getWinner(String beast){

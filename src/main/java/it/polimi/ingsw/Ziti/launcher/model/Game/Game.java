@@ -11,6 +11,9 @@ import it.polimi.ingsw.Ziti.launcher.observer.Observable;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * Class used to set a generic game
+ */
 
 public abstract class Game extends Observable {
     private ArrayList<Island> islands;
@@ -64,8 +67,6 @@ public abstract class Game extends Observable {
 
         setPlayers(players);
 
-        //set numplayer
-        //this.maxPlayer = players.size();        //PROBABILEMENTE SBAGLIATO
         this.playerNumber = players.size();
 
         setUpCloudIslands();
@@ -230,10 +231,18 @@ public abstract class Game extends Observable {
         island.addStudent(player.getBoard().removeStudent(colour));
     }
 
+    /**
+     * Set the current action that will be played
+     * @param action
+     */
     public void setAction(Action action){
         this.action = action;
     }
 
+    /**
+     * Do the chosen action
+     * @throws ActionException
+     */
     public void doAction() throws ActionException {
         action.execute();
         notifyObserver(action.toMessage());
