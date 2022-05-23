@@ -46,6 +46,10 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
 
     }
 
+    /**
+     * Used to connect and implements run
+     */
+
     public void connect() {
         final Thread outThread = new Thread() {
             public void run() {
