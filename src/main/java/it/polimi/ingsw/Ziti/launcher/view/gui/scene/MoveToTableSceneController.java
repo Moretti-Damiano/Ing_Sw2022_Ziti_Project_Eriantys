@@ -1,9 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowAssistantRequest;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCharacterRequest;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowCloudRequest;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
@@ -2204,9 +2201,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     void onDisconnectBtnClick(Event event){
         //ask confirm (needs to implement a scene)
-        //System.exit(0); BRUTAL
+
         //MAYBE BETTER
         disconnectBtn.setDisable(true);
+        notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
         SceneController.changeRootPane(observers, event, "menu_scene.fxml");
 
 

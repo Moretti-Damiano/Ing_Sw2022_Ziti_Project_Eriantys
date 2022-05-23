@@ -41,7 +41,6 @@ public class WinSceneController extends InputObservable implements GenericSceneC
      * @param event mouseClick
      */
     void onReconnectBtnClick(Event event){
-        new Thread(() ->  notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()))).start();
         SceneController.changeRootPane(observers, event, "menu.fxml"); // probably not working
 
     }
@@ -52,9 +51,7 @@ public class WinSceneController extends InputObservable implements GenericSceneC
      */
 
     void onBackBtnClick(Event event){
-        new Thread(() ->  notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()))).start();
         System.exit(0);
-
     }
 
     public void getWinner(String beast){
