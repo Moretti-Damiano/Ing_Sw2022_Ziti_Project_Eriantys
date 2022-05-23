@@ -18,7 +18,9 @@ public abstract class GameMode {
     }
 
 
-
+    /**
+     * this method is used to start the chosen game mode in game
+     */
     public abstract void startmode();
 
     public Game getGame() {
@@ -49,6 +51,10 @@ public abstract class GameMode {
      */
     public abstract void onCoin(Colour colour,Action action);
 
+    /**
+     * this method is used to show characters in game
+     * @throws EnabledCharactersException if the selected game mode doesen't support characters
+     */
     public abstract void onShowCharacters() throws EnabledCharactersException;
 
 }

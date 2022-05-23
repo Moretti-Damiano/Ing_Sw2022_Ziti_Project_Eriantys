@@ -47,5 +47,9 @@ public abstract class WinCondition {
         throw new WinException(winner.GetName());
     }
 
+    /**
+     * this method check if the win condition is verified
+     * @throws WinException if the condition is valid
+     */
     public abstract void check() throws WinException;
 }
