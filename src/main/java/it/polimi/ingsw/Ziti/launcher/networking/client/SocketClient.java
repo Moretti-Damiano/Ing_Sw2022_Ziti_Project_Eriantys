@@ -37,7 +37,7 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
         try {
             this.socket.connect(new InetSocketAddress(address, 16847), TIMEOUT);
         } catch (IllegalArgumentException i) {
-            errorMessage = new ErrorMessage("SocketClint", "Invalid port/host");
+            errorMessage = new ErrorMessage("SocketClient", "Invalid port/host");
             notifyObserver(obs -> obs.update(errorMessage));
             socket.close();
         }
@@ -80,11 +80,10 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
             try {
 
                 messageToClient = (MessageToClient) inputStm.readObject();
-                System.out.println("Ho letto mesaggio di tipo: " + messageToClient.toString());
+                //System.out.println("Ho letto mesaggio di tipo: " + messageToClient.toString());
                 notifyObserver(obs -> obs.update(messageToClient));
 
             } catch (IOException | ClassNotFoundException e) {
-                System.out.println("RIGA 87 :(");
                 errorMessage = new ErrorMessage("SocketClient", "Connection lost");
                 notifyObserver(obs -> obs.update(errorMessage));
                 disconnect();
