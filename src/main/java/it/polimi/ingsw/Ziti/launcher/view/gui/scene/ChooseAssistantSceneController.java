@@ -55,11 +55,19 @@ public class ChooseAssistantSceneController extends InputObservable implements G
 
     }
 
+    /**
+     * Create a "ChooseAssistant" message, contains the assistant chosen by the actual player
+     * @param event Mouse Click
+     */
     @FXML
     void onConfirmClick(Event event) {
         new Thread(() -> notifyObserver(obs -> obs.onUpdateChooseAssistant(Integer.toString(AvailableAssistants.get(ListIndex).getId())))).start();
     }
 
+    /**
+     *display the next available assistant
+     * @param event Mouse Click
+     */
     @FXML
     void onNextClick(Event event) {
         if(ListIndex<maxIndex){
@@ -72,6 +80,11 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         }
 
     }
+
+    /**
+     * display the previous available assistant
+     * @param event Mouse Click
+     */
 
     @FXML
     void onPreviousClick(Event event) {
@@ -87,6 +100,13 @@ public class ChooseAssistantSceneController extends InputObservable implements G
 
     }
 
+    /**
+     *
+     * @param button that need to be activated/disable
+     * @param number switch who determinate if the button has to be activated or not
+     * @return if the Button is disabled
+     */
+
     private boolean checkAndDisableButton(Button button, int number) {
         if (ListIndex == number) {
             button.setDisable(true);
@@ -95,6 +115,12 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         button.setDisable(false);
         return false;
     }
+
+    /**
+     *
+     * @param assistants List of player assistant
+     * @return List of available assistant, all assistant previously chosen has been removed
+     */
 
     private List<Assistant> setAvailableAssistants(List<Assistant> assistants){
         List<Assistant> pico=new ArrayList<>();
@@ -106,6 +132,10 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         return pico;
     }
 
+    /**
+     * Changes the scene, return to the principal scene
+     * @param event Mouse Click
+     */
     @FXML
     void  onBackToMenuClick(Event event) {
 
