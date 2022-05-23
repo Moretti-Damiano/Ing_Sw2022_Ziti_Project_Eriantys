@@ -51,10 +51,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showErrorMessage(ErrorMessage message) {
-        Platform.runLater(() -> SceneController.showAlert("Error Message",message.getDescription()));
-       // Platform.runLater(() -> SceneController.showPlayAgain());
-
-    }
+        Platform.runLater(() -> SceneController.showAlert("Error Message",message.getDescription()));}
 
     @Override
     public void askLogin() {
@@ -126,45 +123,32 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void moveToIslandHandler(MoveToIslandDoneMessage message) {
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
-    }
+    public void moveToIslandHandler(MoveToIslandDoneMessage message) {}
 
     @Override
-    public void moveToTableHandler(MoveToTableDoneMessage message) {
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
-
-    }
+    public void moveToTableHandler(MoveToTableDoneMessage message) {}
 
     @Override
-    public void moveMotherHandler(MoveMotherDoneMessage message) {
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
-    }
+    public void moveMotherHandler(MoveMotherDoneMessage message) {}
 
     @Override
     public void chooseAssistantHandler(ChooseAssistantDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
     public void chooseCharacterHandler(ChooseCharacterDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("Info Message",message.getDescription()));
         notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
-        //Platform.runLater(() -> SceneController.changeRootPane(observers,"move_to_table_scene.fxml"));
     }
 
     @Override
     public void endTurnHandler(EndTurnDoneMessage message) {
         Platform.runLater(() -> SceneController.showAlert("End Turn message",message.getDescription()));
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
     }
 
     @Override
-    public void cloudIslandHandler(ChooseCloudDoneMessage message) {
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
-
-    }
+    public void cloudIslandHandler(ChooseCloudDoneMessage message) {}
 
     @Override
     public void ConnectionSuccessfulHandler(ConnectionSuccessfulMessage message) {
@@ -231,9 +215,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
 
     @Override
-    public void showBoardHandler(ShowBoardResponse message) {
-
-    }
+    public void showBoardHandler(ShowBoardResponse message) {}
 
     @Override
     public void showBoardsHandler(ShowBoardsResponse message) {
@@ -242,8 +224,6 @@ public class gui extends InputObservable implements view, ViewObserver {
         moveToTableSceneController.addAllObservers(observers);
         moveToTableSceneController.addBoards(message.getBoards());
         Platform.runLater(() -> SceneController.changeRootPane(moveToTableSceneController,"move_to_table_scene.fxml"));
-
-
     }
 
     @Override
@@ -257,9 +237,7 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showIslandHandler(ShowIslandResponse message) {
-
-    }
+    public void showIslandHandler(ShowIslandResponse message) {}
 
     @Override
     public void GameStartedHandler(GameStartedMessage message) {
@@ -267,16 +245,10 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void YourTurnNotificationHandler(YourTurnNotification message) {
-       // Platform.runLater(() -> SceneController.showAlert("Info Message", message.Description));
-        //notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
-
-
-    }
+    public void YourTurnNotificationHandler(YourTurnNotification message) {}
 
     @Override
     public void showBoardsandIslandsHandler(ShowBoardsandIslandsResponse message) {
-     //   Platform.runLater(() -> SceneController.showAlert("Info Message",message.getBoards().toString()));
         MoveToTableSceneController moveToTableSceneController = new MoveToTableSceneController();
         moveToTableSceneController.addAllObservers(observers);
         moveToTableSceneController.addBoards(message.getBoards());
@@ -298,8 +270,6 @@ public class gui extends InputObservable implements view, ViewObserver {
     }
 
     @Override
-    public void showInputErrorMessage(InputError message) {
-        //Platform.runLater(() -> SceneController.showAlert("Info Message", message.getDescription()));
-    }
+    public void showInputErrorMessage(InputError message) { }
 
 }

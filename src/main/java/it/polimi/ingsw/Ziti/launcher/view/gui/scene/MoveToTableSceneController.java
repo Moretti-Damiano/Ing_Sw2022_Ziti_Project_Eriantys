@@ -929,16 +929,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         MTIBtn.setDisable(true);
         SelectBtn.setDisable(true);
         ConfirmBtn.setDisable(true);
-        //CoinLabel.setText("");
         setMoveMotherBtn();
-
-
-
-
-      //  Label  BoardName = new Label("Board");  //maybe need to be changed
-      //  BoardName.setText(boards.get(0).getPlayername());
-
-
 
         setCoins();
         studentsWaiting = new ArrayList<>();
@@ -1249,16 +1240,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         islandStudentsYellowQ.add(YQ11);
         setStudentsIslandYellow(islandStudentsYellow,islands,islandStudentsYellowQ);
 
-
-
-
-
-
-        // fatto VANNO AGGIUNTE TUTTE LE ARRAYLIST DELLE ISLANDS, 1 PER OGNI COLORE DI STUDENTI POSSIBILI
-        //fatto VANNO AGGIUNTI TUTTE LE ARRAYLIST DELLE QUANTITA' DEGLI STUDENTI UNO PER OGNI COLORE
-        //setStudentsIslandBlue
-        //VANNO CHIAMATI I METODI CHE LI IMPLEMENTANO
-        //MANCA IL METODO CHE IMPLEMENTA LA QUANTITA' DELLE TORRI
 
         islandStudentsGreen=new ArrayList<>();
         islandStudentsGreen.add(GS0);

@@ -121,8 +121,6 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             Select0.setId("0");
             Select1.setId("1");
             Select2.setId("2");
-            //Image img= new Image(getClass().getResourceAsStream("/images/Cloud.png"));
-           // ArrayList<ImageView> Cld2Students = new ArrayList<>();
             Cld0Students.add(S00);
             Cld0Students.add(S01);
             Cld0Students.add(S02);

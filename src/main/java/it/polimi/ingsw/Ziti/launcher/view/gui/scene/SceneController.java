@@ -18,7 +18,6 @@ import java.util.List;
  */
 public class SceneController extends InputObservable {
 
-    //public static final String GOD_IMAGE_PREFIX = "/images/gods/podium_";
 
     private static Scene activeScene;
     private static GenericSceneController activeController;
@@ -166,24 +165,6 @@ public class SceneController extends InputObservable {
         alertSceneController.setAlertMessage(message);
         alertSceneController.displayAlert();
     }
-/* needs to be implemented
-    public static void showPlayAgain() {
-        FXMLLoader loader = new FXMLLoader(SceneController.class.getResource("/fxml/playAgain_scene.fxml"));
-
-        Parent parent;
-        try {
-            parent = loader.load();
-        } catch (IOException e) {
-            return;
-        }
-        PlayAgainSceneController playAgainSceneController = loader.getController();
-        Scene playAgain = new Scene(parent);
-        playAgainSceneController.setScene(playAgain);
-        playAgainSceneController.setAlertTitle(title);
-        playAgainSceneController.setAlertMessage(message);
-        playAgainSceneController.displayAlert();
-    }
-
 
 
     /**
