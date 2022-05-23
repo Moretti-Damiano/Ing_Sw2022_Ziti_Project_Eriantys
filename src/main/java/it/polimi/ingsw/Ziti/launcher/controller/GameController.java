@@ -476,7 +476,7 @@ public class GameController extends GameControllerObservable implements ServerOb
      * notify that the game has ended because of a disconnection
      */
     public void endGameDisconnection(){
-        notifyObserver(obs->obs.sendToAllPlayers(new ErrorMessage("Server","Game has ended because a player disconnected")));
+        notifyObserver(obs->obs.sendToAllPlayers(new GameEndedMessage("Game has ended because a player disconnected")));
         notifyObserver(GameControllerObserver::disconnectAll);
     }
 

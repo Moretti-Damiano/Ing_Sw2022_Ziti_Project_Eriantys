@@ -302,4 +302,9 @@ public class gui extends InputObservable implements view, ViewObserver {
         //Platform.runLater(() -> SceneController.showAlert("Info Message", message.getDescription()));
     }
 
+    @Override
+    public void GameEndedHandler(GameEndedMessage message) {
+
+    }
+
 }
