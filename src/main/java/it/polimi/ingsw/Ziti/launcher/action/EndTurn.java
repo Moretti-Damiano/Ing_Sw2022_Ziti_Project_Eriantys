@@ -43,16 +43,11 @@ public class EndTurn implements Action {
 
     @Override
     public void addDescription(String s) {
-
     }
 
+    @Override
+    public void checkInput(){}
 
 
 
-    /*private void checkEmptyIslands() throws ActionException {
-      // check if the Cloud Islands are empty
-      for (CloudIsland cloudIsland : game.getCloudIslands()) {
-         if(! cloudIsland.getStudents().isEmpty() ) throw new ActionException();
-      }
-   }*/
 }

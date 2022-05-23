@@ -167,8 +167,9 @@ public class MoveMother implements Action {
         game.getIslands().remove(island2);
     }
 
+    @Override
     // checks input of moves
-    private void checkInput() throws ActionException {
+    public void checkInput() throws ActionException {
         if (moves < 1 || moves > game.getCurrentPlayer().getAssChosen().getMovesMother())
             throw new ActionException();
 

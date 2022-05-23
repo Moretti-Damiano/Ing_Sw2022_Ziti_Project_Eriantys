@@ -23,7 +23,7 @@ public class MoveToTable implements Action{
         this.game=game;
         this.chosencolour=chosencolour;
     }
-
+    @Override
     public void execute() throws ActionException{
         checkInput();
         this.goLunch(Colour.valueOfName(chosencolour.toLowerCase(Locale.ROOT)));
@@ -32,11 +32,10 @@ public class MoveToTable implements Action{
 
     @Override
     public ActionMessage toMessage() {
-
         return new MoveToTableDoneMessage(this.description,game.getCurrentPlayer().getBoard(),game.getCurrentPlayer().GetName());
     }
 
-
+    @Override
     public void addDescription(String s) {
        description=description.concat(s);
     }
@@ -88,7 +87,7 @@ public class MoveToTable implements Action{
      * check if the input is correct
      * @throws ActionException
      */
-    private void checkInput() throws ActionException{
+    public void checkInput() throws ActionException{
 
         //check if the given string is a colour
         if(!Colour.checkStringToColour(chosencolour)){

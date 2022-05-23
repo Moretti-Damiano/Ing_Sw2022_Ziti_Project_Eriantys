@@ -20,10 +20,9 @@ public class ChooseCharacter implements Action{
         this.game=game;
         this.actualPhase = phase;
     }
+    @Override
     public void execute() throws ActionException {
-        checkCharacterInGame();
-        checkCoin();
-        checkUsedACharacter();
+        checkInput();
         character.setAvailable(false);
         character.increaseCost();
         game.getCurrentPlayer().setUsedACharacter(true);
@@ -43,7 +42,10 @@ public class ChooseCharacter implements Action{
 
     }
 
-
+    /**
+     * this method check if the chosen character is available for this game
+     * @throws ActionException if the character isn't available
+     */
     private void checkCharacterInGame() throws ActionException {
         boolean in = false;
         for(Character c: game.getCharacters()){
@@ -54,6 +56,10 @@ public class ChooseCharacter implements Action{
             throw new ActionException();
     }
 
+    /**
+     * check if the current player has enough coin for the chosen character
+     * @throws ActionException if the current player hasn't enough coin
+     */
     public void checkCoin() throws ActionException{
         if(game.getCurrentPlayer().getBoard().getNumberofCoin() < character.getCost()){
             throw new ActionException();
@@ -62,15 +68,31 @@ public class ChooseCharacter implements Action{
             throw new ActionException();
         }
     }
+
+    /**
+     * check if there is an active character in this round
+     * @return true if there is an active character
+     */
     private boolean activeCharacter(){
         for(Character c : game.getCharacters()){
             if(!c.isAvailable() ){ return true; }
         }
         return false;
     }
-    
+
+    /**
+     * check if the current player has yet used a character during this round
+     * @throws ActionException if the current player has already used a character
+     */
     private void checkUsedACharacter() throws ActionException {
         if(game.getCurrentPlayer().hasUsedACharacter())
             throw new ActionException();
+    }
+
+    @Override
+    public void checkInput() throws ActionException {
+        checkCharacterInGame();
+        checkCoin();
+        checkUsedACharacter();
     }
 }
