@@ -7,9 +7,15 @@ import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
+/**
+ * This class contains the serverSocket of the server.
+ * When started it initializes a new gameController and set this as on observer.
+ * When the gameController is ready to start the game, it notifies this class, which will proceed to create
+ * a new gameController for a new game.
+ */
 public class MainSocketServer implements LoginObserver {
 
-    private int port;
+    private final int port;
     private ServerSocket serverSocket;
     GameController gameController;
     MatchServer server;
@@ -18,6 +24,10 @@ public class MainSocketServer implements LoginObserver {
         this.port = port;
     }
 
+    /**
+     * Initializies the serverSocket and start waiting for connections.
+     * When a client connects, it creates his dedicated clientHandler and assigns it to his matchServer.
+     */
     public void startServer(){
         try {
             serverSocket = new ServerSocket(port);
@@ -39,10 +49,13 @@ public class MainSocketServer implements LoginObserver {
         }
     }
 
-
+    /**
+     * Creates a new gameController and a new matchServer, then it sets all the necessary
+     * observers
+     */
     private void createNewGame(){
         System.out.println("MAINSOCKETSERVER - Creating a new game: ");
-        gameController = new GameController(this);
+        gameController = new GameController();
         server = new MatchServer();
         server.getServerMessageHandler().addObserver(gameController);
         gameController.addObserver(server);

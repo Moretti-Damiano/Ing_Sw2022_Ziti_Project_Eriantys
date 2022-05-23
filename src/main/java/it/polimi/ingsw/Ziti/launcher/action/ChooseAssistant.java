@@ -71,23 +71,7 @@ public class ChooseAssistant implements Action {
      */
     @Override
     public void execute()throws ActionException {
-        ValidID();
-        if(game.getPlayers().size()==2){
-        if(checkParticularCase()){
-            if(!checkUsed(player,assistantID)){
-                SetAssistant();
-            }else throw new ActionException();
-        }else{
-            checkValidate();
-            SetAssistant();
-        }
-    }else
-        {   if(game.getPlayers().size()==3){
-            if(checkUsed(player,assistantID))throw new ActionException();
-            ThreePlayerCase();
-            SetAssistant();
-            }
-        }
+       checkInput();
     }
 
 
@@ -175,4 +159,26 @@ public class ChooseAssistant implements Action {
         description=description.concat(game.getCurrentPlayer().GetName() + " chose the assistant with MotherNature Moves: " + player.getAssistants().get(assistantID).getMovesMother()
                 + " and Value: " + player.getAssistants().get(assistantID).getValue());
     }
+
+    @Override
+   public void checkInput() throws ActionException {
+       ValidID();
+       if(game.getPlayers().size()==2){
+           if(checkParticularCase()){
+               if(!checkUsed(player,assistantID)){
+                   SetAssistant();
+               }else throw new ActionException();
+           }else{
+               checkValidate();
+               SetAssistant();
+           }
+       }else
+       {   if(game.getPlayers().size()==3){
+           if(checkUsed(player,assistantID))throw new ActionException();
+           ThreePlayerCase();
+           SetAssistant();
+       }
+       }
+   }
+
 }

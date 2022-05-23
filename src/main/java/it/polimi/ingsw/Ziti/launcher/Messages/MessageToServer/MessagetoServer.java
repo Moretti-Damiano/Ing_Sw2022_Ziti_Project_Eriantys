@@ -5,6 +5,9 @@ import it.polimi.ingsw.Ziti.launcher.Messages.ServerMessageHandler;
 
 import java.io.Serializable;
 
+/**
+ * this class is used to send a message to the server
+ */
 public abstract class MessagetoServer extends Message implements Serializable {
     private String sender;
 
@@ -20,5 +23,9 @@ public abstract class MessagetoServer extends Message implements Serializable {
         return sender;
     }
 
+    /**
+     * this method is used to manage the message
+     * @param serverMessageHandler the message to handle
+     */
     public abstract void handle(ServerMessageHandler serverMessageHandler);
 }

@@ -876,6 +876,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     private ImageView assChoseImage;
 
+    @FXML
+    private Button BackToGameBtn;
+
+    @FXML
+    private Button ReallyDisconnectBtn;
+
+
 
 
 
@@ -886,7 +893,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         boards= new ArrayList<>();
         islands = new ArrayList<>();
         assplayer= new HashMap<>();
-       // PhaseType phase=PhaseType.NULL;
     }
 
 
@@ -922,6 +928,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         CloudsBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onCloudBtnClick);
         MoveMotherBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onMoveMotherBtnClick);
         disconnectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onDisconnectBtnClick);
+        BackToGameBtn.setVisible(false);
+        ReallyDisconnectBtn.setVisible(false);
+        BackToGameBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onBackToGameBtnClick);
+        ReallyDisconnectBtn.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onReallyDisconnectBtnClick);
         MoveMotherBtn.setDisable(true);
         MoveMotherMoves.setDisable(true);
         MoveMotherMoves.setText("");
@@ -930,6 +940,9 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         SelectBtn.setDisable(true);
         ConfirmBtn.setDisable(true);
         setMoveMotherBtn();
+
+
+
 
         setCoins();
         studentsWaiting = new ArrayList<>();
@@ -1240,7 +1253,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         islandStudentsYellowQ.add(YQ11);
         setStudentsIslandYellow(islandStudentsYellow,islands,islandStudentsYellowQ);
 
-
         islandStudentsGreen=new ArrayList<>();
         islandStudentsGreen.add(GS0);
         islandStudentsGreen.add(GS1);
@@ -1474,7 +1486,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 
     /**
-     * Add the possibilitu to click on Student waiting student
+     * Add the possibility to click on Student waiting student
      */
     void AddStudentsHandler(){
         WaitingStudent0.addEventHandler(MouseEvent.MOUSE_CLICKED,this::onStudent0Click);
@@ -1814,6 +1826,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         this.RequestPlayer=player;
     }
 
+    /**
+     * Set the active Player
+     * @param player is the current ActivePlayer who can do actions
+     */
     public void setActivePlayer(String player){
         this.ActivePlayer=player;
     }
@@ -1895,7 +1911,6 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
             checkAndDisableButton(PreviousBtn, 0);
             checkAndDisableButton(NextBtn, boards.size()-1);
-           // checkAndAbleButton( MoveToTableChoiceBtn,0);
             setStudentsWaiting(studentsWaiting,board);
             setStudentsDining();
             setMoveMotherBtn();
@@ -1921,6 +1936,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     @FXML
     void onMoveToTableClick(Event event){
         new Thread(() -> notifyObserver(obs -> obs.onUpdateMoveToTable(StudentColour))).start();
+    }
+
+    void onBackToGameBtnClick(Event event){
+       notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
+    }
+    void onReallyDisconnectBtnClick(Event event){
+        System.exit(0);
     }
 
     /**
@@ -2115,6 +2137,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         SelectBtn.setDisable(true);
 
     }
+
+    /**
+     * Select button needs to be able only if it's the right player with its board
+     */
     private void setSelectBtn(){
         if(board.getPlayername()==ActivePlayer && board.getPlayername()==RequestPlayer) SelectBtn.setDisable(false);
         else SelectBtn.setDisable(true);
@@ -2147,6 +2173,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudRequest(new ShowCloudRequest()))).start();
     }
 
+    /**
+     * Used to set the list of Boards
+     * @param pr is the list of Boards in this game
+     */
     public void addBoards(List<Board> pr){
         this.boards=pr;
     }
@@ -2174,12 +2204,8 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onDisconnectBtnClick(Event event){
-        //ask confirm (needs to implement a scene)
-
-        //MAYBE BETTER
-        disconnectBtn.setDisable(true);
-        notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
-        SceneController.changeRootPane(observers, event, "menu_scene.fxml");
+        BackToGameBtn.setVisible(true);
+        ReallyDisconnectBtn.setVisible(true);
 
 
     }
@@ -2196,10 +2222,15 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             CoinLabel.setText("Coins  x"+(board.getNumberofCoin()));
         }
         else {
-            CoinLabel.setText("");
+
+            CoinLabel.setText("Coins x0");
         }
     }
 
+    /**
+     *
+     * @param assplayer used to combine each used assistant with each player
+     */
     public void setAssplayer(Map<String,Integer> assplayer){
         this.assplayer=assplayer;
     }

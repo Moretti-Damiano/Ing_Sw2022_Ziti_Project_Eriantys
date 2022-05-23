@@ -272,4 +272,9 @@ public class gui extends InputObservable implements view, ViewObserver {
     @Override
     public void showInputErrorMessage(InputError message) { }
 
+    @Override
+    public void GameEndedHandler(GameEndedMessage message) {
+
+    }
+
 }

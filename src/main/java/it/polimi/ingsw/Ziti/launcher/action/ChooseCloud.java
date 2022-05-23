@@ -53,7 +53,7 @@ public class ChooseCloud implements Action{
      * Check that input is correct
      * @throws ActionException
      */
-    private void checkInput() throws ActionException {
+    public void checkInput() throws ActionException {
         // verify chosenCloud's Id
         if(chosenCloudId < 0 || chosenCloudId > game.getCloudIslands().size()-1){
             System.out.println(" Cloud "+ chosenCloudId + " does not exist ");

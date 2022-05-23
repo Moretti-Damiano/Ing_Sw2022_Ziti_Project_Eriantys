@@ -18,17 +18,12 @@ import java.util.ArrayList;
 import java.util.Random;
 
 public class ExpertMode extends GameMode {
-    //private ArrayList<Character> allCharacters;
-    //private ArrayList<Character> characters;
+
     private Character activeCharacter;
 
     public ExpertMode(Game game) {
         super(game);
 
-    }
-
-    public Character getActiveCharacter() {
-        return this.activeCharacter;
     }
 
     public void setActiveCharacter(Character character) {
@@ -116,7 +111,13 @@ public class ExpertMode extends GameMode {
         }
     }
 
-
+    /**
+     * Used to set up the action
+     * @param character the character to use
+     * @param phase the actual phase
+     * @throws EnabledCharactersException
+     * @throws ActionException
+     */
     public void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException, ActionException {
         getGame().setAction(new ChooseCharacter(getGame(), character, phase));
         getGame().doAction();

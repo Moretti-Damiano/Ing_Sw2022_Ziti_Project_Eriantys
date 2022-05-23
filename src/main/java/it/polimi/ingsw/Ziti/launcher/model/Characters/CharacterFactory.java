@@ -2,6 +2,9 @@ package it.polimi.ingsw.Ziti.launcher.model.Characters;
 
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 
+/**
+ * this class is used to generate characters for the game
+ */
 public class CharacterFactory {
 
     private final Game game;

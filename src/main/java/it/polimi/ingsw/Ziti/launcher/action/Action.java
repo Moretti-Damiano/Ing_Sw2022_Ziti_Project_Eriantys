@@ -19,5 +19,15 @@ public interface Action {
      */
     public ActionMessage toMessage();
 
+    /**
+     * this method is used to add a description to the action message
+     * @param s the description to add
+     */
    public void addDescription(String s);
+
+    /**
+     * this method check if the parameters of the action are correct
+     * @throws ActionException if the parameters aren't correct
+     */
+    public  void checkInput() throws ActionException;
 }

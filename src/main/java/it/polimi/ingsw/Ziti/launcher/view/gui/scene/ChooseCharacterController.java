@@ -123,7 +123,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
                 break;
             default:break;
         }
-        SceneController.changeRootPane(observers,event,"move_to_table_scene.fxml");
+        SceneController.changeRootPane(observers, event, "move_to_table_scene.fxml");
     }
 
     /**
@@ -181,12 +181,11 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
     }
     /**
-     *
-     * @param button that need to be activated/disable
-     * @param number switch who determinate if the button has to be activated or not
-     * @return if the Button is disabled
+     * Disable a button if a index equals a number
+     * @param button used button
+     * @param number used to set a limit
+     * @return if button needs to be disabled or not
      */
-
     private boolean checkAndDisableButton(Button button, int number) {
         if (ListIndex == number) {
             button.setDisable(true);
@@ -234,7 +233,10 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
     }
-
+    /**
+     * Used to set the  list of Characters
+     * @param GameCharacter is the current list of Characters in this game
+     */
     public void addCharacter(List<CharacterSummary> GameCharacter){
         this.AvailableCharacter=GameCharacter;
     }

@@ -101,12 +101,11 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     }
 
     /**
-     *
-     * @param button that need to be activated/disable
-     * @param number switch who determinate if the button has to be activated or not
-     * @return if the Button is disabled
+     * Disable a button if a index equals a number
+     * @param button used button
+     * @param number used to set a limit
+     * @return if button needs to be disabled or not
      */
-
     private boolean checkAndDisableButton(Button button, int number) {
         if (ListIndex == number) {
             button.setDisable(true);
@@ -117,11 +116,10 @@ public class ChooseAssistantSceneController extends InputObservable implements G
     }
 
     /**
-     *
-     * @param assistants List of player assistant
-     * @return List of available assistant, all assistant previously chosen has been removed
+     * Used to show the correct list of assistants (if isAssChose is false)
+     * @param assistants received from ChooseAssistant message
+     * @return the correct list of Assistants
      */
-
     private List<Assistant> setAvailableAssistants(List<Assistant> assistants){
         List<Assistant> pico=new ArrayList<>();
         pico.removeAll(pico);
@@ -142,6 +140,10 @@ public class ChooseAssistantSceneController extends InputObservable implements G
         new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
     }
 
+    /**
+     * Used to set the first list of Assistants
+     * @param PlayerAssistants is the Assistants' list
+     */
     public void addAssistant(List<Assistant> PlayerAssistants){
         this.Assistants=PlayerAssistants;
     }

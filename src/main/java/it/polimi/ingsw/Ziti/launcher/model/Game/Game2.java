@@ -5,7 +5,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Tower;
 
 import java.util.ArrayList;
 
-
+/**
+ * Class used to set up a game for 2 players
+ */
 public class Game2 extends Game {
 
 

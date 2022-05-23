@@ -14,15 +14,15 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * This class is used to set turns during a game
+ * This class is used to set turns during the game.
  */
 public class TurnController {
-    private GameController gameController;
+    private final GameController gameController;
     private Player currentPlayer;
-    private ArrayList<Player> players;
+    private final ArrayList<Player> players;
     private ArrayList<Player> orderPlayers;
     private int playersDone;
-    private Map<Integer,Player> playerAssistants;
+    private final Map<Integer,Player> playerAssistants;
     private int turnNumber;
     private ArrayList<WinCondition> winConditions;
 
@@ -45,6 +45,10 @@ public class TurnController {
         this.phase = phase;
     }
 
+    /**
+     * this method change the current phase in game
+     * @throws WinException if a win condition is activated
+     */
     public void updatePhase() throws WinException {
         phase.update();
         checkWinConditions();
@@ -85,7 +89,7 @@ public class TurnController {
     }
 
     /**
-     *
+     * Returns the player who will play next
      * @param player is the current player
      * @return next player
      */
@@ -132,6 +136,10 @@ public class TurnController {
         winConditions.add(new AssistantsWinCondition(this));
     }
 
+    /**
+     * Checks if any of the win conditions is matched.
+     * @throws WinException if a player won.
+     */
     private void checkWinConditions() throws WinException {
         for(WinCondition winCondition: winConditions){
             winCondition.check();

@@ -9,6 +9,9 @@ import it.polimi.ingsw.Ziti.launcher.exception.EnabledCharactersException;
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 
+/**
+ * Class used to define a game mode (between normal and expert)
+ */
 public abstract class GameMode {
 
     private final Game game;
@@ -49,6 +52,10 @@ public abstract class GameMode {
      */
     public abstract void onCoin(Colour colour,Action action);
 
+    /**
+     * Update generated after a showCharacters request
+     * @throws EnabledCharactersException
+     */
     public abstract void onShowCharacters() throws EnabledCharactersException;
 
 }

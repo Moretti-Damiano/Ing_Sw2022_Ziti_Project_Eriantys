@@ -9,14 +9,13 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 /**
- * This class is used from server to interface with  client
- * Each client has a thread where is called a keepListening method and a method to send info
+ * This class is used from server to interface with the client.
+ * It contains the methods used to receive and send messages to his associated client.
  */
 public class ClientHandler implements Runnable {
     private final Socket socket;
     private final ObjectOutputStream output;
     private final ObjectInputStream input;
-    private MessagetoServer message;
     private String nickName;
     private final MatchServer server;
 
@@ -34,41 +33,41 @@ public class ClientHandler implements Runnable {
 
     @Override
     public void run() {
-        try {
             System.out.println("ClientHandler Started");
             keepListening();
-        }
-        catch (IOException e) {
-            System.out.println("IOexception in clienthandler " + nickName);
-            server.getClientHandlers().remove(this);
-            //devo fare socket.close?
-            server.clientDisconnection();
-        }
-        catch (ClassNotFoundException e) {
-            System.out.println("ClientHandler "+ nickName +"Class not found exc");
-        }
-
     }
 
     /**
      * Method used to read messages from client
      * Calls receive method in socketServer
-     * @throws IOException
-     * @throws ClassNotFoundException
+     * If the connection is lost, it calls the necessary methods to warn all the clients of the disconnections,
+     * then the game is ended and all the remaining sockets are closed
      */
-    private void keepListening() throws IOException, ClassNotFoundException {
+    private void keepListening(){
         while(true){
-
-                message = (MessagetoServer) input.readObject();
-                System.out.println("ClientHandler " + nickName + " received a message");
+            try {
+                MessagetoServer message = (MessagetoServer) input.readObject();
+                System.out.println("ClientHandler " + nickName + " received a message: " + message.getClass());
                 message.setSender(nickName);
                 server.receive(message);
+            } catch (IOException e) {
+                if(!socket.isClosed()){
+                    System.out.println("IOexception, connection lost from clienthandler " + nickName);
+                    server.getClientHandlers().remove(this);
+                    closeSocket();
+                    if(!server.isGameEnded())
+                        server.clientDisconnection();
+                }
+                break;
+            } catch (ClassNotFoundException e) {
+                System.out.println("ClientHandler "+ nickName +"Class not found exc");
+            }
         }
     }
 
     /**
      * Used to send a message to Socket Client (each client)
-     * @param message
+     * @param message the message to be sent
      */
     public void send(MessageToClient message)  {
         try {
@@ -80,7 +79,19 @@ public class ClientHandler implements Runnable {
         }
     }
 
-    public void closeSocket() throws IOException{
-        this.socket.close();
+    /**
+     * Closes the socket and his out/in stream
+     */
+    public void closeSocket() {
+        try {
+            if(!socket.isClosed()) {
+                System.out.println("Closing socket: " + nickName);
+                input.close();
+                output.close();
+                socket.close();
+            }
+        } catch (IOException e) {
+            System.out.println("IOException when closing Socket: " + nickName);
+        }
     }
 }

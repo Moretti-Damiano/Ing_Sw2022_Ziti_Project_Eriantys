@@ -61,9 +61,6 @@ public class PlayersNumberSceneController extends InputObservable implements Gen
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateNumberOfPlayer(playersNumber))).start();
 
-       // SceneController.changeRootPane(observers, event, "mode_scene.fxml");
-
-
     }
 
     /**

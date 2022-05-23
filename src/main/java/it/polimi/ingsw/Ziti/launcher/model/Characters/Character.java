@@ -80,6 +80,9 @@ public abstract class Character implements Serializable {
             return false;
     }
 
+    /**
+     * this method is used to increase the cost of a character
+     */
     public void increaseCost(){
         game.getCurrentPlayer().getBoard().removeCoin(cost);
         game.getGameWallet().reduceCoin();
@@ -95,7 +98,13 @@ public abstract class Character implements Serializable {
         return available;
     }
 
+    /**
+     * this method starts the character's effect
+     */
     public abstract void startEffect() throws ActionException;
 
+    /**
+     * this method ends the character's effect
+     */
     public abstract void endEffect();
 }

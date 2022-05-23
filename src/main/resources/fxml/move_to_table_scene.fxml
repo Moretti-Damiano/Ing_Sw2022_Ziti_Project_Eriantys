@@ -763,6 +763,16 @@
                         <Font size="40.0" />
                      </font>
                   </Text>
+                  <Button fx:id="BackToGameBtn" layoutX="138.0" layoutY="356.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="105.0" styleClass="bigButton" text="Back To Game">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="ReallyDisconnectBtn" layoutX="7.0" layoutY="356.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="105.0" styleClass="bigButton" text="Exit">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
          </children>

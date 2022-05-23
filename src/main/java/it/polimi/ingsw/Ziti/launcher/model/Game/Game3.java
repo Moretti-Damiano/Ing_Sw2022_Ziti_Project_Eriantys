@@ -6,6 +6,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Tower;
 
 import java.util.ArrayList;
 
+/**
+ * Set up a game for 3 players
+ */
 public class Game3 extends Game {
 
     /**

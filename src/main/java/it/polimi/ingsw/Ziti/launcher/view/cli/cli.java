@@ -142,6 +142,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void GameEndedHandler(GameEndedMessage message) {
+
+    }
+
+    @Override
     public void askLogin()  {
         System.out.println("Insert your username: ");
         String username;
@@ -185,11 +190,14 @@ public class cli extends InputObservable implements view, ViewObserver {
         return colour;
 
     }
+
+    /**
+     * Used to ask the number of players
+     * Notify observer with that update
+     */
     public void askNumberOfPlayer()  {
         System.out.println("Insert the number of players: ");
-        //Scanner scanner=new Scanner(System.in);
         String numberOfPlayer=readLine();
-        //System.out.println("Ho superato il readLine");
         notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
     }
 
@@ -287,18 +295,29 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
     private void playAgain(){
-        System.out.println("Do you want to play again?\n Type [Y] for Yes or [N] for No");
-        String response=readLine();
+        scanner.reset();
+        //scanner.remove();
+        System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
+       // new cli();
+        scanner = new Scanner(System.in);
+        freeInput = false;
+        inputThread = new InputReadThread(this);
+        inputThread.setFreeInput(false);
         inputThread.setFreeInput(true);
+        String response=scanner.nextLine();
+
         //not reading an input (probably because of threads)
+        //scanner.skip("");
         if(Objects.equals(response, "Y"))init();
         else System.exit(0);
+
     }
 
 
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
         showErrorMessage(message);
+        //inputThread.setFreeInput(true);
        // this.init();
        // inputThread.setFreeInput(true); probably faster but not really tested
 
@@ -464,18 +483,22 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    /**
-     * Method used to start a reading thread to catch client's input
-     * @return input read
-     * @
-     */
 
+    /**
+     * Used to read from Client
+     * Calls the relative Update
+     * @return scanner method
+     */
     public String readLine(){
         return scanner.nextLine();
     }
 
 
-
+    /**
+     * Used to switch every input possible
+     * Set "Invalid" on default
+     * @param input is the read String
+     */
     public void command(String input){
         switch(input){
             case "CHOOSEASSISTANT":
@@ -524,8 +547,9 @@ public class cli extends InputObservable implements view, ViewObserver {
                 notifyObserver(obs->obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
                 break;
             case "DISCONNECT":
-                notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
+               // notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
                // init();
+                System.exit(0);
                 break;
             default:
                 System.out.println("Invalid");
@@ -534,8 +558,9 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     /**
-     * Method used to ask what a client wants to do
-     * @
+     * Second method called
+     * Shows every possibility that Client has
+     * Starts a new InputThread
      */
     public void gameStarter()  {
         System.out.println("MAIN ACTION");

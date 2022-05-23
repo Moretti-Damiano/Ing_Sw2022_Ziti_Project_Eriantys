@@ -192,6 +192,10 @@ public class Board implements Serializable {
         return count;
     }
 
+    /**
+     * Used to remove coins from Player's wallet
+     * @param cost
+     */
     public void removeCoin(int cost) {
         for(int i = 0; i<cost; i++){
             wallet.remove(wallet.size()-1);
