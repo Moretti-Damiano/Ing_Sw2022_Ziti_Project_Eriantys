@@ -9,19 +9,21 @@ public class InputReadThread implements Runnable{
     private boolean freeInput;
     private String input;
     private Scanner scanner;
-    private it.polimi.ingsw.Ziti.launcher.view.cli.cli cli;
+    private cli cli;
+    private boolean isOn;
 
     public InputReadThread(cli cli){
         this.cli = cli;
         freeInput = true;
         scanner = new Scanner (System.in);
+        isOn = true;
     }
 
     @Override
     public void run() {
-        while (true){
+        while (isOn){
+            input = scanner.nextLine();
             if(freeInput){
-                input = scanner.nextLine();
                 cli.command(input);
             }
         }
@@ -33,5 +35,10 @@ public class InputReadThread implements Runnable{
 
     public void setFreeInput(boolean freeInput) {
         this.freeInput = freeInput;
+    }
+
+    public void close() {
+        freeInput = false;
+        isOn = false;
     }
 }

@@ -22,16 +22,11 @@ import java.util.*;
 public class cli extends InputObservable implements view, ViewObserver {
 
     private InputReadThread inputThread;
-    private Scanner scanner;
-    private boolean freeInput;
-
+    private final Scanner scanner;
 
 
     public cli(){
         scanner = new Scanner(System.in);
-        freeInput = false;
-        inputThread = new InputReadThread(this);
-        //new Thread(inputThread).start();
     }
 
     @Override
@@ -134,7 +129,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showErrorMessage(ErrorMessage message) {
         System.out.println(message.getDescription()+" from "+message.getSender());
-        System.out.println("Please insert a valid input");
+        //System.out.println("Please insert a valid input");
     }
     @Override
     public void showInputErrorMessage(InputError message) {
@@ -192,9 +187,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
     public void askNumberOfPlayer()  {
         System.out.println("Insert the number of players: ");
-        //Scanner scanner=new Scanner(System.in);
         String numberOfPlayer=readLine();
-        //System.out.println("Ho superato il readLine");
         notifyObserver(obs->obs.onUpdateNumberOfPlayer(numberOfPlayer));
     }
 
@@ -293,20 +286,14 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
     private void playAgain(){
         scanner.reset();
-        //scanner.remove();
-        System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
-       // new cli();
-        scanner = new Scanner(System.in);
-        freeInput = false;
-        inputThread = new InputReadThread(this);
-        inputThread.setFreeInput(false);
-        inputThread.setFreeInput(true);
-        String response=scanner.nextLine();
+        inputThread.close();
 
-        //not reading an input (probably because of threads)
-        //scanner.skip("");
-        if(Objects.equals(response, "Y"))init();
-        else System.exit(0);
+        System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
+        String response = readLine();
+        if(response.equalsIgnoreCase("Y"))
+            init();
+        else
+            System.exit(0);
 
     }
 
@@ -314,10 +301,6 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
         showErrorMessage(message);
-        //inputThread.setFreeInput(true);
-       // this.init();
-       // inputThread.setFreeInput(true); probably faster but not really tested
-
         this.playAgain();
     }
 
@@ -395,9 +378,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void NumOfPlayerHandler(NumOfPLayersRequest message){
-       // System.out.println("Sto per chiedere il numero dei player");
         askNumberOfPlayer();
-
     }
 
     @Override
@@ -473,10 +454,8 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Please insert Server Settings. Default value is shown as [DEFAULT]");
         System.out.println("Enter the server address ["+defaultAddress+"]");
         String address=readLine();
-        //System.out.println("Enter the server port ["+defaultPort+"]");
-        //String port=readLine();
+
         notifyObserver(obs->obs.onUpdateConnection(address));
-        inputThread.setFreeInput(true);
 
     }
 
@@ -485,12 +464,9 @@ public class cli extends InputObservable implements view, ViewObserver {
      * @return input read
      * @
      */
-
     public String readLine(){
         return scanner.nextLine();
     }
-
-
 
     public void command(String input){
         switch(input){
@@ -540,8 +516,8 @@ public class cli extends InputObservable implements view, ViewObserver {
                 notifyObserver(obs->obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
                 break;
             case "DISCONNECT":
-               // notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
-               // init();
+                // notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
+                // init();
                 System.exit(0);
                 break;
             default:
@@ -552,7 +528,6 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      * Method used to ask what a client wants to do
-     * @
      */
     public void gameStarter()  {
         System.out.println("MAIN ACTION");
@@ -572,6 +547,8 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Type DISCONNECT to end this game and restart an other one");
 
         inputThread = new InputReadThread(this);
-        new Thread(inputThread).start();
+        Thread inputReader = new Thread(inputThread);
+        inputReader.start();
+
     }
 }
