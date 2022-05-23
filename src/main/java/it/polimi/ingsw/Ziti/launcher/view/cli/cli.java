@@ -142,6 +142,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     @Override
+    public void GameEndedHandler(GameEndedMessage message) {
+
+    }
+
+    @Override
     public void askLogin()  {
         System.out.println("Insert your username: ");
         String username;
