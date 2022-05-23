@@ -97,6 +97,11 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
     private ArrayList<ImageView> Cld1Students=new ArrayList<>();
     private ArrayList<ImageView> Cld2Students=new ArrayList<>();
 
+    /**
+     * initialize the current scene
+     * if there are 3 player: creates 3 island with 4 students each
+     * if there are 2 player: creates 2 island with 3 students each
+     */
 
     @FXML
     public void initialize(){
@@ -159,6 +164,11 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
         }
 
     }
+
+    /**
+     * create a chosenCloudIsland message with the chosen CloudIsland (selected with the toggleButton)
+     * @param event mouse click
+     */
     private void onConfirmClick(Event event) {
         ConfirmBtn.setDisable(true);
         RadioButton selectedRadioButton = (RadioButton) SelectIsld.getSelectedToggle();
@@ -166,7 +176,11 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
         new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudIsland(chosenCloudIsland))).start();
     }
 
-
+    /**
+     *
+     * @param students ArrayList of ImageView, contains all possible students on islands. These images are set with the correct colour depending on students on island
+     * @param cloudIsland the current cloudIsland
+     */
     private void setStudentsCloud(ArrayList<ImageView> students,CloudIsland cloudIsland){
       //  if(cloudIsland.getStudents().size()==0) groups.get(cloudIsland.getID()).setVisible(false);  NOT WORKING
       //  else{
@@ -199,6 +213,11 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             }
      //   }
 
+    /**
+     * depending on previously players choise, able/disable the possibility to choose a cloudIsland
+     * @param groups contains images of island,images of students and toggle Button
+     * @param cloudIslands contains the cloudIslands
+     */
     private void setCloudIslandImages(ArrayList<Group> groups,List<CloudIsland> cloudIslands) {
         for (CloudIsland c : cloudIslands) {
             if (c.getStudents().size() == 0) {
@@ -230,10 +249,19 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             }
         }
     }
+
+    /**
+     * select the current CloudIsland
+     * @param event mouseClick
+     */
     private void onSelectClick(Event event){
         ConfirmBtn.setDisable(false);
     }
 
+    /**
+     *
+     * @param event mouseClick
+     */
     @FXML
     void  onBackToMenuClick(Event event) {
         new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
