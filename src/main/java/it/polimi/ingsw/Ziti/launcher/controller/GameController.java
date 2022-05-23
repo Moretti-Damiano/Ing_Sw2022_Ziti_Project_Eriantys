@@ -427,8 +427,8 @@ public class GameController extends GameControllerObservable implements ServerOb
     }
 
     /**
-     * this method
-     * @param currentPlayer
+     * this method notify the new active player that it's his turn
+     * @param currentPlayer the new active player
      */
     public void notifyNewActivePlayer(Player currentPlayer) {
         notifyObserver(obs-> obs.sendToOnePlayer(new YourTurnNotification(),currentPlayer.GetName()));

@@ -26,7 +26,11 @@ public class Character5 extends Character{
         setEndPhase(PhaseType.CLOUD);
     }
 
-
+    /**
+     * this method is used to set the colour for the character's effect
+     * @param colour the chosen colour
+     * @throws CharacterException if the colour is not valid
+     */
     public void choose(String colour) throws CharacterException {
     checkInput(colour);
     this.colour=Colour.valueOfName(colour);
@@ -35,7 +39,6 @@ public class Character5 extends Character{
     @Override
     public void startEffect()  {
         setUsed(true);
-        //tolgo il prof di quel colore
         profPlayer = getGame().checkProfessor(colour);
         if(profPlayer != null)
             professor = profPlayer.getBoard().removeProfessorByColour(colour);
@@ -43,7 +46,6 @@ public class Character5 extends Character{
 
     @Override
     public void endEffect() {
-        //rimetto il professore
         if(profPlayer!=null)
             profPlayer.getBoard().addProfessor(professor);
 

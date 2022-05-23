@@ -18,20 +18,5 @@ public enum PhaseType implements Serializable {
          return this.abbreviation;
     }
 
-    public static PhaseType next(PhaseType phase){
-        switch(phase){
-            case NULL:
-                return PLANNING;
-            case PLANNING:
-                return MOVEMENT;
-            case MOVEMENT:
-                return MOTHER;
-            case MOTHER:
-                return CLOUD;
-            case CLOUD:
-                return PLANNING;
-            default:
-                return NULL;
-        }
-    }
+
 }

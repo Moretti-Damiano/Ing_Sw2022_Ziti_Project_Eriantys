@@ -45,6 +45,10 @@ public class TurnController {
         this.phase = phase;
     }
 
+    /**
+     * this method change the current phase in game
+     * @throws WinException if a win condition is activated
+     */
     public void updatePhase() throws WinException {
         phase.update();
         checkWinConditions();

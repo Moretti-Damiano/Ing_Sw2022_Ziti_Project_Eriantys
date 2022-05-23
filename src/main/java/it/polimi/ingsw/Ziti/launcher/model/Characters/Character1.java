@@ -6,8 +6,6 @@ import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.exception.CharacterException;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
 
-/*Choose an island and resolve the island as if Mother Nature had ended her movement there.
-Mother Nature will still move and the island where she ends her movement will also be resolved*/
 
 public class Character1 extends Character{
 
@@ -27,7 +25,11 @@ public class Character1 extends Character{
         setEndPhase(PhaseType.MOTHER);
     }
 
-
+    /**
+     * this method is used to set the chosen island used by the effect
+     * @param islandId the id of the chosen island
+     * @throws CharacterException if the parameter isn't valid
+     */
     public void choose(int islandId) throws CharacterException {
         checkInput(islandId);
         this.islandId=islandId;
@@ -60,11 +62,15 @@ public class Character1 extends Character{
         setUsed(false);
     }
 
+    /**
+     * reset the position of the mother
+     */
     private void endAction(){
         getGame().getMother().getIsland().removeMother();
         getGame().getMother().setIsland(motherIsland);
         getGame().getMother().getIsland().addMother();
     }
+
 
     private void checkInput(int islandId) throws CharacterException{
         if(!checkId(islandId)){
@@ -72,6 +78,11 @@ public class Character1 extends Character{
         }
     }
 
+    /**
+     * check if the island id is valid
+     * @param islandId the id of the island
+     * @return true if the of the island is correct
+     */
     private boolean checkId(int islandId){
         for(Island i: getGame().getIslands()){
             if(i.getID() == islandId){

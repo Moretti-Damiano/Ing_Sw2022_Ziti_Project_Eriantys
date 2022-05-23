@@ -1,7 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.Messages;
 
 import java.io.Serializable;
-
+/**
+ * this class is used to create a summary of a character
+ */
 public class CharacterSummary implements Serializable {
     private int id;
     private int cost;
