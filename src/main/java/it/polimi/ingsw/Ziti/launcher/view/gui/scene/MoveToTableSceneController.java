@@ -900,8 +900,12 @@ public class MoveToTableSceneController extends InputObservable implements Gener
     }
 
 
-
-
+    /**
+     * Set board images,student images,professor images and tower images depending on numOfPlayer
+     * Set as first board the board of the player who sent the request message
+     * Set the actual assistant of each player
+     * Set island images with motherNature image, student images and tower images
+     */
 
     @FXML
     public void initialize() {
@@ -1400,46 +1404,83 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         }
 
     }
+
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent0Click (Event event){
         StudentColour=WaitingStudent0.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent1Click (Event event){
         StudentColour=WaitingStudent1.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent2Click (Event event){
         StudentColour=WaitingStudent2.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent3Click (Event event){
         StudentColour=WaitingStudent3.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent4Click (Event event){
         StudentColour=WaitingStudent4.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent5Click (Event event){
         StudentColour=WaitingStudent5.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent6Click (Event event){
         StudentColour=WaitingStudent6.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent7Click (Event event){
         StudentColour=WaitingStudent7.getId();
         setSelectBtn();
     }
+    /**
+     * set the image of WaitingStudent on board with the related student
+     * @param event mouseClick
+     */
     @FXML
     void onStudent8Click (Event event){
         StudentColour=WaitingStudent8.getId();
@@ -1969,11 +2010,20 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         else MoveMotherBtn.setDisable(true);
     }
 
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
+
     @FXML
     void onIsland0Click(Event event){
         IslandId=Island0.getId();
         ConfirmBtn.setDisable(false);
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
 
     @FXML
     void onIsland1Click(Event event){
@@ -1981,60 +2031,100 @@ public class MoveToTableSceneController extends InputObservable implements Gener
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland2Click(Event event){
         IslandId=Island2.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland3Click(Event event){
         IslandId=Island3.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland4Click(Event event){
         IslandId=Island4.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland5Click(Event event){
         IslandId=Island5.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland6Click(Event event){
         IslandId=Island6.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland7Click(Event event){
         IslandId=Island7.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland8Click(Event event){
         IslandId=Island8.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland9Click(Event event){
         IslandId=Island9.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland10Click(Event event){
         IslandId=Island10.getId();
         ConfirmBtn.setDisable(false);
 
     }
+    /**
+     * set IslandId which the id of the islandClicked
+     * @param event mouseClick
+     */
     @FXML
     void onIsland11Click(Event event){
         IslandId=Island11.getId();
@@ -2121,6 +2211,10 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
 
     }
+
+    /**
+     * display the currentPlayer coins
+     */
 
     @FXML
     private void setCoins(){

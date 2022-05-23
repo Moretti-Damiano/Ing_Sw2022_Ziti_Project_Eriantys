@@ -40,7 +40,7 @@ public class ModeRequestSceneController extends InputObservable implements Gener
     }
 
     /**
-     * Handle click on Confirm button.
+     * Handle click on Confirm button.Send a message which contains the selected GameMode
      *
      * @param event the mouse click event.
      */
