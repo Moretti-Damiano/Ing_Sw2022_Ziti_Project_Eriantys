@@ -21,7 +21,7 @@ import java.util.concurrent.ScheduledExecutorService;
  */
 
 
-public class SocketClient extends SocketClientObservable implements ClientObserver{
+public class SocketClient extends SocketClientObservable implements ClientObserver {
 
     private final Socket socket;
     private final ObjectOutputStream outputStm;
@@ -29,35 +29,35 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
     private static final int TIMEOUT = 10000;
     private ErrorMessage errorMessage;
     MessageToClient messageToClient;
-    private final ExecutorService readExecutionQueue;
+    //private final ExecutorService readExecutionQueue;
 
-    public SocketClient (String address,ObserverClient observerClient) throws IOException{
-            this.socket = new Socket();
-            this.addObserver(observerClient);
-            try {
-                this.socket.connect(new InetSocketAddress(address,16847), TIMEOUT);
-            }catch(IllegalArgumentException i){
-                errorMessage=new ErrorMessage("SocketClint","Invalid port/host");
-                notifyObserver(obs->obs.update(errorMessage));
-                socket.close();
-            }
-            this.readExecutionQueue= Executors.newSingleThreadExecutor();
-            this.outputStm = new ObjectOutputStream(socket.getOutputStream());
-            this.inputStm = new ObjectInputStream(socket.getInputStream());
+    public SocketClient(String address, ObserverClient observerClient) throws IOException {
+        this.socket = new Socket();
+        this.addObserver(observerClient);
+        try {
+            this.socket.connect(new InetSocketAddress(address, 16847), TIMEOUT);
+        } catch (IllegalArgumentException i) {
+            errorMessage = new ErrorMessage("SocketClint", "Invalid port/host");
+            notifyObserver(obs -> obs.update(errorMessage));
+            socket.close();
+        }
+        this.outputStm = new ObjectOutputStream(socket.getOutputStream());
+        this.inputStm = new ObjectInputStream(socket.getInputStream());
 
     }
-    public void connect() {
 
-        final Thread outThread = new Thread(){
+    public void connect() {
+        final Thread outThread = new Thread() {
             public void run() {
                 receive();
             }
-    };
-    outThread.start();
+        };
+        outThread.start();
     }
 
     /**
      * Send messages to the server
+     *
      * @param message used to determinate which send needs to be used
      */
     public void send(MessagetoServer message) {
@@ -66,8 +66,9 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
             outputStm.writeObject(message);
             outputStm.reset();
         } catch (IOException e) {
-            errorMessage = new ErrorMessage("SocketClient", "Could not send message");
-            notifyObserver(obs->obs.update(errorMessage));
+            System.out.println("Could not send message");
+            //errorMessage = new ErrorMessage("SocketClient", "Could not send message");
+            //notifyObserver(obs -> obs.update(errorMessage));
         }
     }
 
@@ -75,32 +76,35 @@ public class SocketClient extends SocketClientObservable implements ClientObserv
      * Receive methods(messages) from server
      */
     public void receive() {
-        readExecutionQueue.execute(() ->{
-        while (!readExecutionQueue.isShutdown()) {
+        while (true) {
             try {
-                    System.out.println("waiting input :");
-                    messageToClient = (MessageToClient) inputStm.readObject();
-                    //System.out.println("Ho letto mesaggio di tipo: " + messageToClient.toString());
-                    notifyObserver(obs -> obs.update(messageToClient));
+
+                messageToClient = (MessageToClient) inputStm.readObject();
+                System.out.println("Ho letto mesaggio di tipo: " + messageToClient.toString());
+                notifyObserver(obs -> obs.update(messageToClient));
 
             } catch (IOException | ClassNotFoundException e) {
+                System.out.println("RIGA 87 :(");
                 errorMessage = new ErrorMessage("SocketClient", "Connection lost");
                 notifyObserver(obs -> obs.update(errorMessage));
                 disconnect();
+                break;
             }
         }
-    });
     }
+
+
 
     /**
      * Method used to close the Socket
      */
     public void disconnect() {
-
         try {
          //   if(!socket.isClosed()){
-                readExecutionQueue.shutdownNow();
-                socket.close();
+                //readExecutionQueue.shutdown();
+            removeAllObservers();
+            socket.close();
+
             } catch (IOException ioException) {
           //  errorMessage = new ErrorMessage ("SocketClient","Could not disconnect");
             notifyObserver(obs->obs.update(errorMessage));

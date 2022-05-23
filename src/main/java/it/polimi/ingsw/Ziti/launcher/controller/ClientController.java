@@ -20,7 +20,6 @@ import java.io.IOException;
 public class ClientController extends ClientObservable implements InputObserver {
 
     ClientMessageHandler clientMessageHandler;
-    SocketClient socketClient;
     ObserverClient observerClient;
 
     public ClientController(ClientMessageHandler clientMessageHandler,ObserverClient ObserverClient){
@@ -49,8 +48,10 @@ public class ClientController extends ClientObservable implements InputObserver 
 
     @Override
     public void onUpdateConnection(String address) {
-      //  if(isInt(port)){
-       try{socketClient=new SocketClient(address,observerClient);
+        removeAllObservers(); //when starting a new cli, removes the previous socketClient
+        SocketClient socketClient;
+       try{
+           socketClient=new SocketClient(address,observerClient);
            socketClient.connect();
            this.addObserver(socketClient);
            ConnectionSuccessfulMessage message;
@@ -60,13 +61,6 @@ public class ClientController extends ClientObservable implements InputObserver 
            ErrorMessage message = new ErrorMessage("ClientController", "Generic IO Error");
            update(message);}
        }
-     /*   else{
-                InputError message;
-                message=new InputError("Not numeric value!");
-                update(message);
-            }*/
-
-
 
 
     @Override

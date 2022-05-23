@@ -28,6 +28,14 @@ public abstract class ClientObservable {
     }
 
     /**
+     * Removes all the observers
+     */
+    public void removeAllObservers() {
+        observers.clear();
+    }
+
+
+    /**
      * Notifies all the current observers through the lambda argument.
      *
      * @param lambda the lambda to be called on the observers.
