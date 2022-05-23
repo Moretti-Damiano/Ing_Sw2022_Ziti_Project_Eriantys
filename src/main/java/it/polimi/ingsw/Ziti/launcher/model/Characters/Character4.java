@@ -26,7 +26,11 @@ public class Character4 extends Character{
         setEndPhase(PhaseType.CLOUD);
     }
 
-
+    /**
+     * this method is used to set che colour used by the character's effect
+     * @param colour the chosen colour
+     * @throws CharacterException if the colour isn't valid
+     */
     public void choose(String colour) throws CharacterException {
      checkInput(colour);
      this.colour = Colour.valueOfName(colour);

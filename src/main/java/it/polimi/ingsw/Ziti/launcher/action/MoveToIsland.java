@@ -64,7 +64,7 @@ public class MoveToIsland implements Action{
         return false;
     }
 
-    private void checkInput() throws ActionException{
+    public void checkInput() throws ActionException{
         // check if the island id is right
         if(!checkId())
             throw new ActionException();

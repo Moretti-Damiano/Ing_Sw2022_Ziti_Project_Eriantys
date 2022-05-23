@@ -426,10 +426,17 @@ public class GameController extends GameControllerObservable implements ServerOb
         notifyObserver(obs -> obs.sendToAllPlayers(message));
     }
 
+    /**
+     * this method notify the new active player that it's his turn
+     * @param currentPlayer the new active player
+     */
     public void notifyNewActivePlayer(Player currentPlayer) {
         notifyObserver(obs-> obs.sendToOnePlayer(new YourTurnNotification(),currentPlayer.GetName()));
     }
 
+    /**
+     * this method is used to notify all the current player and the game phase
+     */
     public void sendTurnNotification() {
         notifyObserver(obs -> obs.sendToAllPlayers(new TurnNotification("it's " +
                 game.getCurrentPlayer().GetName() + " turn and it's " +
@@ -455,18 +462,28 @@ public class GameController extends GameControllerObservable implements ServerOb
 
     }
 
+    /**
+     * notify the players that the game has ended because a player won
+     * @param winnerName the name of the player who won the game
+     */
     public void endGame(String winnerName){
         System.out.println(winnerName + " won the game!!!");
         notifyObserver(obs->obs.sendToAllPlayers(new WinMessage(winnerName)));
         notifyObserver(GameControllerObserver::disconnectAll);
     }
 
+    /**
+     * notify that the game has ended because of a disconnection
+     */
     public void endGameDisconnection(){
         notifyObserver(obs->obs.sendToAllPlayers(new GameEndedMessage("Game has ended because a player disconnected")));
         notifyObserver(GameControllerObserver::disconnectAll);
     }
 
-
+    /**
+     * this method is used to create the correct game
+     * @param playerSize the number of players of the game
+     */
     private void chooseGame(int playerSize){
         if(playerSize==2){
             this.game=new Game2(players);}
@@ -475,6 +492,10 @@ public class GameController extends GameControllerObservable implements ServerOb
         }
     }
 
+    /**
+     * this method is used to create the game mode for this game
+     * @param mode the parameter which select the game mode
+     */
     private void chooseMode(boolean mode){
         if(mode){
             game.setGameMode(new ExpertMode(game));
@@ -484,6 +505,10 @@ public class GameController extends GameControllerObservable implements ServerOb
         }
     }
 
+    /**
+     * this method is used to create a summary of the characters in game to send
+     * @return an arraylist of summary about characters
+     */
     private ArrayList<CharacterSummary> getCharacterSummary(){
         ArrayList<CharacterSummary> summary = new ArrayList<>();
         for(Character c: game.getCharacters()){
