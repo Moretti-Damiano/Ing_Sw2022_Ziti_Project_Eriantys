@@ -3,12 +3,9 @@ package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
-import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import it.polimi.ingsw.Ziti.launcher.model.Board;
 import it.polimi.ingsw.Ziti.launcher.model.Island;
-import it.polimi.ingsw.Ziti.launcher.model.Student;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.Group;
@@ -16,13 +13,9 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.GridPane;
 import javafx.scene.text.Text;
 
 import java.util.*;
-
-import static com.sun.javafx.scene.control.skin.Utils.getResource;
-import static it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour.BLACK;
 
 public class MoveToTableSceneController extends InputObservable implements GenericSceneController {
 
@@ -1889,7 +1882,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
                 assChoseImage.setImage(img1);
             }else assChoseImage.setImage(null);
 
-            Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
+            Image img = new Image(getClass().getResourceAsStream("/images/board.png"));
             BoardImage.setImage(img);
             setStudentsWaiting(studentsWaiting,board);
             setStudentsDining();
@@ -1911,7 +1904,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
             BoardName.setText(boards.get(numBoard).getPlayername());
 
             board=boards.get(numBoard);
-            Image img = new Image(getClass().getResourceAsStream("/images/Plancia_DEF2.png"));
+            Image img = new Image(getClass().getResourceAsStream("/images/board.png"));
             BoardImage.setImage(img);
             if(assplayer.get(board.getPlayername())!=null)
             {

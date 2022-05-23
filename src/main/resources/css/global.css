@@ -40,9 +40,6 @@
 
 .radioButton {
     -fx-font-size: 16;
-   /* -fx-background-image: url("../images/smallbtn.png");
-
-    */
 }
 
 .radioButton:selected {
@@ -70,11 +67,7 @@
 .menuField {
     -fx-font-size: 16;
 }
-/*
-.menuField:error {
-    -fx-border-color: red;
-}
-*/
+
 .blueGlow:hover {
     -fx-effect: dropshadow(gaussian, #3333ff, 20, 0.3, 0, 0);
 }
