@@ -2,6 +2,9 @@ package it.polimi.ingsw.Ziti.launcher.model;
 
 import java.io.Serializable;
 
+/**
+ * This class contains all the attributes of an assistant card.
+ */
 public class Assistant implements Serializable {
     private final int id;
     private  int movesMother;
@@ -74,16 +77,16 @@ public class Assistant implements Serializable {
     }
 
     /**
-     * Method used for Character 2
-     * @param movesMother
+     * Adds moves to the selected assistant
+     * @param movesMother the numbers of moves to be added
      */
     public void addMoves(int movesMother) {
         this.movesMother += movesMother;
     }
 
     /**
-     * Method used for Character 2
-     * @param movesMother
+     * Removes moves from the selected assistant
+     * @param movesMother the numbers of moves to be removed
      */
     public void reduceMoves(int movesMother) {
         this.movesMother -= movesMother;
