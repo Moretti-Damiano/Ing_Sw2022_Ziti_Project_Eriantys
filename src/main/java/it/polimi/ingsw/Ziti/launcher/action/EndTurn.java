@@ -10,7 +10,7 @@ import java.util.stream.IntStream;
  **/
 public class EndTurn implements Action {
 
-   private Game game;
+   private final Game game;
    private String description = "";
 
 

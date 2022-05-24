@@ -15,9 +15,9 @@ import java.util.Locale;
 * */
 public class MoveToIsland implements Action{
 
-    private Game game;
-    private int chosenIsland;
-    private String studentColour;
+    private final Game game;
+    private final int chosenIsland;
+    private final String studentColour;
     private String description = "";
 
     public MoveToIsland(Game game, int chosenIsland, String studentColour) {
@@ -30,7 +30,7 @@ public class MoveToIsland implements Action{
 
     /**
      * Take a color of a waiting student from the Board of a Player and move it into an Island
-     * @throws ActionException
+     * @throws ActionException if the action can't be performed
      */
     @Override
     public void execute() throws ActionException {
@@ -49,7 +49,6 @@ public class MoveToIsland implements Action{
     public void addDescription(String s) {
 
     }
-
 
     /**
      * checks if the given island id is valid
