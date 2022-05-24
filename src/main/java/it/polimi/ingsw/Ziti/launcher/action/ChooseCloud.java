@@ -11,10 +11,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
  */
 public class ChooseCloud implements Action{
 
-    private Game game;
-    private int chosenCloudId;
-    private Player player;
-    private CloudIsland chosenCloud;
+    private final Game game;
+    private final int chosenCloudId;
+    private final Player player;
     private String description = "";
 
     public ChooseCloud(Game game, Player player , int chosenCloudId){
@@ -25,12 +24,11 @@ public class ChooseCloud implements Action{
 
     /**
      *Takes all the students from the chosen cloudIsland and adds them to the player's board
-     * @return null
      */
     @Override
     public void execute() throws ActionException {
             checkInput();
-            this.chosenCloud = game.getCloudIslands().get(chosenCloudId);
+        CloudIsland chosenCloud = game.getCloudIslands().get(chosenCloudId);
 
             description = (game.getCurrentPlayer().GetName() + " has chose cloudIsland n. " + chosenCloud);
 
@@ -51,7 +49,7 @@ public class ChooseCloud implements Action{
 
     /**
      * Check that input is correct
-     * @throws ActionException
+     * @throws ActionException if the id is invalid
      */
     public void checkInput() throws ActionException {
         // verify chosenCloud's Id

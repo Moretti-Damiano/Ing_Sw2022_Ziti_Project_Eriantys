@@ -14,15 +14,15 @@ public interface GameControllerObserver {
      * @param message the message to be sent
      * @param nickName the client nickname
      */
-    public void sendToOnePlayer(MessageToClient message, String nickName);
+    void sendToOnePlayer(MessageToClient message, String nickName);
 
     /**
      * Send the message to every connected client
      * @param message the message to be sent
      */
-    public void sendToAllPlayers(MessageToClient message);
+    void sendToAllPlayers(MessageToClient message);
 
-    public void successfulLogin(MessageToClient message, String temporaryName,String newName);
+    void successfulLogin(MessageToClient message, String temporaryName,String newName);
     
     void disconnectAll();
 }

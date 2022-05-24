@@ -9,10 +9,10 @@ import java.io.IOException;
 import java.util.concurrent.ExecutionException;
 
 /**
- * This class is observed by cli and by ClientController
+ * This class is observed by cli
+ * This class is referred to ClientController and ObserverClient
  * Every method handles a request of the similar message: notifies observer calling its method with the message as a parameter
  */
-
 public class ClientMessageHandler extends ViewObservable {
     public void YourTurnNotificationHandle(YourTurnNotification message){notifyObserver(obs-> obs.YourTurnNotificationHandler(message));}
     public void MoveMotherDoneHandle(MoveMotherDoneMessage message){notifyObserver(obs-> obs.moveMotherHandler(message));}

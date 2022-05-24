@@ -62,6 +62,9 @@ public class MainSocketServer implements LoginObserver {
         gameController.addObserver(this);
     }
 
+    /**
+     * Called when a game starts, this method allows to create a new game and players to connect
+     */
     @Override
     public void update() {
         createNewGame();

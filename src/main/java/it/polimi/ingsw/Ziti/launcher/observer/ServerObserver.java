@@ -2,8 +2,6 @@ package it.polimi.ingsw.Ziti.launcher.observer;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
-import it.polimi.ingsw.Ziti.launcher.model.Characters.Character3;
-
 /**
  * Interface used to implement the Observer-Observable pattern between Server and GameController.
  * This interface allows the GameController to observe the Server.
@@ -11,35 +9,26 @@ import it.polimi.ingsw.Ziti.launcher.model.Characters.Character3;
  */
 public interface ServerObserver {
 
-    public void moveToIslandHandler(MoveToIslandMessage message);
-    public void moveToTableHandler(MoveToTableMessage message);
-    public void moveMotherHandler(MoveMotherMessage message);
-    public void choseAssistantHandler(ChooseAssistantMessage message);
-    public void cloudIslandHandler(CloudIslandMessage message);
-    public void loginHandler(LoginMessage message);
-    public void numberOfPlayerHandler(NumberOfPlayersMessage message);
-    public void showAssistantRequestHandler(ShowAssistantRequest message);
-    public void showBoardsRequestHandler(ShowBoardsRequest message);
-    public void showCloudRequestHandler(ShowCloudRequest message);
-    public void showBoardRequestHandler(ShowBoardRequest message);
-    public void showBoardsandIslandsRequestHandler(ShowBoardsandIslandsRequest message);
-    public void modeHandler(ModeResponse message);
-
-    public void showIslandRequestHandler(ShowIslandRequest message);
-
-    public void showCharacterRequestHandler(ShowCharacterRequest message);
-
-    public void chooseCharacter0Handler(Character0Message message);
-
-    public void chooseCharacter1Handler(Character1Message message);
-
-    public void chooseCharacter2Handler(Character2Message message);
-
-    public void chooseCharacter3Handler(Character3Message message);
-
-    public void chooseCharacter4Handler(Character4Message message);
-
-    public void chooseCharacter5Handler(Character5Message message);
-
-    public void endGameDisconnection();
+    void moveToIslandHandler(MoveToIslandMessage message);
+    void moveToTableHandler(MoveToTableMessage message);
+    void moveMotherHandler(MoveMotherMessage message);
+    void choseAssistantHandler(ChooseAssistantMessage message);
+    void cloudIslandHandler(CloudIslandMessage message);
+    void loginHandler(LoginMessage message);
+    void numberOfPlayerHandler(NumberOfPlayersMessage message);
+    void showAssistantRequestHandler(ShowAssistantRequest message);
+    void showBoardsRequestHandler(ShowBoardsRequest message);
+    void showCloudRequestHandler(ShowCloudRequest message);
+    void showBoardRequestHandler(ShowBoardRequest message);
+    void showBoardsandIslandsRequestHandler(ShowBoardsandIslandsRequest message);
+    void modeHandler(ModeResponse message);
+    void showIslandRequestHandler(ShowIslandRequest message);
+    void showCharacterRequestHandler(ShowCharacterRequest message);
+    void chooseCharacter0Handler(Character0Message message);
+    void chooseCharacter1Handler(Character1Message message);
+    void chooseCharacter2Handler(Character2Message message);
+    void chooseCharacter3Handler(Character3Message message);
+    void chooseCharacter4Handler(Character4Message message);
+    void chooseCharacter5Handler(Character5Message message);
+    void endGameDisconnection();
 }

@@ -7,7 +7,6 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
@@ -18,23 +17,26 @@ import java.util.*;
 /**
  * This class observes ClientMessageHandler and is observed by ClientController
  * It's the real client who calls methods from "command line interface"
+ * Implements view's methods
  */
 public class cli extends InputObservable implements view, ViewObserver {
 
     private InputReadThread inputThread;
-    private Scanner scanner;
-    private boolean freeInput;
-
+    private final Scanner scanner;
 
 
     public cli(){
         scanner = new Scanner(System.in);
-        freeInput = false;
-        inputThread = new InputReadThread(this);
-        //new Thread(inputThread).start();
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     *
+     *
+     * @param assistants
+     */
     public void showAssistants(List<Assistant> assistants) {
         System.out.println("Available assistants are :");
         for(Assistant ass : assistants){
@@ -45,7 +47,11 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    @Override
+    /**
+     *
+     *
+     * @param characterSummary
+     */
     public void showCharacters(ArrayList<CharacterSummary> characterSummary) {
         for(CharacterSummary character:characterSummary){
             System.out.println("Character ID: "+character.getId()+"\t\t"+"Cost "+character.getCost());
@@ -56,7 +62,12 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
 
-    @Override
+    /**
+     *
+     *
+     *
+     * @param islands
+     */
     public void showIslands(List<Island> islands) {
         System.out.println();
         System.out.println("Available islands are ");
@@ -84,7 +95,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         }
     }
 
-    @Override
+    /**
+     *
+     *
+     * @param clouds
+     */
     public void showClouds(List<CloudIsland> clouds) {
         System.out.println("Available Cloud Islands are: ");
         for (CloudIsland c : clouds) {
@@ -99,7 +114,12 @@ public class cli extends InputObservable implements view, ViewObserver {
             }
         }
     }
-    @Override
+
+    /**
+     *
+     *
+     * @param board
+     */
     public void showMyBoard(Board board) {
         // show waiting Students
         System.out.println("     WAITING ROOM                                                       DINING ROOM");
@@ -122,7 +142,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("There are " + board.getTowerSize() + " towers");
     }
 
-    @Override
+    /**
+     *
+     *
+     * @param boards
+     */
     public void showBoards(List<Board> boards){
         for(Board board: boards){
             System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t"+board.getPlayername().toUpperCase(Locale.ROOT)+"'s BOARD");
@@ -134,7 +158,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void showErrorMessage(ErrorMessage message) {
         System.out.println(message.getDescription()+" from "+message.getSender());
-        System.out.println("Please insert a valid input");
+        //System.out.println("Please insert a valid input");
     }
     @Override
     public void showInputErrorMessage(InputError message) {
@@ -146,7 +170,11 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askLogin()  {
         System.out.println("Insert your username: ");
         String username;
@@ -154,7 +182,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         notifyObserver(obs->obs.onUpdateLogin(username));
     }
 
-    @Override
+    /**
+     *
+     *
+     * @return
+     */
     public String askAssistant()  {
         System.out.println("Insert Assistant's id: ");
         String assistantId;
@@ -163,7 +195,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         return assistantId;
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     * @return
+     */
     public String askCharacter(){
         System.out.println("Insert Character's id: ");
         String characterId;
@@ -172,7 +209,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         return characterId;
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     * @return
+     */
     public String askIsland()  {
         System.out.println("Insert an Island's id: ");
         String islandId;
@@ -181,7 +223,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         return islandId;
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     * @return
+     */
     public String askColour()  {
         System.out.println("Insert a colour: ");
         String colour;
@@ -190,11 +237,6 @@ public class cli extends InputObservable implements view, ViewObserver {
         return colour;
 
     }
-
-    /**
-     * Used to ask the number of players
-     * Notify observer with that update
-     */
     public void askNumberOfPlayer()  {
         System.out.println("Insert the number of players: ");
         String numberOfPlayer=readLine();
@@ -226,19 +268,31 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askMoveToTable() {
         notifyObserver(obs ->   obs.onUpdateMoveToTable(askColour()));
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askMoveToIsland(){
         notifyObserver(obs ->
                 obs.onUpdateMoveToIsland(askColour(),askIsland()));
 
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askMoveMother() {
         String moves;
         System.out.println("Insert how many moves the MotherNature should do: ");
@@ -247,7 +301,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         inputThread.setFreeInput(true);
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askCloudIsland() {
         String cloudID;
         System.out.println("Insert CloudIsland's id that you want: ");
@@ -257,7 +315,11 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askChoseCharacter() {
         String characterId = askCharacter();
         switch (characterId){
@@ -285,7 +347,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askChoseAssistant() {
         notifyObserver(obs -> obs.onUpdateChooseAssistant(askAssistant()));
     }
@@ -296,20 +362,14 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
     private void playAgain(){
         scanner.reset();
-        //scanner.remove();
-        System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
-       // new cli();
-        scanner = new Scanner(System.in);
-        freeInput = false;
-        inputThread = new InputReadThread(this);
-        inputThread.setFreeInput(false);
-        inputThread.setFreeInput(true);
-        String response=scanner.nextLine();
+        inputThread.close();
 
-        //not reading an input (probably because of threads)
-        //scanner.skip("");
-        if(Objects.equals(response, "Y"))init();
-        else System.exit(0);
+        System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
+        String response = readLine();
+        if(response.equalsIgnoreCase("Y"))
+            init();
+        else
+            System.exit(0);
 
     }
 
@@ -317,10 +377,6 @@ public class cli extends InputObservable implements view, ViewObserver {
     @Override
     public void ErrorMessageHandler(ErrorMessage message) {
         showErrorMessage(message);
-        //inputThread.setFreeInput(true);
-       // this.init();
-       // inputThread.setFreeInput(true); probably faster but not really tested
-
         this.playAgain();
     }
 
@@ -398,9 +454,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     @Override
     public void NumOfPlayerHandler(NumOfPLayersRequest message){
-       // System.out.println("Sto per chiedere il numero dei player");
         askNumberOfPlayer();
-
     }
 
     @Override
@@ -476,29 +530,20 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Please insert Server Settings. Default value is shown as [DEFAULT]");
         System.out.println("Enter the server address ["+defaultAddress+"]");
         String address=readLine();
-        //System.out.println("Enter the server port ["+defaultPort+"]");
-        //String port=readLine();
+
         notifyObserver(obs->obs.onUpdateConnection(address));
-        inputThread.setFreeInput(true);
 
     }
 
-
     /**
-     * Used to read from Client
-     * Calls the relative Update
-     * @return scanner method
+     * Method used to start a reading thread to catch client's input
+     * @return input read
+     * @
      */
     public String readLine(){
         return scanner.nextLine();
     }
 
-
-    /**
-     * Used to switch every input possible
-     * Set "Invalid" on default
-     * @param input is the read String
-     */
     public void command(String input){
         switch(input){
             case "CHOOSEASSISTANT":
@@ -547,8 +592,8 @@ public class cli extends InputObservable implements view, ViewObserver {
                 notifyObserver(obs->obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
                 break;
             case "DISCONNECT":
-               // notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
-               // init();
+                // notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
+                // init();
                 System.exit(0);
                 break;
             default:
@@ -558,9 +603,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     /**
-     * Second method called
-     * Shows every possibility that Client has
-     * Starts a new InputThread
+     * Method used to ask what a client wants to do
      */
     public void gameStarter()  {
         System.out.println("MAIN ACTION");
@@ -580,6 +623,8 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Type DISCONNECT to end this game and restart an other one");
 
         inputThread = new InputReadThread(this);
-        new Thread(inputThread).start();
+        Thread inputReader = new Thread(inputThread);
+        inputReader.start();
+
     }
 }

@@ -8,7 +8,7 @@ import java.util.concurrent.ExecutionException;
 /**
  * Interface used to implement the Observer-Observable pattern between Cli and Client Message Handler.
  * This interface allows Cli to observe the Client Message Handler.
- * It contains the methods to handle answer messages to clients.
+ * It contains methods to handle answer messages to clients from server.
  */
 public interface ViewObserver {
 
@@ -41,5 +41,4 @@ public interface ViewObserver {
     void showInputErrorMessage(InputError message);
     void GameEndedHandler(GameEndedMessage message);
 
-    //Handler per ogni show (con i messaggi che contengono i dati)
 }

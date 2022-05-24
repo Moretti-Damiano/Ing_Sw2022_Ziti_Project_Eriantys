@@ -63,10 +63,6 @@ public class Sack implements Serializable {
         numColour[student.getColour().getIntAbbreviation()]++;
     }
 
-    /**
-     *
-     * @return if the sack is empty or not
-     */
     public boolean isEmpty(){
         for(int i = 0; i < 5; i++){
             if(numColour[i]!=0)

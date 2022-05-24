@@ -10,9 +10,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Player;
  * This action is used to Choose an Assistant in the game
  */
 public class ChooseAssistant implements Action {
-    private Game game;
-    private int assistantID;
-    private Player player;
+    private final Game game;
+    private final int assistantID;
+    private final Player player;
     private String description="";
 
     public ChooseAssistant (Game game, Player player,int assistantID){
@@ -23,7 +23,7 @@ public class ChooseAssistant implements Action {
 
     /**
      * Check if AssistantId has a valid value (between 0 and 9)
-     * @throws ActionException
+     * @throws ActionException id the Id is invalid
      */
 
     private void ValidID () throws ActionException {
@@ -36,7 +36,7 @@ public class ChooseAssistant implements Action {
      * This method is used in a particular case : when for all the 3 players,
      * all the remaining AssistantCard are taken by other players. In this case two (or more) player
      *can use the same AssistantCard
-     * @throws ActionException
+     * @throws ActionException  if the assistant is not available
      */
     private void ThreePlayerCase ()throws ActionException{
             int count=0;
@@ -85,8 +85,7 @@ public class ChooseAssistant implements Action {
         for(Assistant ass: this.game.getCurrentPlayer().getAssistants()){
             if(ass.isAssChose()){count++;}
         }
-        if(count==9){return true;}
-        else {return false;}
+        return count == 9;
     }
 
     @Override
@@ -100,10 +99,8 @@ public class ChooseAssistant implements Action {
 
     }
 
-
     /**
-     *
-     * @return if the choice is valid
+     * @throws ActionException if the asssitnat is not available
      */
     private void checkValidate() throws ActionException {
 

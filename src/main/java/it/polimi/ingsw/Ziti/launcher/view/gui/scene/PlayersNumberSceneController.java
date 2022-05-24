@@ -49,7 +49,7 @@ public class PlayersNumberSceneController extends InputObservable implements Gen
     }
 
     /**
-     * Handles click on Confirm button. creates a message which contains the selected NumberOfPlayer
+     * Handles click on Confirm button.
      *
      * @param event the mouse click event.
      */
@@ -60,6 +60,9 @@ public class PlayersNumberSceneController extends InputObservable implements Gen
 
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateNumberOfPlayer(playersNumber))).start();
+
+       // SceneController.changeRootPane(observers, event, "mode_scene.fxml");
+
 
     }
 

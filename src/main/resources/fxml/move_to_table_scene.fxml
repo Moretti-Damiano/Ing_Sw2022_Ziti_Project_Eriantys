@@ -26,7 +26,7 @@
                   </ImageView>
                   <ImageView fx:id="BoardImage" fitHeight="372.0" fitWidth="697.0" layoutX="218.0" layoutY="151.0">
                      <image>
-                        <Image url="@../images/board.png" />
+                        <Image url="@../images/Plancia_DEF2.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="NextBtn" layoutX="128.0" layoutY="480.0" mnemonicParsing="false" prefHeight="22.0" prefWidth="94.0" rotate="90.0" scaleX="1.5" scaleY="1.5" styleClass="bigButton" text="Next Board" />

@@ -14,13 +14,12 @@ import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 import java.io.IOException;
 /**
  * This class observes cli and is observed by SocketClient
- * Is used to verify inputs and to bring message to the server
+ * Is used to verify inputs and to bring messages to the server
+ * Contains a reference to ClientMessageHandler that allows management of every message to Client
  */
-
 public class ClientController extends ClientObservable implements InputObserver {
 
     ClientMessageHandler clientMessageHandler;
-    SocketClient socketClient;
     ObserverClient observerClient;
 
     public ClientController(ClientMessageHandler clientMessageHandler,ObserverClient ObserverClient){
@@ -31,14 +30,19 @@ public class ClientController extends ClientObservable implements InputObserver 
     /**
      * this method is used to bring "Messages to Client" from Server to cli
      */
-
     public void update(MessageToClient message){ message.handle(clientMessageHandler);}
 
 
     /**
+     *
      * Methods "onUpdate" are used to create Message to Client
      * Take String as a parameters, if String should be an Integer it verifies it
+     *
      */
+
+
+
+
 
     @Override
     public void onUpdateLogin(String nickname) {
@@ -49,8 +53,10 @@ public class ClientController extends ClientObservable implements InputObserver 
 
     @Override
     public void onUpdateConnection(String address) {
-      //  if(isInt(port)){
-       try{socketClient=new SocketClient(address,observerClient);
+        removeAllObservers(); //when starting a new cli, removes the previous socketClient
+        SocketClient socketClient;
+       try{
+           socketClient=new SocketClient(address,observerClient);
            socketClient.connect();
            this.addObserver(socketClient);
            ConnectionSuccessfulMessage message;
@@ -60,13 +66,6 @@ public class ClientController extends ClientObservable implements InputObserver 
            ErrorMessage message = new ErrorMessage("ClientController", "Generic IO Error");
            update(message);}
        }
-     /*   else{
-                InputError message;
-                message=new InputError("Not numeric value!");
-                update(message);
-            }*/
-
-
 
 
     @Override

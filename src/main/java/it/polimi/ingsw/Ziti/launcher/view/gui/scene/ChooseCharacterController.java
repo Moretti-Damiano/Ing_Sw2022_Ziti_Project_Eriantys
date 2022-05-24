@@ -90,10 +90,6 @@ public class ChooseCharacterController extends InputObservable implements Generi
 
     }
 
-    /**
-     * Depending on CharacterId creates a different ChosenCharacter message
-     * @param event mouse click
-     */
     @FXML
     void onConfirmClick(Event event) {
         String StudentColour;
@@ -126,11 +122,6 @@ public class ChooseCharacterController extends InputObservable implements Generi
         SceneController.changeRootPane(observers, event, "move_to_table_scene.fxml");
     }
 
-    /**
-     * display the next available character
-     * @param event mouse click
-     */
-
     @FXML
     void onNextClick(Event event) {
         if(ListIndex<maxIndex){
@@ -146,11 +137,6 @@ public class ChooseCharacterController extends InputObservable implements Generi
         }
 
     }
-
-    /**
-     * Select the current displayed character and,depending on character able the field that allow to insert IslandId or Student/Professor colour
-     * @param event mouse click
-     */
     @FXML
     void onSelectClick(Event event){
         SelectBtn.setDisable(true);
@@ -158,11 +144,6 @@ public class ChooseCharacterController extends InputObservable implements Generi
         PreviousBtn.setDisable(true);
         ConfirmBtn.setDisable(false);
     }
-
-    /**
-     * display the previous available character
-     * @param event mouse click
-     */
 
     @FXML
     void onPreviousClick(Event event) {
@@ -180,12 +161,7 @@ public class ChooseCharacterController extends InputObservable implements Generi
         }
 
     }
-    /**
-     * Disable a button if a index equals a number
-     * @param button used button
-     * @param number used to set a limit
-     * @return if button needs to be disabled or not
-     */
+
     private boolean checkAndDisableButton(Button button, int number) {
         if (ListIndex == number) {
             button.setDisable(true);
@@ -194,11 +170,6 @@ public class ChooseCharacterController extends InputObservable implements Generi
         button.setDisable(false);
         return false;
     }
-
-    /**
-     * Depending on character, able or not the field which allow insert info about id and colour
-     * @param Character the current selected character
-     */
 
     private void Insertion(CharacterSummary Character){
         switch(Character.getId()){
@@ -223,20 +194,12 @@ public class ChooseCharacterController extends InputObservable implements Generi
         }
 
     }
-
-    /**
-     * changes the scene, return to the principal scene
-     * @param event mouse click
-     */
     @FXML
     void  onBackToMenuClick(Event event) {
 
         new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
     }
-    /**
-     * Used to set the  list of Characters
-     * @param GameCharacter is the current list of Characters in this game
-     */
+
     public void addCharacter(List<CharacterSummary> GameCharacter){
         this.AvailableCharacter=GameCharacter;
     }

@@ -20,9 +20,6 @@ public class Game2 extends Game {
         super(p);
     }
 
-
-
-
     /**
      * depending on the game number of players, this method initializes each player's board
      * adding students and towers of the automatically assigned colour

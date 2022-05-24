@@ -115,10 +115,8 @@ public class ExpertMode extends GameMode {
      * Used to set up the action
      * @param character the character to use
      * @param phase the actual phase
-     * @throws EnabledCharactersException
-     * @throws ActionException
      */
-    public void enabledCharacters(Character character, Phase phase) throws EnabledCharactersException, ActionException {
+    public void enabledCharacters(Character character, Phase phase) throws  ActionException {
         getGame().setAction(new ChooseCharacter(getGame(), character, phase));
         getGame().doAction();
     }
@@ -133,7 +131,7 @@ public class ExpertMode extends GameMode {
     }
 
     @Override
-    public void onShowCharacters() throws EnabledCharactersException {
+    public void onShowCharacters() {
 
     }
 }

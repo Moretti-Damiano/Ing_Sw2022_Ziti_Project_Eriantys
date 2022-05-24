@@ -1,10 +1,12 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
-
 /**
- * Its methods are called after a request
- * This class is used to create messages that will be sent to server
+ * Interface used to implement the Observer-Observable pattern between Cli and ClientController.
+ * This interface allows ClientController to observe Cli.
+ * It contains methods to send a client request for server or generally a messageToServer.
+ * These are raw messages that will be created and standardized in ClientController.
+ * Every method contains an input or a request from Client
  */
 public interface InputObserver {
     void onUpdateLogin(String nickname);

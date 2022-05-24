@@ -11,9 +11,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
  * check if the current Player has enough coins and if there is already a chosen character
  */
 public class ChooseCharacter implements Action{
-    private Character character;
-    private Game game;
-    private Phase actualPhase;
+    private final Character character;
+    private final Game game;
+    private final Phase actualPhase;
 
     public ChooseCharacter(Game game, Character character, Phase phase){
         this.character=character;
@@ -49,8 +49,10 @@ public class ChooseCharacter implements Action{
     private void checkCharacterInGame() throws ActionException {
         boolean in = false;
         for(Character c: game.getCharacters()){
-            if(c.equals(character))
+            if (c.equals(character)) {
                 in = true;
+                break;
+            }
         }
         if(!in)
             throw new ActionException();

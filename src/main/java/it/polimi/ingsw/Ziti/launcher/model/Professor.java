@@ -12,5 +12,6 @@ public class Professor extends Pawn implements Serializable {
     public Professor(Colour c) {
         super(c);
     }
+    private Player player;
 
 }

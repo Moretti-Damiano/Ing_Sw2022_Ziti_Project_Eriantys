@@ -6,14 +6,18 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.TowerColour;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * This class represents the players board. It is divided in 4 different parts:
+ * towers, waiting room, dining room and professors.
+ */
 public class Board implements Serializable {
         private static final int colorrow = 5;
-        private String playername;
-        private ArrayList<Tower> towers;
+        private final String playername;
+        private final ArrayList<Tower> towers;
         private TowerColour tower_colour;
-        private ArrayList<Student> students_waiting;
-        private ArrayList<Professor> professors;
-        private ArrayList<Student>[] students;
+        private final ArrayList<Student> students_waiting;
+        private final ArrayList<Professor> professors;
+        private final ArrayList<Student>[] students;
         private ArrayList<Coin> wallet;
 
 
@@ -148,10 +152,7 @@ public class Board implements Serializable {
      * @return true if the size  is a multiple of 3
      */
     public boolean checkCoin(Colour student_colour){
-        if(students[student_colour.getIntAbbreviation()].size() % 3==0){
-            return true;
-        }
-        return false;
+        return students[student_colour.getIntAbbreviation()].size() % 3 == 0;
     }
 
     /**
@@ -192,10 +193,6 @@ public class Board implements Serializable {
         return count;
     }
 
-    /**
-     * Used to remove coins from Player's wallet
-     * @param cost
-     */
     public void removeCoin(int cost) {
         for(int i = 0; i<cost; i++){
             wallet.remove(wallet.size()-1);
@@ -204,8 +201,6 @@ public class Board implements Serializable {
 
     /**
      * Return the dining room row of the specified colour
-     * @param colour
-     * @return
      */
     public ArrayList<Student> getColourRow(Colour colour){
         return students[colour.getIntAbbreviation()];
