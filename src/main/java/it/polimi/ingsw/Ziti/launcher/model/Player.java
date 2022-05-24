@@ -1,8 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
 import it.polimi.ingsw.Ziti.launcher.AssistantParser;
-import it.polimi.ingsw.Ziti.launcher.model.Assistant;
-import it.polimi.ingsw.Ziti.launcher.model.Board;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;
@@ -10,10 +8,15 @@ import java.io.IOException;
 import java.io.Serializable;
 import java.util.List;
 
+/**
+ * This class represents the player by collecting his main information.
+ * This class has references to player's board, characater and assistant.
+ * Assistants are managed by using an XML parser
+ */
 public class Player implements Serializable {
-    private List<Assistant> assistants;
+    private final List<Assistant> assistants;
     private Board board;
-    private String name;
+    private final String name;
     private Assistant assChosen;
     private boolean usedACharacter;
 

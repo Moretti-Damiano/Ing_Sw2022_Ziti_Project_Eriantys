@@ -16,11 +16,11 @@ import static java.util.Objects.isNull;
  *            can merge islands
  */
 public class MoveMother implements Action {
-    private Game game;
-    private int moves;
-    private Mother mother;
+    private final Game game;
+    private final int moves;
+    private final Mother mother;
     private String description = "";
-    private Boolean checkInput;
+    private final Boolean checkInput;
 
 
     public MoveMother(Game game, int moves,boolean checkInput) {
@@ -31,8 +31,8 @@ public class MoveMother implements Action {
     }
 
     /**
-     * This action moves the Mother of nature
-     * @throws ActionException
+     * This action moves the Mother of nature, then checks for possible merge between mother's island and the near islands
+     * @throws ActionException if is impossible to perform the action
      */
     @Override
     public void execute() throws ActionException {
@@ -85,13 +85,13 @@ public class MoveMother implements Action {
     /**
      * changes all the tower and the island with the new player's ones
      *
-     * @param island
+     * @param island the island to update
      * @param player is the new owner of the island, is passed by getControl. has value null when
      *               the new player has the same points as the old one
      */
     private void updateIsland(Island island, Player player) {
         if (island.getTowerPlayer() != player && !isNull(player)) {
-            for (Tower T : island.getTowers()) {
+            for (Tower ignored : island.getTowers()) {
                 if (!isNull(island.getTowerPlayer())) {
                     island.getTowerPlayer().getBoard().addTower(new Tower(island.getTowerPlayer(),island.getTowerPlayer().getBoard().getTower_colour())); //give back all towers to old towerplayer
                 }
@@ -113,7 +113,8 @@ public class MoveMother implements Action {
     }
 
     /**
-     * @param island
+     * Calculates the player with the most influence on the island
+     * @param island the island to check
      * @return the player with most influence on the island
      * if more than 1 players have the same max influence, this methods returns a 'null' player
      */
@@ -142,9 +143,6 @@ public class MoveMother implements Action {
 
     /**
      * checks if island1 and island2 can be merged
-     *
-     * @param island1
-     * @param island2
      * @return true if the islands can be merged, else false
      */
     public boolean checkMerge(Island island1, Island island2) {
@@ -168,7 +166,6 @@ public class MoveMother implements Action {
     }
 
     @Override
-    // checks input of moves
     public void checkInput() throws ActionException {
         if (moves < 1 || moves > game.getCurrentPlayer().getAssChosen().getMovesMother())
             throw new ActionException();

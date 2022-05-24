@@ -1,10 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.TurnPhase;
 
-import it.polimi.ingsw.Ziti.launcher.action.EndTurn;
 import it.polimi.ingsw.Ziti.launcher.controller.TurnController;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
-import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 
+/**
+ * Phase where each player have to pick one of the cloudIslands.
+ */
 public class CloudPhase extends Phase{
     public CloudPhase(TurnController turnController) {
         super(turnController, PhaseType.CLOUD);

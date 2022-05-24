@@ -5,19 +5,8 @@ import it.polimi.ingsw.Ziti.launcher.model.Coin;
 import java.io.Serializable;
 
 public class GameWallet implements Serializable {
-    private static int MaxNumCoin=20;
-    private static int AvailableCoin=20;
-
-
-
-    public int getAvailableCoin() {
-        return AvailableCoin;
-    }
-
-
-    public int getMaxNumCoin() {
-        return MaxNumCoin;
-    }
+    private int MaxNumCoin=20;
+    private int AvailableCoin=20;
 
     /**
      * decrease the max number of coin
@@ -43,10 +32,7 @@ public class GameWallet implements Serializable {
      * @param i is the value of new available coins
      */
     public void increase(int i) {
-        if(AvailableCoin + i > MaxNumCoin){
-            AvailableCoin=MaxNumCoin;
-        }
-        else{AvailableCoin = AvailableCoin + i;}
+        AvailableCoin = Math.min(AvailableCoin + i, MaxNumCoin);
     }
 
 
@@ -54,10 +40,7 @@ public class GameWallet implements Serializable {
      * @param i is the value of coin used
      */
     public void decrease(int i) {
-        if(AvailableCoin - i < 0){
-            AvailableCoin = 0;
-        }
-        else{AvailableCoin = AvailableCoin - i;}
+        AvailableCoin = Math.max(AvailableCoin - i, 0);
     }
 
 

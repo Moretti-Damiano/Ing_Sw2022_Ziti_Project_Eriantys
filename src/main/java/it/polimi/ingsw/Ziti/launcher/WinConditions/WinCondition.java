@@ -5,6 +5,10 @@ import it.polimi.ingsw.Ziti.launcher.exception.WinException;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 
+/**
+ * Abstract class used to implement win conditions via Strategy Pattern.
+ * Every win condition in the game must extend this class.
+ */
 public abstract class WinCondition {
 
     private final TurnController turnController;
@@ -47,5 +51,9 @@ public abstract class WinCondition {
         throw new WinException(winner.GetName());
     }
 
+    /**
+     * Methods used by each winCondition class the check if the  game conditions are matched.
+     * @throws WinException whe a player win
+     */
     public abstract void check() throws WinException;
 }

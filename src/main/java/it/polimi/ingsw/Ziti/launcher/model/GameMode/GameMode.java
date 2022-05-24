@@ -54,7 +54,7 @@ public abstract class GameMode {
 
     /**
      * Update generated after a showCharacters request
-     * @throws EnabledCharactersException
+     * @throws EnabledCharactersException if characters are not enabled
      */
     public abstract void onShowCharacters() throws EnabledCharactersException;
 

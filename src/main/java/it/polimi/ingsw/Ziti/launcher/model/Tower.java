@@ -9,7 +9,7 @@ import java.io.Serializable;
 * */
 public class Tower implements Serializable {
 
-    private TowerColour towerColour;
+    private final TowerColour towerColour;
     private Player player;
 
     public Tower(Player player,TowerColour towerColour){

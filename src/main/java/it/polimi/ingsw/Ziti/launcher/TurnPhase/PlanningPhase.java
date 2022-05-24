@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.TreeMap;
 
+/**
+ * Phase where each player has to choose an assistant card
+ */
 public class PlanningPhase extends Phase{
 
     private int playersDone;
@@ -17,6 +20,11 @@ public class PlanningPhase extends Phase{
         playersDone = 0;
     }
 
+    /**
+     * If some players need to chose their assistant, this methods just set the ActivePlayer to the nextOne.
+     * When the last player have picked his assistant (playersDone = players.size()) this methods sets the first players
+     * as active, the nextPhase is called.
+     */
     @Override
     public void update() {
         updateGameMode(getPhaseType());

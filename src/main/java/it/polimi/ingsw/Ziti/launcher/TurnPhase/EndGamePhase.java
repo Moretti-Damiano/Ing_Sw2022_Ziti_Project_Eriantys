@@ -3,6 +3,10 @@ package it.polimi.ingsw.Ziti.launcher.TurnPhase;
 import it.polimi.ingsw.Ziti.launcher.controller.TurnController;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
 
+/**
+ * Final state of the game, only activates when a player win.
+ * During this phase all the moves are blocked.
+ */
 public class EndGamePhase extends Phase{
 
 

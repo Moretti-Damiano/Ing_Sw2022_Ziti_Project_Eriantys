@@ -7,9 +7,9 @@ import java.util.ArrayList;
 
 public class Island implements Serializable {
 
-    private int ID;
-    private ArrayList<Student> students;
-    private ArrayList<Tower> towers;
+    private final int ID;
+    private final ArrayList<Student> students;
+    private final ArrayList<Tower> towers;
     private Player TowerPlayer;
     private boolean isMother;
     private int size;
@@ -72,6 +72,11 @@ public class Island implements Serializable {
         students.add(s);
     }
 
+    /**
+     * set the new towerPlayer on the island. T
+     * The towerPlayer is the player who owns at least one tower on the island
+     * @param player the new TowerPlayer
+     */
     public void setTowerPlayer(Player player){
         this.TowerPlayer = player;
     }
