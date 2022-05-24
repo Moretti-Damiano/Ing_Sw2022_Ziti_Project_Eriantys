@@ -1,10 +1,12 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
-
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * Personalized observervable class used by gameController to notify his observers when all players have
+ * completed their login
+ */
 public class LoginObservable {
     private final List<LoginObserver> observers = new ArrayList<>();
 

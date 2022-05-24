@@ -1,11 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.TurnPhase;
 
-import it.polimi.ingsw.Ziti.launcher.action.EndTurn;
 import it.polimi.ingsw.Ziti.launcher.controller.TurnController;
 import it.polimi.ingsw.Ziti.launcher.enumeration.PhaseType;
-import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
-import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 
+/**
+ * Phase where each player can move MotherNature, the number of moves will be check by the action.
+ */
 public class MotherPhase extends Phase{
     public MotherPhase(TurnController turnController) {
         super(turnController, PhaseType.MOTHER);
