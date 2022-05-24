@@ -1983,7 +1983,7 @@ public class MoveToTableSceneController extends InputObservable implements Gener
      * Activate MoveMotherBtn only if is MotherPhase
      */
     private void setMoveMotherBtn(){
-        if(phaseType==PhaseType.MOTHER) MoveMotherBtn.setDisable(false);
+        if(phaseType==PhaseType.MOTHER && ActivePlayer==BoardName.getText()) MoveMotherBtn.setDisable(false);
         else MoveMotherBtn.setDisable(true);
     }
 
@@ -2131,20 +2131,13 @@ public class MoveToTableSceneController extends InputObservable implements Gener
 
     @FXML
     void onDisconnectBtnClick(Event event){
-        //ask confirm (needs to implement a scene)
-        //MAYBE BETTER
         BackToGameBtn.setVisible(true);
         ReallyDisconnectBtn.setVisible(true);
-
-        // SceneController.changeRootPane(observers, event, "menu_scene.fxml");
-
-
     }
 
     @FXML
     private void setCoins(){
         if( board.getWallet()!=null){
-
             Image img = new Image(getClass().getResourceAsStream("/images/coin_modified.png"));
             CoinImg.setImage(img);
             CoinLabel.setText("Coins  x"+(board.getNumberofCoin()));
