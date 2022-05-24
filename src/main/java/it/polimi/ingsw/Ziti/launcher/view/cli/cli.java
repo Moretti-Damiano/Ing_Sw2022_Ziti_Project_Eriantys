@@ -29,7 +29,14 @@ public class cli extends InputObservable implements view, ViewObserver {
         scanner = new Scanner(System.in);
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     *
+     *
+     * @param assistants
+     */
     public void showAssistants(List<Assistant> assistants) {
         System.out.println("Available assistants are :");
         for(Assistant ass : assistants){
@@ -40,7 +47,11 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    @Override
+    /**
+     *
+     *
+     * @param characterSummary
+     */
     public void showCharacters(ArrayList<CharacterSummary> characterSummary) {
         for(CharacterSummary character:characterSummary){
             System.out.println("Character ID: "+character.getId()+"\t\t"+"Cost "+character.getCost());
@@ -51,7 +62,12 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
 
-    @Override
+    /**
+     *
+     *
+     *
+     * @param islands
+     */
     public void showIslands(List<Island> islands) {
         System.out.println();
         System.out.println("Available islands are ");
@@ -79,7 +95,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         }
     }
 
-    @Override
+    /**
+     *
+     *
+     * @param clouds
+     */
     public void showClouds(List<CloudIsland> clouds) {
         System.out.println("Available Cloud Islands are: ");
         for (CloudIsland c : clouds) {
@@ -94,7 +114,12 @@ public class cli extends InputObservable implements view, ViewObserver {
             }
         }
     }
-    @Override
+
+    /**
+     *
+     *
+     * @param board
+     */
     public void showMyBoard(Board board) {
         // show waiting Students
         System.out.println("     WAITING ROOM                                                       DINING ROOM");
@@ -117,7 +142,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("There are " + board.getTowerSize() + " towers");
     }
 
-    @Override
+    /**
+     *
+     *
+     * @param boards
+     */
     public void showBoards(List<Board> boards){
         for(Board board: boards){
             System.out.println("\n\n\t\t\t\t\t\t\t\t\t\t\t"+board.getPlayername().toUpperCase(Locale.ROOT)+"'s BOARD");
@@ -141,7 +170,11 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askLogin()  {
         System.out.println("Insert your username: ");
         String username;
@@ -149,7 +182,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         notifyObserver(obs->obs.onUpdateLogin(username));
     }
 
-    @Override
+    /**
+     *
+     *
+     * @return
+     */
     public String askAssistant()  {
         System.out.println("Insert Assistant's id: ");
         String assistantId;
@@ -158,7 +195,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         return assistantId;
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     * @return
+     */
     public String askCharacter(){
         System.out.println("Insert Character's id: ");
         String characterId;
@@ -167,7 +209,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         return characterId;
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     * @return
+     */
     public String askIsland()  {
         System.out.println("Insert an Island's id: ");
         String islandId;
@@ -176,7 +223,12 @@ public class cli extends InputObservable implements view, ViewObserver {
         return islandId;
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     * @return
+     */
     public String askColour()  {
         System.out.println("Insert a colour: ");
         String colour;
@@ -216,19 +268,31 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askMoveToTable() {
         notifyObserver(obs ->   obs.onUpdateMoveToTable(askColour()));
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askMoveToIsland(){
         notifyObserver(obs ->
                 obs.onUpdateMoveToIsland(askColour(),askIsland()));
 
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askMoveMother() {
         String moves;
         System.out.println("Insert how many moves the MotherNature should do: ");
@@ -237,7 +301,11 @@ public class cli extends InputObservable implements view, ViewObserver {
         inputThread.setFreeInput(true);
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askCloudIsland() {
         String cloudID;
         System.out.println("Insert CloudIsland's id that you want: ");
@@ -247,7 +315,11 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     }
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askChoseCharacter() {
         String characterId = askCharacter();
         switch (characterId){
@@ -275,7 +347,11 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
 
-    @Override
+    /**
+     *
+     *
+     *
+     */
     public void askChoseAssistant() {
         notifyObserver(obs -> obs.onUpdateChooseAssistant(askAssistant()));
     }

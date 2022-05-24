@@ -236,7 +236,8 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
 
     @FXML
     void  onBackToMenuClick(Event event) {
-        new Thread(() -> notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()))).start();
+        //new Thread(() ->
+                notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest())); //.start();
     }
 
     public void setCloud(List<CloudIsland> Clouds){

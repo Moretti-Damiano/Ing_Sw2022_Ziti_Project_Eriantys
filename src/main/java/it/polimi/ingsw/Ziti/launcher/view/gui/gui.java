@@ -16,103 +16,10 @@ import java.util.List;
 
 public class gui extends InputObservable implements view, ViewObserver {
 
-
-    @Override
-    public void showAssistants(List<Assistant> assistants) {
-
-    }
-
-    @Override
-    public void showCharacters(ArrayList<CharacterSummary> characterSummaries) {
-
-    }
-
-
-    @Override
-    public void showIslands(List<Island> islands) {
-
-    }
-
-    @Override
-    public void showClouds(List<CloudIsland> clouds) {
-
-    }
-
-    @Override
-    public void showMyBoard(Board board) {
-
-    }
-
-    @Override
-    public void showBoards(List<Board> boards) {
-
-    }
-
-
     @Override
     public void showErrorMessage(ErrorMessage message) {
-        Platform.runLater(() -> SceneController.showAlert("Error Message",message.getDescription()));
-       // Platform.runLater(() -> SceneController.showPlayAgain());
-
-    }
-
-    @Override
-    public void askLogin() {
-
-    }
-
-    @Override
-    public String askAssistant() {
-        return null;
-    }
-
-    @Override
-    public String askCharacter() {
-        return null;
-    }
-
-    @Override
-    public String askIsland() {
-        return null;
-    }
-
-    @Override
-    public String askColour() {
-        return null;
-    }
-
-    @Override
-    public void askMoveToTable() {
-
-    }
-
-    @Override
-    public void askMoveToIsland() {
-
-    }
-
-    @Override
-    public void askMoveMother() {
-
-    }
-
-    @Override
-    public void askCloudIsland() {
-
-    }
-
-    @Override
-    public void askChoseCharacter() {
-
-    }
-
-    @Override
-    public void askChoseAssistant() {
-
-    }
-
-    @Override
-    public void askNumberOfPlayer() {
+        Platform.runLater(() -> SceneController.showAlert("Error Message", message.getDescription()));
+        // Platform.runLater(() -> SceneController.showPlayAgain());
     }
 
     @Override

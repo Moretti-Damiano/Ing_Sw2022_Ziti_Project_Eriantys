@@ -15,24 +15,5 @@ import java.util.concurrent.ExecutionException;
  * Interface implemented by gui and cli
  */
 public interface view {
-
-    void showAssistants(List<Assistant> assistants);
-    void showCharacters(ArrayList<CharacterSummary> characterSummaries);
-    void showIslands(List<Island> islands);
-    void showClouds(List<CloudIsland> clouds);
-    void showMyBoard(Board board);
-    void showBoards(List<Board> boards);
     void showErrorMessage(ErrorMessage message);
-    void askLogin();
-    String askAssistant();
-    String askCharacter();
-    String askIsland();
-    String askColour();
-    void askMoveToTable();
-    void askMoveToIsland();
-    void askMoveMother();
-    void askCloudIsland();
-    void askChoseCharacter();
-    void askChoseAssistant();
-    void askNumberOfPlayer();
 }
