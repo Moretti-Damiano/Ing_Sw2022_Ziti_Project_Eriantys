@@ -14,9 +14,9 @@ import it.polimi.ingsw.Ziti.launcher.observer.InputObserver;
 import java.io.IOException;
 /**
  * This class observes cli and is observed by SocketClient
- * Is used to verify inputs and to bring message to the server
+ * Is used to verify inputs and to bring messages to the server
+ * Contains a reference to ClientMessageHandler that allows management of every message to Client
  */
-
 public class ClientController extends ClientObservable implements InputObserver {
 
     ClientMessageHandler clientMessageHandler;
@@ -30,14 +30,19 @@ public class ClientController extends ClientObservable implements InputObserver 
     /**
      * this method is used to bring "Messages to Client" from Server to cli
      */
-
     public void update(MessageToClient message){ message.handle(clientMessageHandler);}
 
 
     /**
+     *
      * Methods "onUpdate" are used to create Message to Client
      * Take String as a parameters, if String should be an Integer it verifies it
+     *
      */
+
+
+
+
 
     @Override
     public void onUpdateLogin(String nickname) {

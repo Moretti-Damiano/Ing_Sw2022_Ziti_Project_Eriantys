@@ -17,10 +17,8 @@ import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * This class observes Client Controller and is observed by Observer Client
- * Used to interface with client
+ * Used to interface client-server
  */
-
-
 public class SocketClient extends SocketClientObservable implements ClientObserver {
 
     private final Socket socket;

@@ -7,7 +7,6 @@ import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-
 import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
@@ -18,6 +17,7 @@ import java.util.*;
 /**
  * This class observes ClientMessageHandler and is observed by ClientController
  * It's the real client who calls methods from "command line interface"
+ * Implements view's methods
  */
 public class cli extends InputObservable implements view, ViewObserver {
 
