@@ -118,7 +118,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showAssistantHandler(ShowAssistantResponse message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getAssistants().toString()));
+       // Platform.runLater(() -> SceneController.showAlert("Info Message",message.getAssistants().toString()));
         ChooseAssistantSceneController casc = new ChooseAssistantSceneController();
         casc.addAllObservers(observers);
         casc.addAssistant(message.getAssistants());
@@ -127,7 +127,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showCharacterHandler(ShowCharacterResponse message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getCharacterSummaries().toString()));
+     //   Platform.runLater(() -> SceneController.showAlert("Info Message",message.getCharacterSummaries().toString()));
         ChooseCharacterController ccc = new ChooseCharacterController();
         ccc.addAllObservers(observers);
         ccc.addCharacter(message.getCharacterSummaries());
@@ -155,7 +155,7 @@ public class gui extends InputObservable implements view, ViewObserver {
 
     @Override
     public void showCloudHandler(ShowCloudResponse message) {
-        Platform.runLater(() -> SceneController.showAlert("Info Message",message.getClouds().toString()));
+      //  Platform.runLater(() -> SceneController.showAlert("Info Message",message.getClouds().toString()));
         ChooseCloudSceneController ccsc = new ChooseCloudSceneController();
         ccsc.addAllObservers(observers);
         ccsc.setCloud(message.getClouds());

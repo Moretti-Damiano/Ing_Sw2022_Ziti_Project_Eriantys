@@ -106,18 +106,19 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
         Select2.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onSelectClick);
         ConfirmBtn.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onConfirmClick);
         BackToMenu.addEventHandler(MouseEvent.MOUSE_CLICKED, this::onBackToMenuClick);
+        // adding images and buttons to groups
         groups.add(Cld0);
         groups.add(Cld1);
         groups.add(Cld2);
         if(availableCloud.size()==3){
+            // Set up a ChooseCloud for 3 players
             Cld0.setDisable(false);
             Cld1.setDisable(false);
             Cld2.setDisable(false);
             Select0.setId("0");
             Select1.setId("1");
             Select2.setId("2");
-            //Image img= new Image(getClass().getResourceAsStream("/images/Cloud.png"));
-           // ArrayList<ImageView> Cld2Students = new ArrayList<>();
+            // Setting up students for each CloudIsland
             Cld0Students.add(S00);
             Cld0Students.add(S01);
             Cld0Students.add(S02);
@@ -136,12 +137,13 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             setStudentsCloud(Cld2Students,availableCloud.get(2));
 
 
-        }else{
+        }
+        else{
+            // Set up a ChooseCloud for 2 players
             Cld0.setDisable(false);
             Cld1.setDisable(false);
             Cld2.setDisable(true);
             Cloud2.setVisible(false);
-
             Select0.setId("0");
             Select1.setId("1");
             Cld0Students.add(S00);
@@ -159,6 +161,11 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
         }
 
     }
+
+    /**
+     * Method used to determine what's after a click on this button
+     * @param event is the mouse click
+     */
     private void onConfirmClick(Event event) {
         ConfirmBtn.setDisable(true);
         RadioButton selectedRadioButton = (RadioButton) SelectIsld.getSelectedToggle();
@@ -166,10 +173,12 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
         new Thread(() -> notifyObserver(obs -> obs.onUpdateCloudIsland(chosenCloudIsland))).start();
     }
 
-
+    /**
+     * Used to set up students in  a cloud
+     * @param students are real students in game
+     * @param cloudIsland is the chosen cloud that needs to be setted
+     */
     private void setStudentsCloud(ArrayList<ImageView> students,CloudIsland cloudIsland){
-      //  if(cloudIsland.getStudents().size()==0) groups.get(cloudIsland.getID()).setVisible(false);  NOT WORKING
-      //  else{
         Image blue_student = new Image(getClass().getResourceAsStream("/images/blue_student.png"));
         Image green_student = new Image(getClass().getResourceAsStream("/images/green_student.png"));
         Image pink_student = new Image(getClass().getResourceAsStream("/images/pink_student.png"));
@@ -197,8 +206,12 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
                     }
                 }
             }
-     //   }
 
+    /**
+     * Used to set Visible or not every group of Cloud
+     * @param groups is the list of groups
+     * @param cloudIslands is the list of CloudIsland
+     */
     private void setCloudIslandImages(ArrayList<Group> groups,List<CloudIsland> cloudIslands) {
         for (CloudIsland c : cloudIslands) {
             if (c.getStudents().size() == 0) {
@@ -230,16 +243,29 @@ public class ChooseCloudSceneController extends InputObservable implements Gener
             }
         }
     }
+
+    /**
+     * Method used to determine what's after a click on this button
+     * @param event is the mouse click
+     */
     private void onSelectClick(Event event){
         ConfirmBtn.setDisable(false);
     }
 
+    /**
+     * Method used to determine what's after a click on this button
+     * @param event is the mouse click
+     */
     @FXML
     void  onBackToMenuClick(Event event) {
         //new Thread(() ->
                 notifyObserver(obs -> obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest())); //.start();
     }
 
+    /**
+     * Method used to set every cloud after a showClouds request in gui
+     * @param Clouds are used clouds in game
+     */
     public void setCloud(List<CloudIsland> Clouds){
         this.availableCloud=Clouds;
     }
