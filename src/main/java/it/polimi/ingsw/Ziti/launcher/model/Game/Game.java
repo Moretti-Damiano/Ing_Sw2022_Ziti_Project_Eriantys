@@ -12,21 +12,20 @@ import java.util.ArrayList;
 import java.util.Random;
 
 /**
- * Class used to set a generic game
+ * Abstract class used to implement games for different number of players via Strategy Pattern
  */
-
 public abstract class Game extends Observable {
-    private ArrayList<Island> islands;
-    private ArrayList<Player> players;
-    private ArrayList<CloudIsland> cloudIslands;
+    private final ArrayList<Island> islands;
+    private final ArrayList<Player> players;
+    private final ArrayList<CloudIsland> cloudIslands;
     private ArrayList<Board> boards;
-    private Mother mother;
+    private final Mother mother;
     private Sack sack;
-    private int playerNumber;   //indicates the number of player at the start of the game
+    private final int playerNumber;
     private ArrayList<Professor> professors;
     private Player currentPlayer;
     private Action action;
-    private GameWallet gameWallet;
+    private final GameWallet gameWallet;
     private ArrayList<Character> characters;
     private GameMode gameMode;
 
@@ -41,7 +40,7 @@ public abstract class Game extends Observable {
         this.players = new ArrayList<>(p);
 
         //creates 12 empty islands
-        this.islands = new ArrayList<Island>();
+        this.islands = new ArrayList<>();
         for(int i=0;i<12;i++){
             islands.add(new Island(i));
         }
@@ -140,10 +139,6 @@ public abstract class Game extends Observable {
         return cloudIslands;
     }
 
-    public ArrayList<Professor> getProfessors() {
-        return professors;
-    }
-
     public ArrayList<Character> getCharacters() {
         return characters;
     }
@@ -233,7 +228,7 @@ public abstract class Game extends Observable {
 
     /**
      * Set the current action that will be played
-     * @param action
+     * @param action the action to be set
      */
     public void setAction(Action action){
         this.action = action;
@@ -241,7 +236,7 @@ public abstract class Game extends Observable {
 
     /**
      * Do the chosen action
-     * @throws ActionException
+     * @throws ActionException ifan error occurs during the action.execute()
      */
     public void doAction() throws ActionException {
         action.execute();
