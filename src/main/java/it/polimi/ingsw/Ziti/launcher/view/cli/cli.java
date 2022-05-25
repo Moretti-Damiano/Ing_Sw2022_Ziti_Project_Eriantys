@@ -530,7 +530,7 @@ public class cli extends InputObservable implements view, ViewObserver {
         System.out.println("Please insert Server Settings. Default value is shown as [DEFAULT]");
         System.out.println("Enter the server address ["+defaultAddress+"]");
         String address=readLine();
-
+        
         notifyObserver(obs->obs.onUpdateConnection(address));
 
     }
