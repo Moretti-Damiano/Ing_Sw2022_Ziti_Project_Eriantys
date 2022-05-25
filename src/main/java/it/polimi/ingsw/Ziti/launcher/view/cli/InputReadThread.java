@@ -1,15 +1,11 @@
-package it.polimi.ingsw.Ziti.launcher;
-
-
-import it.polimi.ingsw.Ziti.launcher.view.cli.cli;
+package it.polimi.ingsw.Ziti.launcher.view.cli;
 
 import java.util.Scanner;
 
 public class InputReadThread implements Runnable{
     private boolean freeInput;
-    private String input;
-    private Scanner scanner;
-    private cli cli;
+    private final Scanner scanner;
+    private final cli cli;
     private boolean isOn;
 
     public InputReadThread(cli cli){
@@ -22,15 +18,11 @@ public class InputReadThread implements Runnable{
     @Override
     public void run() {
         while (isOn){
-            input = scanner.nextLine();
+            String input = scanner.nextLine();
             if(freeInput){
                 cli.command(input);
             }
         }
-    }
-
-    public boolean isFreeInput() {
-        return freeInput;
     }
 
     public void setFreeInput(boolean freeInput) {
