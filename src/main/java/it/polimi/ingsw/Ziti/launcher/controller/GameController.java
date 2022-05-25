@@ -3,6 +3,7 @@ import it.polimi.ingsw.Ziti.launcher.exception.EnabledCharactersException;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game3;
+import it.polimi.ingsw.Ziti.launcher.model.Game.GameFactory;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.ExpertMode;
 import it.polimi.ingsw.Ziti.launcher.model.GameMode.NormalMode;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
@@ -40,7 +41,7 @@ public class GameController extends GameControllerObservable implements ServerOb
     private Game game;
     private TurnController turnController;
     private final ArrayList<Player> players;
-    private int numberOfPlayers = 4;//game for n players
+    private int numberOfPlayers = 2;//game for n players
     private boolean mode;
     private boolean doingFirstLogin;
 
@@ -449,7 +450,7 @@ public class GameController extends GameControllerObservable implements ServerOb
      */
     private void startGame(){
         System.out.println("Starting game for " + players.size() + " players");
-        chooseGame(numberOfPlayers);
+        this.game = GameFactory.getInstance().getGame(numberOfPlayers,players);
         chooseMode(mode);
         game.getGameMode().startmode();
         game.addObserver(this);
@@ -478,18 +479,6 @@ public class GameController extends GameControllerObservable implements ServerOb
     public void endGameDisconnection(){
         notifyObserver(obs->obs.sendToAllPlayers(new GameEndedMessage("Game has ended because a player disconnected")));
         notifyObserver(GameControllerObserver::disconnectAll);
-    }
-
-    /**
-     * this method is used to create the correct game
-     * @param playerSize the number of players of the game
-     */
-    private void chooseGame(int playerSize){
-        if(playerSize==2){
-            this.game=new Game2(players);}
-        if(playerSize==3){
-            this.game= new Game3(players);
-        }
     }
 
     /**

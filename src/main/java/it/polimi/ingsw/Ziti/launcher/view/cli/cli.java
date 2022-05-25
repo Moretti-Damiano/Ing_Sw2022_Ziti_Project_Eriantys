@@ -1,13 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.view.cli;
 
-import it.polimi.ingsw.Ziti.launcher.InputReadThread;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.view;
@@ -362,7 +360,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
     private void playAgain(){
         scanner.reset();
-        inputThread.close();
+        if(inputThread!=null)
+            inputThread.close();
 
         System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
         String response = readLine();
