@@ -17,6 +17,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Player;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * GameMOde with characters enabled
+ */
 public class ExpertMode extends GameMode {
 
     private Character activeCharacter;

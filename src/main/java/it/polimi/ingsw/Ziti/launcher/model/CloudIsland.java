@@ -5,6 +5,9 @@ import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Class used to represent the cloudIsland.
+ */
 public class CloudIsland implements Serializable {
     private final int ID;
     private final int size;       //number of student on the cloudisland
