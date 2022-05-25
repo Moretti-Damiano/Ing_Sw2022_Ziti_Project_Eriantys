@@ -360,7 +360,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
     private void playAgain(){
         scanner.reset();
-        inputThread.close();
+        if(inputThread!=null)
+            inputThread.close();
 
         System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
         String response = readLine();
