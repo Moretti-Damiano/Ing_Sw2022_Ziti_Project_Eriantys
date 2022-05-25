@@ -1,4 +1,4 @@
-package it.polimi.ingsw.Ziti.launcher;
+package it.polimi.ingsw.Ziti.launcher.model.Parser;
 import it.polimi.ingsw.Ziti.launcher.model.Assistant;
 import org.w3c.dom.*;
 import org.xml.sax.SAXException;
