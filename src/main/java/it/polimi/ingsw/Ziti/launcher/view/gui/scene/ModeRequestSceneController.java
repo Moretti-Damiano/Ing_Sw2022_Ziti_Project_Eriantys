@@ -1,15 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.DisconnectionRequest;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.RadioButton;
-import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 

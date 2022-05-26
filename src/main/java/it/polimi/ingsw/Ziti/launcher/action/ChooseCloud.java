@@ -1,10 +1,10 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCloudDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.ChooseCloudDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.game.Game;
 
 /**
  * This action is used to Choose a Cloud Island in the game

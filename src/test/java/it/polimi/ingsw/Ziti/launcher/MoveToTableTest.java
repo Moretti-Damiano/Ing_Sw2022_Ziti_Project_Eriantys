@@ -4,16 +4,15 @@ import it.polimi.ingsw.Ziti.launcher.action.MoveToTable;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
-import it.polimi.ingsw.Ziti.launcher.model.Game.Game2;
-import it.polimi.ingsw.Ziti.launcher.model.GameMode.ExpertMode;
+import it.polimi.ingsw.Ziti.launcher.model.game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.game.Game2;
+import it.polimi.ingsw.Ziti.launcher.model.gamemode.ExpertMode;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import javax.xml.parsers.ParserConfigurationException;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Map;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertFalse;

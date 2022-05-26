@@ -1,7 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
+import it.polimi.ingsw.Ziti.launcher.messages.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.MessageToClient;
 import it.polimi.ingsw.Ziti.launcher.observer.*;
 
 /**

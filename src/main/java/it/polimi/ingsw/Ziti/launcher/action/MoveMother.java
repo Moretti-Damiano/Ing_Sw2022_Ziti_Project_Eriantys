@@ -1,10 +1,10 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.MoveMotherDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.MoveMotherDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.game.Game;
 
 import static java.util.Objects.isNull;
 

@@ -1,7 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
-import it.polimi.ingsw.Ziti.launcher.model.Board;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToServer.ShowBoardsandIslandsRequest;
 import it.polimi.ingsw.Ziti.launcher.model.CloudIsland;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.event.Event;

@@ -1,18 +1,13 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.ShowBoardsandIslandsRequest;
-import it.polimi.ingsw.Ziti.launcher.model.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToServer.ShowBoardsandIslandsRequest;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.gui.scene.*;
 import it.polimi.ingsw.Ziti.launcher.view.view;
 import javafx.application.Platform;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class gui extends InputObservable implements view, ViewObserver {
 

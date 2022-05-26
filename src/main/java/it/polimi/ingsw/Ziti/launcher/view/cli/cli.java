@@ -1,9 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.view.cli;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.messages.CharacterSummary;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;

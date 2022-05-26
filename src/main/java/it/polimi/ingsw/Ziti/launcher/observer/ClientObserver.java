@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToServer.MessagetoServer;
 
 /**
  * Interface used to implement the Observer-Observable pattern between SocketClient and ClientController.
