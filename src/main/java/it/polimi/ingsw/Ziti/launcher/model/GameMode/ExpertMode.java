@@ -17,6 +17,9 @@ import it.polimi.ingsw.Ziti.launcher.model.Player;
 import java.util.ArrayList;
 import java.util.Random;
 
+/**
+ * GameMOde with characters enabled
+ */
 public class ExpertMode extends GameMode {
 
     private Character activeCharacter;
@@ -61,7 +64,6 @@ public class ExpertMode extends GameMode {
      */
     private ArrayList<Character> setUpCharacters() {
         ArrayList<Character> gameCharacters = new ArrayList<>();
-        CharacterFactory characterFactory = new CharacterFactory(getGame());
         ArrayList<Integer> ids = new ArrayList<>();
         for(int i = 0; i < 6; i++){
             ids.add(i);
@@ -74,7 +76,7 @@ public class ExpertMode extends GameMode {
         while (gameCharacters.size() < 3) {
             number = rand.nextInt(ids.size());
             if(ids.contains(number)) {
-                gameCharacters.add(characterFactory.getCharacter(number));
+                gameCharacters.add(CharacterFactory.getInstance().getCharacter(number,getGame()));
                 ids.remove((Integer)number);
             }
         }

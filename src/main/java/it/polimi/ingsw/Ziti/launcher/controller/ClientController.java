@@ -1,10 +1,7 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
 import it.polimi.ingsw.Ziti.launcher.Messages.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ConnectionSuccessfulMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.InputError;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
+import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
@@ -16,6 +13,8 @@ import java.io.IOException;
  * This class observes cli and is observed by SocketClient
  * Is used to verify inputs and to bring messages to the server
  * Contains a reference to ClientMessageHandler that allows management of every message to Client
+ * Methods "onUpdate" are used to create Message to Client
+ * Take String as a parameters, if String should be an Integer it verifies it
  */
 public class ClientController extends ClientObservable implements InputObserver {
 
@@ -31,17 +30,6 @@ public class ClientController extends ClientObservable implements InputObserver 
      * this method is used to bring "Messages to Client" from Server to cli
      */
     public void update(MessageToClient message){ message.handle(clientMessageHandler);}
-
-
-    /**
-     *
-     * Methods "onUpdate" are used to create Message to Client
-     * Take String as a parameters, if String should be an Integer it verifies it
-     *
-     */
-
-
-
 
 
     @Override
@@ -255,6 +243,8 @@ public class ClientController extends ClientObservable implements InputObserver 
             InputError message;
             message=new InputError("You didn't insert a numeric input! ");
             update(message);
+            clientMessageHandler.NumOfPlayerRequestHandle(new NumOfPLayersRequest());
+
         }
     }
 

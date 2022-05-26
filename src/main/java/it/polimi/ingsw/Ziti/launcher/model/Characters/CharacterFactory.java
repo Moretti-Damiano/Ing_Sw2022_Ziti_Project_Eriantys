@@ -1,19 +1,30 @@
 package it.polimi.ingsw.Ziti.launcher.model.Characters;
 
 import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.Game.GameFactory;
 
 /**
- * this class is used to generate characters for the game
+ * Class used to generate the characters for the game by using a Factory pattern.
+ * This class also implements the Singleton Pattern.
  */
 public class CharacterFactory {
 
-    private final Game game;
+    private static CharacterFactory instance;
+    public CharacterFactory() {}
 
-    public CharacterFactory(Game game) {
-        this.game = game;
+    public static CharacterFactory getInstance(){
+        if(instance == null)
+            instance = new CharacterFactory();
+        return instance;
     }
 
-    public Character getCharacter(int id){
+    /**
+     * Generates a Character by his id
+     * @param id the character's id
+     * @param game the game to assign the character to
+     * @return the requested character
+     */
+    public Character getCharacter(int id, Game game){
         Character character;
         switch (id){
             case 0:

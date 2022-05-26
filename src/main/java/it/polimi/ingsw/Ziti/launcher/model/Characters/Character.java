@@ -7,12 +7,16 @@ import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
 import java.io.Serializable;
 import java.util.ArrayList;
 
+/**
+ * Abstract class that must be extended bey every character class.
+ * It contains the main attributes adn methods for implementing characters.
+ */
 public abstract class Character implements Serializable {
     private Game game;
     private int id;
     private int cost;
     private String description;
-    private ArrayList<PhaseType> usePhase;
+    private final ArrayList<PhaseType> usePhase;
     private PhaseType endPhase;
     private boolean available;
     private boolean used;
@@ -73,11 +77,13 @@ public abstract class Character implements Serializable {
         this.used = used;
     }
 
+    /**
+     *
+     * @param phase the actual phase
+     * @return true if the character can activate his effect in this phase
+     */
     public boolean isPhase(PhaseType phase){
-        if(usePhase.contains(phase))
-            return true;
-        else
-            return false;
+        return usePhase.contains(phase);
     }
 
     /**

@@ -1,13 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.view.cli;
 
-import it.polimi.ingsw.Ziti.launcher.InputReadThread;
 import it.polimi.ingsw.Ziti.launcher.Messages.CharacterSummary;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.*;
 import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import it.polimi.ingsw.Ziti.launcher.observer.ViewObserver;
 import it.polimi.ingsw.Ziti.launcher.view.view;
@@ -30,12 +28,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     /**
-     *
-     *
-     *
-     *
-     *
-     * @param assistants
+     * Method used to show the list of assistants
+     * @param assistants is the list af assistants
      */
     public void showAssistants(List<Assistant> assistants) {
         System.out.println("Available assistants are :");
@@ -49,8 +43,8 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     * @param characterSummary
+     * Method used to show characters
+     * @param characterSummary is the character's description
      */
     public void showCharacters(ArrayList<CharacterSummary> characterSummary) {
         for(CharacterSummary character:characterSummary){
@@ -64,9 +58,8 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     *
-     * @param islands
+     * Method used to show all islands in game
+     * @param islands is the list of islands
      */
     public void showIslands(List<Island> islands) {
         System.out.println();
@@ -96,9 +89,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     /**
-     *
-     *
-     * @param clouds
+     * Method used to show all of CloudIslands
+     * @param clouds is the list of clouds in game
      */
     public void showClouds(List<CloudIsland> clouds) {
         System.out.println("Available Cloud Islands are: ");
@@ -116,9 +108,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
 
     /**
-     *
-     *
-     * @param board
+     * Method used to show player's board
+     * @param board is the player's board
      */
     public void showMyBoard(Board board) {
         // show waiting Students
@@ -144,8 +135,8 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     * @param boards
+     * Method used to show each board in game
+     * @param boards is the list of player's board
      */
     public void showBoards(List<Board> boards){
         for(Board board: boards){
@@ -172,7 +163,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
+     * Method used to ask Username of the player
      *
      */
     public void askLogin()  {
@@ -184,8 +175,8 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     * @return
+     * Method used to ask which assistant player wants to use
+     * @return assistant's id
      */
     public String askAssistant()  {
         System.out.println("Insert Assistant's id: ");
@@ -197,9 +188,8 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     *
-     * @return
+     * Method used to ask which character player wants to use
+     * @return character's id
      */
     public String askCharacter(){
         System.out.println("Insert Character's id: ");
@@ -211,9 +201,8 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     *
-     * @return
+     * Method used to ask  an island in game
+     * @return island's id
      */
     public String askIsland()  {
         System.out.println("Insert an Island's id: ");
@@ -225,9 +214,8 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     *
-     * @return
+     * Method used to ask a colour in game
+     * @return colour's string
      */
     public String askColour()  {
         System.out.println("Insert a colour: ");
@@ -237,6 +225,10 @@ public class cli extends InputObservable implements view, ViewObserver {
         return colour;
 
     }
+
+    /**
+     * Method used to ask the number of players
+     */
     public void askNumberOfPlayer()  {
         System.out.println("Insert the number of players: ");
         String numberOfPlayer=readLine();
@@ -270,8 +262,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     *
+     * Method used to ask Move to table action
      */
     public void askMoveToTable() {
         notifyObserver(obs ->   obs.onUpdateMoveToTable(askColour()));
@@ -280,7 +271,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     /**
      *
      *
-     *
+     * Method used to ask Move to island action
      */
     public void askMoveToIsland(){
         notifyObserver(obs ->
@@ -291,7 +282,7 @@ public class cli extends InputObservable implements view, ViewObserver {
     /**
      *
      *
-     *
+     * Method used to ask Mother moves actions
      */
     public void askMoveMother() {
         String moves;
@@ -303,8 +294,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     *
+     * Method used to ask a CloudIsland in game
      */
     public void askCloudIsland() {
         String cloudID;
@@ -317,8 +307,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     *
+     * Method used to ask ChooseCharacter action in game
      */
     public void askChoseCharacter() {
         String characterId = askCharacter();
@@ -349,8 +338,7 @@ public class cli extends InputObservable implements view, ViewObserver {
 
     /**
      *
-     *
-     *
+     * Method used to ask ChooseAssistant action
      */
     public void askChoseAssistant() {
         notifyObserver(obs -> obs.onUpdateChooseAssistant(askAssistant()));
@@ -362,7 +350,8 @@ public class cli extends InputObservable implements view, ViewObserver {
     }
     private void playAgain(){
         scanner.reset();
-        inputThread.close();
+        if(inputThread!=null)
+            inputThread.close();
 
         System.out.println("Do you want to play again?\nType [Y] for Yes or [N] for No");
         String response = readLine();
@@ -526,11 +515,11 @@ public class cli extends InputObservable implements view, ViewObserver {
                 "8888888888 "+" 888   T88b "+"8888888  "+"d88P     888   "+"888    Y888  "+"     888     "+"    888     "+"   Y8888P      \n");
 
         String defaultAddress = "localhost";
-        String defaultPort = "16847";
+        //String defaultPort = "16847"; not used here
         System.out.println("Please insert Server Settings. Default value is shown as [DEFAULT]");
         System.out.println("Enter the server address ["+defaultAddress+"]");
         String address=readLine();
-
+        
         notifyObserver(obs->obs.onUpdateConnection(address));
 
     }
@@ -592,8 +581,6 @@ public class cli extends InputObservable implements view, ViewObserver {
                 notifyObserver(obs->obs.onUpdateShowAndIslandRequest(new ShowBoardsandIslandsRequest()));
                 break;
             case "DISCONNECT":
-                // notifyObserver(obs->obs.onUpdateDisconnection(new DisconnectionRequest()));
-                // init();
                 System.exit(0);
                 break;
             default:
