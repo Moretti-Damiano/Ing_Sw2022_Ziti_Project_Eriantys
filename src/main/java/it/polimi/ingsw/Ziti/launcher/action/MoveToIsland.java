@@ -1,11 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.MoveToIslandDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.MoveToIslandDoneMessage;
 import it.polimi.ingsw.Ziti.launcher.enumeration.Colour;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
 import it.polimi.ingsw.Ziti.launcher.model.*;
-import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.game.Game;
 
 import java.util.Locale;
 

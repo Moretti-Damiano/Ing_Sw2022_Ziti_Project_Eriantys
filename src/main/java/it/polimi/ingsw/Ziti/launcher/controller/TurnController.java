@@ -1,11 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
-import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
-import it.polimi.ingsw.Ziti.launcher.TurnPhase.PlanningPhase;
-import it.polimi.ingsw.Ziti.launcher.WinConditions.AssistantsWinCondition;
-import it.polimi.ingsw.Ziti.launcher.WinConditions.IslandsWinCondition;
-import it.polimi.ingsw.Ziti.launcher.WinConditions.TowersWinCondition;
-import it.polimi.ingsw.Ziti.launcher.WinConditions.WinCondition;
+import it.polimi.ingsw.Ziti.launcher.turnphase.Phase;
+import it.polimi.ingsw.Ziti.launcher.turnphase.PlanningPhase;
+import it.polimi.ingsw.Ziti.launcher.winconditions.AssistantsWinCondition;
+import it.polimi.ingsw.Ziti.launcher.winconditions.IslandsWinCondition;
+import it.polimi.ingsw.Ziti.launcher.winconditions.TowersWinCondition;
+import it.polimi.ingsw.Ziti.launcher.winconditions.WinCondition;
 import it.polimi.ingsw.Ziti.launcher.exception.WinException;
 import it.polimi.ingsw.Ziti.launcher.model.Player;
 

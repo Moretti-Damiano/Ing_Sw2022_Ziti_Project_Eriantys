@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui.scene;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToServer.*;
 import it.polimi.ingsw.Ziti.launcher.observer.InputObservable;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;

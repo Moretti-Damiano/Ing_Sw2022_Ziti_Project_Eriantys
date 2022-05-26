@@ -1,11 +1,11 @@
 package it.polimi.ingsw.Ziti.launcher.action;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ActionMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
-import it.polimi.ingsw.Ziti.launcher.TurnPhase.Phase;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.ActionMessage;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ActionMessage.ChooseCharacterDoneMessage;
+import it.polimi.ingsw.Ziti.launcher.turnphase.Phase;
 import it.polimi.ingsw.Ziti.launcher.exception.ActionException;
-import it.polimi.ingsw.Ziti.launcher.model.Characters.Character;
-import it.polimi.ingsw.Ziti.launcher.model.Game.Game;
+import it.polimi.ingsw.Ziti.launcher.model.characters.Character;
+import it.polimi.ingsw.Ziti.launcher.model.game.Game;
 
 /**
  * check if the current Player has enough coins and if there is already a chosen character

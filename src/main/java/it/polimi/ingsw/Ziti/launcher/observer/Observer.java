@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.observer;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.MessageToClient;
 /**
  * Observer interface with update method
  */

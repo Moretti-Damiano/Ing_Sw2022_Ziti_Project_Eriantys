@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.model;
 
-import it.polimi.ingsw.Ziti.launcher.model.Parser.AssistantParser;
+import it.polimi.ingsw.Ziti.launcher.model.parser.AssistantParser;
 import org.xml.sax.SAXException;
 
 import javax.xml.parsers.ParserConfigurationException;

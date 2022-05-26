@@ -1,6 +1,6 @@
 package it.polimi.ingsw.Ziti.launcher.view.gui;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.ClientMessageHandler;
+import it.polimi.ingsw.Ziti.launcher.messages.ClientMessageHandler;
 import it.polimi.ingsw.Ziti.launcher.controller.ClientController;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.view.gui.scene.MenuSceneController;

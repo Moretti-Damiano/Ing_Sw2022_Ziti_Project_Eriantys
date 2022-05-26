@@ -1,9 +1,9 @@
 package it.polimi.ingsw.Ziti.launcher.controller;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.*;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.CharacterMessage.*;
+import it.polimi.ingsw.Ziti.launcher.messages.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToServer.*;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToServer.CharacterMessage.*;
 import it.polimi.ingsw.Ziti.launcher.networking.client.ObserverClient;
 import it.polimi.ingsw.Ziti.launcher.networking.client.SocketClient;
 import it.polimi.ingsw.Ziti.launcher.observer.ClientObservable;

@@ -1,19 +1,15 @@
 package it.polimi.ingsw.Ziti.launcher.networking.client;
 
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.ErrorMessage;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToClient.MessageToClient;
-import it.polimi.ingsw.Ziti.launcher.Messages.MessageToServer.MessagetoServer;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.ErrorMessage;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToClient.MessageToClient;
+import it.polimi.ingsw.Ziti.launcher.messages.MessageToServer.MessagetoServer;
 import it.polimi.ingsw.Ziti.launcher.observer.*;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.io.PrintWriter;
 import java.net.InetSocketAddress;
 import java.net.Socket;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.ScheduledExecutorService;
 
 /**
  * This class observes Client Controller and is observed by Observer Client
