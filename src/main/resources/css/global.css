@@ -20,6 +20,7 @@
 .bigButton {
     -fx-font-family: 'Gronzy';
     -fx-text-fill: #451616;
+    -fx-font-size: 12;
     -fx-alignment: top-center;
     -fx-background-image: url("../images/name-removebg-preview.png");
     -fx-background-size: contain;

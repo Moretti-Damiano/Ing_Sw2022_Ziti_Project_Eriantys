@@ -29,7 +29,7 @@
                                 <Font size="17.0" />
                             </font>
                         </Text>
-                        <TextField id="nicknameField" fx:id="nicknameField" alignment="CENTER" layoutX="84.0" layoutY="166.0" prefHeight="51.0" prefWidth="285.0" promptText="Username" styleClass="customText">
+                        <TextField id="nicknameField" fx:id="nicknameField" alignment="CENTER" layoutX="113.0" layoutY="166.0" prefHeight="51.0" prefWidth="226.0" promptText="Username" styleClass="nicknameField">
                             <font>
                                 <Font size="22.0" />
                             </font>

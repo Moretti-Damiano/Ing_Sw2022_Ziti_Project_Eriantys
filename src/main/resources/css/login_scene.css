@@ -7,3 +7,9 @@
     -fx-background-size: contain;
     -fx-background-repeat: no-repeat;
 }
+.nicknameField {
+    -fx-font-family: 'Gronzy';
+    -fx-text-fill: #451616;
+    -fx-font-size: 20;
+    -fx-alignment: center;
+}
